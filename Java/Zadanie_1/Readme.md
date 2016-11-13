@@ -63,7 +63,7 @@ data = new byte[len];
 ```
 W Javie tablice są obiektami. Ich długość można odczytać z pola length, np. data.length.
 
-credit:
+credit:   
 Andrzej Görlich   
 andrzej.goerlich@uj.edu.pl   
 http://th.if.uj.edu.pl/~atg/Java   
