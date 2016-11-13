@@ -36,7 +36,7 @@ Przykładowe programy zostały wprowadzone na wykładzie.
 Napisać i skompilować program wypisujący zawartość dowolnego pliku na ekran konsoli.
 
 Wskazówka: Proszę wykorzystać klasy wspomniane powyżej(wystarczą pierwsze trzy). Niektóre metody zwracają wyjątki(exceptions), taki fragment kodu należy objąć komendą try { ... }, a następnie złapać wyjątki przy pomocy komendy catch(Exception e) { ... }. Pomocny może się okazać poniższy schemat kodu:
-
+```
 try
 {
     /* Tu nalezy odczytac i wypisac
@@ -51,15 +51,20 @@ catch(IOException e)
 {
     System.out.println("Blad wejscia/wyjscia");
 }
+```
 Wskazówka: Tablice bajtów deklarujemy w następujący sposób:
-
+```
 byte[] data;
+```
 a definiujemy (automatycznie alokuje pamięc i inicjalizuje do zer, porównaj z C/C++) tak:
 
+```
 data = new byte[len];
+```
 W Javie tablice są obiektami. Ich długość można odczytać z pola length, np. data.length.
 
-Andrzej Görlich
-andrzej.goerlich@uj.edu.pl
-http://th.if.uj.edu.pl/~atg/Java
+credit:
+Andrzej Görlich   
+andrzej.goerlich@uj.edu.pl   
+http://th.if.uj.edu.pl/~atg/Java   
 
