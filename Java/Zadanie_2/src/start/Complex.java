@@ -119,7 +119,8 @@ public class Complex
     }
     @Override
     public String toString(){
-        return Double.toString(re) + "+" + Double.toString(im) + "i";
+        if (this.im>=0) return Double.toString(re) + "+" + Double.toString(im) + "i";
+        else return Double.toString(re) + Double.toString(im) + "i";
     }   /* Zwraca String z zapisaną liczbą zespoloną formacie "-1.23+4.56i" */
 
     public static Complex valueOf(String s)throws NumberFormatException{
