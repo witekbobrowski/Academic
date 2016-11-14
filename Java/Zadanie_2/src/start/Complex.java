@@ -1,102 +1,146 @@
 package start;
-import java.math.*;
-
 public class Complex
 {
     private double re, im;
 
-
+    public Complex(){
+        re = 0;
+        im = 0;
+    }
     public Complex(double r){
         re = r;
         im = 0;
-    };
+    }
     public Complex(double real, double imag){
         re = real;
         im = imag;
-    };
-    public Complex(Complex c){
-        c.re = re;
-        c.im = im;
-    };
-    public Complex(String){
+    }
+    public Complex(Complex z){
+        re = z.re;
+        im = z.im;
+    }
+    public Complex(String s) throws NumberFormatException{
+        String[] parts = s.split("\\+|i");
+        re = Double.parseDouble(parts[0]);
+        im = Double.parseDouble(parts[1]);
+    }
 
-    };
-
-    static Complex add(Complex a, Complex b){
+    public static Complex add(Complex a, Complex b){
         double real = a.re + b.re;
         double imag = a.im + b.im;
         return new Complex(real, imag);
-    };   /* Zwraca sumę dwóch liczb zespolonych */
+    }   /* Zwraca sumę dwóch liczb zespolonych */
 
-    static Complex sub(Complex a, Complex b){
+    public static Complex sub(Complex a, Complex b){
         double real = a.re - b.re;
         double imag = a.im - b.im;
         return new Complex(real, imag);
-    };   /* Zwraca różnice dwóch liczb zespolonych */
+    }   /* Zwraca różnice dwóch liczb zespolonych */
 
-    static Complex mul(Complex a, Complex b) {
+    public static Complex mul(Complex a, Complex b) {
         double real = a.re * b.re - a.im * b.im;
         double imag = a.re * b.im + a.im * b.re;
-        return new Complex(real , imag)
-    };   /* Zwraca iloczyn dwóch liczb zespolonych */
+        return new Complex(real , imag);
+    }   /* Zwraca iloczyn dwóch liczb zespolonych */
 
-    static Complex div(Complex a, Complex b){
+    public static Complex div(Complex a, Complex b){
         double real = (a.re * b.re + a.im * b.im) / (b.re * b.re + b.im * b.im);
         double imag = (a.im * b.re - a.re * b.im) / (b.re * b.re + b.im * b.im);
         return new Complex(real, imag);
-    };  /* Zwraca iloraz dwóch liczb zespolonych */
+    }  /* Zwraca iloraz dwóch liczb zespolonych */
 
-    static double abs(Complex a){
+    public static double abs(Complex a){
         double absoluteValue = Math.hypot(a.re, a.im);
         return absoluteValue;
-    }/* Zwraca moduł liczby zespolonej */
+    }   /* Zwraca moduł liczby zespolonej */
 
-    static double phase(Complex a){
+    public static double phase(Complex a){
         double phase = Math.atan2(a.im, a.re);
         return phase;
-    };  /* Zwraca faze liczby zespolonej */
+    }  /* Zwraca faze liczby zespolonej */
 
-    static double sqrAbs(Complex){
-        double absoluteSquare = Math.hypot(a.re, a.im)^2;
+    public static double sqrAbs(Complex a){
+        double absolute = abs(a);
+        double absoluteSquare = absolute * absolute;
         return absoluteSquare;
-    };/* Zwraca kwadrat modułu liczby zespolonej */
+    }   /* Zwraca kwadrat modułu liczby zespolonej */
 
-    static double re(Complex a){
+    public static double re(Complex a){
         double real = a.re;
         return real;
-    };  /* Zwraca część rzeczywistą liczby zespolonej */
+    }  /* Zwraca część rzeczywistą liczby zespolonej */
 
-    static double im(Complex a){
+    public static double im(Complex a){
         double imag = a.im;
         return imag;
-    };  /*Zwraca część urojoną liczby zespolonej */
+    }  /*Zwraca część urojoną liczby zespolonej */
 
     /* Poniższe metody modyfikuja aktualny obiekt i zwracają 'this' */
 
-    Complex add(Complex);   // Dodaje liczbę zespoloną
-    Complex sub(Complex);   // Odejmuje liczbę zespoloną
-    Complex mul(Complex);   // Mnoży przez liczbę zespoloną
-    Complex div(Complex);   // Dzieli przez liczbę zespoloną
-    double abs();
-    double sqrAbs();
-    double re();
-    double im();
+    public Complex add(Complex b){
+        Complex a = this;
+        this.re = a.re + b.re;
+        this.im = a.im + b.im;
+        return this;
+    }   // Dodaje liczbę zespoloną
 
-    String toString();
-    /* Zwraca String z zapisaną
-        liczbą zespoloną formacie "-1.23+4.56i" */
+    public Complex sub(Complex b){
+        Complex a = this;
+        this.re = a.re - b.re;
+        this.im = a.im - b.im;
+        return this;
+    }   // Odejmuje liczbę zespoloną
 
-    static Complex valueOf(String);
-    /* Zwraca liczbę zespolona o wartości podanej
-        w argumencie w formacie "-1.23+4.56i" */
+    public Complex mul(Complex b){
+        Complex a = this;
+        this.re = a.re * b.re - a.im * b.im;
+        this.im = a.re * b.im + a.im * b.re;
+        return this;
+    }   // Mnoży przez liczbę zespoloną
 
-    void setRe(double);
-    /* Przypisuje podaną wartość części rzeczywistej */
+    public Complex div(Complex b){
+        Complex a = this;
+        this.re = (a.re * b.re + a.im * b.im) / (b.re * b.re + b.im * b.im);
+        this.im = (a.im * b.re - a.re * b.im) / (b.re * b.re + b.im * b.im);
+        return this;
+    }   // Dzieli przez liczbę zespoloną
 
-    void setIm(double);
-    /* Przypisuje podaną wartość części urojonej */
+    public double abs(){
+        return Math.hypot(re, im);
+    }
+    public double sqrAbs(){
+        return abs()*abs();
+    }
+    public double re(){
+        return re;
+    }
+    public double im(){
+        return im;
+    }
+    @Override
+    public String toString(){
+        return Double.toString(re) + "+" + Double.toString(im) + "i";
+    }   /* Zwraca String z zapisaną liczbą zespoloną formacie "-1.23+4.56i" */
 
-    void setVal(Complex);
-    void setVal(double, double);
-    /* Przypisuje podaną wartość */
+    public static Complex valueOf(String s)throws NumberFormatException{
+        String[] parts = s.split("\\+|i");
+        return new Complex(Double.parseDouble(parts[0]),Double.parseDouble(parts[1]));
+    }/* Zwraca liczbę zespolona o wartości podanej w argumencie w formacie "-1.23+4.56i" */
+
+    public void setRe(double real){
+        this.re = real;
+    }   /* Przypisuje podaną wartość części rzeczywistej */
+
+    public void setIm(double imag) {
+        this.im = imag;
+    }   /* Przypisuje podaną wartość części urojonej */
+
+    public void setVal(Complex z){
+        this.re = z.re();
+        this.im = z.im();
+    }
+    public void setVal(double real, double imag) {
+        this.re = real;
+        this.im = imag;
+    }   /* Przypisuje podaną wartość */
 }
