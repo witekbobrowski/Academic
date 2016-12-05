@@ -1,4 +1,5 @@
 package mandelbrot;
+
 public class Complex
 {
     private double re, im;
@@ -78,10 +79,9 @@ public class Complex
     /* Poniższe metody modyfikuja aktualny obiekt i zwracają 'this' */
 
     public Complex add(Complex b){
-        Complex a = this;
-        this.re = a.re + b.re;
-        this.im = a.im + b.im;
-        return this;
+        double real = re + b.re;
+        double imag = im + b.im;
+        return new Complex(real, imag);
     }   // Dodaje liczbę zespoloną
 
     public Complex sub(Complex b){
@@ -92,10 +92,9 @@ public class Complex
     }   // Odejmuje liczbę zespoloną
 
     public Complex mul(Complex b){
-        Complex a = this;
-        this.re = a.re * b.re - a.im * b.im;
-        this.im = a.re * b.im + a.im * b.re;
-        return this;
+        double real = re * b.re - im * b.im;
+        double imag = re * b.im + im * b.re;
+        return new Complex(real, imag);
     }   // Mnoży przez liczbę zespoloną
 
     public Complex div(Complex b){
@@ -144,4 +143,5 @@ public class Complex
         this.re = real;
         this.im = imag;
     }   /* Przypisuje podaną wartość */
+
 }
