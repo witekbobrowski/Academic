@@ -55,8 +55,7 @@ Wewnątrz konstruktora klasy ImagePanel referencje do obiektu panel należy pomi
 
 Pożądane ułożenie komponentów w oknie może być dosyć żmudne, dlatego warto stosować metodę małych kroków (np. początkowo tylko ImagePanel). Można użyć innych klas niż GridBagLayout lub narzędzi do tworzenia okien (builderów).
 
-Andrzej Görlich
-andrzej.goerlich@uj.edu.pl
+credit:   
+Andrzej Görlich   
+andrzej.goerlich@uj.edu.pl   
 http://th.if.uj.edu.pl/~atg/Java
-
-Print: Portrait, A4, Black and white, margins: none
