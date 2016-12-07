@@ -1,7 +1,5 @@
 #Zestaw 3
-
 ![alt tag](https://github.com/witekbobrowski/Academic/blob/master/Java/Zadanie_3/Mandelbrot.png)
-
 Język Java
 Termin: 09.11.2016
 
