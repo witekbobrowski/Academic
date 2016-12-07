@@ -77,7 +77,7 @@ public class Mandelbrot{
         Complex c = new Complex(startingPoint);
         int i = 0;
         for(;i < iterations; i++){
-            c = c.mul(c).add(startingPoint);
+            c = Complex.add(c.mul(c), (startingPoint));
             if(c.sqrAbs() > 16) break;
         }
         if(i == iterations) return 0x00000000;

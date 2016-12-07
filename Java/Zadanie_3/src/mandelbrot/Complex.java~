@@ -92,10 +92,9 @@ public class Complex
     }   // Odejmuje liczbę zespoloną
 
     public Complex mul(Complex b){
-        double temp = re * b.re - im * b.im;
-        im = re * b.im + im * b.re;
-	re = temp;
-        return this;
+        double real = re * b.re - im * b.im;
+        double imag = re * b.im + im * b.re;
+        return new Complex(real, imag);
     }   // Mnoży przez liczbę zespoloną
 
     public Complex div(Complex b){
