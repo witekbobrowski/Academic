@@ -13,7 +13,7 @@ public class Adder extends JFrame{
     private static JTextField bTextField;
 
     public static void createAndShowGUI(){
-        JFrame frame = new JFrame("Sumator");
+        JFrame frame = new JFrame("Adder");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel panel = new JPanel(new GridLayout(4,1));
 
