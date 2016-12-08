@@ -1,4 +1,5 @@
 #Zestaw 2
+![alt tag](/Java/Zadanie_2/Adder.png)
 Język Java
 Termin: 26.10.2016
 
