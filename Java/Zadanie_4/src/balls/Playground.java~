@@ -40,7 +40,7 @@ public class Playground extends JFrame{
 
     public static void addBall() throws NullPointerException{
         try{
-            Ball ball = new Ball(15, playgroundPanel);
+            Ball ball = new Ball(15);
             ball.addMouseListener(new MouseAdapter(){
                 @Override
                 public void mouseClicked(MouseEvent e){

@@ -6,20 +6,18 @@ import java.util.Random;
 
 public class Ball extends JPanel implements Runnable{
 
-    public Ball(int radius, JPanel panel){
+    public Ball(int radius){
         this.radius = radius;
-	this.panel = panel;
         new Thread(this).start();
     }
 
     public int xSpeed = 1;
     public int ySpeed = 1;
     public int radius;
-    public JPanel panel;
 
     volatile boolean stopped = false;
 
-    Dimension panelDimensions = panel.getSize();
+    Dimension panelDimensions = this.getParent().getSize();
 
     public void move(){
         int x = getX();
