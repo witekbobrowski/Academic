@@ -3,3 +3,7 @@
 
 # Compiled sources
 *.class
+
+# IDE files
+.idea/workspace.xml
+.idea/tasks.xml
