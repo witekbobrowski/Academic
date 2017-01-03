@@ -1,5 +1,5 @@
 #Zestaw 3
-![alt tag](/Java/Zadanie_3/Mandelbrot.png)
+![alt tag](/Java/Zestaw_3/Mandelbrot.png)
 Język Java
 Termin: 09.11.2016
 
