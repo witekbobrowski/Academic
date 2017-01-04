@@ -1,15 +1,22 @@
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.NoSuchElementException;
+import java.util.Stack;
+
+//I GIVE UP
 
 public class BinarySearchTree <E extends Comparable<? super E>> implements Collection<E> {
 
     public Node root;
+    public int size = 0;
 
     public BinarySearchTree(){
         this.root = null;
     }
 
+    public BinarySearchTree(Node<E> e){
+        this.root = e;
+
+    }
     public class Node<E extends Comparable<? super E>>{
 
         public E value;
@@ -30,43 +37,39 @@ public class BinarySearchTree <E extends Comparable<? super E>> implements Colle
             return right;
         }
 
+        public E getValue(){
+            return value;
+        }
+
     }
 
     private class BinaryIterator<E extends Comparable<? super E>> implements Iterator<E>{
 
-        public Node<E> node;
+        Stack<Node<E>> stack;
 
-        public BinaryIterator(Node<E> node){
-           this.node = node;
+        public BinaryIterator(Node<E> root) {
+            stack = new Stack<Node<E>>();
+            while (root != null) {
+                stack.push(root);
+                root = root.left;
+            }
         }
 
-        public boolean hasLeft(){
-            if(node.getLeft() != null) {
-                return true;
-            }else return false;
-        }
-
-        public boolean hasRight(){
-            if(node.getRight() != null) {
-                return true;
-            }else return false;
-        }
-
-        @Override
         public boolean hasNext() {
-            if (hasRight() || hasLeft()){
-                return true;
-            }
-            return false;
+            return !stack.isEmpty();
         }
 
-        @Override
-        public E next() throws NoSuchElementException{
-            try{
-                Node<E> temp = root;
-            }catch(NoSuchElementException e){
-                return temp;
+        public E next() {
+            Node<E> node = stack.pop();
+            E value = node.getValue();
+            if (node.getRight() != null) {
+                node = node.getRight();
+                while (node != null) {
+                    stack.push(node);
+                    node = node.getLeft();
+                }
             }
+            return value;
         }
     }
 
@@ -87,7 +90,7 @@ public class BinarySearchTree <E extends Comparable<? super E>> implements Colle
 
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return new BinaryIterator<E>(root);
     }
 
     @Override
@@ -102,8 +105,16 @@ public class BinarySearchTree <E extends Comparable<? super E>> implements Colle
 
     @Override
     public boolean add(E e) {
-        Node newNode = new Node(e);
-
+        Node current = root;
+        if (current == null){
+            current = new Node(e);
+        }else if (current.getValue().compareTo(e) > 0){
+            current.left = new Node(e);
+            return true;
+        }else if (current.getValue().compareTo(e) < 0) {
+            current.right = new Node(e);
+            return true;
+        }
         return false;
     }
 
