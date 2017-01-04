@@ -2,39 +2,28 @@ public enum ColorMixer {
 
     ADD{
         public Color mix(Color a, Color b){
-            return Color.name(
-                    a.r + b.r,
-                    a.g + b.g,
-                    a.b + b.b
-            );
+            return Color.name(a.r + b.r, a.g + b.g, a.b + b.b);
         }
     },
     
     MUL{
         public Color mix(Color a, Color b){
-            return Color.name(
-                    a.r * b.r,
-                    a.g * b.g,
-                    a.b * b.b
-            );
+            return Color.name(a.r * b.r, a.g * b.g, a.b * b.b);
         }
     },
 
     AVERAGE{
         public Color mix(Color a, Color b){
-            return Color.name(
-                    (a.r + b.r)/2,
-                    (a.g + b.g)/2,
-                    (a.b + b.b)/2
-            );
+            return Color.name((a.r + b.r)/2, (a.g + b.g)/2, (a.b + b.b)/2);
         }
     };
 
     public abstract Color mix(Color a, Color b);
 
     public static void main(String[] args){
-
-        ColorMixer colorMixer = ColorMixer.MUL;
+        System.out.println("Mixing colors using method 'ADD' ");
+        System.out.println("---------------------------------");
+        ColorMixer colorMixer = ColorMixer.ADD;
         for (Color a: Color.values()){
             for (Color b: Color.values()){
                 Color mixedColor = colorMixer.mix(a, b);
