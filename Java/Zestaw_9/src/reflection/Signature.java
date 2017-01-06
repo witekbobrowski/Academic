@@ -6,19 +6,15 @@ import java.util.Scanner;
 public class Signature {
 
     public static void main(String args[]){
-        final String ANSI_CLS = "\u001b[2J";
-        final String ANSI_HOME = "\u001b[H";
-        System.out.print(ANSI_CLS + ANSI_HOME);
-        System.out.flush();
-        System.out.println("Enter Class name and path:");
+        clearTerminal();
+        System.out.println("Enter class/interface you want to reflect:");
         Scanner scanner = new Scanner(System.in);
         String input = scanner.next();
-        System.out.print(ANSI_CLS + ANSI_HOME);
-        System.out.flush();
+        clearTerminal();
         dumpClass(input);
     }
 
-    private static void dumpClass(String className){
+    protected static void dumpClass(String className){
 
         String output = "";
 
@@ -29,26 +25,25 @@ public class Signature {
             Class classes[] = classToDump.getDeclaredClasses();
             Method methods[] = classToDump.getDeclaredMethods();
             output += "---------------------------- \n" + className + " :\n";
-
-            if(fields.length > 1) {
+            if(fields.length > 0) {
                 output += "-------------- \nFields :\n";
                 for(int i = 0 ; i < fields.length ; i++){
                     output += fields[i].toString() + "\n";
                 }
             }
-            if(constructors.length > 1) {
+            if(constructors.length > 0) {
                 output += "-------------- \nConstructors :\n";
                 for (int i = 0; i < constructors.length; i++) {
                     output += constructors[i].toString() + "\n";
                 }
             }
-            if(classes.length > 1) {
+            if(classes.length > 0) {
                 output += "-------------- \nClasses or interfaces :\n";
                 for (int i = 0; i < classes.length; i++) {
                     output += classes[i].toString() + "\n";
                 }
             }
-            if(methods.length > 1) {
+            if(methods.length > 0) {
                 output += "-------------- \nMethods :\n";
                 for (int i = 0; i < methods.length; i++) {
                     output += methods[i].toString() + "\n";
@@ -58,5 +53,41 @@ public class Signature {
             System.err.println(e);
         }
         System.out.println(output);
+    }
+
+    static boolean dumpConstructors(String className){
+
+        String output = "";
+
+        try{
+            Class classToDump = Class.forName(className);
+            Constructor constructors[] =classToDump.getDeclaredConstructors();
+            output += "---------------------------- \n" + className + " constructors :\n";
+
+            if(constructors.length > 1) {
+                output += "----------------------------\n";
+                for (int i = 0; i < constructors.length; i++) {
+                    output += constructors[i].toString() + "\n";
+                }
+            }else{
+                output = "This class has no constructors...";
+                System.out.println(output);
+                return false;
+            }
+        }catch (ClassNotFoundException e){
+            System.err.println(e);
+            output = "This class does not exist...";
+            System.out.println(output);
+            return false;
+        }
+        System.out.println(output);
+        return true;
+    }
+
+    protected static void clearTerminal(){
+        final String ANSI_CLS = "\u001b[2J";
+        final String ANSI_HOME = "\u001b[H";
+        System.out.print(ANSI_CLS + ANSI_HOME);
+        System.out.flush();
     }
 }
