@@ -1,6 +1,5 @@
 #Zestaw 2
 ![alt tag](/Java/Zestaw_2/Adder.png)
-Język Java
 Termin: 26.10.2016
 
 Pliki źródłowe umieścić w katalogu start, a klasy w pakiecie o tej samej nazwie komendą package start.
