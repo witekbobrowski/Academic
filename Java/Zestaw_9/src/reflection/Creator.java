@@ -15,19 +15,24 @@ public class Creator {
         if (Signature.dumpConstructors(inputClass)) {
             System.out.println("Enter argument Type:");
             String inputArgumentType = scanner.next();
-            System.out.println("\nEnter argument:");
+            System.out.println("Enter argument:");
             String inputArgument = scanner.next();
-            newInstance(inputClass, inputArgumentType, inputArgument);
+            Signature.clearTerminal();
+            Signature.dumpMethods(inputClass);
+            System.out.println("Now choose a method that takes 'null' arguments that you want to call on the object");
+            String inputMethod = scanner.next();
+            Signature.clearTerminal();
+            newInstance(inputClass, inputArgumentType, inputArgument, inputMethod);
         }
     }
 
-    public static void newInstance(String classString, String typeString, String valueString){
+    public static void newInstance(String classString, String typeString, String valueString, String methodString){
         try {
             Class clazz = Class.forName(classString);
             Class type = Class.forName(typeString);
             Constructor clazzConstructor = clazz.getDeclaredConstructor(type);
             Constructor typeConstructor = type.getDeclaredConstructor(valueString.getClass());
-            Method clazzMethod = clazz.getMethod("print", null);
+            Method clazzMethod = clazz.getMethod(methodString, null);
             Object object = clazzConstructor.newInstance(typeConstructor.newInstance(valueString));
             clazzMethod.setAccessible(true);
             clazzMethod.invoke(object);
