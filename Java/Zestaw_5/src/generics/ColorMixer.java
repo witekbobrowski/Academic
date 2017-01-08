@@ -1,3 +1,5 @@
+package generics;
+
 public enum ColorMixer {
 
     ADD{
