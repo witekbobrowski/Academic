@@ -8,7 +8,7 @@ Here you can find homework assignments for Java uni class.
 - [x] [Zestaw 5](https://github.com/witekbobrowski/Academic/tree/master/Java/Zestaw_5)	`Generics`
 - [ ] Zestaw 6	`Serialize`
 - [ ] Zestaw 7	`Project`
-- [ ] Zestaw 8	`Native`
+- [x] [Zestaw 8](https://github.com/witekbobrowski/Academic/tree/master/Java/Zestaw_8)	`Native`
 - [x] [Zestaw 9](https://github.com/witekbobrowski/Academic/tree/master/Java/Zestaw_9)	`Reflection`
 
 More info : http://th.if.uj.edu.pl/~atg/Java/
