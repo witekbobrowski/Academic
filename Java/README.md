@@ -7,7 +7,7 @@ Here you can find homework assignments for Java uni class.
 - [ ] [Zestaw 4](https://github.com/witekbobrowski/Academic/tree/master/Java/Zestaw_4)	`Threads`
 - [x] [Zestaw 5](https://github.com/witekbobrowski/Academic/tree/master/Java/Zestaw_5)	`Generics`
 - [ ] Zestaw 6	`Serialize`
-- [ ] Zestaw 7	`Project`
+- [ ] [Zestaw 7](https://github.com/witekbobrowski/Academic/tree/master/Java/Zestaw_7)	`Project: Instant Messenger`
 - [x] [Zestaw 8](https://github.com/witekbobrowski/Academic/tree/master/Java/Zestaw_8)	`Native`
 - [x] [Zestaw 9](https://github.com/witekbobrowski/Academic/tree/master/Java/Zestaw_9)	`Reflection`
 
