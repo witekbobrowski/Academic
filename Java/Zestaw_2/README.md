@@ -1,6 +1,5 @@
 #Zestaw 2
 ![alt tag](/Java/Zestaw_2/Adder.png)
-Termin: 26.10.2016
 
 Pliki źródłowe umieścić w katalogu start, a klasy w pakiecie o tej samej nazwie komendą package start.
 Z poziomu katalogu zawierającego folder start:
@@ -46,18 +45,18 @@ private double r, i;
     Complex(Complex);
     Complex(String);
 
-    static Complex add(Complex, Complex); 
+    static Complex add(Complex, Complex);
     /* Zwraca sumę dwóch liczb zespolonych */
-    static Complex sub(Complex, Complex); 
+    static Complex sub(Complex, Complex);
     /* Zwraca różnice dwóch liczb zespolonych */
-    static Complex mul(Complex, Complex); 
+    static Complex mul(Complex, Complex);
     /* Zwraca iloczyn dwóch liczb zespolonych */
-    static Complex div(Complex, Complex); 
+    static Complex div(Complex, Complex);
     /* Zwraca iloraz dwóch liczb zespolonych */
     static double abs(Complex);       
     /* Zwraca moduł liczby zespolonej */    
     static double phase(Complex);         
-    /* Zwraca faze liczby zespolonej */ 
+    /* Zwraca faze liczby zespolonej */
     static double sqrAbs(Complex);
     /* Zwraca kwadrat modułu liczby zespolonej */   
     static double re(Complex);
@@ -75,13 +74,13 @@ private double r, i;
     double sqrAbs();
     double re();
     double im();
-    
+
     String toString();
-    /* Zwraca String z zapisaną 
+    /* Zwraca String z zapisaną
         liczbą zespoloną formacie "-1.23+4.56i" */
 
     static Complex valueOf(String);
-    /* Zwraca liczbę zespolona o wartości podanej 
+    /* Zwraca liczbę zespolona o wartości podanej
         w argumencie w formacie "-1.23+4.56i" */
 
     void setRe(double);

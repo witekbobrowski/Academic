@@ -1,6 +1,4 @@
 #Zestaw 5
-Język Java
-Termin: 23.11.2016
 
 Klasy umieścić w pakiecie generics.
 Proszę napisać dwa zadania.

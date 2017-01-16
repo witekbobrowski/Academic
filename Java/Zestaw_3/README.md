@@ -1,7 +1,5 @@
 #Zestaw 3
 ![alt tag](/Java/Zestaw_3/Mandelbrot.png)
-Język Java
-Termin: 09.11.2016
 
 Pliki źródłowe umieścić w katalogu mandelbrot, a klasy w pakiecie o tej samej nazwie.
 Dodać komentarze i użyć narzędzia javadoc do wygenerowania dokumentacji.

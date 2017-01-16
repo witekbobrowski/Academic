@@ -1,7 +1,5 @@
 #Zestaw 1
 ![alt tag](/Java/Zestaw_1/Hello.png)
-Język Java
-Termin: 19.10.2016
 
 Pliki źródłowe umieścić w katalogu hello, ale dodawać klas do pakietu (nie używać słowa kluczowego package).
 
@@ -68,4 +66,3 @@ credit:
 Andrzej Görlich   
 andrzej.goerlich@uj.edu.pl   
 http://th.if.uj.edu.pl/~atg/Java   
-

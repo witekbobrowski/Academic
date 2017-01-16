@@ -1,6 +1,4 @@
 #Zestaw 4
-Język Java
-Termin: 16.11.2016
 
 Klasy umieścić w pakiecie watki.
 Dodać komentarze i użyć narzędzia javadoc do wygenerowania dokumentacji.
