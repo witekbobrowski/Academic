@@ -12,9 +12,7 @@ public class Client{
     public static void main(String[] args) throws IOException{
             clientsID = new Integer(args[0]);
             recipientsID = new Integer(args[1]);
-            if(serverOnlineCheck()){
-                socket = new Socket("localhost", 9090);
-            }else return;
+            if(!serverOnlineCheck()) return;
             ClientReader reader = new ClientReader();
             reader.start();
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
@@ -27,7 +25,8 @@ public class Client{
     }
 
     public static boolean serverOnlineCheck() {
-        try (Socket socket = new Socket("localhost", 9090)) {
+        try{
+            socket = new Socket("localhost", 9090);
             return true;
         } catch (IOException ex) {
             System.out.println("Unable to connect to the server. It may be caused by:");
