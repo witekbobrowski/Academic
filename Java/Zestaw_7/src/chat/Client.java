@@ -12,7 +12,13 @@ public class Client{
     public static void main(String[] args) throws IOException{
             clientsID = new Integer(args[0]);
             recipientsID = new Integer(args[1]);
-            if(!serverOnlineCheck()) return;
+            try {
+                socket = new Socket("localhost", 9090);
+            }catch (IOException e){
+                System.out.println("Unable to connect to the server. It may be caused by:");
+                System.out.println("1. Server is offline");
+                System.out.println("2. You are trying to connect to the wrong server, try other port or host");
+            }
             ClientReader reader = new ClientReader();
             reader.start();
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
@@ -24,23 +30,7 @@ public class Client{
             }
     }
 
-    public static boolean serverOnlineCheck() {
-        try{
-            socket = new Socket("localhost", 9090);
-            return true;
-        } catch (IOException ex) {
-            System.out.println("Unable to connect to the server. It may be caused by:");
-            System.out.println("1. Server is offline");
-            System.out.println("2. You are trying to connect to the wrong server, try other port or host");
-        }
-        return false;
-    }
-
     static class ClientReader extends Thread {
-
-        ClientReader() throws IOException{
-        }
-
         @Override
         public void run(){
             try {
@@ -51,9 +41,7 @@ public class Client{
                     Message message = (Message) objectInputStream.readObject();
                     System.out.println(message.sender + " : " + message.text);
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
+            } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }

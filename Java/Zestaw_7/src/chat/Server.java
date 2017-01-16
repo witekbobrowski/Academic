@@ -34,16 +34,12 @@ public class Server{
         } catch (IOException e){
             e.printStackTrace();
         }
-
-
-
     }
 
     static class ClientSocket extends Thread {
 
         private Socket socket;
         private final ClientSocket[] clientSockets;
-        ObjectInputStream objectInputStream;
         ObjectOutputStream objectOutputStream;
 
         public ClientSocket(Socket clientSocket, ClientSocket[] clientSockets) {
@@ -53,8 +49,7 @@ public class Server{
 
         @Override
         public void run() {
-            try {
-                objectInputStream = new ObjectInputStream(socket.getInputStream());
+            try(ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream())){
                 objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
                 while(true) {
                     while (objectInputStream.available() <= 0) {
