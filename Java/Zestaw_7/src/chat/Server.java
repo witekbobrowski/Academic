@@ -11,17 +11,9 @@ public class Server{
 
     public static void main(String[] args) {
 
-        ServerSocket serverSocket = null;
-        Socket socket;
-
-        try {
-            serverSocket = new ServerSocket(port, clientsLimit);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        
-        while (true) {
-            try {
+        try(ServerSocket serverSocket = new ServerSocket(port, clientsLimit)) {
+            Socket socket;
+            while (true) {
                 socket = serverSocket.accept();
                 int i = 0;
                 for (; i < clientsLimit; i++) {
@@ -38,16 +30,18 @@ public class Server{
                     objectOutputStream.close();
                     socket.close();
                 }
-            } catch (IOException e) {
-                System.out.println("I/O error: " + e);
             }
+        } catch (IOException e){
+            e.printStackTrace();
         }
+
+
+
     }
 
     static class ClientSocket extends Thread {
 
-        protected Socket socket;
-        private boolean connected;
+        private Socket socket;
         private final ClientSocket[] clientSockets;
         ObjectInputStream objectInputStream;
         ObjectOutputStream objectOutputStream;
@@ -55,7 +49,6 @@ public class Server{
         public ClientSocket(Socket clientSocket, ClientSocket[] clientSockets) {
             this.socket = clientSocket;
             this.clientSockets = clientSockets;
-            this.connected = true;
         }
 
         @Override
@@ -74,9 +67,7 @@ public class Server{
                         }
                     }
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
+            } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }
