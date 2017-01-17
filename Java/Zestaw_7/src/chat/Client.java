@@ -46,7 +46,7 @@ public class Client{
                     System.out.println(message.sender + " : " + message.text);
                 }
             } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
+                System.out.println("Server seems to be offline");
             }
         }
     }

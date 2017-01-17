@@ -18,7 +18,7 @@ public class Server {
             Socket socket;
             while (true) {
                 socket = serverSocket.accept();
-                System.out.print("Server log: Someone is trying to join the server...");
+                System.out.print("log: Someone is trying to join the server...");
                 ClientValidator validator = new ClientValidator(socket, users);
                 validator.start();
             }
@@ -38,8 +38,8 @@ public class Server {
         private Tuple<String, ClientSocket, LinkedList<Message>> userInfo;
         private HashMap<String, Tuple<String, ClientSocket, LinkedList<Message>>> users;
 
-        private ClientValidator(Socket clientSocket, HashMap<String, Tuple<String, ClientSocket, LinkedList<Message>>> users) {
-            this.socket = clientSocket;
+        private ClientValidator(Socket socket, HashMap<String, Tuple<String, ClientSocket, LinkedList<Message>>> users) {
+            this.socket = socket;
             this.users = users;
         }
 
@@ -56,24 +56,22 @@ public class Server {
                         clientSocket = new ClientSocket(objectInputStream, objectOutputStream, users);
                         clientSocket.start();
                         user = message.sender;
-                        userInfo = users.get(user);
                         // If the validation process went ok I will die...
                         if (validateUser(user, message.text, clientSocket)) {
-                            // something is no yes...
-                            /*
+                            userInfo = users.get(user);
+                            clientSocket.objectOutputStream.writeObject(new Message("server", user, "password correct"));
                             LinkedList<Message> buffer = userInfo.messageList;
-                            userInfo.messageList.clear();
+                            if(buffer.size() > 0) System.out.println("log: " + buffer.size() + " messages were waiting for " + user + " and have been now sent to him");
                             while (!buffer.isEmpty()) {
-                                userInfo.socket.objectOutputStream.writeObject(buffer.removeFirst());
+                                clientSocket.objectOutputStream.writeObject(buffer.removeFirst());
                             }
-                            */
                             return; // I'm out!
                         } else
-                            userInfo.socket.objectOutputStream.writeObject(new Message("server", user, "wrong password"));
+                            clientSocket.objectOutputStream.writeObject(new Message("server", user, "password incorrect"));
                     }
                 }
             } catch (IOException | ClassNotFoundException e) {
-                System.out.println("Server log: " + user + " have disconnnected from the server");
+                System.out.println("log: " + user + " have disconnnected from the server");
             }
         }
 
@@ -86,17 +84,17 @@ public class Server {
                 if (Objects.equals(userInfo.password, password)) {
                     // sup fam!
                     userInfo.socket = socket;
-                    System.out.println("Server log: " + user + " joined the server succesfully!");
+                    System.out.println("log: " + user + " joined the server succesfully!");
                     return true;
                 } else {
                     // Congratulations, you just played yourself
-                    System.out.println("Server log: " + user + " failed to join the server, he used the wrong password.");
+                    System.out.println("log: " + user + " failed to join the server, he used the wrong password.");
                     return false;
                 }
             } else {
                 // nice to meet you, I'm Trent by the way
                 users.put(user, new Tuple<>(password, socket, new LinkedList<>()));
-                System.out.println("Server log: " + user + " joined the server succesfully, and he is here for the first time!");
+                System.out.println("log: " + user + " joined the server succesfully, and he is here for the first time!");
                 return true;
             }
         }
@@ -132,7 +130,7 @@ public class Server {
                         if (Objects.equals(recipient, "public_chat")) {
                             for (HashMap.Entry<String, Tuple<String, ClientSocket, LinkedList<Message>>> entry : users.entrySet()) {
                                 userInfo = entry.getValue();
-                                System.out.print("\nServer log: " + user + " sent message to public chat");
+                                System.out.print("\nlog: " + user + " sent message to public chat");
                                 try {
                                     userInfo.socket.objectOutputStream.writeObject(message); // They should have it by now!
                                 } catch (NullPointerException e) {
@@ -142,15 +140,17 @@ public class Server {
                         // Private chatting... see? I can do all of it!
                         } else {
                             userInfo = users.get(recipient);
-                            System.out.print("Server log: " + user + " sent message to: " + recipient); // you bet baby
+                            System.out.print("log: " + user + " sent message to " + recipient); // you bet baby
                             try {
                                 userInfo.socket.objectOutputStream.writeObject(message); // sending the message... easy fam, dat s**t too easy
-                            } catch (NullPointerException e) {
+                            } catch (IOException | NullPointerException e) {
                                 System.out.print(" but he failed"); // wait what
-                                if (userInfo.messageList.add(message)) {
+                                if (users.containsKey(recipient)) {
+                                    userInfo.messageList.offer(message);
                                     System.out.print(" so the message is stored."); // oh i see
-                                } else
+                                } else {
                                     System.out.print(" because " + recipient + " does not exist"); // dont play me next time aight?!
+                                }
                             } finally {
                                 System.out.print("\n");
                             }
@@ -158,7 +158,7 @@ public class Server {
                     }
                 }
             } catch (IOException | ClassNotFoundException e) {
-                System.out.println("Server log: " + user + " have disconnnected from the server"); // leaving me so soon?
+                System.out.println("log: " + user + " have disconnnected from the server"); // leaving me so soon?
                 return; // ok I'm out...
             }
         }
