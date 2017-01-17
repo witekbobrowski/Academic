@@ -59,7 +59,7 @@ public class Server {
                         // If the validation process went ok I will die...
                         if (validateUser(user, message.text, clientSocket)) {
                             userInfo = users.get(user);
-                            clientSocket.objectOutputStream.writeObject(new Message("server", user, "password correct"));
+                            clientSocket.objectOutputStream.writeObject(new Message("server", user, "correct"));
                             LinkedList<Message> buffer = userInfo.messageList;
                             if(buffer.size() > 0) System.out.println("log: " + buffer.size() + " messages were waiting for " + user + " and have been now sent to him");
                             while (!buffer.isEmpty()) {
@@ -67,7 +67,7 @@ public class Server {
                             }
                             return; // I'm out!
                         } else
-                            clientSocket.objectOutputStream.writeObject(new Message("server", user, "password incorrect"));
+                            clientSocket.objectOutputStream.writeObject(new Message("server", user, "incorrect"));
                     }
                 }
             } catch (IOException | ClassNotFoundException e) {
