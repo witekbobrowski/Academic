@@ -13,7 +13,6 @@ public class Server {
 
     public static void main(String[] args) {
         users = new HashMap<>();
-        if(!users.containsKey("Chat")) users.put("Chat", new Tuple<>("1217c05a504d28c3ce10c3161929b2ec", null, null));
         try (ServerSocket serverSocket = new ServerSocket(port)) {
             System.out.println("log: Server is up and running!");
             Socket socket;
