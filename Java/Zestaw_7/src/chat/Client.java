@@ -21,10 +21,11 @@ public class Client{
                 System.out.println("1. Server is offline");
                 System.out.println("2. You are trying to connect to the wrong server, try other port or host");
             }
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+
             Message login = new Message(clientsID, null, password);
             ClientReader reader = new ClientReader();
             reader.start();
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
             objectOutputStream.writeObject(login);
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
             String inputText;

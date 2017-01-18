@@ -1,6 +1,8 @@
 package chat;
 
-public class Tuple<A, B, C> {
+import java.io.Serializable;
+
+public class Tuple<A, B, C>{
 
     public final A password;
     public B socket;

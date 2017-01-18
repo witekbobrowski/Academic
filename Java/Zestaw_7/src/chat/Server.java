@@ -13,8 +13,9 @@ public class Server {
 
     public static void main(String[] args) {
         users = new HashMap<>();
+        if(!users.containsKey("Chat")) users.put("Chat", new Tuple<>("1217c05a504d28c3ce10c3161929b2ec", null, null));
         try (ServerSocket serverSocket = new ServerSocket(port)) {
-            System.out.println("Server is up and running!");
+            System.out.println("log: Server is up and running!");
             Socket socket;
             while (true) {
                 socket = serverSocket.accept();
@@ -24,6 +25,30 @@ public class Server {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    // Serializing HashMap which contains logins and passwords... yeah i know, shouldn't have said that.
+    private static boolean serializeHashMap(Object object){
+        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("super_secret_file.ser"))){
+            oos.writeObject(object);
+            System.out.println("log: Serialization process finished with success");
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("log: Serialization process finished but with no success");
+            return false;
+        }
+    }
+
+    // Retrieving serialized HashMap
+    private static Object deserializeHashMap(){
+        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("super_secret_file.ser"))){
+            return ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("log: Deserialization process finished but with no success");
+            return null;
         }
     }
 
@@ -54,8 +79,9 @@ public class Server {
                         Message message = (Message) objectInputStream.readObject();
                         // All the knowledge I gained during my short life, I shall pass to my baby brother ClientSocket
                         clientSocket = new ClientSocket(objectInputStream, objectOutputStream, users);
-                        clientSocket.start();
                         user = message.sender;
+                        clientSocket.setName(user);
+                        clientSocket.start();
                         // If the validation process went ok I will die...
                         if (validateUser(user, message.text, clientSocket)) {
                             userInfo = users.get(user);
@@ -65,7 +91,7 @@ public class Server {
                             while (!buffer.isEmpty()) {
                                 clientSocket.objectOutputStream.writeObject(buffer.removeFirst());
                             }
-                            return; // I'm out!
+                            return; // IM NEVER GONNA DANCE AGAIN, THEY WAY I DANCED WITH YOU...
                         } else
                             clientSocket.objectOutputStream.writeObject(new Message("server", user, "incorrect"));
                     }
@@ -107,7 +133,7 @@ public class Server {
         private String recipient;
         private ObjectInputStream objectInputStream;
         private ObjectOutputStream objectOutputStream;
-        private Tuple<String, ClientSocket, LinkedList<Message>> userInfo;
+        private Tuple<String, ClientSocket, LinkedList<Message>> recipientInfo;
         private HashMap<String, Tuple<String, ClientSocket, LinkedList<Message>>> users;
 
         private ClientSocket(ObjectInputStream ois, ObjectOutputStream oos, HashMap<String, Tuple<String, ClientSocket, LinkedList<Message>>> users) {
@@ -118,48 +144,52 @@ public class Server {
 
         @Override
         public void run() {
+            user = this.getName();
             try {
                 while (true) {
                     // here I'm waiting for new messages to arrive
                     while (objectInputStream.available() <= 0) {
                         Message message = (Message) objectInputStream.readObject();
                         // Ok i got it!
-                        user = message.sender;
                         recipient = message.recipient;
                         // Public chatting...
-                        if (Objects.equals(recipient, "public_chat")) {
+                        if (Objects.equals(recipient, "Chat")) {
+                            System.out.print("\nlog: " + user + " sent message to public chat");
                             for (HashMap.Entry<String, Tuple<String, ClientSocket, LinkedList<Message>>> entry : users.entrySet()) {
-                                userInfo = entry.getValue();
-                                System.out.print("\nlog: " + user + " sent message to public chat");
+                                recipientInfo = entry.getValue();
                                 try {
-                                    userInfo.socket.objectOutputStream.writeObject(message); // They should have it by now!
-                                } catch (NullPointerException e) {
-                                    System.out.print(recipient + " was offline "); // screw this guy
+                                    if(recipientInfo.socket.isAlive())
+                                        recipientInfo.socket.objectOutputStream.writeObject(message); // They should have it by now!
+                                } catch (NullPointerException e){
+                                    System.out.print(" but something went wrong.");
                                 }
                             }
                         // Private chatting... see? I can do all of it!
                         } else {
-                            userInfo = users.get(recipient);
-                            System.out.print("log: " + user + " sent message to " + recipient); // you bet baby
+                            System.out.print("\nlog: " + user + " sent message to " + recipient); // you bet baby
                             try {
-                                userInfo.socket.objectOutputStream.writeObject(message); // sending the message... easy fam, dat s**t too easy
-                            } catch (IOException | NullPointerException e) {
-                                System.out.print(" but he failed"); // wait what
-                                if (users.containsKey(recipient)) {
-                                    userInfo.messageList.offer(message);
-                                    System.out.print(" so the message is stored."); // oh i see
-                                } else {
-                                    System.out.print(" because " + recipient + " does not exist"); // dont play me next time aight?!
+                                if(users.containsKey(recipient)){
+                                    recipientInfo = users.get(recipient);
+                                    if (recipientInfo.socket.isAlive()) {
+                                        recipientInfo.socket.objectOutputStream.writeObject(message); // sending the message... easy fam, dat s**t too easy
+                                        System.out.print(" with success.");
+                                    } else {
+                                        System.out.print(" but " + recipient + " is offline so the message is stored."); // oh i see
+                                        recipientInfo.messageList.offer(message);
+                                    }
                                 }
-                            } finally {
-                                System.out.print("\n");
+                                else{
+                                    System.out.print(" but he failed because " + recipient + " does not exists"); // dont play me next time aight?!
+                                }
+                            } catch (IOException | NullPointerException e) {
+                                System.out.print(" but something went wrong.");
                             }
                         }
                     }
                 }
             } catch (IOException | ClassNotFoundException e) {
-                System.out.println("log: " + user + " have disconnnected from the server"); // leaving me so soon?
-                return; // ok I'm out...
+                System.out.println("\nlog: " + user + " have disconnnected from the server"); // leaving me so soon?
+                return; // I'm out
             }
         }
     }
