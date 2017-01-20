@@ -4,6 +4,7 @@
 # Compiled sources
 *.class
 *.dylib
+*.ser
 
 # IDE files
 .idea/workspace.xml
