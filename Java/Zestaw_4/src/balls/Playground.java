@@ -2,14 +2,16 @@ package balls;
 
 import javax.swing.*;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.*;
+import java.util.LinkedList;
 
 public class Playground extends JFrame{
 
     static JPanel playgroundPanel;
     static JPanel interfacePanel;
+    static JComboBox<String> comboBox;
+    static LinkedList<Ball> balls;
 
     public static void main(String[] args) {
 
@@ -18,42 +20,59 @@ public class Playground extends JFrame{
         interfacePanel = new JPanel();
         JButton button = new JButton("Add Ball");
         String[] comboOptions = {"A", "B", "C", "D", "E", "F"};
-        JComboBox<String> comboBox = new JComboBox<>(comboOptions);
+        comboBox = new JComboBox<>(comboOptions);
+        balls = new LinkedList<>();
         JLabel comboLabel = new JLabel("Choose box functionality");
-
-
-        button.addActionListener(event -> {
-            addBall();
-        });
-
-        //frame.add(playgroundPanel);
+        button.addActionListener(event -> addBall());
+        frame.add(playgroundPanel);
         frame.add(interfacePanel, BorderLayout.SOUTH);
         interfacePanel.add(button);
         interfacePanel.add(comboLabel);
         interfacePanel.add(comboBox);
-        playgroundPanel.setBackground(Color.gray);
         frame.setPreferredSize(new Dimension(800, 600));
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+        frame.setResizable(false);
+        Box box = new Box(playgroundPanel);
+        playgroundPanel.add(box);
+        box.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(e.getButton() == MouseEvent.BUTTON1) {
+                    clickAndEmpty();
+                }
+                super.mouseClicked(e);
+            }
+        });
     }
 
     public static void addBall() throws NullPointerException{
         try{
-            Ball ball = new Ball(15);
+            Ball ball = new Ball(playgroundPanel);
+            playgroundPanel.add(ball);
             ball.addMouseListener(new MouseAdapter(){
                 @Override
                 public void mouseClicked(MouseEvent e){
-                    if(e.getButton() == MouseEvent.BUTTON1)
+                    if(e.getButton() == MouseEvent.BUTTON1) {
+                        System.out.println("click");
                         ball.kill();
-                    else if(e.getButton() == MouseEvent.BUTTON3)
+                    } else if(e.getButton() == MouseEvent.BUTTON3) {
+                        System.out.println("click");
                         ball.restart();
+                    }
                 }
             });
-            playgroundPanel.add(ball);
-            playgroundPanel.revalidate();
-        }catch(NullPointerException exeption){
-	    System.err.println("NullPointerException");
+        }catch(NullPointerException exception){
+	        exception.printStackTrace();
         }
     }
+
+    public static void clickAndEmpty() {
+        synchronized (balls) {
+            balls.notifyAll();
+            System.out.println("click");
+        }
+    }
+
 }

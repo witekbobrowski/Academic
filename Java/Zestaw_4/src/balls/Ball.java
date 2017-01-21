@@ -1,77 +1,112 @@
 package balls;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
 
-    public class Ball extends JPanel implements Runnable{
+public class Ball extends JComponent implements Runnable{
 
-        public Ball(int radius){
-            this.radius = radius;
-            new Thread(this).start();
-        }
+    public static final long serialVersionUID = -48151612342L;
+    private int x, y;
+    private int xSpeed = 0;
+    private int ySpeed = 0;
+    private int radius;
+    private Color color;
+    private JPanel panel;
+    private Dimension ballSize;
+    volatile boolean running = true;
+    Random generator = new Random();
 
-        public int xSpeed = 1;
-        public int ySpeed = 1;
-        public int radius;
+    public Ball(JPanel panels) {
+        this.panel = panel;
+        this.radius = generator.nextInt(20) + 5;
+        while(this.xSpeed == 0) this.xSpeed = generator.nextInt(5) - 2;
+        while(this.ySpeed == 0) this.ySpeed = generator.nextInt(5) - 2;
+        this.color = Color.getHSBColor(0.65f * (xSpeed * ySpeed)/(xSpeed + ySpeed), 0.6f, 1.0f);
+        this.ballSize = new Dimension(radius * 2, radius * 2);
+        this.setSize(ballSize);
+        new Thread(this).start();
+    }
 
-        volatile boolean stopped = false;
-        volatile boolean running = true;
-
-        Dimension panelDimensions = getParent().getSize();
-
-    public void move(){
-        int x = getX();
-        int y = getY();
+    public void move() {
+        this.x = getX();
+        this.y = getY();
         //Bounce off the side walls
-        if(x + xSpeed < 0 || x + xSpeed + 2*radius > panelDimensions.width) xSpeed *= -1;
+        if (x + xSpeed < 0 || x + xSpeed + 2 * radius > panel.getWidth()) xSpeed *= -1;
         //Bounce off the floor or ceiling
-        if(y + ySpeed < 0 || y + ySpeed + 2*radius > panelDimensions.height) ySpeed *= -1;
-
-        x += xSpeed;
-        y += ySpeed;
-
+        if (y + ySpeed < 0 || y + ySpeed + 2 * radius > panel.getHeight()) ySpeed *= -1;
+        this.x += xSpeed;
+        this.y += ySpeed;
         setLocation(x, y);
     }
 
+    @Override
     public void run() {
-        Random generator = new Random();
-        int randomX = generator.nextInt(panelDimensions.width) + 1;
-        int randomY = generator.nextInt(panelDimensions.height) + 1;
-        int x = randomX;
-        int y = randomY;
-        setLocation(x, y);
-
-        while(!stopped){
-            if(running){
-                try{
-                    Thread.sleep(30);
-                }
-                catch(InterruptedException e){
+        this.x = generator.nextInt(panel.getWidth() - 2*radius);
+        this.y = generator.nextInt(panel.getHeight() - 2*radius);
+        setLocation(this.x, this.y);
+        while (true) {
+            if (running) {
+                try {
+                    Thread.sleep(25);
+                } catch (InterruptedException e) {
                     System.err.println("InterruptedException");
                 }
+                enter();
                 move();
                 repaint();
             }
         }
     }
 
-    void kill(){
-        stopped = true;
+    private synchronized void enter(){
+        while(inBox()){
+            try {
+                this.wait();
+                this.exit();
+                Thread.sleep(25);
+            } catch (InterruptedException e) {
+                System.err.println("InterruptedException");
+            }
+            move();
+        }
     }
 
-    public void restart(){
-        if(running == false)
-            running = true;
+    private synchronized void exit(){
+        while(inBox()){
+            try {
+                Thread.sleep(25);
+            } catch (InterruptedException e) {
+                System.err.println("InterruptedException");
+            }
+            move();
+        }
+    }
+
+    protected boolean inBox(){
+        if((this.getX() + this.getWidth()) >= 320 && this.getX() <= 480){
+            if ((this.getY() + this.getHeight())>= 210 && this.getY() <= 330){
+                return true;
+            }
+            else
+                return false;
+        }
         else
-            running = false;
+            return false;
+    }
+
+    protected void kill() {
+        this.running = false;
+    }
+
+    protected void restart() {
+        this.running = true;
     }
 
     @Override
-    public void paint(final Graphics g){
-        super.paint(g);
-        g.setColor(Color.YELLOW);
-        g.fillOval(0, 0, 2*radius, 2*radius);
+    public void paintComponent( Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g.create();
+        g2d.setColor(color);
+        g2d.fillOval(0, 0, radius*2, radius*2);
     }
-
 }
