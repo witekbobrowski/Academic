@@ -36,8 +36,8 @@ public class Box extends JComponent implements Runnable {
         super.paintComponent(b);
         Graphics2D b2d = (Graphics2D) b.create();
         Stroke oldStroke = b2d.getStroke();
-        b2d.setStroke(new BasicStroke(10));
-        b2d.setColor(Color.GRAY);
+        b2d.setStroke(new BasicStroke(5));
+        b2d.setColor(Color.DARK_GRAY);
         b2d.drawRect(0, 0, this.getWidth(), this.getHeight());
         b2d.setStroke(oldStroke);
     }

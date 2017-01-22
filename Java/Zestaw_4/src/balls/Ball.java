@@ -16,7 +16,7 @@ public class Ball extends JComponent implements Runnable{
     volatile boolean running = true;
     Random generator = new Random();
 
-    public Ball(JPanel panels) {
+    public Ball(JPanel panel) {
         this.panel = panel;
         this.radius = generator.nextInt(20) + 5;
         while(this.xSpeed == 0) this.xSpeed = generator.nextInt(5) - 2;
@@ -27,7 +27,7 @@ public class Ball extends JComponent implements Runnable{
         new Thread(this).start();
     }
 
-    public void move() {
+    private synchronized void move() {
         this.x = getX();
         this.y = getY();
         //Bounce off the side walls
@@ -51,23 +51,18 @@ public class Ball extends JComponent implements Runnable{
                 } catch (InterruptedException e) {
                     System.err.println("InterruptedException");
                 }
-                enter();
-                move();
+                if(inBox()) {
+                    this.enter();
+                } else
+                    this.move();
                 repaint();
             }
         }
     }
 
-    private synchronized void enter(){
-        while(inBox()){
-            try {
-                this.wait();
-                this.exit();
-                Thread.sleep(25);
-            } catch (InterruptedException e) {
-                System.err.println("InterruptedException");
-            }
-            move();
+    private void enter(){
+        synchronized (Ball.class) {
+            this.exit();
         }
     }
 
@@ -82,7 +77,7 @@ public class Ball extends JComponent implements Runnable{
         }
     }
 
-    protected boolean inBox(){
+    private boolean inBox(){
         if((this.getX() + this.getWidth()) >= 320 && this.getX() <= 480){
             if ((this.getY() + this.getHeight())>= 210 && this.getY() <= 330){
                 return true;

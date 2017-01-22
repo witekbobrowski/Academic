@@ -36,15 +36,6 @@ public class Playground extends JFrame{
         frame.setResizable(false);
         Box box = new Box(playgroundPanel);
         playgroundPanel.add(box);
-        box.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if(e.getButton() == MouseEvent.BUTTON1) {
-                    clickAndEmpty();
-                }
-                super.mouseClicked(e);
-            }
-        });
     }
 
     public static void addBall() throws NullPointerException{
@@ -67,12 +58,4 @@ public class Playground extends JFrame{
 	        exception.printStackTrace();
         }
     }
-
-    public static void clickAndEmpty() {
-        synchronized (balls) {
-            balls.notifyAll();
-            System.out.println("click");
-        }
-    }
-
 }
