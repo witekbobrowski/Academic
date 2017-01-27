@@ -16,30 +16,35 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `equipment`
+-- Table structure for table `events`
 --
 
-DROP TABLE IF EXISTS `equipment`;
+DROP TABLE IF EXISTS `events`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `equipment` (
-  `equipment_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(35) NOT NULL,
-  `quantity` int(35) NOT NULL,
+CREATE TABLE `events` (
+  `event_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(45) NOT NULL,
+  `location` varchar(45) DEFAULT NULL,
+  `startTime` datetime NOT NULL,
+  `endTime` datetime NOT NULL,
+  `firstInstructor_ID` int(11) DEFAULT NULL,
+  `secondInstructor_ID` int(11) DEFAULT NULL,
+  `thirdInstructor_ID` int(11) DEFAULT NULL,
+  `fourthInstructor_ID` int(11) DEFAULT NULL,
+  `fifthInstructor_ID` int(11) DEFAULT NULL,
   `description` text,
-  PRIMARY KEY (`equipment_ID`),
-  FULLTEXT KEY `name` (`name`,`description`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`event_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `equipment`
+-- Dumping data for table `events`
 --
 
-LOCK TABLES `equipment` WRITE;
-/*!40000 ALTER TABLE `equipment` DISABLE KEYS */;
-INSERT INTO `equipment` VALUES (1,'LEGO WeDo',32,'Regular LEGO WEDO'),(2,'LEGO WeDo EXTENSION',6,'Extension to LEGO WEDO'),(3,'LEGO WeDo 2',8,'Regular LEGO WEDO 2'),(4,'LEGO NXT 2.0',16,'Regular LEGO NXT'),(5,'LEGO NXT 2.0 EXTENSION',4,'Extension to LEGO WEDO'),(6,'LEGO EV3',10,'Regular LEGO EV3'),(7,'LEGO EV3 EXTENSION',4,'Extension to LEGO EV3'),(8,'Samsung Laptop',8,'Old samsung laptops'),(9,'ASUS Laptop Blue',10,'Bigger ASUS with blue chasis'),(10,'ASUS Laptop White',10,'Bigger ASUS with white chasis'),(11,'ASUS Laptop Gray',10,'Bigger ASUS with gray chasis'),(12,'HP Laptop',5,'Small HP Laptop'),(13,'ASUS Small Laptop',4,'Small ASUS Laptop with touch screen'),(14,'NAO robot',1,'NAO robot, mainly used in events'),(15,'Projector',1,'Projector for classes'),(16,'PEUGEOT Partner',1,'To help transport stuff for classes'),(17,'FORD Focus',1,'To help transport stuff for classes'),(18,'KIA Carens',1,'To help transport stuff for classes');
-/*!40000 ALTER TABLE `equipment` ENABLE KEYS */;
+LOCK TABLES `events` WRITE;
+/*!40000 ALTER TABLE `events` DISABLE KEYS */;
+/*!40000 ALTER TABLE `events` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

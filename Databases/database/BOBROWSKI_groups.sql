@@ -25,11 +25,10 @@ DROP TABLE IF EXISTS `groups`;
 CREATE TABLE `groups` (
   `group_ID` int(11) NOT NULL AUTO_INCREMENT,
   `location_ID` int(11) NOT NULL,
-  `weekDay` tinyint(4) NOT NULL,
-  `time` time NOT NULL,
-  `level` varchar(35) COLLATE latin2_bin NOT NULL,
-  PRIMARY KEY (`group_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin2 COLLATE=latin2_bin;
+  `description` varchar(35) CHARACTER SET latin2 NOT NULL,
+  PRIMARY KEY (`group_ID`),
+  FULLTEXT KEY `description` (`description`)
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin2 COLLATE=latin2_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,6 +37,7 @@ CREATE TABLE `groups` (
 
 LOCK TABLES `groups` WRITE;
 /*!40000 ALTER TABLE `groups` DISABLE KEYS */;
+INSERT INTO `groups` VALUES (1,1,'WFAIS Computer Science'),(2,42,'interdum mauris ullamcorper'),(3,47,'sit amet consectetuer adipiscing'),(4,53,'nibh in'),(5,67,'ultrices posuere'),(6,53,'rhoncus aliquet'),(7,27,'curabitur at ipsum ac'),(8,49,'luctus et ultrices posuere'),(9,37,'luctus rutrum nulla tellus'),(10,15,'suscipit'),(11,49,'nisi volutpat eleifend donec'),(12,32,'suspendisse potenti cras in'),(13,39,'in sagittis'),(14,20,'porta volutpat quam'),(15,12,'vitae nisi'),(16,33,'ante vivamus tortor'),(17,16,'aenean'),(18,31,'rutrum'),(19,26,'lorem quisque ut erat'),(20,60,'fringilla rhoncus mauris'),(21,45,'sem sed sagittis nam'),(22,30,'in blandit ultrices'),(23,13,'nulla facilisi cras'),(24,33,'sagittis sapien cum sociis'),(25,66,'ac tellus semper interdum'),(26,58,'consequat in'),(27,16,'odio'),(28,46,'odio in hac habitasse'),(29,55,'elementum'),(30,57,'rhoncus'),(31,18,'sed augue aliquam erat');
 /*!40000 ALTER TABLE `groups` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-01-09 23:29:10
+-- Dump completed on 2017-01-27  2:39:57
