@@ -1,15 +1,22 @@
 {
-  "name": "temp",
+  "name": "app",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is my first electron project ever, the puspose of this app is to manage mysql database.",
   "main": "index.js",
   "scripts": {
     "start": "electron main.js"
   },
-  "author": "",
+  "author": "Witek Bobrowski <witek@bobrowski.com.pl>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/witekbobrowski/Academic"
+  },
   "license": "MIT",
   "dependencies": {
     "brightwheel": "^0.1.8",
     "electron-json-storage": "^3.0.0"
+  },
+  "devDependencies": {
+    "electron-packager": "^8.5.1"
   }
 }
