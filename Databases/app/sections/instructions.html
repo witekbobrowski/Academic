@@ -1,0 +1,23 @@
+<template class="task-template">
+  <section id="instructions" class="section js-section instructions">
+    <div class="container">
+    <a class="search-results-title">Instructions</a>
+      <div class="table_body">
+        <table class="table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Robot Name</th>
+              <th>Type of Bricks</th>
+            </tr>
+          </thead>
+          <tbody id="table-data-instructions">
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script>
+      require('./renderer-process/instructions')
+    </script>
+  </section>
+</template>

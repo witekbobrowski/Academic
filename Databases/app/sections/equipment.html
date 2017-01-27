@@ -1,0 +1,24 @@
+<template class="task-template">
+  <section id="equipment" class="section js-section equipment">
+    <div class="container">
+    <a class="search-results-title">Equipment</a>
+      <div class="table_body">
+        <table class="table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Quantity</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody id="table-data-equipment">
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script>
+      require('./renderer-process/equipment')
+    </script>
+  </section>
+</template>

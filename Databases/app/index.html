@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="assets/photon.css">
+    <link rel="stylesheet" href="assets/section.css">
+    <link rel="stylesheet" href="assets/login.css">
+    <link rel="stylesheet" href="assets/dhtmlxscheduler/dhtmlxscheduler.css">
+
+    <link rel="import" href="sections/login.html">
+    <link rel="import" href="sections/search.html">
+    <link rel="import" href="sections/home.html">
+    <link rel="import" href="sections/classes.html">
+    <link rel="import" href="sections/groups.html">
+    <link rel="import" href="sections/students.html">
+    <link rel="import" href="sections/employees.html">
+    <link rel="import" href="sections/locations.html">
+    <link rel="import" href="sections/instructions.html">
+    <link rel="import" href="sections/equipment.html">
+    <link rel="import" href="sections/payments.html">
+</head>
+
+<body>
+    <div class="window">
+        <div class="window-content">
+            <div class="pane-group">
+                <div class="pane-sm sidebar">
+                    <nav class="nav-group js-nav">
+                        <h5 class="nav-group-title"><input id="input-search" data-section="search"  class="form-control" type="text" placeholder="Search"></h5>
+                        <a type="button" id="button-home" data-section="home" class="nav-group-item"><span class="icon icon-home"></span>Home</a>
+                        <a type="button" id="button-classes" data-section="classes" class="nav-group-item"><span class="icon icon-clock"></span>Classes</a>
+                        <a type="button" id="button-groups" data-section="groups" class="nav-group-item"><span class="icon icon-flag"></span>Groups</a>
+                        <a type="button" id="button-students" data-section="students" class="nav-group-item"><span class="icon icon-graduation-cap"></span>Students</a>
+                        <a type="button" id="button-employees" data-section="employees" class="nav-group-item"><span class="icon icon-users"></span>Employees</a>
+                        <a type="button" id="button-locations" data-section="locations" class="nav-group-item"><span class="icon icon-location"></span>Locations</a>
+                        <a type="button" id="button-instructions" data-section="instructions" class="nav-group-item"><span class="icon icon-folder"></span>Instructions</a>
+                        <a type="button" id="button-equipment" data-section="equipment" class="nav-group-item"><span class="icon icon-briefcase"></span>Equipment</a>
+                        <a type="button" id="button-payments" data-section="payments" class="nav-group-item"><span class="icon icon-credit-card"></span>Payments</a>
+                        <a type="button" id="button-login" data-modal="login" class="nav-group-item"><span class="icon icon-database"></span>Connect</a>
+                    </nav>
+                </div>
+                <div class="pane">
+                    <main class="content js-content"></main>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        require('./assets/imports')
+        require('./assets/nav')
+    </script>
+
+</body>
+
+</html>

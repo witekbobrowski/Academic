@@ -1,0 +1,27 @@
+<template class="task-template">
+  <section id="home" class="section js-section home">
+    <div class="container">
+      <div class="today">
+        Today is <span id="time"></span>
+      </div>
+      <div class="home-calendar">
+        <table class="table-striped">
+          <thead>
+            <tr>
+              <th>Begins</th>
+              <th>Ends</th>
+              <th>Location</th>
+              <th>Group</th>
+              <th>Instructors</th>
+            </tr>
+          </thead>
+          <tbody id="table-data-home">
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script>
+      require('./renderer-process/home')
+    </script>
+  </section>
+</template>

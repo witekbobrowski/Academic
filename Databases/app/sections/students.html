@@ -1,0 +1,26 @@
+<template class="task-template">
+  <section id="students" class="section js-section students">
+    <div class="container">
+    <a class="search-results-title">Students</a>
+      <div class="table_body">
+        <table class="table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Birth Date</th>
+              <th>Home Town</th>
+              <th>Main Group</th>
+            </tr>
+          </thead>
+          <tbody id="table-data-students">
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script>
+      require('./renderer-process/students')
+    </script>
+  </section>
+</template>

@@ -1,0 +1,27 @@
+<template class="task-template">
+  <section id="locations" class="section js-section locations">
+    <div class="container">
+    <a class="search-results-title">Locations</a>
+      <div class="table_body">
+        <table class="table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Mobile</th>
+              <th>E-mail</th>
+              <th>Address</th>
+              <th>Post Code</th>
+              <th>City</th>
+            </tr>
+          </thead>
+          <tbody id="table-data-locations">
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script>
+      require('./renderer-process/locations')
+    </script>
+  </section>
+</template>

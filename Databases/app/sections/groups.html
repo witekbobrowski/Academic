@@ -1,0 +1,23 @@
+<template class="task-template">
+  <section id="groups" class="section js-section groups">
+    <div class="container">
+    <a class="search-results-title">Groups</a>
+      <div class="table_body">
+        <table class="table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Location</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody id="table-data-groups">
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script>
+      require('./renderer-process/groups')
+    </script>
+  </section>
+</template>

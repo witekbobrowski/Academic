@@ -1,0 +1,16 @@
+<template class="task-template">
+  <div id="login-modal" class="login modal">
+    <div class="login-container">
+    <div class="login-content">
+      <h5 class="login-input"><input id="input-login host" data-modal='login' class="form-control modal-hide" type="text" placeholder="host"></h5>
+      <h5 class="login-input"><input id="input-login user" data-modal='login' class="form-control modal-hide" type="text" placeholder="user"></h5>
+      <h5 class="login-input"><input id="input-login password" data-modal='login' class="form-control modal-hide" type="password" placeholder="password"></h5>
+      <h5 class="login-input"><input id="input-login database" data-modal='login' class="form-control modal-hide" type="text" placeholder="database"></h5>
+      <button id="button-login" class="btn btn-large btn-default modal-hide">log in</button>
+    </div>
+  </div>
+  </div>
+  <script>
+    require('./renderer-process/login')
+  </script>
+</template>
