@@ -1,5 +1,5 @@
-# Databases
-![alt tag](diagram.jpg)
+# Database
+![alt tag](diagram.png)
 
 Final project requirements:
 
