@@ -182,26 +182,6 @@ h6 {
     font-size: 12px;
 }
 
-.today {
-    height: auto;
-    font-size: 24px;
-    font-weight: 200;
-    color: #828282;
-}
-
-.container {
-    display: grid;
-    padding-left: 20px;
-    padding-top: 20px;
-    padding-right: 20px;
-    padding-bottom: 20px;
-    height: 100%;
-}
-
-.home-calendar {
-    height: 50%;
-}
-
 .table_body {
     margin-top: auto;
     margin-bottom: auto;
@@ -224,13 +204,6 @@ h6 {
     overflow-y: auto;
     display: flex;
     flex: 1;
-}
-
-.search-results-title, #search-results-none {
-    line-height: 1;
-    font-size: 1.5em;
-    font-weight: 200;
-    color: #828282;
 }
 
 .selectable-text {
@@ -833,7 +806,6 @@ img {
     font-size: 12px;
     font-weight: 500;
     color: #666666;
-    text-align: center;
 }
 
 @font-face {
@@ -2884,7 +2856,7 @@ th {
 }
 
 th, td {
-    //padding: 2px 15px;
+    padding: 2px 15px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

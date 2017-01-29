@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="assets/photon.css">
     <link rel="stylesheet" href="assets/section.css">
     <link rel="stylesheet" href="assets/login.css">
+    <link rel="stylesheet" href="assets/search.css">
+    <link rel="stylesheet" href="assets/info.css">
     <link rel="stylesheet" href="assets/dhtmlxscheduler/dhtmlxscheduler.css">
 
     <link rel="import" href="sections/login.html">
@@ -14,8 +16,11 @@
     <link rel="import" href="sections/home.html">
     <link rel="import" href="sections/classes.html">
     <link rel="import" href="sections/groups.html">
+    <link rel="import" href="sections/group-info.html">
     <link rel="import" href="sections/students.html">
+    <link rel="import" href="sections/student-info.html">
     <link rel="import" href="sections/employees.html">
+    <link rel="import" href="sections/employee-info.html">
     <link rel="import" href="sections/locations.html">
     <link rel="import" href="sections/instructions.html">
     <link rel="import" href="sections/equipment.html">
@@ -28,7 +33,8 @@
             <div class="pane-group">
                 <div class="pane-sm sidebar">
                     <nav class="nav-group js-nav">
-                        <h5 class="nav-group-title"><input id="input-search" data-section="search"  class="form-control" type="text" placeholder="Search"></h5>
+                        <h5 class="nav-group-title"><input id="input-search" data-modal="search" class="form-control" type="text" placeholder="Search"></h5>
+                        <h5 class="nav-group-title"><span class="icon icon-menu"></span> Main</h5>
                         <a type="button" id="button-home" data-section="home" class="nav-group-item"><span class="icon icon-home"></span>Home</a>
                         <a type="button" id="button-classes" data-section="classes" class="nav-group-item"><span class="icon icon-clock"></span>Classes</a>
                         <a type="button" id="button-groups" data-section="groups" class="nav-group-item"><span class="icon icon-flag"></span>Groups</a>
@@ -38,7 +44,10 @@
                         <a type="button" id="button-instructions" data-section="instructions" class="nav-group-item"><span class="icon icon-folder"></span>Instructions</a>
                         <a type="button" id="button-equipment" data-section="equipment" class="nav-group-item"><span class="icon icon-briefcase"></span>Equipment</a>
                         <a type="button" id="button-payments" data-section="payments" class="nav-group-item"><span class="icon icon-credit-card"></span>Payments</a>
-                        <a type="button" id="button-login" data-modal="login" class="nav-group-item"><span class="icon icon-database"></span>Connect</a>
+                    </nav>
+                    <nav class="nav-group js-nav">
+                      <h5 class="nav-group-title"><span class="icon icon-cog"></span> Settings</h5>
+                      <a type="button" id="button-login" data-modal="login" class="nav-group-item"><span class="icon icon-database"></span>Connect</a>
                     </nav>
                 </div>
                 <div class="pane">

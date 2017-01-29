@@ -15,5 +15,5 @@ Final project requirements:
 - [ ] `constraints: unique, foreign - 5`
 - [ ] `subqueries - 2`
 - [ ] `like - 2`
-- [ ] `between - 2`
+- [x] `between - 2`
 - [x] `order - 4`

@@ -1,34 +1,21 @@
-const storage = require('electron-json-storage')
-
-storage.get('activeSectionButtonId', function(err, id) {
-    if (err) return console.error(err)
-
-    if (id && id.length) {
-        showMainContent()
-        const section = document.getElementById(id)
-        if (section) section.click()
-    } else {
-        displayLogin()
-        document.getElementById('button-login').addEventListener('click', (event) => {
-          activateDefaultSection();
-        })
-    }
-})
+document.addEventListener("DOMContentLoaded", function() {
+  displayLogin()
+  activateDefaultSection()
+});
 
 document.body.addEventListener('click', (event) => {
     if (event.target.dataset.section) {
         handleSectionTrigger(event)
     } else if (event.target.dataset.modal) {
+        console.log('click');
         handleModalTrigger(event)
     } else if (event.target.classList.contains('modal-hide')) {
         hideAllModals()
     }
 })
-document.getElementById('input-search').addEventListener('keyup', (event) => {
-    handleSectionTrigger(event)
-})
 
 function handleSectionTrigger(event) {
+    hideAllModals()
     hideAllSectionsAndDeselectButtons()
     event.target.classList.add('active')
     const sectionID = event.target.dataset.section
@@ -70,5 +57,6 @@ function hideAllSectionsAndDeselectButtons() {
 }
 
 function displayLogin() {
+    hideAllModals()
     document.querySelector('#login-modal').classList.add('active')
 }

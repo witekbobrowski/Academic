@@ -21,7 +21,7 @@ function searchResultsEmployees(phrase) {
         if (err) console.log('no connection');
         connection.query('SELECT * FROM employees WHERE MATCH(firstName, lastName, email) AGAINST (?)', [phrase], (error, rows, fields) => {
             if (error) throw error
-            output.push('<a class="search-results-title">Found in employees</a><div class="table_body"><table class="table-striped"><thead><tr><th>ID</th><th>First Name</th><th>Last Name</th><th>E-mail</th><th>Mobile</th><th>Student</th></tr></thead><tbody>')
+            output.push('<p class="search-results-title">Found in employees</p><div class="table_body"><table class="table-striped"><thead><tr><th>ID</th><th>First Name</th><th>Last Name</th><th>E-mail</th><th>Mobile</th><th>Student</th></tr></thead><tbody>')
             for (row in rows) {
                 output.push('<tr>')
                 output.push('<td>' + rows[row].employee_ID + '</td>')
@@ -38,7 +38,7 @@ function searchResultsEmployees(phrase) {
             if (rows.length != 0) {
                 document.getElementById('search-results-employees').innerHTML = output.join('')
             } else {
-                document.getElementById('search-results-employees').innerHTML = " "
+                document.getElementById('search-results-employees').innerHTML = '<p class="search-results-none">No results in Employees</p>'
             }
             connection.release()
         });
@@ -53,7 +53,7 @@ function searchResultsStudents(phrase) {
         connection.query('SELECT * FROM students WHERE MATCH(firstName, lastName, contactName, contactEmail, homeTown) AGAINST (?)', [phrase], (error, rows, fields) => {
             if (error) throw error
             let output = []
-            output.push('<a class="search-results-title">Found in students</a><div class="table_body"><table class="table-striped"><thead><tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Birth Date</th><th>Home Town</th><th>Main Group</th></tr></thead><tbody>')
+            output.push('<p class="search-results-title">Found in students</p><div class="table_body"><table class="table-striped"><thead><tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Birth Date</th><th>Home Town</th><th>Main Group</th></tr></thead><tbody>')
             for (row in rows) {
                 output.push('<tr>')
                 output.push('<td>' + rows[row].student_ID + '</td>')
@@ -69,7 +69,7 @@ function searchResultsStudents(phrase) {
             if (rows.length != 0) {
                 document.getElementById('search-results-students').innerHTML = output.join('')
             } else {
-                document.getElementById('search-results-students').innerHTML = " "
+                document.getElementById('search-results-students').innerHTML = '<p class="search-results-none">No results in Students</p>'
             }
             connection.release()
         });
@@ -83,7 +83,7 @@ function searchResultsGroups(phrase) {
         if (err) console.log('no connection');
         connection.query('SELECT * FROM groups INNER JOIN locations ON groups.location_ID = locations.location_ID WHERE MATCH(description) AGAINST (?)', [phrase], (error, rows, fields) => {
             if (error) throw error
-            output.push('<a class="search-results-title">Found in groups</a><div class="table_body"><table class="table-striped"><thead><tr><th>ID</th><th>Location</th><th>Description</th></tr></thead><tbody>')
+            output.push('<p class="search-results-title">Found in groups</p><div class="table_body"><table class="table-striped"><thead><tr><th>ID</th><th>Location</th><th>Description</th></tr></thead><tbody>')
             for (row in rows) {
                 output.push('<tr>')
                 output.push('<td>' + rows[row].group_ID + '</td>')
@@ -96,7 +96,7 @@ function searchResultsGroups(phrase) {
             if (rows.length != 0) {
                 document.getElementById('search-results-groups').innerHTML = output.join('')
             } else {
-                document.getElementById('search-results-groups').innerHTML = " "
+                document.getElementById('search-results-groups').innerHTML = '<p class="search-results-none">No results in Groups</p>'
             }
             connection.release()
         });
@@ -110,7 +110,7 @@ function searchResultsLocations(phrase) {
         if (err) console.log('no connection');
         connection.query('SELECT * FROM locations WHERE MATCH(name, email, addressLine1, postcode, city) AGAINST (?)', [phrase], (error, rows, fields) => {
             if (error) throw error
-            output.push('<a class="search-results-title">Found in locations</a><div class="table_body"><table class="table-striped"><thead><tr><th>ID</th><th>Name</th><th>Mobile</th><th>E-mail</th><th>Address</th><th>Post Code</th><th>City</th></tr></thead><tbody>')
+            output.push('<p class="search-results-title">Found in locations</p><div class="table_body"><table class="table-striped"><thead><tr><th>ID</th><th>Name</th><th>Mobile</th><th>E-mail</th><th>Address</th><th>Post Code</th><th>City</th></tr></thead><tbody>')
             for (row in rows) {
                 output.push('<tr>')
                 output.push('<td>' + rows[row].location_ID + '</td>')
@@ -127,7 +127,7 @@ function searchResultsLocations(phrase) {
             if (rows.length != 0) {
                 document.getElementById('search-results-locations').innerHTML = output.join('')
             } else {
-                document.getElementById('search-results-locations').innerHTML = " "
+                document.getElementById('search-results-locations').innerHTML = '<p class="search-results-none">No results in Locations</p>'
             }
             connection.release()
         });
@@ -142,7 +142,7 @@ function searchResultsEquipment(phrase) {
         if (err) console.log('no connection');
         connection.query('SELECT * FROM equipment WHERE MATCH(name, description) AGAINST (?)', [phrase], (error, rows, fields) => {
             if (error) throw error
-            output.push('<a class="search-results-title">Found in equipment</a><div class="table_body"><table class="table-striped"><thead><tr><th>ID</th><th>Name</th><th>Quantity</th><th>Description</th></tr></thead><tbody>')
+            output.push('<p class="search-results-title">Found in equipment</p><div class="table_body"><table class="table-striped"><thead><tr><th>ID</th><th>Name</th><th>Quantity</th><th>Description</th></tr></thead><tbody>')
             for (row in rows) {
                 output.push('<tr>')
                 output.push('<td>' + rows[row].equipment_ID + '</td>')
@@ -156,7 +156,7 @@ function searchResultsEquipment(phrase) {
             if (rows.length != 0) {
                 document.getElementById('search-results-equipment').innerHTML = output.join('')
             } else {
-                document.getElementById('search-results-equipment').innerHTML = " "
+                document.getElementById('search-results-equipment').innerHTML = '<p class="search-results-none">No results in Equipment</p>'
             }
             connection.release()
         });
@@ -170,7 +170,7 @@ function searchResultsInstructions(phrase) {
         if (err) console.log('no connection');
         connection.query('SELECT * FROM instructions INNER JOIN equipment ON instructions.bricksType_ID = equipment.equipment_ID WHERE MATCH(robotName) AGAINST (?)', [phrase], (error, rows, fields) => {
             if (error) throw error
-            output.push('<a class="search-results-title">Found in instructions</a><div class="table_body"><table class="table-striped"><thead><tr><th>ID</th><th>Robot Name</th><th>Type of Bricks</th></tr></thead><tbody>')
+            output.push('<p class="search-results-title">Found in instructions</p><div class="table_body"><table class="table-striped"><thead><tr><th>ID</th><th>Robot Name</th><th>Type of Bricks</th></tr></thead><tbody>')
             for (row in rows) {
                 output.push('<tr>')
                 output.push('<td>' + rows[row].robot_ID + '</td>')
@@ -183,7 +183,7 @@ function searchResultsInstructions(phrase) {
             if (rows.length != 0) {
                 document.getElementById('search-results-instructions').innerHTML = output.join('')
             } else {
-                document.getElementById('search-results-instructions').innerHTML = " "
+                document.getElementById('search-results-instructions').innerHTML = '<p class="search-results-none">No results in Instructions</p>'
             }
             connection.release()
         });

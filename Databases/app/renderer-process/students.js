@@ -8,12 +8,12 @@ function appentStudentList() {
             let output = [];
             for (row in rows) {
                 output.push('<tr>');
-                output.push('<td>' + rows[row].student_ID + '</td>');
-                output.push('<td>' + rows[row].firstName + '</td>');
-                output.push('<td>' + rows[row].lastName + '</td>');
-                output.push('<td>' + rows[row].birthDate.getDay() + "/" + rows[row].birthDate.getMonth() + "/" + rows[row].birthDate.getFullYear() + '</td>');
-                output.push('<td>' + rows[row].homeTown + '</td>');
-                output.push('<td>' + rows[row].mainGroup_ID + '</td>');
+                output.push('<td type="button" id="button-student-info" data-id="' + rows[row].student_ID + '" data-modal="student-info">' + rows[row].student_ID + '</td>');
+                output.push('<td type="button" id="button-student-info" data-id="' + rows[row].student_ID + '" data-modal="student-info">' + rows[row].firstName + '</td>');
+                output.push('<td type="button" id="button-student-info" data-id="' + rows[row].student_ID + '" data-modal="student-info">' + rows[row].lastName + '</td>');
+                output.push('<td type="button" id="button-student-info" data-id="' + rows[row].student_ID + '" data-modal="student-info">' + rows[row].birthDate.getDate() + "/" + (rows[row].birthDate.getMonth() + 1) + "/" + rows[row].birthDate.getFullYear() + '</td>');
+                output.push('<td type="button" id="button-student-info" data-id="' + rows[row].student_ID + '" data-modal="student-info">' + rows[row].homeTown + '</td>');
+                output.push('<td type="button" id="button-student-info" data-id="' + rows[row].student_ID + '" data-modal="student-info">' + rows[row].mainGroup_ID + '</td>');
                 output.push('</tr>');
             }
             document.getElementById('table-data-students').innerHTML = output.join('')

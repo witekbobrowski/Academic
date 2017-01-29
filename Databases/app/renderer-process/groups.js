@@ -9,9 +9,9 @@ function appendGroupsList() {
             let output = [];
             for (row in rows) {
                 output.push('<tr>');
-                output.push('<td>' + rows[row].group_ID + '</td>');
-                output.push('<td>' + rows[row].name + '</td>');
-                output.push('<td>' + rows[row].description + '</td>');
+                output.push('<td type="button" id="button-group-info" data-id="' + rows[row].group_ID + '" data-modal="group-info">' + rows[row].group_ID + '</td>');
+                output.push('<td type="button" id="button-group-info" data-id="' + rows[row].group_ID + '" data-modal="group-info">' + rows[row].name + '</td>');
+                output.push('<td type="button" id="button-group-info" data-id="' + rows[row].group_ID + '" data-modal="group-info">' + rows[row].description + '</td>');
                 output.push('</tr>');
             }
             document.getElementById('table-data-groups').innerHTML = output.join('')

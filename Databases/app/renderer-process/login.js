@@ -1,10 +1,10 @@
 let mysql = require('mysql')
 
 let pool = mysql.createPool({
-    host: '',
-    user: '',
-    password: '',
-    database: ''
+    host: 'localhost',
+    user: 'root',
+    password: 'kapsel',
+    database: 'BOBROWSKI'
 });
 
 let getConnection = function(cb) {
@@ -18,7 +18,7 @@ let getConnection = function(cb) {
 
 module.exports = getConnection;
 
-document.getElementById('button-login').addEventListener('click', (event) => {
+document.getElementById('button-login').addEventListener('click', (event) => {/*
       let host = document.getElementById('input-login host').value
       let user = document.getElementById('input-login user').value
       let password = document.getElementById('input-login password').value
@@ -39,5 +39,5 @@ document.getElementById('button-login').addEventListener('click', (event) => {
           cb(null, connection)
         })
       }
-      module.exports = getConnection;
+      module.exports = getConnection;*/
 })

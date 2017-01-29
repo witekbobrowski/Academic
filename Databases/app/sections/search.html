@@ -1,7 +1,6 @@
 <template class="task-template">
-  <section id="search" class="section js-section search">
-    <div id="search-results" class="container">
-      <div id="search-results-none"></div>
+  <div id="search-modal" class="search modal">
+    <div id="search-results" class="search-container">
       <div id="search-results-employees"></div>
       <div id="search-results-students"></div>
       <div id="search-results-groups"></div>
@@ -12,5 +11,5 @@
     <script>
       require('./renderer-process/search')
     </script>
-  </section>
+  </div>
 </template>
