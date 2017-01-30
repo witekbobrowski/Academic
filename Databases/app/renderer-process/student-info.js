@@ -12,7 +12,7 @@ document.body.addEventListener('click', (event) => {
 
 document.getElementById('button-student-delete').addEventListener('click', (event) => {
     console.log(currentID);
-    //deleteStudent(currentID);
+    deleteStudent(currentID);
     document.getElementById('button-students').click()
 })
 

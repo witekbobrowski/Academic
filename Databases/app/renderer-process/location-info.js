@@ -11,7 +11,7 @@ document.body.addEventListener('click', (event) => {
 
 document.getElementById('button-location-delete').addEventListener('click', (event) => {
     console.log(currentID);
-    //deleteLocation(currentID);
+    deleteLocation(currentID);
     document.getElementById('button-locations').click()
 })
 

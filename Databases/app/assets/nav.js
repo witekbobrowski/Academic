@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
   displayLogin()
-  activateDefaultSection()
 });
 
 document.body.addEventListener('click', (event) => {

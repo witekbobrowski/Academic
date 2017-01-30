@@ -16,6 +16,10 @@
     "brightwheel": "^0.1.8",
     "electron-json-storage": "^3.0.0"
   },
+  "dependencies": {
+    "electron": "1.4.15",
+    "mysql": "2.13.0",
+  },
   "devDependencies": {
     "electron-packager": "^8.5.1"
   }

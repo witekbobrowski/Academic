@@ -11,7 +11,7 @@ document.body.addEventListener('click', (event) => {
 
 document.getElementById('button-group-delete').addEventListener('click', (event) => {
     console.log(currentID);
-    //deleteGroup(currentID);
+    deleteGroup(currentID);
     document.getElementById('button-groups').click()
 })
 

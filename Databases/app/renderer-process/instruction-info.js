@@ -11,7 +11,7 @@ document.body.addEventListener('click', (event) => {
 
 document.getElementById('button-instruction-delete').addEventListener('click', (event) => {
     console.log(currentID);
-    //deleteInstruction(currentID);
+    deleteInstruction(currentID);
     document.getElementById('button-instructions').click()
 })
 
@@ -41,7 +41,7 @@ function displayInstructionInfo(instruction) {
 }
 
 //MARK: DELETE
-function deleteInstruction(locatinstructionion) {
+function deleteInstruction(instruction) {
     getConnection((err, connection) => {
         connection.query('DELETE FROM instructions WHERE robot_ID = ?', [instruction], (error, rows, fields) => {
             if (error) throw error;

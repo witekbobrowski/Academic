@@ -11,7 +11,7 @@ document.body.addEventListener('click', (event) => {
 
 document.getElementById('button-employee-delete').addEventListener('click', (event) => {
     console.log(currentID);
-    //deleteEmployee(currentID);
+    deleteEmployee(currentID);
     document.getElementById('button-employees').click()
 })
 

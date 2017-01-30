@@ -11,7 +11,7 @@ document.body.addEventListener('click', (event) => {
 
 document.getElementById('button-register-delete').addEventListener('click', (event) => {
     console.log(currentID);
-    //deleteRegister(currentID);
+    deleteRegister(currentID);
     document.getElementById('button-register').click()
 })
 
@@ -87,7 +87,7 @@ function displayRegisterInfo(register) {
 //MARK: DELETE
 function deleteRegister(register) {
     getConnection((err, connection) => {
-        connection.query('DELETE FROM groups WHERE group_ID = ?', [register], (error, rows, fields) => {
+        connection.query('DELETE FROM classes WHERE class_ID = ?', [register], (error, rows, fields) => {
             if (error) throw error;
             connection.release()
         });
