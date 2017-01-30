@@ -12,8 +12,8 @@ Final project requirements:
 - [x] `triggers - 2`
 - [x] `views - 2`
 - [ ] `aggregation functions - 3`
-- [ ] `constraints: unique, foreign - 5`
-- [ ] `subqueries - 2`
+- [x] `constraints: unique, foreign - 5`
+- [x] `subqueries - 2`
 - [ ] `like - 2`
 - [x] `between - 2`
 - [x] `order - 4`

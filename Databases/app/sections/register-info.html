@@ -1,0 +1,19 @@
+<template class="task-template">
+  <div id="register-info-modal" class="info modal">
+    <div class="info-container">
+    <div class="info-content">
+      <div id="register-info-title" class="info-title"></div>
+      <div id="register-info-details" class="info-details"></div>
+      <div id="register-info-attendance" class="info-table"></div>
+      <div id="register-info-students" class="info-table"></div>
+      <p>
+        <button id="button-register-edit" class="register-input btn btn-primary modal-hide">Edit</button>
+        <button id="button-register-delete" class="register-input btn btn-negative modal-hide">Delete</button>
+      </p>
+    </div>
+  </div>
+  </div>
+  <script>
+    require('./renderer-process/register-info')
+  </script>
+</template>

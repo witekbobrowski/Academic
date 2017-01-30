@@ -1,0 +1,17 @@
+<template class="task-template">
+  <div id="instruction-info-modal" class="info modal">
+    <div class="info-container">
+    <div class="info-content">
+      <div id="instruction-info-title" class="info-title"></div>
+      <div id="instruction-info-details" class="info-details"></div>
+      <p>
+        <button id="button-instruction-edit" class="instruction-input btn btn-primary modal-hide">Edit</button>
+        <button id="button-instruction-delete" class="instruction-input btn btn-negative modal-hide">Delete</button>
+      </p>
+    </div>
+  </div>
+  </div>
+  <script>
+    require('./renderer-process/instruction-info')
+  </script>
+</template>

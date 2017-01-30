@@ -1,0 +1,18 @@
+<template class="task-template">
+  <div id="location-info-modal" class="info modal">
+    <div class="info-container">
+    <div class="info-content">
+      <div id="location-info-title" class="info-title"></div>
+      <div id="location-info-details" class="info-details"></div>
+      <div id="location-info-classes" class="info-table"></div>
+      <p>
+        <button id="button-location-edit" class="location-input btn btn-primary modal-hide">Edit</button>
+        <button id="button-location-delete" class="location-input btn btn-negative modal-hide">Delete</button>
+      </p>
+    </div>
+  </div>
+  </div>
+  <script>
+    require('./renderer-process/location-info')
+  </script>
+</template>

@@ -1,0 +1,24 @@
+<template class="task-template">
+  <section id="register" class="section js-section register">
+    <div class="section-container">
+      <p class="section-title">Register</p>
+      <div class="table_body">
+        <table class="table-striped">
+          <thead>
+            <tr>
+              <th>Started</th>
+              <th>Ended</th>
+              <th>Location</th>
+              <th>Group</th>
+              <th>Instructors</th></tr>
+            </thead>
+          <tbody id="table-data-register">
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script>
+      require('./renderer-process/register')
+    </script>
+  </section>
+</template>

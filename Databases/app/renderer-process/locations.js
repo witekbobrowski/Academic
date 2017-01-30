@@ -8,13 +8,13 @@ function appendLocationsList() {
             let output = [];
             for (row in rows) {
                 output.push('<tr>');
-                output.push('<td>' + rows[row].location_ID + '</td>');
-                output.push('<td>' + rows[row].name + '</td>');
-                output.push('<td>' + rows[row].mobile + '</td>');
-                output.push('<td>' + rows[row].email + '</td>');
-                output.push('<td>' + rows[row].addressLine1 + '</td>');
-                output.push('<td>' + rows[row].postcode + '</td>');
-                output.push('<td>' + rows[row].city + '</td>');
+                output.push('<td type="button" id="button-location-info" data-id="' + rows[row].location_ID + '" data-modal="location-info">' + rows[row].location_ID + '</td>');
+                output.push('<td type="button" id="button-location-info" data-id="' + rows[row].location_ID + '" data-modal="location-info">' + rows[row].name + '</td>');
+                output.push('<td type="button" id="button-location-info" data-id="' + rows[row].location_ID + '" data-modal="location-info">' + rows[row].mobile + '</td>');
+                output.push('<td type="button" id="button-location-info" data-id="' + rows[row].location_ID + '" data-modal="location-info">' + rows[row].email + '</td>');
+                output.push('<td type="button" id="button-location-info" data-id="' + rows[row].location_ID + '" data-modal="location-info">' + rows[row].addressLine1 + '</td>');
+                output.push('<td type="button" id="button-location-info" data-id="' + rows[row].location_ID + '" data-modal="location-info">' + rows[row].postcode + '</td>');
+                output.push('<td type="button" id="button-location-info" data-id="' + rows[row].location_ID + '" data-modal="location-info">' + rows[row].city + '</td>');
                 output.push('</tr>');
             }
             document.getElementById('table-data-locations').innerHTML = output.join('')

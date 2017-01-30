@@ -9,9 +9,9 @@ function appendInstructionsList() {
             let output = [];
             for (row in rows) {
                 output.push('<tr>');
-                output.push('<td>' + rows[row].robot_ID + '</td>');
-                output.push('<td>' + rows[row].robotName + '</td>');
-                output.push('<td>' + rows[row].name + '</td>');
+                output.push('<td type="button" id="button-instruction-info" data-id="' + rows[row].robot_ID + '" data-modal="instruction-info">' + rows[row].robot_ID + '</td>');
+                output.push('<td type="button" id="button-instruction-info" data-id="' + rows[row].robot_ID + '" data-modal="instruction-info">' + rows[row].robotName + '</td>');
+                output.push('<td type="button" id="button-instruction-info" data-id="' + rows[row].robot_ID + '" data-modal="instruction-info">' + rows[row].name + '</td>');
                 output.push('</tr>');
             }
             document.getElementById('table-data-instructions').innerHTML = output.join('')
