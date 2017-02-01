@@ -24,6 +24,6 @@ function appendPaymentsDueList() {
     })
 }
 
-document.getElementById('button-register').addEventListener('click', (event) => {
+document.getElementById('button-payments').addEventListener('click', (event) => {
     appendPaymentsDueList()
 })
