@@ -9,6 +9,7 @@ function appendRegisterList() {
             let output = [];
             for (row in rows) {
                 output.push('<tr>');
+                output.push('<td type="button" id="button-register-info" data-id="' + rows[row].class_ID + '" data-modal="register-info">' + rows[row].class_ID + '</td>');  
                 output.push('<td type="button" id="button-register-info" data-id="' + rows[row].class_ID + '" data-modal="register-info">' + rows[row].startTime.getDate() + '/' + (rows[row].startTime.getMonth() + 1) + '/' + rows[row].startTime.getFullYear() + '  ' + rows[row].startTime.getHours() + ':' + rows[row].startTime.getMinutes() + '</td>');
                 output.push('<td type="button" id="button-register-info" data-id="' + rows[row].class_ID + '" data-modal="register-info">' + rows[row].startTime.getDate() + '/' + (rows[row].startTime.getMonth() + 1) + '/' + rows[row].startTime.getFullYear() + '  ' + (rows[row].startTime.getHours() + rows[row].duration) + ':' + rows[row].startTime.getMinutes() + '</td>');
                 output.push('<td type="button" id="button-register-info" data-id="' + rows[row].class_ID + '" data-modal="register-info">' + rows[row].name + '</td>');

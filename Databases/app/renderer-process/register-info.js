@@ -1,10 +1,11 @@
 let getConnection = require('./login');
+
 document.body.addEventListener('click', (event) => {
     if (event.target.dataset.modal == "register-info") {
         currentID = event.target.dataset.id
         displayRegisterInfo(currentID)
-    } else {
-        //  document.getElementById('register-info-modal').classList.remove('active')
+    } else if (event.target.id == "register-info-modal"){
+        document.getElementById('register-info-modal').classList.remove('active')
     }
 })
 
@@ -82,6 +83,8 @@ function displayRegisterInfo(register) {
         });
         connection.release()
     })
+    document.getElementById('button-register-edit').style.visibility="visible"
+    document.getElementById('button-register-save').style.visibility="hidden"
 }
 
 //MARK: DELETE
@@ -117,6 +120,8 @@ function displayRegisterEdit(register) {
         });
         connection.release()
     })
+    document.getElementById('button-register-edit').style.visibility="hidden"
+    document.getElementById('button-register-save').style.visibility="visible"
 }
 
 function editRegister(register) {

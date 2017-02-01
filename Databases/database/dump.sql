@@ -27,8 +27,9 @@ CREATE TABLE `attendance` (
   `student_ID` int(11) NOT NULL,
   `class_ID` int(11) NOT NULL,
   `price` int(11) DEFAULT NULL,
-  PRIMARY KEY (`attendance_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`attendance_ID`),
+  UNIQUE KEY `attendance_entry` (`class_ID`,`student_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,6 +38,7 @@ CREATE TABLE `attendance` (
 
 LOCK TABLES `attendance` WRITE;
 /*!40000 ALTER TABLE `attendance` DISABLE KEYS */;
+INSERT INTO `attendance` VALUES (15,221,60,30),(16,116,60,30),(17,222,60,30),(18,226,60,30),(19,177,60,30),(20,206,60,30),(21,40,56,25),(22,237,56,25),(23,39,56,25),(24,133,56,25),(25,109,56,25);
 /*!40000 ALTER TABLE `attendance` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -50,7 +52,7 @@ UNLOCK TABLES;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `attendance_after_insert` AFTER INSERT ON `attendance` FOR EACH ROW
 BEGIN
-INSERT INTO payments_due (students_ID, class_ID, amount) VALUES (attendance.students_ID, attendance.class_ID, attendance.price);
+INSERT INTO payments_due (student_ID, class_ID, amount) VALUES (new.student_ID, new.class_ID, new.price);
 END */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -341,7 +343,7 @@ CREATE TABLE `payments_due` (
   `class_ID` int(11) NOT NULL,
   `amount` int(11) NOT NULL,
   PRIMARY KEY (`payments_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -350,26 +352,9 @@ CREATE TABLE `payments_due` (
 
 LOCK TABLES `payments_due` WRITE;
 /*!40000 ALTER TABLE `payments_due` DISABLE KEYS */;
+INSERT INTO `payments_due` VALUES (1,221,60,30),(2,116,60,30),(3,222,60,30),(4,226,60,30),(5,177,60,30),(6,206,60,30),(7,40,56,25),(8,237,56,25),(9,39,56,25),(10,133,56,25),(11,109,56,25);
 /*!40000 ALTER TABLE `payments_due` ENABLE KEYS */;
 UNLOCK TABLES;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8 */ ;
-/*!50003 SET character_set_results = utf8 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `BOBROWSKI`.`payments_due_before_delete` BEFORE DELETE ON `payments_due` FOR EACH ROW
-BEGIN
-	INSERT INTO payments (student_ID, date, amount) VALUES (payments_due.student_ID, CURDATE() ,payments_due.amount);
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `students`
@@ -392,7 +377,7 @@ CREATE TABLE `students` (
   UNIQUE KEY `contactsEmail_unique` (`contactEmail`),
   UNIQUE KEY `contactsMobile_unique` (`contactMobile`),
   FULLTEXT KEY `firstName` (`firstName`,`lastName`,`homeTown`,`contactName`,`contactEmail`)
-) ENGINE=InnoDB AUTO_INCREMENT=250 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=247 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -471,4 +456,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-01-30  9:12:25
+-- Dump completed on 2017-02-01  9:20:19
