@@ -67,7 +67,7 @@ app/
 └── package.json
 ```
 
-Note: few functionalities are not implemented yet, so few files may be empty (payments.js I'm looking at you) and buttons in the home page are not working.
+Note: The app is still in alpha, so keep in mind that many expected functionalities may not be working as expected, or may be not implemented at all.
 
 ## Usage
 
