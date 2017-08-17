@@ -1,0 +1,20 @@
+\BOOKMARK [0][-]{chapter.1}{Wstep}{}% 1
+\BOOKMARK [0][-]{chapter.2}{Wykorzystane technologie}{}% 2
+\BOOKMARK [1][-]{section.2.1}{Xcode}{chapter.2}% 3
+\BOOKMARK [1][-]{section.2.2}{Swift}{chapter.2}% 4
+\BOOKMARK [1][-]{section.2.3}{iOS SDK}{chapter.2}% 5
+\BOOKMARK [1][-]{section.2.4}{Zewnetrzne biblioteki}{chapter.2}% 6
+\BOOKMARK [0][-]{chapter.3}{Charakterystyka EPUB}{}% 7
+\BOOKMARK [1][-]{section.3.1}{Om\363wienie}{chapter.3}% 8
+\BOOKMARK [1][-]{section.3.2}{Specyfikacja}{chapter.3}% 9
+\BOOKMARK [0][-]{chapter.4}{Framework EPUBKit}{}% 10
+\BOOKMARK [1][-]{section.4.1}{Tworzenie frameworku na iOS}{chapter.4}% 11
+\BOOKMARK [1][-]{section.4.2}{Model}{chapter.4}% 12
+\BOOKMARK [1][-]{section.4.3}{Parser}{chapter.4}% 13
+\BOOKMARK [1][-]{section.4.4}{Widok}{chapter.4}% 14
+\BOOKMARK [1][-]{section.4.5}{Dystrybucja}{chapter.4}% 15
+\BOOKMARK [0][-]{chapter.5}{Aplikacja demonstracyjna}{}% 16
+\BOOKMARK [1][-]{section.5.1}{Tworzenie aplikacji na iOS}{chapter.5}% 17
+\BOOKMARK [1][-]{section.5.2}{Wykorzystanie frameworku w aplikacji}{chapter.5}% 18
+\BOOKMARK [1][-]{section.5.3}{Publikacja}{chapter.5}% 19
+\BOOKMARK [0][-]{chapter.6}{Podsumowanie}{}% 20

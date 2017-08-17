@@ -1,0 +1,20 @@
+\contentsline {chapter}{\numberline {1}Wst\IeC {\k e}p}{6}{chapter.1}
+\contentsline {chapter}{\numberline {2}Wykorzystane technologie}{7}{chapter.2}
+\contentsline {section}{\numberline {2.1}Xcode}{8}{section.2.1}
+\contentsline {section}{\numberline {2.2}Swift}{9}{section.2.2}
+\contentsline {section}{\numberline {2.3}iOS SDK}{10}{section.2.3}
+\contentsline {section}{\numberline {2.4}Zewn\IeC {\k e}trzne biblioteki}{11}{section.2.4}
+\contentsline {chapter}{\numberline {3}Charakterystyka EPUB}{12}{chapter.3}
+\contentsline {section}{\numberline {3.1}Om\IeC {\'o}wienie}{13}{section.3.1}
+\contentsline {section}{\numberline {3.2}Specyfikacja}{14}{section.3.2}
+\contentsline {chapter}{\numberline {4}Framework EPUBKit}{15}{chapter.4}
+\contentsline {section}{\numberline {4.1}Tworzenie frameworku na iOS}{16}{section.4.1}
+\contentsline {section}{\numberline {4.2}Model}{17}{section.4.2}
+\contentsline {section}{\numberline {4.3}Parser}{18}{section.4.3}
+\contentsline {section}{\numberline {4.4}Widok}{19}{section.4.4}
+\contentsline {section}{\numberline {4.5}Dystrybucja}{20}{section.4.5}
+\contentsline {chapter}{\numberline {5}Aplikacja demonstracyjna}{21}{chapter.5}
+\contentsline {section}{\numberline {5.1}Tworzenie aplikacji na iOS}{22}{section.5.1}
+\contentsline {section}{\numberline {5.2}Wykorzystanie frameworku w aplikacji}{23}{section.5.2}
+\contentsline {section}{\numberline {5.3}Publikacja}{24}{section.5.3}
+\contentsline {chapter}{\numberline {6}Podsumowanie}{25}{chapter.6}
