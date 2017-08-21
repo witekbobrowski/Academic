@@ -15,8 +15,7 @@ i efektowną. W tym rozdziale przedstawię właśnie te narzędzia ze względu n
 \end{figure}
 
 \paragraph{Xcode IDE}
-
-Xcode jako nowoczesne, produktywne środowisko jest miejscem w którym programista aplikacji na iOS spędza znaczną większość swojego
+Xcode jako nowoczesne, produktywne środowisko jest miejscem w którym programista aplikacji na iOS spędza większość swojego
 czasu. Całość prac wykonywanych przy produkcji aplikacji może zostać wykonana właśnie tutaj. Najbardziej podstawowy element jakim
 jest edytor tekstu dobrze współgra z takimi narzędziami jak Interface Buildier, który pozwala w prosty sposób zaprojektować stronę
 wizualną aplikacji przy użyciu Storyboardów a następnię stworzyć referencję w kodzie do wybranych przez nas elementów przez proste
@@ -42,11 +41,44 @@ ułatwione.
 
 Xcode zapewnia wsparcie dla systemu kontroli wersji git. Przy tworzeniu nowego projektu, gdy jest o to poproszony, inicjalizuje nowe
 repozytorium. Dodatkowo w nawigatorze projektu, w którym widać strukturę projektu, Xcode oznaczy literą "M" pliki które git oznacza
-jako pliki w których dokonano zmian (modified) a literą "A" (add) pliki które zostały dodane od czasu poprzedniego zachowania zmian.
+jako pliki w których dokonano zmian (modified) a literą "A" pliki które zostały dodane (new file) od czasu poprzedniego zachowania zmian.
 W najnowszej wersji 9.0, Xcode zyskał nową funkcjonalność - Source Control Navigator, który pozwala na eksplorowanie poszczególnych
-gałęzi repozytorium i podglądu dowolnego momentu w historii repozytorium. 
+gałęzi repozytorium i podglądu dowolnego momentu w historii repozytorium.
 
 \paragraph{Simulator}
+Simulator pozwala na uruchomienie zbudowanej aplikacji na dowolnym urządzeniu z iOS które jest w stanie zasymulować. Gdy chce się
+przetestować aplikację wystarczy w pasku narzędzi Xcode wybrać dowolny model urządzenia (oprócz telefonów iPhone znajdują się tam
+rówież tablety iPad) które chcemy zasymulować (jeżeli podłączymy do komputera fizyczne urządzenie, Xcode rówiez je wykryje i pozwoli
+na zainstalowanie i uruchomienie na nim aplikacji), a Xcode przejdzie to etapu budowania aplikacji w którym kompiluje pliki źródłowe,
+a następnie umieści aplikację w symulatorze wybranego przez nas urządzenia.
+\begin{figure}[ht!]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.4\linewidth]{images/chapter-2-image-3-target.png}
+  \caption{Wybór docelowego urządzenia}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.4\linewidth]{images/chapter-2-image-4-simulator.png}
+  \caption{Uruchomiona aplikacja na iPhone 7}
+  \label{fig:sub2}
+\end{subfigure}
+\caption{Po wybraniu urządzenia w Xcode, Simulator uruchamia na nim aplikację}
+\label{fig:test}
+\end{figure}
+
+Podczas gdy aplikacja jest uruchomiona i testowana na symulatorze, Xcode pozwala na podgląd użycia zasobów takich jak procesor, pamięć
+RAM, pamięć dyskowa oraz sieć. Po wybraniu dowolnego z wyżej wymienionych zasobów z nawigatora Debuggera ukazje nam się bardziej
+szczegółowy podgląd na to w jakim stopniu aplikacja obciąża urządzenie co pozwala na szczegółowe testowanie.
+
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width=120mm]{images/chapter-2-image-5-debugger.png}
+  \caption{Użycie CPU na symulatorze odświeżane na bieżąco i wyświetlne w Xcode}
+  \label{overflow}
+\end{figure}
 
 \paragraph{Instruments}
 
