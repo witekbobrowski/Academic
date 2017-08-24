@@ -129,14 +129,42 @@ Objective-C, stając się jezykiem pierwszego wyboru. Wszystkie powstające apli
 Objective-C jest dzisiaj przepisywanych na nowy język. Warto wspomnieć, że kod w Objective-C i kod w Swifcie może być użyty w tej samej
 aplikacji, dzięki czemu może się tam znaleźć równieź C i C++. Jednak aby użyc kodu napisanego w C czy w C++ w Swifcie musimy go najpierw
 opakować aby był dla niego dostępny. W przypadku Objective-C, Swift ma dostęp do jego obiektów oraz może dziedziczyć z jego klas. A to
-zapewnia nam dostęp do wszystkich natywnych bibliotek, czyniąć Swift pełnoprawnym językiem i narzędziem gotowym do użytku już z chwilą
-jego udostępnienia.
+zapewnia nam dostęp do wszystkich natywnych bibliotek, czyniąć Swift pełnoprawnym językiem i narzędziem gotowym do użytku już w dniu
+jego premiery.
 
 Do projektu wykożystano Swift w wersji 3.1.
 
-
-
-
 \section{iOS SDK}
 
+Jak już wspomniano wcześniej, iOS dziedziczy wiele po desktopowym systemie, MacOS. W skład iOS SDK wchodzą biblioteki znane już od wielu
+lat oraz biblioteki stworzone z myślą o urządzeniach mobilnych. W tej sekcji omówiono po krótce framework CocoaTouch, który dostarcza
+elementy interfejsu będące podstawą każdej aplikacji i zapewniajce wizualną spójność platformy.
+
+\subsection*{CocoaTouch}
+
+CocoaTouch jest potomkiem frameworku Cocoa dostępnego na systemach MacOS który jest rozszeżony o interfejs obsługi narzędzi dostępnych
+w urządzeniu mobilnym takich jak rozpoznawanie gestów, serwis lokalizacji czy obsługa kamery. W skład CocoaTouch wchodzą
+między innymi biblioteki Foundation, UIKit, MapKit, EventKit i wiele innych. Dzięki temu pakietowi Apple zdefiniowało jak powinny byc
+tworzone aplikacje na iOS. Dostarczony jest zbiór wielu elementów interfejsu uzytkownika które można dowolnie rozszeżać i modyfikować
+aby stworzyć unikalny wygląd aplikacji trzymając się wytycznych wyznaczonych przez Apple. Dostęp do gestów zapewni naszej aplikacji
+lekkość obsługi oraz intuicyjność, a niezliczona ilość innych biblitotek wchodzących w skład CocoaTouch sprawi że aplikacja nabierze życia.
+Implementowanie funkcjonalności staje się bardzo proste dzięki wysoko poziomowym interfejsom dającym dostęp do poszczególnych elementów
+systemu oraz fizycznego urządzenia. CocoaTouch jest najbardziej elementarnym frameworkiem na iOS ponieważ to on zapewnia na poziomie
+postawowym to co potrzebne do stworzenia funkcjonalnej aplikacji. Zakładając że aplikacja powinna agregować, w jakiś sposób przetwarzać
+a następnie wyświetlić w odpowiedniej formie zbiór pewnych danych, CocoaTouch w parze ze Swiftem to zagwarantują, oczywiście do pewnego
+stopnia. W większości przypadków gdy potrzebujemy wykonać jakieś specyficzne zadanie, lub chcemy je poprostu uprościć unikając
+implementacji własnego rozwiązania problemu co było by czasochłonne, będziemy skłaniać się ku zewnętrznym bilbiotekom.
+
 \section{Zewnętrzne biblioteki}
+
+Biblioteki te, tworzone przez środowiska open-sourcowe, pojedyńczych programistów czy wielkie korporacje dadzą nam to czego
+nie otrzymaliśmy wraz z natywnymi frameworkami. Przykładem jest projekt który opisuje ta praca. Rozwiazuje problem programisty
+tworzącego własną aplikację króry nie chce tracić czasu na implementowanie funkcjonalości która zajęła by mu relatywnie dużo czasu,
+a która niekoniecznie jest głównym celem jego aplikacji. Istnieje wiele sposobów na rozszeżenie naszej aplikacji o wybrane moduły,
+które bardziej szczegółowo zostaną opisane pod koniec czwartego rozdziału podczas omawiania możliwościach dystrybucji framewoku.
+W tej sekcji przedstawiono framework'i wykożystane do projektu EPUKit, które nie wchodzą w skład iOS SDK a zostały udostępnione do
+publicznego użytku.
+
+\subsection*{Zip}
+
+\subsection*{AEXML}
