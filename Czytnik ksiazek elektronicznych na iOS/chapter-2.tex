@@ -132,7 +132,7 @@ opakować aby był dla niego dostępny. W przypadku Objective-C, Swift ma dostę
 zapewnia nam dostęp do wszystkich natywnych bibliotek, czyniąć Swift pełnoprawnym językiem i narzędziem gotowym do użytku już w dniu
 jego premiery.
 
-Do projektu wykożystano Swift w wersji 3.1.
+Do projektu wykorzystano Swift w wersji 3.1.
 
 \section{iOS SDK}
 
@@ -162,9 +162,23 @@ nie otrzymaliśmy wraz z natywnymi frameworkami. Przykładem jest projekt który
 tworzącego własną aplikację króry nie chce tracić czasu na implementowanie funkcjonalości która zajęła by mu relatywnie dużo czasu,
 a która niekoniecznie jest głównym celem jego aplikacji. Istnieje wiele sposobów na rozszeżenie naszej aplikacji o wybrane moduły,
 które bardziej szczegółowo zostaną opisane pod koniec czwartego rozdziału podczas omawiania możliwościach dystrybucji framewoku.
-W tej sekcji przedstawiono framework'i wykożystane do projektu EPUKit, które nie wchodzą w skład iOS SDK a zostały udostępnione do
+W tej sekcji przedstawiono framework'i wykorzystane do projektu EPUKit, które nie wchodzą w skład iOS SDK a zostały udostępnione do
 publicznego użytku.
 
 \subsection*{Zip}
 
+Zip jest swift'ową biblioteką open-source dostępną na licencji MIT której kod źródłowy znajdziemy na GitHubie\footnote{Adres url:
+\href{https://github.com/marmelroy/Zip}{github.com/marmelroy/Zip}}. Zip jest narzędziem do archiwizowania plików oraz rozpakowywania
+archiwów. Wspiera on formaty archiwów .zip, .cbz oraz daje możliwość dodania rozszeżenia pliku który chcemy rozpakować. W przypadku
+tego projektu dodano format .epub, aby rozpakować książkę elektroniczną w tym właśnie formacie. Zip bazuje na narzędziu minizip
+napisanym w języku C, również na wolnej licencji, oraz dostępnym na portalu GitHub. Dzieki bibliotece zip, parser frameworku EPUBKit
+może w prostu sposób otrzymać dostęp do struktury plików publikacji elektronicznej. Sczegółowe opisanie wykorzystania frameworku Zip
+znajduje się w czwartym rozdziale podczas omawiania kodu źródłowego parseru.
+
 \subsection*{AEXML}
+
+Kolejną wykorzystaną biblioteką jest AEXML, prosty i lekki pareser XML, dostępny publicznie na licencji MIT, również udostęptniony na
+GitHubie\footnote{Adres url: \href{https://github.com/tadija/AEXML}{github.com/tadija/AEXML}}. Ze względu na strukturę elektronicznej
+publikacji EPUB, parser xml jest niezbędny do rozpoznania zawartości całej struktury dokumentu, identyfikacji elementów oraz
+określenia ich lokalizacji. AEXML jest swiftowym frameworkiem a jego API jest czytelne i proste w wykorzystaniu dzięki czemu idealnie
+spełnia swoje zadanie w projekcie który opisuje ta praca.
