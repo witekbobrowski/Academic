@@ -27,6 +27,14 @@ Przedstawiono tutaj najbardziej istotne elementy formatu EPUB w celu zrozumienia
 
 \subsection*{EPUB Open Container Format}
 
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width=.4\linewidth]{images/chapter-3-image-1-structure.png}
+  \caption{Wizualna reprezentacja struktury formatu EPUB.\footnotemark}
+  \label{chapter-3-image-1-structure}
+\end{figure}
+\footnotetext{Źródło: EPUB 3, Recommended Specification 5 January 2017, rozdział 2.2. Road Map.}
+
 Format EPUB definiuje jego najwyższy abstrakcyjny model jakim jest EPUB Publication. Model ten składa się z interpretacji jego zawartości.
 Interpretacja która jest przedstawiona za pomocą EPUB Package zawiera już bezpośredniozawartość dokumenu, oraz poboczne zasoby mające
 na celu wspomagać system czytający (z ang. ze specyfikacji "Reading System", jakim jest EPUBKit). Kluczowym elementem jest Package
@@ -38,19 +46,38 @@ Rozszeżenie informuje o charakterze pliku, oraz dostarcza infromacje o archimuw
 zapewnia system o posiadaniu przez niego folderu "/META-INF" w krórym dostępny jest plik container.xml, niezbędny systemowi do określenia
 lokalizacji zawartośći publikacji.
 
-\begin{figure}[ht!]
-  \centering
-  \includegraphics[width=.4\linewidth]{images/chapter-3-image-1-structure.png}
-  \caption{Wizualna reprezentacja struktury formatu EPUB. źródło: EPUB 3, Recommended Specification 5 January 2017, rozdział 2.2. Road Map}
-  \label{chapter-3-image-1-structure}
-\end{figure}
+\begin{lstlisting}[caption={Przykładowy plik container.xml}, language=XML]
+<?xml version="1.0" encoding="UTF-8"?>
+<container version="1.0" xmlns="urn:oasis:names:tc:opendocument:xmlns:container">
+    <rootfiles>
+        <rootfile full-path="OEBPS/content.opf" media-type="application/oebps-package+xml"/>
+   </rootfiles>
+</container
+\end{lstlisting}
 
 To w jaki sposób zawartość publikacji jest zorganizowana określa standard EPUB Open Container Format (OPF), który definiuje reguły
 enkapsulacji zasobów w pojedyńczym kontenerze abstrakcyjnym (EPUB Container) zawartym w archiwum ZIP. Struktura OPF to tylko jedna część
-składająca się na EPUB Publication, druga część to zawartość przedstawiona urzytkownikowi która jest oparta o XHTML oraz SVG. Zawrtość
-ta jest rozszeżona o wiele dodatkowych zasobów potrzebnych do prawidłowego wyświetlenia publikacji jakimi mogą być obrazy, pliki audio
-lub video, dodatkowe czcionki, skrypty oraz style nazywane w oficjalnej specyfikacji "EPUB Content Documents".
+składająca się na EPUB Publication, druga część to zawartość przedstawiona urzytkownikowi która jest oparta o XHTML oraz (EPUB Content
+Documents). Zawrtość ta jest rozszeżona o wiele dodatkowych zasobów potrzebnych do prawidłowego wyświetlenia publikacji jakimi mogą być
+obrazy, pliki audio lub video, dodatkowe czcionki oraz style nazywane w oficjalnej specyfikacji "EPUB Core Media Types".
 
 \subsection*{EPUB Content Documents}
+
+Ta sekcja opisuje rolę jaką odgrywają standardów HTML, SVG i CSS w elektronicznej publikacji w formacie EPUB.
+Wizualna kompozycja publikacji w znacznej mierze oparta jest o pliki XHTML. Specyfikacja EPUB Content Documents 3.1, szczegółowo opisuje
+semantykę atrubutów wspieranych przez EPUB, które mają na celu wzbogacnie doświadczenia użytkownika. Artybuty te nadają dodatkową naturę
+i znaczenie elementom XHTML, przy tym nie nadpisując ich pierwotnej funkcjonalności. Artybuty te są przeznaczonę wyłącznie dla systemów
+czytających i przekazują istotne informacje odnośnie struktury i zawartości dokumentu.
+Wsparcie standardu EPUB dla HTML nieodnosi się do konkretnej jego wersji, natomiast pozostawia tę kwestię autorom publikacji oraz programistom
+systemów czytających EPUB. To w ich obowiązkach leży upewnienie się, że każda publikacja zostanie prawidłowo przez system obsłużona.
+
+\begin{lstlisting}[float=h, caption={Przykładowe wykorzystanie atrybutu epub:type aby oznaczyć zakończenie linii.\protect\footnotemark}, language=XML]
+<html … xmlns:epub="http://www.idpf.org/2007/ops">
+   …
+  <p> … <span epub:type="pagebreak" title="234" id="p234"/> … </p>
+   …
+</html>
+\end{lstlisting}
+\footnotetext{Żródło: EPUB Content Documents 3.1, Recommended Specification 5 January 2017, rozdział 2.4.1.2, "The epub:type Attribute".}
 
 \subsection*{EPUB Core Media Types}
