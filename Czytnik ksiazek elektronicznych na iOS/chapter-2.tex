@@ -14,7 +14,7 @@ i efektowną. W tym rozdziale przedstawię właśnie te narzędzia ze względu n
   \label{chapter-2-image-1-appstore}
 \end{figure}
 
-\subsubsection*{Xcode IDE}
+\subsection{Xcode IDE}
 Xcode jako nowoczesne, produktywne środowisko jest miejscem w którym programista aplikacji na iOS spędza większość swojego
 czasu. Całość prac wykonywanych przy produkcji aplikacji może zostać wykonana właśnie tutaj. Najbardziej podstawowy element jakim
 jest edytor tekstu dobrze współgra z takimi narzędziami jak Interface Buildier, który pozwala w prosty sposób zaprojektować stronę
@@ -44,7 +44,7 @@ jako pliki w których dokonano zmian (modified) a literą "A" pliki które zosta
 W najnowszej wersji 9.0, Xcode zyskał nową funkcjonalność - Source Control Navigator, który pozwala na eksplorowanie poszczególnych
 gałęzi repozytorium i podglądu dowolnego momentu w jego historii.
 
-\subsubsection*{Simulator}
+\subsection{Simulator}
 Simulator pozwala na uruchomienie zbudowanej aplikacji na dowolnym urządzeniu z iOS które jest w stanie zasymulować. Gdy chce się
 przetestować aplikację wystarczy w pasku narzędzi Xcode wybrać dowolny model urządzenia (oprócz telefonów iPhone znajdują się tam
 rówież tablety iPad) które chcemy zasymulować (jeżeli podłączymy do komputera fizyczne urządzenie, Xcode rówiez je wykryje i pozwoli
@@ -80,7 +80,7 @@ szczegółowy podgląd na to w jakim stopniu aplikacja obciąża urządzenie co 
   \label{chapter-2-image-5-debugger}
 \end{figure}
 
-\subsubsection*{Instruments}
+\subsection{Instruments}
 
 Widok poboru zasobów w Xcode jest bardzo pomocny na poglądową ocenę wydajności naszej aplikacji, jeżeli jednak chcemy poddać ją
 prawdziwej próbie, musimy uruchomić kolejne narzędzie jakim jest Instruments. Instruments jest aplikacją dzięki której dokonamy
@@ -140,7 +140,7 @@ Jak już wspomniano wcześniej, iOS dziedziczy wiele po desktopowym systemie, Ma
 lat oraz biblioteki stworzone z myślą o urządzeniach mobilnych. W tej sekcji omówiono po krótce framework CocoaTouch, który dostarcza
 elementy interfejsu będące podstawą każdej aplikacji i zapewniajce wizualną spójność platformy.
 
-\subsection*{CocoaTouch}
+\subsection{CocoaTouch}
 
 CocoaTouch jest potomkiem frameworku Cocoa dostępnego na systemach MacOS który jest rozszeżony o interfejs obsługi narzędzi dostępnych
 w urządzeniu mobilnym takich jak rozpoznawanie gestów, serwis lokalizacji czy obsługa kamery. W skład CocoaTouch wchodzą
@@ -165,7 +165,7 @@ które bardziej szczegółowo zostaną opisane pod koniec czwartego rozdziału p
 W tej sekcji przedstawiono framework'i wykorzystane do projektu EPUKit, które nie wchodzą w skład iOS SDK a zostały udostępnione do
 publicznego użytku.
 
-\subsection*{Zip}
+\subsection{Zip}
 
 Zip jest swift'ową biblioteką open-source dostępną na licencji MIT której kod źródłowy znajdziemy na GitHubie\footnote{Adres url:
 \href{https://github.com/marmelroy/Zip}{github.com/marmelroy/Zip}}. Zip jest narzędziem do archiwizowania plików oraz rozpakowywania
@@ -175,7 +175,7 @@ napisanym w języku C, również na wolnej licencji, oraz dostępnym na portalu 
 może w prostu sposób otrzymać dostęp do struktury plików publikacji elektronicznej. Sczegółowe opisanie wykorzystania frameworku Zip
 znajduje się w czwartym rozdziale podczas omawiania kodu źródłowego parseru.
 
-\subsection*{AEXML}
+\subsection{AEXML}
 
 Kolejną wykorzystaną biblioteką jest AEXML, prosty i lekki pareser XML, dostępny publicznie na licencji MIT, również udostęptniony na
 GitHubie\footnote{Adres url: \href{https://github.com/tadija/AEXML}{github.com/tadija/AEXML}}. Ze względu na strukturę elektronicznej
