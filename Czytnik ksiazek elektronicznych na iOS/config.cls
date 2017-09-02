@@ -82,16 +82,6 @@
   morestring=[b]"
 }
 
-\lstdefinelanguage{XML}{
-  morestring=[b]",
-  morestring=[s]{>}{<},
-  morecomment=[s]{},
-  stringstyle=\color{black},
-  identifierstyle=\color{darkblue},
-  keywordstyle=\color{cyan},
-  morekeywords={xmlns,version,type}% list your attributes here
-}
-
 \lstset{
    language=JavaScript,
    backgroundcolor=\color{lightgray},
