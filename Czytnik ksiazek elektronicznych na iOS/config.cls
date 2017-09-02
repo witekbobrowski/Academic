@@ -82,6 +82,31 @@
   morestring=[b]"
 }
 
+\lstdefinelanguage{swift}{
+  backgroundcolor=\color{white},
+  keywords={associatedtype, class, deinit, enum, extension, fileprivate, func, import, init, inout, internal, let, open, operator, private, protocol, public, static, struct, subscript, typealias, var, break, case, continue, default, defer, do, else, fallthrough, for, guard, if, in, repeat, return, switch, where, while, as, Any, catch, false, is, nil, rethrows, super, self, Self, throw, throws, true, try},
+  keywordstyle=\color{purple}\bfseries,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{darkgreen}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\lstdefinelanguage{swift-reference}{
+  numbers=none,
+  backgroundcolor=\color{white},
+  keywords={associatedtype, class, deinit, enum, extension, fileprivate, func, import, init, inout, internal, let, open, operator, private, protocol, public, static, struct, subscript, typealias, var, break, case, continue, default, defer, do, else, fallthrough, for, guard, if, in, repeat, return, switch, where, while, as, Any, catch, false, is, nil, rethrows, super, self, Self, throw, throws, true, try},
+  keywordstyle=\color{purple}\bfseries,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{darkgreen}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
 \lstset{
    language=JavaScript,
    backgroundcolor=\color{lightgray},
