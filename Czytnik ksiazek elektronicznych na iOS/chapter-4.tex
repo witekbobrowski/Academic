@@ -241,5 +241,125 @@ public struct EPUBTableOfContents {
 EPUBTableOfContents posiada własności które znamy już z poprzednich struktur, jednakże to co ją od nich wyróżnia to możliwość zagnieżdzenia. Ponieważ rozdziały mogą posiadać podrozdziały, a te z kolei mogą być podzielone na jeszcze mniejsze części, co może zostać uwzlędnione w takim spisie treści, konieczne jest pozwolenie przechowywania przez każdą pozycje swojej własnej tablicy. A skoro sam spis posiada takie same atrybuty co jej elementy, postanowiłem nie tworzyć dodatkowej struktury Item jak we wcześniej omówionych strukturach. Swift zapewnia nam domyślny inizjalizator więc po raz kolejny unikamy konieczności implementowania go ręcznie.
 
 \section{Parser}
+
+Pierwotnie planowałem opisać Parser w rozdziale poświęconym modelowi, ponieważ w architekturze MVC bibliteki EPUBKit jego rolna mocno wpasowywuje się w definicję modelu, ponieważ to własnie on go tworzy. Jednakże zdecydowałem, że rozsądniej będzie gdy przeznacze na to osobny podrozdział ze względu na to jak obszerny jest to temat ze względu na jego architekturę, oraz ilość wykonywanych operacji.
+
+\begin{lstlisting}[caption={Struktura folderu narzędzi służacych modelowi EPUBKit.}, language=bash]
+  Utils
+  |-- EPUBParsable.swift
+  |-- EPUBParser.swift
+  `-- EPUBParserError.swift
+\end{lstlisting}
+
+\subsection{EPUBParsable}
+
+Aby praca parsera była dobrze zorganizowana, zdecydowałem się zaimplementować wzorzec projektory Budowniczy (ang. Buildier), ponieważ jest on zgodny z naturą parsera, który wywłaszcza informacje z publikacji EPUB a następnie na ich podstawie buduje model EPUBKit którym jest EPUBDocument. Pierwszym krokiem w celu zaimplementowania wzorcu Budowniczego było stworzenie protokołu, który zostanie zastosowany przez parser.
+
+\begin{lstlisting}[caption={Protokół EPUBParsable.}, language=swift]
+protocol EPUBParsable {
+    func unzip(archive name: String) throws -> URL
+    func getContentPath(from bookDirectory: URL) throws -> URL
+    func getMetadata(from xmlElement: AEXMLElement) -> EPUBMetadata
+    func getManifest(from xmlElement: AEXMLElement) -> EPUBManifest
+    func getSpine(from xmlElement: AEXMLElement) -> EPUBSpine
+    func getTableOfContents(from xmlElement: AEXMLElement) -> EPUBTableOfContents
+}
+\end{lstlisting}
+
+Protokół ten deklaruje metody, które każda stosująca go klasa lub struktura będzie musiała zaimplementować. Konwencja nazewnictwa protokołów w swifcie jest taka, aby nazywać je tak aby dobrze określały naturę klasy którą go stosuje, aby pasowały do cech które nadają klasom. Jeżeli protokół opisuje czym klasa jest, to powinien być czytany jako rzeczownik jak np. protokół standardowej biblioteki swifta MutableCollection. Protokoły, które opisują funkcjonalność, pewne dodatkowe możliwości powinny być kończyć się -ible lub -able. Dzięki tej konwencji, odrazu staje się jasne jakich cech nabywa klasa juz w momencie oznaczenia że stosuje ona dany protokół. Zaimplementowanie przez stosującą protokół klasę jego metod jest wymagane, ponieważ na ten moment nie istnieje żadna implementacja domyślna. Swift pozwala na dostarczenie tak zwanych rozszeżeń deklarowanych typów przy pomocy słowa kluczowego "extension". Dzięki tym rozszerzeniom deklarację typu można podzielić na schludnie wyglądające i dobrze zorganizowne bloki kodu, co zostanie przedstawione przy omawianiu klasy EPUBParser.
+
+\begin{lstlisting}[caption={Deklaracja wyrażenia "extension"\cite{theSwiftProgrammingLanguageDeclarations}.},language=swift-reference]
+extension (type name): (adopted protocols) {
+    (declarations)
+}
+\end{lstlisting}
+
+Takie rozszeżenie można wykorzystać również w protokołach (które są typem tak samo jak klasa czy struktura), i dostarczyć im domyślną implementacje metody lub zadeklarować nowe. Jednakże w tym przypadku nie będę tego robił ze względu na to iż EPUBParser powinien zaimplementować każdą z nich w kontekście konkretnego dokumentu.
+
+\subsection{EPUBParser}
+
+Zadaniem parsera jest zebranie wszystkich informacji na temat publikacji i enkapsulacji ich w zmienncyh o typach które posiada EPUBDocument, i pełni rolę budowniczego. Jego deklaracja to zbiór właściwości o typie opcjonalnym oraz inicjalizator, w którym odbywa się cały proces budowania modelu, poprzez parsowanie publikacji EPUB.
+
+\begin{lstlisting}[caption={Klasa EPUBParser.}, language=swift]
+class EPUBParser {
+    var directory: URL?
+    var contentDirectory: URL?
+    var metadata: EPUBMetadata?
+    var manifest: EPUBManifest?
+    var spine: EPUBSpine?
+    var tableOfContents: EPUBTableOfContents?
+
+    init(named: String) throws {
+        do {
+            directory = try unzip(archive: named)
+            let contentPath = try getContentPath(from: directory!)
+            contentDirectory = contentPath.deletingLastPathComponent()
+            let data = try Data(contentsOf: contentPath)
+            let content = try AEXMLDocument(xml: data)
+            metadata = getMetadata(from: content.root["metadata"])
+            manifest = getManifest(from: content.root["manifest"])
+            spine =  getSpine(from: content.root["spine"])
+            let tocPath = contentDirectory!.appendingPathComponent(try manifest!.path(forItemWithId: spine?.toc ?? ""))
+            let tocData = try Data(contentsOf: tocPath)
+            let tocContent = try AEXMLDocument(xml: tocData)
+            tableOfContents = getTableOfContents(from: tocContent.root)
+        } catch {
+            print(error.localizedDescription)
+            throw error
+        }
+    }
+}
+\end{lstlisting}
+
+W przeciwieństwie do wcześniej zadeklarowanych typów, EPUBParser tak jak i protokół EPUBParsable, nie są oznaczone jako publiczne, więc nie mogą zostać użyte poza biblioteką. Domyślnym parametrem dostępu w Swifcie jest "internal", który ogranicza typ, czy właściwość do użytku w obrębie jednego projektu, w tym przypadku biblioteki. Powodem tego jest sposób w jaki zorganizowana została inizjalizacja EPUBDocument. Osobie z zewnątrz najprawdopodobniej nie zależy aby się dowiedzieć w jaki sposob powstaje instancja dokumentu, dla niej ważne jest to, że może otrzymać ją podając jako argument inicjalizatora nazwę pliku, a cały proces będzie odbywał się poza jego zasięgiem. EPUBParser odgrywa tutaj rolę budowniczego, i w momencie rozpoczęcia inicjalizacji dokumentu jego własna instancja zostaje stworzona i "oddelegowana" do wykonania zadania do którego jest przeznaczona. Klasa EPUBParser nie ma innego zastosowania, i nie ma absolutnie żadnego powodu aby używać jej niezależnie i do innych celów niż ten jeden, z góry narzucony. Dlatego też ani klasa, ani jej własności nie są oznaczone publicznymi. Warto zwrócić uwagę na to, iż w swojej deklaracji EPUBParser nie stosuje protokołu EPUBParsable, co wynika ze stylu i wytycznych apple odnośnie projetkowania klas. Klasa powinna deklarować to co dla niej najbardziej elementarne, a dopiero przy użyciu "extension" funkcjonalność powinna zostawać do niej dodawana. I tak jest w tym przypadku, gdzie zadeklarowane są zmienne oraz inicjalizator który już wykonuje metody których jeszcze są dla niego nie znane, a zostaną dopiero zaimplementowane po zastosowaniu protokołu.
+
+\begin{lstlisting}[caption={Klasa EPUBParser stosuje protokół EPUBParsable.}, language=swift]
+//MARK: - EPUBParsable
+extension EPUBParser: EPUBParsable {
+    func unzip(archive named: String) throws -> URL { ... }
+    func getContentPath(from bookDirectory: URL) throws -> URL { ... }
+    func getMetadata(from content: AEXMLElement) -> EPUBMetadata { ... }
+    func getManifest(from content: AEXMLElement) -> EPUBManifest { ... }
+    func getSpine(from content: AEXMLElement) -> EPUBSpine { ... }
+    func getTableOfContents(from toc: AEXMLElement) -> EPUBTableOfContents { ... }
+}
+\end{lstlisting}
+
+Dobrą praktyką jest dołączenie komentarzu przy każdym rozszeżeniu aby oznaczyć dodatkowo co oferuje dane rozszeżenie. Należy również pamiętać aby dla każdego stosowanego protokołu przeznazcyć osobne rozszeżenie w celu zwięszenia czytelności kodu. Omówię teraz, krok po kroku w jaki sposób postępuje inicjalizacja parsera, i w jaki sposób wywłaszcza on dane z publikacji w formacie EPUB prezentując kod implementacji każdej z metod protokołu.
+
+\begin{lstlisting}[language=swift-reference]
+  init(named: String) throws {
+      do {
+          ...
+      } catch {
+          print(error.localizedDescription)
+          throw error
+      }
+  }
+\end{lstlisting}
+
+Inicjalizator przyjmuje jako argument nazwę pliku publikacji, i składa się bloku do-catch w którym odbywa się parsowanie. W przypadku gdy któraś z metod rzuci błąd, zostanie on rzucony dalej i zostanie wyświelnona na konsoli informacja o błędzie, który został napotkany. Błędy, które mogą zostać rzucone są typu EPUBParserError, który zostanie omówiony pod koniec podrozdziau dotyczącego parsera. Przejdźmy zatem do instrukcji znajdujących się w bloku do-catch.
+
+\begin{lstlisting}[language=swift-reference]
+    directory = try unzip(archive: named)
+\end{lstlisting}
+
+Pierwszą czynnościa parsera jest rozpakowanie archiwum .epub, które w rzeczywistości jest archiwum w stylu ZIP, co omówiono dokładnie w rozdziale trzecim. Dzięki wykorzystaniu open-sourcowej biblioteki ZIP, proces jest ten wyjątkowo prosty.
+
+\begin{lstlisting}[language=swift-reference]
+  func unzip(archive named: String) throws -> URL {
+      Zip.addCustomFileExtension("epub")
+      do {
+          let filePath = Bundle.main.url(forResource: named, withExtension: "epub")!
+          let unzipDirectory = try Zip.quickUnzipFile(filePath)
+          return unzipDirectory
+      } catch ZipError.unzipFail {
+          throw EPUBParserError.unZipError
+      }
+  }
+\end{lstlisting}
+
+
+
 \section{Widok}
 \section{Dystrybucja}
