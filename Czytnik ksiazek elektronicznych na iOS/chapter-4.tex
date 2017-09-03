@@ -1,7 +1,7 @@
 \chapter{Framework EPUBKit}
 \section{Tworzenie frameworku na iOS}
 
-Tworzenie bilioteki którą zamierzamy następnie wykorzystać we własnej aplikacji lub udostępnić publiczne, jest stosunkowo prostym procesem. Wszystko sprowadza się do stworzenia nowego projektu w Xcode a następnie dołączenie go do przestrzeni roboczej (Xcode Workspace) w której znajdzie się projekt aplikacji nad którą pracujemy oraz projekt biblioteki. Aby stworzyć projekt biblopteki należy uruchomić Xcode IDE i na powitalnym ekranie wybrać opcję "Create a new Xcode project" która przeniesie nas do kolejnego ekranu z możliwością wybrania konktetnego szablonu projektu nad jakim chcemy pracować.
+Tworzenie biblioteki którą zamierzamy następnie wykorzystać we własnej aplikacji lub udostępnić publiczne, jest stosunkowo prostym procesem. Wszystko sprowadza się do stworzenia nowego projektu w Xcode a następnie dołączenie go do przestrzeni roboczej (Xcode Workspace) w której znajdzie się projekt aplikacji nad którą pracujemy oraz projekt biblioteki. Aby stworzyć projekt biblopteki należy uruchomić Xcode IDE i na powitalnym ekranie wybrać opcję "Create a new Xcode project" która przeniesie nas do kolejnego ekranu z możliwością wybrania konktetnego szablonu projektu nad jakim chcemy pracować.
 
 \begin{figure}[ht!]
   \centering
@@ -15,7 +15,7 @@ Na naszym przypadku interesuje nas szablon "Cocoa Touch Framework", a po jego wy
 \begin{figure}[ht!]
   \centering
   \includegraphics[width=120mm]{images/chapter-4-image-2-empty-project.png}
-  \caption{Szablny projektów które znajdują się w Xcode}
+  \caption{Szablony projektów które znajdują się w Xcode}
   \label{chapter-4-image-2-empty-project}
 \end{figure}
 
@@ -40,7 +40,7 @@ Struktura klas modelu została zaprojektowana w ten sposób aby z jednej strony 
 
 EPUBDocumnet jest klasą publiczną reprezentującą całą poblikację EPUB i agregującą pozostałe struktury modelu biblioteki jako jej stałe własności (ze względu na nomenklaturę stosowaną w języku Swift, 'properties' będą nazywane własnościami). W języku Swift odróżniamy dwa rodzaje własności, są to stałe (słowo kluczowe let) do których wartość może zostać przypisana wyłącznie jednokrotnie oraz zmienne (słowo kluczowe var) których wartość może być modyfikowana w dowolnym momencie.
 
-\begin{lstlisting}[caption={Deklaracje własności w Swifcie.\cite{theSwiftProgrammingLanguagePropertyDefinition}}, language=swift-reference]
+\begin{lstlisting}[caption={Deklaracje własności w Swifcie.\cite{theSwiftProgrammingLanguageDeclarations}}, language=swift-reference]
   let (constant name): (type) = (expression)
   var (variable name): (type) = (expression)
 \end{lstlisting}
@@ -60,7 +60,7 @@ public class EPUBDocument {
 
 W przeciwieństwie do C, struktury w Swiftcie mogą posiadać metody. W przypadku gdy metoda w jakiś sposób zmiania własności musi ona zostać oznaczona słowem kluczowym 'mutating' co tyczy się również metod enumeracji. Wspominam o tym, ponieważ chciałbym wytłumaczyc dlaczego typy własności klasy EPUBDocument są strukturami a nie klasami. Ze względu na to, że instancje klasy są przekazywane przez referencję, a instancje struktur są przekazywane przez kopiowanie wartości, oznacz to że są one przeznaczone do innych zadań. Zgodnie z wytycznymi Apple, strukturami powinno oznaczać się typy, których zadaniem jest enkapsulacja relatywnie prostych wartości\cite{theSwiftProgrammingLanguageStructsPurpose}, co jest prawdą w przypadku wcześniej wspomnianych typów (zostaną one opisane w kolejnych paragrafach).
 
-Klasa EPUBDocument posiada dwa inicjalizatory które pozwalają tworzyć instancje tej klasy. Pierwszym z nich jest inicjalizator prywatny w nomenklaturze swiftowej "memberwise initialiser" ze względu na kolejność argumentów które przyjmuje, która zgodna jest z kolejnością deklajacji własności. Inicjalizator ten został oznaczony jako prywatny ponieważ jego przeznaczeniem jest inicjalizować instancję jedynie przy pomocy drugiego inicjalizatora. Drugi z inicjalizatorów jest dostępny publicznie, i jest jedynym publicznym inicjalizatorem dla tej klasy.
+Klasa EPUBDocument posiada dwa inicjalizatory które pozwalają tworzyć instancje tej klasy. Pierwszym z nich jest inicjalizator prywatny w nomenklaturze swiftowej "memberwise initializer" ze względu na kolejność argumentów które przyjmuje, która zgodna jest z kolejnością deklajacji własności. Inicjalizator ten został oznaczony jako prywatny ponieważ jego przeznaczeniem jest inicjalizować instancję jedynie przy pomocy drugiego inicjalizatora. Drugi z inicjalizatorów jest dostępny publicznie, i jest jedynym publicznym inicjalizatorem dla tej klasy.
 
 \begin{lstlisting}[caption={Inicjalizatory klasy EPUBDocument.}, language=swift]
 private init (directory: URL, contentDirectory: URL, metadata: EPUBMetadata, manifest: EPUBManifest, spine: EPUBSpine, toc: EPUBTableOfContents) {
@@ -105,13 +105,141 @@ Wyrażenie "guard let" jest jednym ze sposobów obsłużenia typu opcjonalnego. 
 Jeżeli udało się wywłaszczyć wszystkie potrzebne wartości z parsera, to można przejść do tworzenia instancji EPUBDocument. Inicjalizator pomocniczy wywołuje inicjalizator wyznaczony, i dokument zostaje pomyślnie stworzony a wszystkie informacie otrzymane dzięki parserowi zostają przypisane na stałe do jednej instancji EPUBDocument. W ten sposób zostaje zachowana niemutowalność instancji, oraz gwarancja, że wszystkie wartości w których posiadaniu znajduje się instancja, pochodzą z jednego źródła, z którego czerpie parser. Działanie samego parsera zostawiam na kolejny podrozdział.
 
 \subsection{EPUBManifest}
+
+Jak juz wspomniano w rozdziale opisującym format EPUB, jego struktura jest oparta o standard OPF a to oznacza, że znajduję się w nim wykaz (manifest) wszystkich dokumentów oraz zasobów na które składa się dokument. Każdy element wymieniony w manifescie posiada swoje ID, wskazaną ścieżke w strukturze dokumentu oraz typ (Media Type). Parser starannie analizuje manifest i tworzy strukturę w której posiadaniu następnie znajduje się instancja EPUBDocument o czym więcej przy okazji omawiania parseru.
+
+\begin{lstlisting}[caption={Struktura EPUBManifest.}, language=swift]
+public struct EPUBManifest {
+    public struct Item {
+        public var id: String
+        public var path: String
+        public var mediaType: EPUBMediaType
+        public var property: String?
+    }
+
+    public var id: String?
+    public var items: [String:Item]
+
+    public func path(forItemWithId id: String) throws -> String {
+        if let item = items[id] {
+            return item.path
+        } else {
+            throw EPUBParserError.noPathForItem(id)
+        }
+    }
+}
+\end{lstlisting}
+
+EPUBManifest deklaruje własną strukturę Item, na którą skłda się kilka własności opisujących daną pozycję w manifescie. EPUBManifest posiada dwie własniości. Pierwszą z nich jest opcjonane ID manifestu które może się pojawić w publikacji EPUB, ale w specyfikacji nie jest określone jako wymagane pole. Drugą własnością jest słownik, którego kluczem jest ID elementu a wartością jest instancja struktury Item. Ponieważ manifest nie musi być listą posortowaną, zdecydowałem się na użycie słownika jako struktury danych która ma przechowywać wszystkie jego elementy, dzięki czemu dostęp do nich jest natychmiastowy. Należy zwrócić uwagę na to, że nie został zadeklarowany inicjalizator dla EPUBManifest, tak jak miało to miejsce przy EPUBDocument. Powód jest następujący, Swift w przypadku gdy żaden inicjalizator nie został zadeklarowany dostarcza domyślny "memberwise initializer" dzięki czemu w EPUBManifest dostajemy go "za darmo", natomist w przypadku struktury EPUBDocument został zadeklarowany pomocniczy inizjalizator przez co domyślny inicjalizator nie został dostarczony przez swift. EPUBManifest posiada publiczną metodę która przyjmuje jako argument id elementu zwraca do niego ścieżkę w przypadku gdzy element znajduje się w słowniku "items". Słownik w swifcie zwraca wartość o typie opcjonalnym, ponieważ nie ma żadnej gwarancji, że do podanego przez nas kluczu przypisana jest jakaś wartość. Zastosowano tutaj rozpakowanie typu opcjonalnego przy pomocy wyrażenia "if let" aby otrzymać ścieżkę elementu. W przypadku gdy znaduje się on w słowniku zostanie on przypisany do nowej stałej której typ już nie jest opcjonalny więc posiadanie przez niej jakiejś wartości jest zagwarantowane. Dodatkowo w przypadku gdyby taki element manifestu o wskazanym ID nie istniał, zostanie rzucny błąd co zostało oznaczone słowem kluczowym "throws" przy deklaracji zwracanego typu.
+
+\begin{lstlisting}[caption={Funkcje i metody które mogą rzucać błędy, przy deklaracji muszą zostać oznaczone słowem kluczowym "throws"\cite{theSwiftProgrammingLanguageDeclarations}.},language=swift-reference]
+func (function name)((parameters)) throws -> (return type) {
+    (statements)
+}
+\end{lstlisting}
+
+W kontekście EPUBManifest pozostało jeszcze wspomnieć o typie enumeracji, który został stworzony aby określać charakter elementu znajdującego się w publikacji EPUB, i wymienionego w Manifescie. Mowa tutaj o EPUBMediaType, enumeracji która posiada powiązany typ (Associated Type) którym jest typ String.
+
+\begin{lstlisting}[caption={Enumeracja EPUBMediaType.}, language=swift]
+public enum EPUBMediaType: String {
+    case gif = "image/gif"
+    case jpeg = "image/jpeg"
+    case png = "image/png"
+    case svg = "image/svg+xml"
+    case xHTML = "application/xhtml+xml"
+    case rfc4329 = "application/javascript"
+    case opf2 = "application/x-dtbncx+xml"
+    case openType = "application/font-sfnt"
+    case woff = "application/font-woff"
+    case mediaOverlays = "application/smil+xml"
+    case pls = "application/pls+xml"
+    case mp3 = "audio/mpeg"
+    case mp4 = "audio/mp4"
+    case css = "text/css"
+    case woff2 = "font/woff2"
+    case unknown
+}
+\end{lstlisting}
+
+Enumeracja ta deklaruje wszystkie przypadki typu mediów wspieranych przez standard EPUB i wymienionych w specyfikacji. Dzięki tej enumeracji element manifestu posiada własność które jest ograniczona do kilku przypadków, a w sytuacji potrzeby obslużenia takiego elementu w prosty sposób można zdeterminować jego rodzaj. Powiązana wartość dla każdego przypadku jest ciągiem znaków reprezentującym typ określony w specyfikacji EPUB, i gwarantuje nam ona prostą inicjalizację przez podanie wartości jako argument inicjalizatora enumeracji.
+
 \subsection{EPUBMetadata}
+
+Kolejny elementem wymaganym przez OPF jest metadata, który enkapsuluje meta informacje na temat konkretnej interpretacji zawartej w publikacji. W celach reprezentacji tych meta danych w bibliotece EPUBKit została swtorzona struktura EPUBMetadata.
+
+\begin{lstlisting}[caption={Struktura EPUBMetadata.}, language=swift]
+public struct EPUBMetadata {
+    public struct Creator {
+        public var name: String?
+        public var role: String?
+        public var fileAs: String?
+    }
+    public var contributor: Creator?
+    public var coverage: String?
+    public var creator: Creator?
+    public var date: String?
+    public var description: String?
+    public var format: String?
+    public var identifier: String?
+    public var language: String?
+    public var publisher: String?
+    public var relation: String?
+    public var rights: String?
+    public var source: String?
+    public var subject: String?
+    public var title: String?
+    public var type: String?
+    public var coverId: String?
+}
+\end{lstlisting}
+
+EPUBMetadata definiuje własny publiczny typ pomocniczy Creator aby w lepszy sposób reprezentować element twórcy i wspołtwórcy publikacji którzy mogą zostać wymienieni w meta danych publikacji EPUB. Wszystkie własności EPUBMetadata posiadają typ opcjonalny, ponieważ ich obecność w dokumencie EPUB nie jest zagwarantowana. Inicjalizator nie jest obecny, ponieważ po raz kolejny jest dostarczony domyslny inicjalizator przez Swift. Własności są oznaczone jako zmienne publiczne, ponieważ udostępnienie ich globalnie ma sens ze względu na ich informatywny cel. Własność metadata w klasie EPUBDocument jest stałą, a więc pomimo tego iż w deklaracji struktury EPUBMetadata jej własności są zmiennymi, to w momencie przypisania jej instancji do instancji klasy EPUBDocument wartości zmiennych nie mogą zostać zmienione, co wynika z natury struktury w swiftcie która jest kopiowana przez wartość. Mutowanie wartości zmiennych w instancji struktury EPUBMetadata, która nie znajduje się w kontekście całego dokumentu, ma sens a przynajmniej nie jest niedopuszczalne. W przypadku gdyby parser znajdujący się w posiadaniu takiej instancji, w pewnym momencie wywłaszczył pewne dodatkowe dane z dokumentu, warto pozwolić mu na uaktualnienie ich w strukturze. Niemutowalność zostaje zagwarantowana dopiero w momencie przypisania jej jako stałej w klasie EPUBDocument.
+
 \subsection{EPUBSpine}
+
+Element "spine" w publikacji EPUB definiuje kolejność w jakiej elementy manifestu są uporządkowane, czyli w jakiej kolejności należy je wyświetlać. Element ten znajduje swoją reprezentację w bibliotece EPUBKit, jako struktura EPUBSpine.
+
+\begin{lstlisting}[caption={Struktura EPUBSpine.}, language=swift]
+public struct EPUBSpine {
+    public struct Item {
+        public var id: String?
+        public var idref: String
+        public var linear: Bool
+    }
+
+    public var id: String?
+    public var toc: String?
+    public var pageProgressionDirection: EPUBPageProgressionDirection?
+    public var items: [Item]
+}
+\end{lstlisting}
+
+EPUBSpine podobnie do EPUBManifest deklaruje własny typ pomocniczy Item, które odzwierdziedla "itemref" znajdujący się w "spine" publikacji EPUB. Item posiada własności które odnoszą się do identyfikatora elementu manifestu (idref), dodatkowego indentyfikatora, oraz istotnej informaci, czy element powinien zostać wyświetlony w kolejności liniowej, czy nie. Struktura EPUBSpine składa się z pola "id", "toc" które opcjonalnie może posiadać identyfikator spisu treści jeżeli takowy się znajduje w dokumencie, własności która definiuje kierunek w którym powinno się wyświetlać elementy dokumentu, oraz tablicę elementów własnego typu Item.
+
+\begin{lstlisting}[language=swift]
+public enum EPUBPageProgressionDirection: String {
+    case leftToRight = "ltr"
+    case rightToLeft = "rtl"
+}
+\end{lstlisting}
+
+Zmienna "pageProgressionDirection" posiada typ który został zadeklarowany przeze mnie jako enumeracja EPUBPageProgressionDirection składająca się z dwóch przypadków, pierwszego który reprezentuje kolejność czytania od lewej do prawej oraz drugiego, który mówi o kierunku przeciwnym. W przypadku gdy kolejność nie zostanie zdefiniowana w publikacji, decyzja jak dokument powinien zostać wyswietlony zostaje pozostawiona systemowi czytającemu. W celu szybkiej inicjalizacji i zdefiniowaniu odpowiedniego kierunku dzieki powiązanemu typowi, parser podaje jako argument inicjalizatora enumeracji wartość która wywłaszczył z publikacji EPUB, która przyjmuje wartość "rtl" lub "ltr".
+
 \subsection{EPUBTableOfContents}
 
+Ostatnia struktura modelu reprezentuje spis treści zawarty w publikacji EPUB. Pomimo tego iż w wersji trzeciej standardu nie jest wspierany w takiej formie jak w poprzednich wersjach, to ze wzgledu na zapewnienie wsparcia tym starszym wersjom publikacji zdecydowałem się zaimplementować tą relatywnie prostą strukturę. Spis treści przedstawiony w formie pliku typu NCX służył w poprzednich wersjach EPUB użytkownikowi do nawigacji w obrębie dokumentu, jednak specyfikacja wymaga od systemu czytającego ignorowania tego pliku w publikacjach wersji trzeciej.
+
+\begin{lstlisting}[caption={Struktura EPUBTableOfContents.}, language=swift]
+public struct EPUBTableOfContents {
+    public var label: String
+    public var id: String
+    public var item: String?
+    public var subTable: [EPUBTableOfContents]?
+}
+\end{lstlisting}
+
+EPUBTableOfContents posiada własności które znamy już z poprzednich struktur, jednakże to co ją od nich wyróżnia to możliwość zagnieżdzenia. Ponieważ rozdziały mogą posiadać podrozdziały, a te z kolei mogą być podzielone na jeszcze mniejsze części, co może zostać uwzlędnione w takim spisie treści, konieczne jest pozwolenie przechowywania przez każdą pozycje swojej własnej tablicy. A skoro sam spis posiada takie same atrybuty co jej elementy, postanowiłem nie tworzyć dodatkowej struktury Item jak we wcześniej omówionych strukturach. Swift zapewnia nam domyślny inizjalizator więc po raz kolejny unikamy konieczności implementowania go ręcznie.
 
 \section{Parser}
-
 \section{Widok}
-
 \section{Dystrybucja}
