@@ -313,7 +313,7 @@ class EPUBParser {
 
 W przeciwieństwie do wcześniej zadeklarowanych typów, EPUBParser tak jak i protokół EPUBParsable, nie są oznaczone jako publiczne, więc nie mogą zostać użyte poza biblioteką. Domyślnym parametrem dostępu w Swifcie jest "internal", który ogranicza typ, czy właściwość do użytku w obrębie jednego projektu, w tym przypadku biblioteki. Powodem tego jest sposób w jaki zorganizowana została inizjalizacja EPUBDocument. Osobie z zewnątrz najprawdopodobniej nie zależy aby się dowiedzieć w jaki sposob powstaje instancja dokumentu, dla niej ważne jest to, że może otrzymać ją podając jako argument inicjalizatora nazwę pliku, a cały proces będzie odbywał się poza jego zasięgiem. EPUBParser odgrywa tutaj rolę budowniczego, i w momencie rozpoczęcia inicjalizacji dokumentu jego własna instancja zostaje stworzona i "oddelegowana" do wykonania zadania do którego jest przeznaczona. Klasa EPUBParser nie ma innego zastosowania, i nie ma absolutnie żadnego powodu aby używać jej niezależnie i do innych celów niż ten jeden, z góry narzucony. Dlatego też ani klasa, ani jej własności nie są oznaczone publicznymi. Warto zwrócić uwagę na to, iż w swojej deklaracji EPUBParser nie stosuje protokołu EPUBParsable, co wynika ze stylu i wytycznych apple odnośnie projetkowania klas. Klasa powinna deklarować to co dla niej najbardziej elementarne, a dopiero przy użyciu "extension" funkcjonalność powinna zostawać do niej dodawana. I tak jest w tym przypadku, gdzie zadeklarowane są zmienne oraz inicjalizator który już wykonuje metody których jeszcze są dla niego nie znane, a zostaną dopiero zaimplementowane po zastosowaniu protokołu.
 
-\begin{lstlisting}[caption={Klasa EPUBParser stosuje protokół EPUBParsable.}, language=swift]
+\begin{lstlisting}[firstnumber=30,caption={Klasa EPUBParser stosuje protokół EPUBParsable.}, language=swift]
 //MARK: - EPUBParsable
 extension EPUBParser: EPUBParsable {
     func unzip(archive named: String) throws -> URL { ... }
@@ -500,6 +500,64 @@ W tym miejscu praca parsera kończy się. Jego inicjalizacja dobiegła końcowi,
 
 \subsection{EPUBParserError}
 
+Aby w razie niepowodzenia któregoś z etapów parsowania błąd był bardziej czytelny, zdecydowałem aby zaimplementować własny typ błędów.
+
+\begin{lstlisting}[caption={Enumeracja EPUBParserError.},language=swift]
+enum EPUBParserError {
+    case unZipError
+    case containerParseError
+    case noPathForItem(String)
+    case noIdForTableOfContents
+}
+\end{lstlisting}
+
+EPUBParserError przewiduje kilka sytiuacji, które mogą wymagać wyrzucenia błędu ponieważ są one krytyczny, a dalsze przeprowadzenie procesu parsowanie nie jest możliwe. Taką sytuacją może być niepowodzenie przy rozpakowywaniu archiwum, a poniważ biblioteka która jest wykorzystana do tego celu posiada obsługę błędów, to w razie się jego pojawienia nie zostanie on przeoczony. Gdyby parser próbował kontynuować swoją pracę, oczywiście skończyło by się to niepowodzeniu każdej instrukcji. Dzięki zadeklarowanemu typowi, można w prosty sposób wykryć w którym miejscu program się przerywa.
+
+\begin{lstlisting}[firstnumber=8,caption={Rozszeżenie EPUBParserError z zastosowaniem protokołu LocalizedError.},language=swift]
+//MARK: - LocalizedError
+extension EPUBParserError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .unZipError:
+            return "Error while trying to unzip the archive"
+        case .containerParseError:
+            return "Error with parsing container.xml"
+        case .noPathForItem (let message):
+            return "Error with getting ID for item: '\(message)'"
+        case .noIdForTableOfContents:
+            return "Error with getting path for toc.ncx"
+        }
+    }
+    var failureReason: String? {
+        switch self {
+        case .unZipError:
+            return "Zip module was unable to unzip this archive"
+        case .containerParseError:
+            return "The path to container.xml may be wrong, or the file itself may be missing"
+        case .noPathForItem (let message):
+            return "Path to item with id: '\(message)' was not found in the manifest!"
+        case .noIdForTableOfContents:
+            return "Table of contents ID was probably not mentioned in the spine"
+        }
+    }
+    var recoverySuggestion: String? {
+        switch self {
+        case .unZipError:
+            return "Make sure your archive is a proper .epub archive"
+        case .containerParseError:
+            return "Make sure the path to container.xml is correct"
+        case .noPathForItem (let message):
+            return "Make sure to check if the item with id: '\(message)' is in the manifest!"
+        case .noIdForTableOfContents:
+            return "Make sure to check if the '<spine>' contains the ID for TOC"
+        }
+    }
+}
+\end{lstlisting}
+
+Jednakże deklaracje EPUBParserError jeszcze nie czyni typu błędem, który by był tolerowany przez Swift, ponieważ nie stosuje protokołu "Error". Natomiast aby zapewnić dodatkową wartość informacyjną, zdecydowałem się zastosować protokół "LocalizedError", który wymaga zadeklarowania zmiennych które dostarczą opisy błędu, jego przyczyny oraz sugestię jego rozwiązania. Wyrażenie "switch" w swifcie pozwala na zdefiniowanie działania dla każdego przypadku błędu gdy jako argument poda sie "self", czyli samego siebie a w tym przypadku konkretna instancję enumaracji.
+
+Tutaj kończy się opisywanie parseru, który w roli "budowniczego" przyczynia się do inicjalizacji EPUBDocument poprzez parsowanie publikacji EPUB. Jest on częścią modelu w architekturze MVC, ponieważ na dobrą sprawę nie odpowiada za to w jaki sposób dane są wyświetlane na widoku więc nie sposób nazwać go kontrolorem. Prawdę mówiąc, rola kontrolera zostanie opisana przy okazi omawiania widoku ponieważ ściśle ze sobą współpracują, a jak już wcześniej wspomniano, biblioteka EPUBKit dostarcza bardz prosty widok dla modelu.
 
 \section{Widok}
 \section{Dystrybucja}
