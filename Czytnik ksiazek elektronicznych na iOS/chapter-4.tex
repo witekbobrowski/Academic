@@ -1,4 +1,4 @@
-\chapter{Framework EPUBKit}
+\chapter{Biblioteka EPUBKit}
 \section{Tworzenie frameworku na iOS}
 
 Tworzenie biblioteki którą zamierzamy następnie wykorzystać we własnej aplikacji lub udostępnić publiczne, jest stosunkowo prostym procesem. Wszystko sprowadza się do stworzenia nowego projektu w Xcode a następnie dołączenie go do przestrzeni roboczej (Xcode Workspace) w której znajdzie się projekt aplikacji nad którą pracujemy oraz projekt biblioteki. Aby stworzyć projekt biblopteki należy uruchomić Xcode IDE i na powitalnym ekranie wybrać opcję "Create a new Xcode project" która przeniesie nas do kolejnego ekranu z możliwością wybrania konktetnego szablonu projektu nad jakim chcemy pracować.
@@ -402,26 +402,26 @@ Inicjalizator gdy znajdzie się w posiadaniu dokumentu OPF w formie dokumentu AE
 \begin{lstlisting}[caption={Implementacja metody getMetadata(from xmlElement:).},language=swift-reference]
     func getMetadata(from xmlElement: AEXMLElement) -> EPUBMetadata {
         var metadata = EPUBMetadata()
-        metadata.contributor = EPUBMetadata.Creator(name: content["dc:contributor"].value,
-                                       role: content["dc:contributor"].attributes["opf:role"],
-                                       fileAs: content["dc:contributor"].attributes["opf:file-as"])
-        metadata.coverage = content["dc:coverage"].value
-        metadata.creator = EPUBMetadata.Creator(name: content["dc:creator"].value,
-                                   role: content["dc:creator"].attributes["opf:role"],
-                                   fileAs: content["dc:creator"].attributes["opf:file-as"])
-        metadata.date = content["dc:date"].value
-        metadata.description = content["dc:description"].value
-        metadata.format = content["dc:format"].value
-        metadata.identifier = content["dc:identifier"].value
-        metadata.language = content["dc:language"].value
-        metadata.publisher = content["dc:publisher"].value
-        metadata.relation = content["dc:relation"].value
-        metadata.rights = content["dc:rights"].value
-        metadata.source = content["dc:source"].value
-        metadata.subject = content["dc:subject"].value
-        metadata.title = content["dc:title"].value
-        metadata.type = content["dc:type"].value
-        for metaItem in content["meta"].all! {
+        metadata.contributor = EPUBMetadata.Creator(name: xmlElement["dc:contributor"].value,
+                                       role: xmlElement["dc:contributor"].attributes["opf:role"],
+                                       fileAs: xmlElement["dc:contributor"].attributes["opf:file-as"])
+        metadata.coverage = xmlElement["dc:coverage"].value
+        metadata.creator = EPUBMetadata.Creator(name: xmlElement["dc:creator"].value,
+                                   role: xmlElement["dc:creator"].attributes["opf:role"],
+                                   fileAs: xmlElement["dc:creator"].attributes["opf:file-as"])
+        metadata.date = xmlElement["dc:date"].value
+        metadata.description = xmlElement["dc:description"].value
+        metadata.format = xmlElement["dc:format"].value
+        metadata.identifier = xmlElement["dc:identifier"].value
+        metadata.language = xmlElement["dc:language"].value
+        metadata.publisher = xmlElement["dc:publisher"].value
+        metadata.relation = xmlElement["dc:relation"].value
+        metadata.rights = xmlElement["dc:rights"].value
+        metadata.source = xmlElement["dc:source"].value
+        metadata.subject = xmlElement["dc:subject"].value
+        metadata.title = xmlElement["dc:title"].value
+        metadata.type = xmlElement["dc:type"].value
+        for metaItem in xmlElement["meta"].all! {
             if metaItem.attributes["name"] == "cover" {
                 metadata.coverId = metaItem.attributes["content"]
             }
@@ -557,7 +557,18 @@ extension EPUBParserError: LocalizedError {
 
 Jednakże deklaracje EPUBParserError jeszcze nie czyni typu błędem, który by był tolerowany przez Swift, ponieważ nie stosuje protokołu "Error". Natomiast aby zapewnić dodatkową wartość informacyjną, zdecydowałem się zastosować protokół "LocalizedError", który wymaga zadeklarowania zmiennych które dostarczą opisy błędu, jego przyczyny oraz sugestię jego rozwiązania. Wyrażenie "switch" w swifcie pozwala na zdefiniowanie działania dla każdego przypadku błędu gdy jako argument poda sie "self", czyli samego siebie a w tym przypadku konkretna instancję enumaracji.
 
-Tutaj kończy się opisywanie parseru, który w roli "budowniczego" przyczynia się do inicjalizacji EPUBDocument poprzez parsowanie publikacji EPUB. Jest on częścią modelu w architekturze MVC, ponieważ na dobrą sprawę nie odpowiada za to w jaki sposób dane są wyświetlane na widoku więc nie sposób nazwać go kontrolorem. Prawdę mówiąc, rola kontrolera zostanie opisana przy okazi omawiania widoku ponieważ ściśle ze sobą współpracują, a jak już wcześniej wspomniano, biblioteka EPUBKit dostarcza bardz prosty widok dla modelu.
+Tutaj kończy się opisywanie parseru, który w roli "budowniczego" przyczynia się do inicjalizacji EPUBDocument poprzez parsowanie publikacji EPUB. Jest on częścią modelu w architekturze MVC, ponieważ na dobrą sprawę nie odpowiada za to w jaki sposób dane są wyświetlane na widoku więc nie sposób nazwać go kontrolorem. Prawdę mówiąc, rola kontrolera zostanie opisana przy okazi omawiania widoku ponieważ ściśle ze sobą współpracują, a jak już wcześniej wspomniano, biblioteka EPUBKit dostarcza bardzo prosty widok dla modelu.
 
 \section{Widok}
+
 \section{Dystrybucja}
+
+Ta część bedzie opisywała najpopularniejsze metody dystrybucji bilbioteki na iOS. Najczęściej dystubucja odbywa się poprzez tak zwane menadżery paczek, ponieważ traktowanie dodatkowych bibliotek czy narzędzi jako paczki czy moduły jest bardzo wygodną konwencją. Systemy takie jak CocoaPods czy Carthage wykorzystują jeden plik w którym programista może deklarować wykorzystywane moduły, a po wykonaniu odpowiedniej komendy moduły te zostaną pobrane z bazy menadżera paczek dołączone do przestrzeni roboczej dzięki czemu będa dostępne do używki w plikach źródłowych projektu poprzez zaimportowanie ich.
+
+\begin{lstlisting}[language=swift-reference]
+import (module)
+\end{lstlisting}
+
+Bardzo często zdarza się, że biblioteki w celach zyskania popularności zostają udostępnione bezpośrednio na portalu GitHub, w którym prezentowane są sposoby instalacji, oraz demonstacja API. Udostępnianie w tym miejscu swojej bilbioteki jest dobrym pomysłem ze względu na to, że programiści zainteresowani jej wykorzystaniem mają wgląd w jej kod źródłowy jeszcze zanim dołączą ją do swojego projektu przy pomocy menadżerów. GitHub pozwala na tak zwane "forkowanie" repozytorium, co oznacza przypisanie go do swojego profilu wraz z całą historią systemu kontroli wersji. W ten sposób każdy może zaimplementować własne funkcjonalności a następnie poprosić właściciela repozytoriu o dołączenie ich do głównej gałęzi repozytorim za pomocą "pull-request". Społeczność open-source na gihubie jest obecna, i w momencie podchwycenia popularności przez repozytorium, niezależli programiści często dostosowywują je pod swoje potrzeby a potem często prezentują zmiany, które mogą zostać zatwierdzone przez właściciela. System kontroli wersji pozwala na używanie modułów więc istnieje możliwość wykorzystania publicznie dostepnych bibliotek z GitHuba bez integracji projektu z którymś z menadżerów paczek.
+
+Aby udostępnić projekt na githubie jedyne co potrzebujemy to własny profil oraz repozytorium lokalne w którym znajduje się projekt. Jest to oczywiście najprostrze rozwiązanie, chociaż w innych przypadach wcale nie jest to skomplikowane. Sprowadza się to zazwyczaj do wykonania pewnych poleceń z lini komend oraz wykonania innych równie trywialnych czynności. Dobrą praktyką jest udostępnianie bilbioteki na GitHubie oraz na wszyskich możliwych menadżerach paczek, zapewni to instalację w każdym projekcie niezależnie z jakim menadżerem jest zintegrowany. Niewątpliwie taki los czeka bibliotekę EPUBKit, która została stworzna z myślą o udostępnieniu jej publicznie.
