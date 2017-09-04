@@ -37,7 +37,7 @@ Struktura klas modelu została zaprojektowana w ten sposób aby z jednej strony 
 \end{lstlisting}
 
 \subsection{EPUBDocument}
-
+\label{EPUBDocument}
 EPUBDocumnet jest klasą publiczną reprezentującą całą poblikację EPUB i agregującą pozostałe struktury modelu biblioteki jako jej stałe własności (ze względu na nomenklaturę stosowaną w języku Swift, 'properties' będą nazywane własnościami). W języku Swift odróżniamy dwa rodzaje własności, są to stałe (słowo kluczowe let) do których wartość może zostać przypisana wyłącznie jednokrotnie oraz zmienne (słowo kluczowe var) których wartość może być modyfikowana w dowolnym momencie.
 
 \begin{lstlisting}[caption={Deklaracje własności w Swifcie.\cite{theSwiftProgrammingLanguageDeclarations}}, language=swift-reference]
@@ -340,25 +340,165 @@ Dobrą praktyką jest dołączenie komentarzu przy każdym rozszeżeniu aby ozna
 
 Inicjalizator przyjmuje jako argument nazwę pliku publikacji, i składa się bloku do-catch w którym odbywa się parsowanie. W przypadku gdy któraś z metod rzuci błąd, zostanie on rzucony dalej i zostanie wyświelnona na konsoli informacja o błędzie, który został napotkany. Błędy, które mogą zostać rzucone są typu EPUBParserError, który zostanie omówiony pod koniec podrozdziau dotyczącego parsera. Przejdźmy zatem do instrukcji znajdujących się w bloku do-catch.
 
-\begin{lstlisting}[language=swift-reference]
+\begin{lstlisting}[firstnumber=11, language=swift]
     directory = try unzip(archive: named)
 \end{lstlisting}
 
-Pierwszą czynnościa parsera jest rozpakowanie archiwum .epub, które w rzeczywistości jest archiwum w stylu ZIP, co omówiono dokładnie w rozdziale trzecim. Dzięki wykorzystaniu open-sourcowej biblioteki ZIP, proces jest ten wyjątkowo prosty.
+Pierwszą czynnością parsera jest rozpakowanie archiwum .epub, które w rzeczywistości jest archiwum w stylu ZIP, co omówiono dokładnie w rozdziale trzecim. Dzięki wykorzystaniu open-sourcowej biblioteki ZIP, proces jest ten wyjątkowo prosty.
 
-\begin{lstlisting}[language=swift-reference]
-  func unzip(archive named: String) throws -> URL {
-      Zip.addCustomFileExtension("epub")
-      do {
-          let filePath = Bundle.main.url(forResource: named, withExtension: "epub")!
-          let unzipDirectory = try Zip.quickUnzipFile(filePath)
-          return unzipDirectory
-      } catch ZipError.unzipFail {
-          throw EPUBParserError.unZipError
-      }
-  }
+\begin{lstlisting}[caption={Implementacja metody unzip(archive named:).},language=swift-reference]
+    func unzip(archive named: String) throws -> URL {
+        Zip.addCustomFileExtension("epub")
+        do {
+            let filePath = Bundle.main.url(forResource: named, withExtension: "epub")!
+            let unzipDirectory = try Zip.quickUnzipFile(filePath)
+            return unzipDirectory
+        } catch ZipError.unzipFail {
+            throw EPUBParserError.unZipError
+        }
+    }
 \end{lstlisting}
 
+W pierwszej kolejności metoda dodaje do klasy Zip rozszerzenie ".epub" aby bilbioteka rozpoznała plik jako archiwum. Następnie w bloku do-catch dochodzi do ustalenia lokalizacji pliku w paczce aplikacji oraz rozpakowania archiwum metodą, która zwraca ścieżkę do docelowego folderu, w którym znajduje się rozpakowana publikacja EPUB. Jeżeli proces rozpakowania przebiegnie bezbłędnie, metoda zwróci ścieżkę.
+
+\begin{lstlisting}[firstnumber=12, language=swift]
+    let contentPath = try getContentPath(from: directory!)
+    contentDirectory = contentPath.deletingLastPathComponent()
+\end{lstlisting}
+
+Inicjalicator wywołuje następnie metodę, która lokalizuje w publikacji obowiązkowy plik "content.opf" w folderze "META-INF" a następnie szuka w nim elementu "rootfile", który jest plikiem OPF, opisującym zawartość całej publikacji.
+
+\begin{lstlisting}[caption={Implementacja metody getContentPath(from bookDirectory:).},language=swift-reference]
+    func getContentPath(from bookDirectory: URL) throws -> URL {
+        do {
+            let path = bookDirectory.appendingPathComponent("META-INF/container.xml")
+            let data = try Data(contentsOf: path)
+            let container = try AEXMLDocument(xml: data)
+            let content = container.root["rootfiles"]["rootfile"].attributes["full-path"]
+            return bookDirectory.appendingPathComponent(content!)
+        } catch {
+            throw EPUBParserError.containerParseError
+        }
+    }
+\end{lstlisting}
+
+Po raz kolejny instrukcje metody znajdują się w bloku do-catch aby zapewnić obsługę ewentualnych błędów. W przypadku zlokalizowania pliku OPF, ścieżka do niego zostaje zwrócona a w przeciwnym wypadku, zostanie rzucony błąd. Jeżeli funkcja zwróci ścieżkę pliku OPF, inicjalizator przypisze do zmiennej "contentDirectory" ściężkę do folderu w którym się on znajduje przez usunięcie ostatniego komponentu ściezki.
+
+\begin{lstlisting}[firstnumber=14, language=swift]
+        let data = try Data(contentsOf: contentPath)
+        let content = try AEXMLDocument(xml: data)
+\end{lstlisting}
+
+Znając już lokalizację pliku OPF, należy go sparsować przy użyciu zewnętrzenej biblioteki AEXML. Dzięki temu dostęp do elemnetów dokumentu będzie znacznie uproszczony, dokument zostanie przedstawiony w formie klasy AEXMLDocument. Jeżeli próba inicjalizacji klas Data oraz AEXMLDocument przebiegnie poprawnie, otrzymamy zmienna "content", z której parser będzie wywłaszczał kluczowe infromacje dotyczące dokumentu.
+
+\begin{lstlisting}[firstnumber=16, language=swift]
+        metadata = getMetadata(from: content.root["metadata"])
+        manifest = getManifest(from: content.root["manifest"])
+        spine =  getSpine(from: content.root["spine"])
+\end{lstlisting}
+
+Inicjalizator gdy znajdzie się w posiadaniu dokumentu OPF w formie dokumentu AEXMLDocument, będzie następnie podawał jako argumenty odpowiednim funkcjom jego elementy.
+
+\begin{lstlisting}[caption={Implementacja metody getMetadata(from xmlElement:).},language=swift-reference]
+    func getMetadata(from xmlElement: AEXMLElement) -> EPUBMetadata {
+        var metadata = EPUBMetadata()
+        metadata.contributor = EPUBMetadata.Creator(name: content["dc:contributor"].value,
+                                       role: content["dc:contributor"].attributes["opf:role"],
+                                       fileAs: content["dc:contributor"].attributes["opf:file-as"])
+        metadata.coverage = content["dc:coverage"].value
+        metadata.creator = EPUBMetadata.Creator(name: content["dc:creator"].value,
+                                   role: content["dc:creator"].attributes["opf:role"],
+                                   fileAs: content["dc:creator"].attributes["opf:file-as"])
+        metadata.date = content["dc:date"].value
+        metadata.description = content["dc:description"].value
+        metadata.format = content["dc:format"].value
+        metadata.identifier = content["dc:identifier"].value
+        metadata.language = content["dc:language"].value
+        metadata.publisher = content["dc:publisher"].value
+        metadata.relation = content["dc:relation"].value
+        metadata.rights = content["dc:rights"].value
+        metadata.source = content["dc:source"].value
+        metadata.subject = content["dc:subject"].value
+        metadata.title = content["dc:title"].value
+        metadata.type = content["dc:type"].value
+        for metaItem in content["meta"].all! {
+            if metaItem.attributes["name"] == "cover" {
+                metadata.coverId = metaItem.attributes["content"]
+            }
+        }
+        return metadata
+    }
+\end{lstlisting}
+
+Działanie metody agregującej meta dane jest relatywnie proste, musi ona przeanalizować elementy zawarte w przekazanej instancji AEXMLElement. Elementy te są oznaczone w sposób określony w specyfikacji, więc nazwane onę będa zawsze w ten sam sposób co znacznie upraszcza proces budowy instancji EPUBMetadata.
+
+\begin{lstlisting}[caption={Implementacja metody getManifest(from xmlElement:).},language=swift-reference]
+    func getManifest(from xmlElement: AEXMLElement) -> EPUBManifest {
+        var items: [String:EPUBManifest.Item] = [:]
+        for item in xmlElement["item"].all! {
+            let id = item.attributes["id"]!
+            let path = item.attributes["href"]!
+            let mediaType = item.attributes["media-type"]
+            let properties = item.attributes["properties"]
+            items[id] = EPUBManifest.Item(id: id, path: path, mediaType: EPUBMediaType(rawValue: mediaType!) ?? .unknown, property: properties)
+        }
+        return EPUBManifest(id: xmlElement["id"].value, items: items)
+    }
+\end{lstlisting}
+
+Metoda "getManifest(from content:)" w pierwszej kolejności tworzy instancję słownika, który znamy ze struktury EPUBManifest. reprezentuje on wszystkie elementy wymienione w manifeście. Następnie iteruje po tablicy elementów zawartych w parametrze "xmlElement", i inicjalizuje przy każdym z nich nową instancję struktury EPUBManifest.Item z informacji, które udało jej się wywłaszczyć.
+
+\begin{lstlisting}[caption={Implementacja metody getSpine(from xmlElement:).},language=swift-reference]
+    func getSpine(from xmlElement: AEXMLElement) -> EPUBSpine {
+        var items: [EPUBSpine.Item] = []
+        for item in xmlElement["itemref"].all! {
+            let id = item.attributes["id"]
+            let idref = item.attributes["idref"]!
+            let linear = (item.attributes["linear"] ?? "yes") == "yes" ? true : false
+            items.append(EPUBSpine.Item(id: id, idref: idref, linear: linear))
+        }
+        let pageProgressionDirection = xmlElement["page-progression-direction"].value ?? ""
+        return EPUBSpine(id: xmlElement.attributes["id"], toc: xmlElement.attributes["toc"], pageProgressionDirection: EPUBPageProgressionDirection(rawValue: pageProgressionDirection), items: items)
+    }
+\end{lstlisting}
+
+W identycznym stylu działa metoda "getSpine(from content:)", kórej zadaniem jest stworzenie instancji struktury EPUBSpine.
+
+\begin{lstlisting}[firstnumber=19, language=swift]
+        let tocPath = contentDirectory!.appendingPathComponent(try manifest!.path(forItemWithId: spine?.toc ?? ""))
+        let tocData = try Data(contentsOf: tocPath)
+        let tocContent = try AEXMLDocument(xml: tocData)
+        tableOfContents = getTableOfContents(from: tocContent.root)
+\end{lstlisting}
+
+Ostatnimi czynnościami parsera są odszukanie w publikacji dokumentu typu NCX, który reprezentuje spis treści (table of contents) i przedstawienie go w formie struktury EPUBTableOfContents poprzez parsowanie pliku NCX.
+
+\begin{lstlisting}[caption={Implementacja metody getTableOfContents(from xmlElement:).},language=swift-reference]
+    func getTableOfContents(from xmlElement: AEXMLElement) -> EPUBTableOfContents {
+        let item = xmlElement["head"]["meta"].all(withAttributes: ["name":"dtb=uid"])?.first?.attributes["content"]
+        var tableOfContents = EPUBTableOfContents(label: xmlElement["docTitle"]["text"].value!, id: "0", item: item, subTable: [])
+
+        func evaluateChildren(from map: AEXMLElement) -> [EPUBTableOfContents]{
+            if let _ = map["navPoint"].all {
+                var subs: [EPUBTableOfContents] = []
+                for point in map["navPoint"].all! {
+                    subs.append(EPUBTableOfContents(label: point["navLabel"]["text"].value!, id: point.attributes["id"]!, item: point["content"].attributes["src"]!, subTable: evaluateChildren(from: point)))
+                }
+                return subs
+            } else {
+                return []
+            }
+        }
+        tableOfContents.subTable = evaluateChildren(from: xmlElement["navMap"])
+        return tableOfContents
+    }
+\end{lstlisting}
+
+Ze wzgledu na możliwość zagnieżdżania elementów metoda deklaruje własną funkcję, która będzie odpowiedzialna za zbieranie informacji o elementach i penetrowanie w głąb kolejnych poziomów zagnieżdżenia.
+
+W tym miejscu praca parsera kończy się. Jego inicjalizacja dobiegła końcowi, a metody z powodzeniem lub bez zebrały odpowiednie informacje o publikacji EPUB. To co następnie dzieje się z danymi parsera jest dokładnie opisane w podrozdziale opisującym \nameref{EPUBDocument}.
+
+\subsection{EPUBParserError}
 
 
 \section{Widok}
