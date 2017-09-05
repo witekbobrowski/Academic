@@ -1,7 +1,6 @@
 \chapter{Biblioteka EPUBKit}
-\section{Tworzenie biblioteki na iOS}
 
-Tworzenie biblioteki którą zamierzamy następnie wykorzystać we własnej aplikacji lub udostępnić publiczne, jest stosunkowo prostym procesem. Wszystko sprowadza się do stworzenia nowego projektu w Xcode a następnie dołączenie go do przestrzeni roboczej (Xcode Workspace) w której znajdzie się projekt aplikacji nad którą pracujemy oraz projekt biblioteki. Aby stworzyć projekt biblioteki należy uruchomić Xcode IDE i na powitalnym ekranie wybrać opcję "Create a new Xcode project" która przeniesie nas do kolejnego ekranu z możliwością wybrania konkretnego szablonu projektu nad jakim chcemy pracować.
+Tworzenie biblioteki, którą zamierzamy następnie wykorzystać we własnej aplikacji lub udostępnić publiczne, jest stosunkowo prostym rozwiązaniem. Wszystko sprowadza się do stworzenia nowego projektu w Xcode, a następnie dołączenie go do przestrzeni roboczej (Xcode Workspace) w której znajdzie się projekt aplikacji nad którą pracujemy oraz projekt biblioteki. Aby stworzyć projekt biblioteki należy uruchomić Xcode IDE i na powitalnym ekranie wybrać opcję \textit{Create a new Xcode project}, która przeniesie nas do kolejnego ekranu z możliwością wybrania konkretnego szablonu projektu nad jakim chcemy pracować.
 
 \begin{figure}[ht!]
   \centering
@@ -10,7 +9,7 @@ Tworzenie biblioteki którą zamierzamy następnie wykorzystać we własnej apli
   \label{chapter-4-image-1-new-project}
 \end{figure}
 
-Na naszym przypadku interesuje nas szablon "Cocoa Touch Framework", a po jego wybraniu jesteśmy proszeni o uzupełnienie formularza ze szczegółowymi informacjami na temat projektu który zamierzamy stworzyć, poczynając od nazwy, po język w którym będzie napisany (Swift lub Objective-C). Następnie Xcode poprosi o wskazanie lokalizacji na dysku w której chcemy zapisać projekt oraz zapyta nas czy chcemy stworzy repozytorium systemu kontroli wersji git. W tym momencie mamy projekt który można już w prosty sposób dołączyć do aplikacji (Co zostanie opisane w kolejnym rozdziale przy okazji omawianie wykorzystania biblioteki EPUBKit w demonstracyjnej aplikacji). Teraz już możemy tworzyć klasy które mają składać się na funkcjonalność biblioteki.
+W naszym przypadku interesuje nas szablon \textit{Cocoa Touch Framework}, a po jego wybraniu jesteśmy proszeni o uzupełnienie formularza ze szczegółowymi informacjami na temat projektu, który zamierzamy stworzyć, poczynając od nazwy, po język w którym będzie napisany, tj. Swift lub Objective-C. Następnie Xcode poprosi o wskazanie lokalizacji na dysku, w której chcemy zapisać projekt, oraz zapyta nas czy chcemy stworzy repozytorium systemu kontroli wersji git. W tym momencie mamy projekt, który można już w prosty sposób dołączyć do aplikacji. Zostanie to dokładnie opisane w kolejnym rozdziale przy okazji omawianie wykorzystania biblioteki EPUBKit w demonstracyjnej aplikacji. Teraz już możemy tworzyć klasy, które mają składać się na funkcjonalność biblioteki.
 
 \begin{figure}[ht!]
   \centering
@@ -19,15 +18,15 @@ Na naszym przypadku interesuje nas szablon "Cocoa Touch Framework", a po jego wy
   \label{chapter-4-image-2-empty-project}
 \end{figure}
 
-Plik projektu pozwala nam za szczegółowy wgląd w preferencje oraz informacje jego dotyczące, które można zmienić w dowolnej chwili. Jest możliwość zmiany wersji biblioteki, docelowego urządzenia (iPhone lub iPad), preferowanej wersji systemu który ma wspierać biblioteka, oraz co bardzo istotne, mamy możliwość użycia innych niezależnych bibliotek w naszym projekcie. Wystarczy wyeksportować plik projektu jako plik przestrzeni roboczej do której można dodać inne projekty a następnie połączyć je z naszym w menu "General" w polu "Linked Frameworks and Libraries" w pliku projektu. Dzięki tak funkcjonalnym i prostym w obsłudze narzędziom jak Xcode, po szybkiej konfiguracji swoją uwagę można skupić na samej logice którą chcemy zaimplementować.
+Plik projektu pozwala nam na szczegółowy wgląd w preferencje oraz informacje jego dotyczące, które można zmienić w dowolnej chwili. Jest możliwość zmiany wersji biblioteki, docelowego urządzenia, preferowanej wersji systemu który ma wspierać biblioteka, oraz co bardzo istotne, mamy możliwość użycia innych niezależnych bibliotek w naszym projekcie. Wystarczy wyeksportować plik projektu jako plik przestrzeni roboczej do której można dodać inne projekty, a następnie połączyć je z naszym w menu \textit{General} w polu \textit{Linked Frameworks and Libraries} w pliku projektu. Dzięki tak funkcjonalnym i prostym w obsłudze narzędziom jak Xcode, po szybkiej konfiguracji swoją uwagę można skupić na samej logice którą chcemy zaimplementować.
 
-W tym rozdziale zostanie opisana stworzona przez mnie biblioteka EPUBKit. Biblioteka ta jest oparta na architekturze MVC (Model View Controller) dlatego omówienie jest rozpocznę od opisania jej modelu oraz parsera, a następnie przejdę do zawartych w niej widokach które pozwalają na wyświetlenie danych zawartych w modelu. Zakończę rozdział przedstawiając możliwości dystrybuowania takiej biblioteki, przy pomocy szeroko stosowanych i popularnych narzędzi, które są podstawą iOS developmentu.
+W tym rozdziale zostanie opisana stworzona przez mnie biblioteka EPUBKit. Biblioteka ta jest oparta na architekturze MVC (Model View Controller), dlatego omówienie zaczyna się od opisania jej modelu oraz parsera, a następnie przejdę do zawartych w niej widokach, które pozwalają na wyświetlenie danych zawartych w modelu. Zakończę rozdział przedstawiając możliwości dystrybuowania takiej biblioteki, przy pomocy szeroko stosowanych i popularnych narzędzi, które są podstawą programowania na platformę iOS.
 
 \section{Model}
 
-Struktura klas modelu została zaprojektowana w ten sposób aby z jednej strony odzwierciedlała strukturę dokumentu EPUB oraz format OPF który EPUB wykorzystuje, a z drugiej by trzymała się konwencji swiftowych i intuicyjnie reprezentowała obiekt który następnie będzie wykorzystywany w kolejnych klasach biblioteki.
+Struktura klas modelu została zaprojektowana w ten sposób, aby z jednej strony odzwierciedlała strukturę dokumentu EPUB oraz format OPF który EPUB wykorzystuje, a z drugiej by trzymała się konwencji ,,swiftowych'' i intuicyjnie reprezentowała obiekt, który następnie będzie wykorzystany w kolejnych klasach biblioteki.
 
-\begin{lstlisting}[caption={Struktura modelu EPUBKit.}, language=bash]
+\begin{lstlisting}[caption={Struktura modelu EPUBKit}, language=bash,label=bbbb]
     Model
     |-- EPUBDocument.swift
     |-- EPUBManifest.swift
@@ -38,16 +37,17 @@ Struktura klas modelu została zaprojektowana w ten sposób aby z jednej strony 
 
 \subsection{EPUBDocument}
 \label{EPUBDocument}
-EPUBDocument jest klasą publiczną reprezentującą całą publikację EPUB i agregującą pozostałe struktury modelu biblioteki jako jej stałe własności (ze względu na nomenklaturę stosowaną w języku Swift, 'properties' będą nazywane własnościami). W języku Swift odróżniamy dwa rodzaje własności, są to stałe (słowo kluczowe let) do których wartość może zostać przypisana wyłącznie jednokrotnie oraz zmienne (słowo kluczowe var) których wartość może być modyfikowana w dowolnym momencie.
 
-\begin{lstlisting}[caption={Deklaracje własności w Swifcie.\cite{theSwiftProgrammingLanguageDeclarations}}, language=swift-reference]
+EPUBDocument jest klasą publiczną reprezentującą całą publikację EPUB i agregującą pozostałe struktury modelu biblioteki jako jej stałe własności. Ze względu na nomenklaturę stosowaną w języku Swift, \textit{properties} będą nazywane własnościami). W języku Swift odróżniamy dwa rodzaje własności, są to stałe \texttt{let} do których wartość może zostać przypisana wyłącznie jednokrotnie oraz zmienne \texttt{var} których wartość może być modyfikowana w dowolnym momencie.
+
+\begin{lstlisting}[caption={Deklaracje własności w Swifcie.\cite{theSwiftProgrammingLanguageDeclarations}}, language=swift-reference,label=ppp]
   let (constant name): (type) = (expression)
   var (variable name): (type) = (expression)
 \end{lstlisting}
 
-Własności zostały oznaczone jako stałe ze względu na statyczną naturę struktury publikacji EPUB. Ciężko sobie wyobrazić powód dla którego któreś z metadanych publikacji miały by zostać zmienione albo któreś z dokumentów XML usunięte z manifestu publikacji. Dlatego biorąc pod uwagę kontekst, w którym klasa się znajduje, zdecydowałem się oznaczenie jej własności jako stałe aby zapewnić klasie niemodalność oraz zgodność z wytycznymi odnośnie projektowania klas i struktur w języku Swift według których powinno oznaczać się własności jako stałe w każdej sytuacji która nie wymaga od nas ich mutowania, a słowa "mutowania" użyłem tutaj nie bez powodu, co stanie się jasne w kolejnym akapicie.
+Własności zostały oznaczone jako stałe ze względu na statyczną naturę struktury publikacji EPUB. Ciężko sobie wyobrazić powód dla którego któreś z metadanych publikacji miały by zostać zmienione albo któreś z dokumentów XML usunięte z manifestu publikacji. Dlatego biorąc pod uwagę kontekst, w którym klasa się znajduje, zdecydowałem się oznaczenie jej własności jako stałe, aby zapewnić klasie niemodalność oraz zgodność z wytycznymi odnośnie projektowania klas i struktur w języku Swift, według których powinno oznaczać się własności jako stałe w każdej sytuacji, która nie wymaga od nas ich mutowania. Słowa ,,mutowania'' użyłem tutaj nie bez powodu, co stanie się jasne w kolejnym akapicie.
 
-\begin{lstlisting}[caption={Klasa EPUBDocument i jej stałe publiczne.}, language=swift]
+\begin{lstlisting}[caption={Klasa EPUBDocument i jej stałe publiczne}, language=swift,label=eeeee]
 public class EPUBDocument {
     public let directory: URL
     public let contentDirectory: URL
@@ -58,11 +58,11 @@ public class EPUBDocument {
 }
 \end{lstlisting}
 
-W przeciwieństwie do C, struktury w Swiftcie mogą posiadać metody. W przypadku gdy metoda w jakiś sposób zmienia własności musi ona zostać oznaczona słowem kluczowym 'mutating' co tyczy się również metod enumeracji. Wspominam o tym, ponieważ chciałbym wytłumaczyć dlaczego typy własności klasy EPUBDocument są strukturami a nie klasami. Ze względu na to, że instancje klasy są przekazywane przez referencję, a instancje struktur są przekazywane przez kopiowanie wartości, oznacz to że są one przeznaczone do innych zadań. Zgodnie z wytycznymi Apple, strukturami powinno oznaczać się typy, których zadaniem jest enkapsulacja relatywnie prostych wartości\cite{theSwiftProgrammingLanguageStructsPurpose}, co jest prawdą w przypadku wcześniej wspomnianych typów (zostaną one opisane w kolejnych paragrafach).
+W przeciwieństwie do C, struktury w Swiftcie mogą posiadać metody. W przypadku, gdy metoda w jakiś sposób zmienia własności, musi ona zostać oznaczona słowem kluczowym \texttt{mutating} co tyczy się również metod enumeracji. Wspominam o tym, ponieważ chciałbym wytłumaczyć dlaczego typy własności klasy \texttt{EPUBDocument} są strukturami, a nie klasami. Ze względu na to, że instancje klasy są przekazywane przez referencję, a instancje struktur są przekazywane przez kopiowanie wartości, oznacz to że są one przeznaczone do innych zadań. Zgodnie z wytycznymi Apple, strukturami powinno oznaczać się typy, których zadaniem jest enkapsulacja relatywnie prostych wartości \cite{theSwiftProgrammingLanguageStructsPurpose}, co jest prawdą w przypadku wcześniej wspomnianych typów, a które zostaną one opisane w kolejnych paragrafach.
 
-Klasa EPUBDocument posiada dwa inicjalizatory które pozwalają tworzyć instancje tej klasy. Pierwszym z nich jest inicjalizator prywatny w nomenklaturze swiftowej "memberwise initializer" ze względu na kolejność argumentów które przyjmuje, która zgodna jest z kolejnością deklaracji własności. Inicjalizator ten został oznaczony jako prywatny ponieważ jego przeznaczeniem jest inicjalizować instancję jedynie przy pomocy drugiego inicjalizatora. Drugi z inicjalizatorów jest dostępny publicznie, i jest jedynym publicznym inicjalizatorem dla tej klasy.
+Klasa \texttt{EPUBDocument} posiada dwa inicjalizatory, które pozwalają tworzyć instancje tej klasy. Pierwszym z nich jest inicjalizator prywatny w nomenklaturze swiftowej \textit{memberwise initializer} ze względu na kolejność argumentów które przyjmuje. Jest ona zgodna  z kolejnością deklaracji własności. Inicjalizator ten został oznaczony jako prywatny, ponieważ jego przeznaczeniem jest inicjalizować instancję jedynie przy pomocy drugiego inicjalizatora. Drugi z inicjalizatorów jest dostępny publicznie i jest jedynym publicznym inicjalizatorem dla tej klasy.
 
-\begin{lstlisting}[caption={Inicjalizatory klasy EPUBDocument.}, language=swift]
+\begin{lstlisting}[caption={Inicjalizatory klasy EPUBDocument}, language=swift,label=gysdffregr]
 private init (directory: URL, contentDirectory: URL, metadata: EPUBMetadata, manifest: EPUBManifest, spine: EPUBSpine, toc: EPUBTableOfContents) {
     self.directory = directory
     self.contentDirectory = contentDirectory
@@ -84,31 +84,31 @@ public convenience init?(named: String) {
 }
 \end{lstlisting}
 
-Zważając na naturę publikacji EPUB jako spójnej całości, zdecydowałem ograniczyć się inicjalizowanie klasy EPUBDocument do inicjalizatora pomocniczego, który wykorzystuje do tego parser. Ten inicjalizator wykorzystuje w pełni możliwości Swifta. Oznaczając go słowem kluczowym "convenience", zmuszam go do wykorzystania wyznaczonego (z ang. designated) inicjalizatora ponieważ pomocniczy inicjalizator nie może samemu tworzyć instancji, musi do tego wykorzystać wyznaczony inicjalizator (w tym przypadku jest to pierwszy inicjalizator, który jest prywatny). Dodatkowo pomocniczy inicjalizator, jest oznaczony znakiem zapytania "init?" co oznacza, że inicjalizacje może się nie powieść, a w takiej sytuacji inicjalizator zwróci... nic, czyli "nil" w Swifcie. Konsekwencją tego jest to, że typ która zwraca ten inicjalizator to "EPUBDocument?" a nie "EPUBDocument", co oznacza że może on nie mieć żadnej wartości co trzeba w odpowiedni sposób obsłużyć. Przeanalizujmy więc krok po kroku operacje, które wykonuje inicjalizator pomocniczy.
+Zważając na naturę publikacji EPUB jako spójnej całości, zdecydowałem ograniczyć się inicjalizowanie klasy \texttt{EPUBDocument} do inicjalizatora pomocniczego, który wykorzystuje do tego parser. Ten inicjalizator wykorzystuje w pełni możliwości Swifta. Oznaczając go słowem kluczowym \textit{convenience}, zmuszam go do wykorzystania wyznaczonego (ang. designated) inicjalizatora, ponieważ pomocniczy inicjalizator nie może samemu tworzyć instancji, musi do tego wykorzystać wyznaczony inicjalizator. W tym przypadku jest to pierwszy inicjalizator, który jest prywatny. Dodatkowo pomocniczy inicjalizator, jest oznaczony znakiem zapytania \texttt{init?} co oznacza, że inicjalizacje może się nie powieść, a w takiej sytuacji inicjalizator zwróci\ldots nic, czyli \texttt{nil} w Swifcie. Konsekwencją tego jest to, że typ który zwraca ten inicjalizator to \texttt{EPUBDocument?}, a nie \texttt{EPUBDocument}, co oznacza że może on nie mieć żadnej wartości, co trzeba w odpowiedni sposób obsłużyć. Przeanalizujmy więc krok po kroku operacje, które wykonuje inicjalizator pomocniczy.
 
-\begin{lstlisting}[language=swift-reference]
-    let parser = try? EPUBParser(named: named)
+\begin{lstlisting}[language=swift-reference,label=abcdedefs,caption=adsaa]
+let parser = try? EPUBParser(named: named)
 \end{lstlisting}
 
-Na wstępie tworzy instancję parsera, i jako argument inicjalizatora podaje własny parametr który wskazuje na nazwę publikacji EPUB. Słowo kluczowe "try" oznacza, że inicjalizator może zwrócić błąd, a dzięki znakowi zapytania błąd ten gdy zostanie rzucony, będzie interpretowany jako zwrócenie nila przez inicjalizator. W ten sposób unikamy umieszczenia bloku "do-catch" co znacznie upraszcza kod. Na końcu znajdujemy się w posiadaniu stałej "parser", która jest typu "EPUBParser?" czyli opcjonalny EPUBParser.
+Na wstępie tworzy instancję parsera, i jako argument inicjalizatora podaje własny parametr który wskazuje na nazwę publikacji EPUB. Słowo kluczowe \texttt{try} oznacza, że inicjalizator może zwrócić błąd, a dzięki znakowi zapytania błąd ten gdy zostanie rzucony, będzie interpretowany jako zwrócenie wartości \texttt{nil} przez inicjalizator. W ten sposób unikamy umieszczenia bloku \texttt{do-catch}, co znacznie upraszcza kod. Na końcu znajdujemy się w posiadaniu stałej \texttt{parser}, która jest typu \texttt{EPUBParser?} czyli opcjonalny \texttt{EPUBParser}.
 
-\begin{lstlisting}[language=swift-reference]
-  guard let directory = ... else { return nil }
+\begin{lstlisting}[language=swift-reference,label=gggg,caption=dsadsda]
+guard let directory = ... else { return nil }
 \end{lstlisting}
 
-Wyrażenie "guard let" jest jednym ze sposobów obsłużenia typu opcjonalnego. Jest to odmiana wyrażenia "if let" które pozwala nam na przypisanie wartości zmiennej a, do nowej stałej b, jeżeli zmienna a takową posiada. Wadą takiego rozwiązania jest to, że nowo powstała zmienna b, znajduje się jedynie w zasięgu bloku "if", co w pewien sposób ogranicza dostęp do niej. Z pomocą przychodzą wyrażenia "guard", dzięki który zadeklarujemy nową stałą, która będzie przyjmowała wartość zmiennej, którą chcemy "rozpakować" (z ang. unwrap, co odnosi się do czynności wywłaszczania wartości z typu opcjonalnego) i będzie ona dostępna w obrębie tego samego bloku co wyrażenie guard. Dodatkowo mamy możliwość wykonania jakiejś czynności w sytuacji gdy zmienna którą rozpakowujemy nie ma wartości, co w tym konkretnym przypadku będzie oznaczało niepowodzenie wywłaszczenia którejś z wartości parsera a więc inicjalizator EPUBDocument zwróci nil. Ponieważ wyrażenie "guard" działa w podobny sposób co "if", otrzymuje on również te same funkcjonalności co "if" w Swifcie, czyli możliwość kolejkowania wyrażeń zwracających wartość boolowską (wypisujemy je kolejno po przecinku), i w przypadku zwrócenia fałszu przez jedno z nich, instrukcja natychmiast zostaje przerwana a pozostałe wyrażenia nie zostają ewaluowane, a w tym przypadku program przechodzi do bloku "else".
+Wyrażenie \texttt{guard let} jest jednym ze sposobów obsłużenia typu opcjonalnego. Jest to odmiana wyrażenia \texttt{if let}, które pozwala nam na przypisanie wartości zmiennej \texttt{a}, do nowej stałej \texttt{b}, jeżeli zmienna \texttt{a} takową posiada. Wadą takiego rozwiązania jest to, że nowo powstała zmienna \texttt{b}, znajduje się jedynie w zasięgu bloku \texttt{if}, co w pewien sposób ogranicza dostęp do niej. Z pomocą przychodzą wyrażenia \texttt{guard}, dzięki którym zadeklarujemy nową stałą, która będzie przyjmowała wartość zmiennej, którą chcemy \textit{rozpakować} (ang. unwrap -- co odnosi się do czynności wywłaszczania wartości z typu opcjonalnego) i będzie ona dostępna w obrębie tego samego bloku co wyrażenie \texttt{guard}. Dodatkowo mamy możliwość wykonania jakiejś czynności w sytuacji gdy zmienna, którą rozpakowujemy nie ma wartości, co w tym konkretnym przypadku będzie oznaczało niepowodzenie wywłaszczenia którejś z wartości parsera, a więc inicjalizator \texttt{EPUBDocument} zwróci \texttt{nil}. Wyrażenie \texttt{guard} działa w podobny sposób co \texttt{if}, dlatego otrzymuje on również te same funkcjonalności co \texttt{if} w Swifcie, czyli możliwość kolejkowania wyrażeń zwracających wartość boolowską, tj. wypisujemy je kolejno po przecinku. W przypadku zwrócenia fałszu przez jedno z nich, instrukcja natychmiast zostaje przerwana, a pozostałe wyrażenia nie zostają ewaluowane. W tym przypadku program przechodzi do bloku \texttt{else}.
 
-\begin{lstlisting}[language=swift-reference]
-    self.init(...)
+\begin{lstlisting}[language=swift-reference,label=dasnfdngr,caption=adssf]
+self.init(...)
 \end{lstlisting}
 
-Jeżeli udało się wywłaszczyć wszystkie potrzebne wartości z parsera, to można przejść do tworzenia instancji EPUBDocument. Inicjalizator pomocniczy wywołuje inicjalizator wyznaczony, i dokument zostaje pomyślnie stworzony a wszystkie informacje otrzymane dzięki parserowi zostają przypisane na stałe do jednej instancji EPUBDocument. W ten sposób zostaje zachowana niemutowalność instancji, oraz gwarancja, że wszystkie wartości w których posiadaniu znajduje się instancja, pochodzą z jednego źródła, z którego czerpie parser. Działanie samego parsera zostawiam na kolejny podrozdział.
+Jeżeli udało się wywłaszczyć wszystkie potrzebne wartości z parsera, to można przejść do tworzenia instancji \texttt{EPUBDocument}. Inicjalizator pomocniczy wywołuje inicjalizator wyznaczony, i dokument zostaje pomyślnie stworzony, a wszystkie informacje otrzymane dzięki parserowi zostają przypisane na stałe do jednej instancji \texttt{EPUBDocument}. W ten sposób zostaje zachowana niemutowalność instancji oraz gwarancja, że wszystkie wartości w których posiadaniu znajduje się instancja, pochodzą z jednego źródła, z którego czerpie parser. Omówienie działanie samego parsera zostawiam na kolejny podrozdział.
 
 \subsection{EPUBManifest}
 
-Jak juz wspomniano w rozdziale opisującym format EPUB, jego struktura jest oparta o standard OPF a to oznacza, że znajduję się w nim wykaz (manifest) wszystkich dokumentów oraz zasobów na które składa się dokument. Każdy element wymieniony w manifescie posiada swoje ID, wskazaną ścieżkę w strukturze dokumentu oraz typ (Media Type). Parser starannie analizuje manifest i tworzy strukturę w której posiadaniu następnie znajduje się instancja EPUBDocument o czym więcej przy okazji omawiania parseru.
+Jak już wspomniano w rozdziale opisującym format EPUB, jego struktura jest oparta o standard OPF a to oznacza, że znajduje się w nim wykaz (manifest) wszystkich dokumentów oraz zasobów na które składa się dokument. Każdy element wymieniony w manifeście posiada swoje ID, wskazaną ścieżkę w strukturze dokumentu oraz typ. Parser starannie analizuje manifest i tworzy strukturę w której posiadaniu następnie znajduje się instancja \texttt{EPUBDocument}, o czym więcej przy okazji omawiania parsera.
 
-\begin{lstlisting}[caption={Struktura EPUBManifest.}, language=swift]
+\begin{lstlisting}[caption={Struktura EPUBManifest}, language=swift,label=fghjk]
 public struct EPUBManifest {
     public struct Item {
         public var id: String
@@ -130,15 +130,15 @@ public struct EPUBManifest {
 }
 \end{lstlisting}
 
-EPUBManifest deklaruje własną strukturę Item, na którą składa się kilka własności opisujących daną pozycję w manifeście. EPUBManifest posiada dwie własności. Pierwszą z nich jest opcjonalne ID manifestu które może się pojawić w publikacji EPUB, ale w specyfikacji nie jest określone jako wymagane pole. Drugą własnością jest słownik, którego kluczem jest ID elementu a wartością jest instancja struktury Item. Ponieważ manifest nie musi być listą posortowaną, zdecydowałem się na użycie słownika jako struktury danych która ma przechowywać wszystkie jego elementy, dzięki czemu dostęp do nich jest natychmiastowy. Należy zwrócić uwagę na to, że nie został zadeklarowany inicjalizator dla EPUBManifest, tak jak miało to miejsce przy EPUBDocument. Powód jest następujący, Swift w przypadku gdy żaden inicjalizator nie został zadeklarowany dostarcza domyślny "memberwise initializer" dzięki czemu w EPUBManifest dostajemy go "za darmo", natomiast w przypadku struktury EPUBDocument został zadeklarowany pomocniczy inizjalizator przez co domyślny inicjalizator nie został dostarczony przez swift. EPUBManifest posiada publiczną metodę która przyjmuje jako argument id elementu zwraca do niego ścieżkę w przypadku gdy element znajduje się w słowniku "items". Słownik w swifcie zwraca wartość o typie opcjonalnym, ponieważ nie ma żadnej gwarancji, że do podanego przez nas kluczu przypisana jest jakaś wartość. Zastosowano tutaj rozpakowanie typu opcjonalnego przy pomocy wyrażenia "if let" aby otrzymać ścieżkę elementu. W przypadku gdy znajduje się on w słowniku zostanie on przypisany do nowej stałej której typ już nie jest opcjonalny więc posiadanie przez niej jakiejś wartości jest zagwarantowane. Dodatkowo w przypadku gdyby taki element manifestu o wskazanym ID nie istniał, zostanie rzucony błąd co zostało oznaczone słowem kluczowym "throws" przy deklaracji zwracanego typu.
+\texttt{EPUBManifest} deklaruje własną strukturę \texttt{Item}, na którą składa się kilka własności opisujących daną pozycję w manifeście. \texttt{EPUBManifest} posiada dwie własności. Pierwszą z nich jest opcjonalne \texttt{id} manifestu, które może się pojawić w publikacji EPUB, ale w specyfikacji nie jest określone jako wymagane pole. Drugą własnością jest słownik, którego kluczem jest \texttt{id} elementu, a wartością jest instancja struktury \texttt{Item}. Manifest nie musi być listą posortowaną, dlatego zdecydowałem się na użycie słownika jako struktury danych która ma przechowywać wszystkie jego elementy. Dzięki temu dostęp do nich jest natychmiastowy. Należy zwrócić uwagę na to, że nie został zadeklarowany inicjalizator dla \texttt{EPUBManifest}, tak jak miało to miejsce przy \texttt{EPUBDocument}. Powód jest następujący, Swift w przypadku, gdy żaden inicjalizator nie został zadeklarowany, dostarcza domyślny \textit{memberwise initializer} dzięki czemu w \texttt{EPUBManifest} dostajemy go ,,za darmo'', natomiast w przypadku struktury \texttt{EPUBDocument} został zadeklarowany pomocniczy inizjalizator przez co domyślny inicjalizator nie został dostarczony przez swift. \texttt{EPUBManifest} posiada publiczną metodę, która przyjmuje jako argument \texttt{id} elementu zwraca do niego ścieżkę w przypadku, gdy element znajduje się w słowniku \texttt{items}. Słownik w swiftcie zwraca wartość o typie opcjonalnym, ponieważ nie ma żadnej gwarancji, że do podanego przez nas kluczu przypisana jest jakaś wartość. Zastosowano tutaj rozpakowanie typu opcjonalnego przy pomocy wyrażenia \texttt{if let}, aby otrzymać ścieżkę elementu. W przypadku, gdy znajduje się on w słowniku zostanie on przypisany do nowej stałej ,której typ już nie jest opcjonalny, więc posiadanie przez niej jakiejś wartości jest zagwarantowane. Dodatkowo w przypadku, gdyby taki element manifestu o wskazanym \texttt{id} nie istniał, zostanie rzucony błąd co zostało oznaczone słowem kluczowym \texttt{throws} przy deklaracji zwracanego typu.
 
-\begin{lstlisting}[caption={Funkcje i metody które mogą rzucać błędy, przy deklaracji muszą zostać oznaczone słowem kluczowym "throws"\cite{theSwiftProgrammingLanguageDeclarations}.},language=swift-reference]
+\begin{lstlisting}[caption={Funkcje i metody które mogą rzucać błędy, przy deklaracji muszą zostać oznaczone słowem kluczowym \texttt{throws}\cite{theSwiftProgrammingLanguageDeclarations}},language=swift-reference,label=erty]
 func (function name)((parameters)) throws -> (return type) {
     (statements)
 }
 \end{lstlisting}
 
-W kontekście EPUBManifest pozostało jeszcze wspomnieć o typie enumeracji, który został stworzony aby określać charakter elementu znajdującego się w publikacji EPUB, i wymienionego w manifeście. Mowa tutaj o EPUBMediaType, enumeracji która posiada powiązany typ (Associated Type) którym jest typ String.
+W kontekście \texttt{EPUBManifest} pozostało jeszcze wspomnieć o typie enumeracji, który został stworzony aby określać charakter elementu znajdującego się w publikacji EPUB, i wymienionego w manifeście. Mowa tutaj o \texttt{EPUBMediaType}, enumeracji która posiada powiązany typ (ang. Associated Type), którym jest typ String.
 
 \begin{lstlisting}[caption={Enumeracja EPUBMediaType.}, language=swift]
 public enum EPUBMediaType: String {
@@ -161,13 +161,13 @@ public enum EPUBMediaType: String {
 }
 \end{lstlisting}
 
-Enumeracja ta deklaruje wszystkie przypadki typu mediów wspieranych przez standard EPUB i wymienionych w specyfikacji. Dzięki tej enumeracji element manifestu posiada własność które jest ograniczona do kilku przypadków, a w sytuacji potrzeby obsłużenia takiego elementu w prosty sposób można zdeterminować jego rodzaj. Powiązana wartość dla każdego przypadku jest ciągiem znaków reprezentującym typ określony w specyfikacji EPUB, i gwarantuje nam ona prostą inicjalizację przez podanie wartości jako argument inicjalizatora enumeracji.
+Enumeracja ta deklaruje wszystkie przypadki typu mediów wspieranych przez standard EPUB i wymienionych w specyfikacji. Dzięki tej enumeracji element manifestu posiada własność, która jest ograniczona do kilku przypadków, a w sytuacji potrzeby obsłużenia takiego elementu w prosty sposób można zdeterminować jego rodzaj. Powiązana wartość dla każdego przypadku jest ciągiem znaków reprezentującym typ określony w specyfikacji EPUB, i gwarantuje nam ona prostą inicjalizację przez podanie wartości jako argument inicjalizatora enumeracji.
 
 \subsection{EPUBMetadata}
 
-Kolejny elementem wymaganym przez OPF jest metadata, który enkapsuluje meta informacje na temat konkretnej interpretacji zawartej w publikacji. W celach reprezentacji tych meta danych w bibliotece EPUBKit została stworzona struktura EPUBMetadata.
+Kolejny elementem wymaganym przez OPF jest metadata, który enkapsuluje meta informacje na temat konkretnej interpretacji zawartej w publikacji. W celach reprezentacji tych meta danych w bibliotece EPUBKit została stworzona struktura \texttt{EPUBMetadata}.
 
-\begin{lstlisting}[caption={Struktura EPUBMetadata.}, language=swift]
+\begin{lstlisting}[caption={Struktura EPUBMetadata}, language=swift,label=bbcdkcno]
 public struct EPUBMetadata {
     public struct Creator {
         public var name: String?
@@ -193,13 +193,13 @@ public struct EPUBMetadata {
 }
 \end{lstlisting}
 
-EPUBMetadata definiuje własny publiczny typ pomocniczy Creator aby w lepszy sposób reprezentować element twórcy i wspołtwórcy publikacji którzy mogą zostać wymienieni w meta danych publikacji EPUB. Wszystkie własności EPUBMetadata posiadają typ opcjonalny, ponieważ ich obecność w dokumencie EPUB nie jest zagwarantowana. Inicjalizator nie jest obecny, ponieważ po raz kolejny jest dostarczony domyślny inicjalizator przez Swift. Własności są oznaczone jako zmienne publiczne, ponieważ udostępnienie ich globalnie ma sens ze względu na ich informatywny cel. Własność metadata w klasie EPUBDocument jest stałą, a więc pomimo tego iż w deklaracji struktury EPUBMetadata jej własności są zmiennymi, to w momencie przypisania jej instancji do instancji klasy EPUBDocument wartości zmiennych nie mogą zostać zmienione, co wynika z natury struktury w swiftcie która jest kopiowana przez wartość. Mutowanie wartości zmiennych w instancji struktury EPUBMetadata, która nie znajduje się w kontekście całego dokumentu, ma sens a przynajmniej nie jest niedopuszczalne. W przypadku gdyby parser znajdujący się w posiadaniu takiej instancji, w pewnym momencie wywłaszczył pewne dodatkowe dane z dokumentu, warto pozwolić mu na uaktualnienie ich w strukturze. Niemutowalność zostaje zagwarantowana dopiero w momencie przypisania jej jako stałej w klasie EPUBDocument.
+\texttt{EPUBMetadata} definiuje własny publiczny typ pomocniczy \texttt{Creator}, aby w lepszy sposób reprezentować element twórcy i współtwórcy publikacji, którzy mogą zostać wymienieni w metadanych publikacji EPUB. Wszystkie własności \texttt{EPUBMetadata} posiadają typ opcjonalny, ponieważ ich obecność w dokumencie EPUB nie jest zagwarantowana. Inicjalizator nie jest obecny, ponieważ po raz kolejny jest dostarczony domyślny inicjalizator przez Swift. Własności są oznaczone jako zmienne publiczne, ponieważ udostępnienie ich globalnie ma sens ze względu na ich informatywny cel. Własność \texttt{metadata} w klasie \texttt{EPUBDocument} jest stałą, a więc pomimo tego iż w deklaracji struktury \texttt{EPUBMetadata} jej własności są zmiennymi, to w momencie przypisania jej instancji do instancji klasy \texttt{EPUBDocument} wartości zmiennych nie mogą zostać zmienione, co wynika z natury struktury w swiftcie, która jest kopiowana przez wartość. Mutowanie wartości zmiennych w instancji struktury \texttt{EPUBMetadata}, która nie znajduje się w kontekście całego dokumentu, ma sens, a przynajmniej nie jest niedopuszczalne. W przypadku, gdyby parser znajdujący się w posiadaniu takiej instancji, w pewnym momencie wywłaszczył pewne dodatkowe dane z dokumentu, warto pozwolić mu na uaktualnienie ich w strukturze. Niemutowalność zostaje zagwarantowana dopiero w momencie przypisania jej jako stałej w klasie \texttt{EPUBDocument}.
 
 \subsection{EPUBSpine}
 
-Element "spine" w publikacji EPUB definiuje kolejność w jakiej elementy manifestu są uporządkowane, czyli w jakiej kolejności należy je wyświetlać. Element ten znajduje swoją reprezentację w bibliotece EPUBKit, jako struktura EPUBSpine.
+Element \textit{spine} w publikacji EPUB definiuje kolejność w jakiej elementy manifestu są uporządkowane, czyli w jakiej kolejności należy je wyświetlać. Element ten znajduje swoją reprezentację w bibliotece EPUBKit, jako struktura \texttt{EPUBSpine}.
 
-\begin{lstlisting}[caption={Struktura EPUBSpine.}, language=swift]
+\begin{lstlisting}[caption={Struktura EPUBSpine}, language=swift,label=hntoofsda]
 public struct EPUBSpine {
     public struct Item {
         public var id: String?
@@ -214,22 +214,22 @@ public struct EPUBSpine {
 }
 \end{lstlisting}
 
-EPUBSpine podobnie do EPUBManifest deklaruje własny typ pomocniczy Item, które odzwierciedla "itemref" znajdujący się w "spine" publikacji EPUB. Item posiada własności które odnoszą się do identyfikatora elementu manifestu (idref), dodatkowego indentyfikatora, oraz istotnej informacji, czy element powinien zostać wyświetlony w kolejności liniowej, czy nie. Struktura EPUBSpine składa się z pola "id", "toc" które opcjonalnie może posiadać identyfikator spisu treści jeżeli takowy się znajduje w dokumencie, własności która definiuje kierunek w którym powinno się wyświetlać elementy dokumentu, oraz tablicę elementów własnego typu Item.
+\texttt{EPUBSpine} podobnie do \texttt{EPUBManifest} deklaruje własny typ pomocniczy \texttt{Item}, który odzwierciedla \textit{itemref} znajdujący się w \textit{spine} publikacji EPUB. \texttt{Item} posiada własności, które odnoszą się do identyfikatora elementu manifestu \texttt{idref}, dodatkowego indentyfikatora, oraz istotnej informacji, czy element powinien zostać wyświetlony w kolejności liniowej, czy nie. Struktura \texttt{EPUBSpine} składa się z pola \texttt{id}, \texttt{toc}, które opcjonalnie może posiadać identyfikator spisu treści jeżeli takowy się znajduje w dokumencie, własności która definiuje kierunek w którym powinno się wyświetlać elementy dokumentu, oraz tablicę elementów własnego typu \texttt{Item}.
 
-\begin{lstlisting}[language=swift]
+\begin{lstlisting}[language=swift,label=adag5yry,caption={}]
 public enum EPUBPageProgressionDirection: String {
     case leftToRight = "ltr"
     case rightToLeft = "rtl"
 }
 \end{lstlisting}
 
-Zmienna "pageProgressionDirection" posiada typ który został zadeklarowany przeze mnie jako enumeracja EPUBPageProgressionDirection składająca się z dwóch przypadków, pierwszego który reprezentuje kolejność czytania od lewej do prawej oraz drugiego, który mówi o kierunku przeciwnym. W przypadku gdy kolejność nie zostanie zdefiniowana w publikacji, decyzja jak dokument powinien zostać wyświetlony zostaje pozostawiona systemowi czytającemu. W celu szybkiej inicjalizacji i zdefiniowaniu odpowiedniego kierunku dzięki powiązanemu typowi, parser podaje jako argument inicjalizatora enumeracji wartość która wywłaszczył z publikacji EPUB, która przyjmuje wartość "rtl" lub "ltr".
+Zmienna \texttt{pageProgressionDirection} posiada typ, który został zadeklarowany przeze mnie jako enumeracja \texttt{EPUBPageProgressionDirection} składająca się z dwóch przypadków. Pierwszego, który reprezentuje kolejność czytania od lewej do prawej oraz drugiego, który mówi o kierunku przeciwnym. W przypadku, gdy kolejność nie zostanie zdefiniowana w publikacji, decyzja jak dokument powinien zostać wyświetlony zostaje pozostawiona systemowi czytającemu. W celu szybkiej inicjalizacji i zdefiniowaniu odpowiedniego kierunku dzięki powiązanemu typowi, parser podaje jako argument inicjalizatora enumeracji wartość, która wywłaszczył z publikacji EPUB, która przyjmuje wartość \textit{rtl} lub \textit{ltr}.
 
 \subsection{EPUBTableOfContents}
 
 Ostatnia struktura modelu reprezentuje spis treści zawarty w publikacji EPUB. Pomimo tego iż w wersji trzeciej standardu nie jest wspierany w takiej formie jak w poprzednich wersjach, to ze względu na zapewnienie wsparcia tym starszym wersjom publikacji zdecydowałem się zaimplementować tą relatywnie prostą strukturę. Spis treści przedstawiony w formie pliku typu NCX służył w poprzednich wersjach EPUB użytkownikowi do nawigacji w obrębie dokumentu, jednak specyfikacja wymaga od systemu czytającego ignorowania tego pliku w publikacjach wersji trzeciej.
 
-\begin{lstlisting}[caption={Struktura EPUBTableOfContents.}, language=swift]
+\begin{lstlisting}[caption={Struktura EPUBTableOfContents}, language=swift,label=dasdaasdsa]
 public struct EPUBTableOfContents {
     public var label: String
     public var id: String
@@ -238,13 +238,13 @@ public struct EPUBTableOfContents {
 }
 \end{lstlisting}
 
-EPUBTableOfContents posiada własności które znamy już z poprzednich struktur, jednakże to co ją od nich wyróżnia to możliwość zagnieżdżenia. Ponieważ rozdziały mogą posiadać podrozdziały, a te z kolei mogą być podzielone na jeszcze mniejsze części, co może zostać uwzględnione w takim spisie treści, konieczne jest pozwolenie przechowywania przez każdą pozycje swojej własnej tablicy. A skoro sam spis posiada takie same atrybuty co jej elementy, postanowiłem nie tworzyć dodatkowej struktury Item jak we wcześniej omówionych strukturach. Swift zapewnia nam domyślny inizjalizator więc po raz kolejny unikamy konieczności implementowania go ręcznie.
+\texttt{EPUBTableOfContents} posiada własności, które znamy już z poprzednich struktur, jednakże to co ją od nich wyróżnia to możliwość zagnieżdżenia. Rozdziały mogą posiadać podrozdziały, a te z kolei mogą być podzielone na jeszcze mniejsze części, co może zostać uwzględnione w takim spisie treści. Konieczne jest pozwolenie przechowywania przez każdą pozycje swojej własnej tablicy. A skoro sam spis posiada takie same atrybuty co jej elementy, postanowiłem nie tworzyć dodatkowej struktury \texttt{Item} jak we wcześniej omówionych strukturach. Swift zapewnia nam domyślny inizjalizator, więc po raz kolejny unikamy konieczności implementowania go ręcznie.
 
 \section{Parser}
 
-Pierwotnie planowałem opisać Parser w rozdziale poświęconym modelowi, ponieważ w architekturze MVC biblioteki EPUBKit jego rolna mocno wpasowuje się w definicję modelu, ponieważ to własnie on go tworzy. Jednakże zdecydowałem, że rozsądniej będzie gdy przeznaczę na to osobny podrozdział ze względu na to jak obszerny jest to temat ze względu na jego architekturę, oraz ilość wykonywanych operacji.
+Pierwotnie planowałem opisać parser w rozdziale poświęconym modelowi, ponieważ w architekturze MVC biblioteki EPUBKit jego rolna mocno wpasowuje się w definicję modelu, ponieważ to właśnie on go tworzy. Jednakże zdecydowałem, że rozsądniej będzie, gdy przeznaczę na to osobny podrozdział ze względu na to jak obszerny jest to temat ze względu na jego architekturę, oraz ilość wykonywanych operacji.
 
-\begin{lstlisting}[caption={Struktura folderu narzędzi służących modelowi EPUBKit.}, language=bash]
+\begin{lstlisting}[caption={Struktura folderu narzędzi służących modelowi EPUBKit}, language=bash,label=ertyuio]
   Utils
   |-- EPUBParsable.swift
   |-- EPUBParser.swift
@@ -253,9 +253,9 @@ Pierwotnie planowałem opisać Parser w rozdziale poświęconym modelowi, poniew
 
 \subsection{EPUBParsable}
 
-Aby praca parsera była dobrze zorganizowana, zdecydowałem się zaimplementować wzorzec projektory Budowniczy (ang. Buildier), ponieważ jest on zgodny z naturą parsera, który wywłaszcza informacje z publikacji EPUB a następnie na ich podstawie buduje model EPUBKit którym jest EPUBDocument. Pierwszym krokiem w celu zaimplementowania wzorcu Budowniczego było stworzenie protokołu, który zostanie zastosowany przez parser.
+Aby praca parsera była dobrze zorganizowana, zdecydowałem się zaimplementować wzorzec projektory \textit{Budowniczy} (ang. Buildier), ponieważ jest on zgodny z naturą parsera, który wywłaszcza informacje z publikacji EPUB, a następnie na ich podstawie buduje model \texttt{EPUBKit}, którym jest \texttt{EPUBDocument}. Pierwszym krokiem w celu zaimplementowania wzorcu budowniczego było stworzenie protokołu, który zostanie zastosowany przez parser.
 
-\begin{lstlisting}[caption={Protokół EPUBParsable.}, language=swift]
+\begin{lstlisting}[caption={Protokół EPUBParsable}, language=swift,label=fghj]
 protocol EPUBParsable {
     func unzip(archive name: String) throws -> URL
     func getContentPath(from bookDirectory: URL) throws -> URL
@@ -266,21 +266,21 @@ protocol EPUBParsable {
 }
 \end{lstlisting}
 
-Protokół ten deklaruje metody, które każda stosująca go klasa lub struktura będzie musiała zaimplementować. Konwencja nazewnictwa protokołów w swifcie jest taka, aby nazywać je tak aby dobrze określały naturę klasy którą go stosuje, aby pasowały do cech które nadają klasom. Jeżeli protokół opisuje czym klasa jest, to powinien być czytany jako rzeczownik jak np. protokół standardowej biblioteki swifta MutableCollection. Protokoły, które opisują funkcjonalność, pewne dodatkowe możliwości powinny być kończyć się -ible lub -able. Dzięki tej konwencji, odrazu staje się jasne jakich cech nabywa klasa juz w momencie oznaczenia że stosuje ona dany protokół. Zaimplementowanie przez stosującą protokół klasę jego metod jest wymagane, ponieważ na ten moment nie istnieje żadna implementacja domyślna. Swift pozwala na dostarczenie tak zwanych rozszerzeń deklarowanych typów przy pomocy słowa kluczowego "extension". Dzięki tym rozszerzeniom deklarację typu można podzielić na schludnie wyglądające i dobrze zorganizowane bloki kodu, co zostanie przedstawione przy omawianiu klasy EPUBParser.
+Protokół ten deklaruje metody, które każda stosująca go klasa lub struktura będzie musiała zaimplementować. Konwencja nazewnictwa protokołów w swiftcie jest taka, aby nazywać je tak, aby dobrze określały naturę klasy którą go stosuje, aby pasowały do cech które nadają klasom. Jeżeli protokół opisuje czym klasa jest, to powinien być czytany jako rzeczownik jak np. protokół standardowej biblioteki swifta \texttt{MutableCollection}. Protokoły, które opisują funkcjonalność, pewne dodatkowe możliwości powinny być kończyć się -ible lub -able. Dzięki tej konwencji, odrazu staje się jasne jakich cech nabywa klasa już w momencie oznaczenia, że stosuje ona dany protokół. Zaimplementowanie przez stosującą protokół klasę jego metod jest wymagane, ponieważ na ten moment nie istnieje żadna implementacja domyślna. Swift pozwala na dostarczenie tak zwanych rozszerzeń deklarowanych typów przy pomocy słowa kluczowego \texttt{extension}. Dzięki tym rozszerzeniom deklarację typu można podzielić na schludnie wyglądające i dobrze zorganizowane bloki kodu, co zostanie przedstawione przy omawianiu klasy \texttt{EPUBParser}.
 
-\begin{lstlisting}[caption={Deklaracja wyrażenia "extension"\cite{theSwiftProgrammingLanguageDeclarations}.},language=swift-reference]
+\begin{lstlisting}[caption={Deklaracja wyrażenia \texttt{extension}\cite{theSwiftProgrammingLanguageDeclarations}},language=swift-reference,label=sdfghjk]
 extension (type name): (adopted protocols) {
     (declarations)
 }
 \end{lstlisting}
 
-Takie rozszerzenie można wykorzystać również w protokołach (które są typem tak samo jak klasa czy struktura), i dostarczyć im domyślną implementacje metody lub zadeklarować nowe. Jednakże w tym przypadku nie będę tego robił ze względu na to iż EPUBParser powinien zaimplementować każdą z nich w kontekście konkretnego dokumentu.
+Takie rozszerzenie można wykorzystać również w protokołach, które są typem tak samo jak klasa czy struktura, i dostarczyć im domyślną implementacje metody lub zadeklarować nowe. Jednakże w tym przypadku nie będę tego robił ze względu na to, iż \texttt{EPUBParser} powinien zaimplementować każdą z nich w kontekście konkretnego dokumentu.
 
 \subsection{EPUBParser}
 
-Zadaniem parsera jest zebranie wszystkich informacji na temat publikacji i enkapsulacji ich w zmiennych o typach które posiada EPUBDocument, i pełni rolę budowniczego. Jego deklaracja to zbiór właściwości o typie opcjonalnym oraz inicjalizator, w którym odbywa się cały proces budowania modelu, poprzez parsowanie publikacji EPUB.
+Zadaniem parsera jest zebranie wszystkich informacji na temat publikacji i enkapsulacji ich w zmiennych o typach, które posiada \texttt{EPUBDocument} i pełni rolę budowniczego. Jego deklaracja to zbiór właściwości o typie opcjonalnym oraz inicjalizator, w którym odbywa się cały proces budowania modelu, poprzez parsowanie publikacji EPUB.
 
-\begin{lstlisting}[caption={Klasa EPUBParser.}, language=swift]
+\begin{lstlisting}[caption={Klasa EPUBParser}, language=swift,label=fsdfsrteytrv]
 class EPUBParser {
     var directory: URL?
     var contentDirectory: URL?
@@ -311,9 +311,9 @@ class EPUBParser {
 }
 \end{lstlisting}
 
-W przeciwieństwie do wcześniej zadeklarowanych typów, EPUBParser tak jak i protokół EPUBParsable, nie są oznaczone jako publiczne, więc nie mogą zostać użyte poza biblioteką. Domyślnym parametrem dostępu w Swifcie jest "internal", który ogranicza typ, czy właściwość do użytku w obrębie jednego projektu, w tym przypadku biblioteki. Powodem tego jest sposób w jaki zorganizowana została inizjalizacja EPUBDocument. Osobie z zewnątrz najprawdopodobniej nie zależy aby się dowiedzieć w jaki sposób powstaje instancja dokumentu, dla niej ważne jest to, że może otrzymać ją podając jako argument inicjalizatora nazwę pliku, a cały proces będzie odbywał się poza jego zasięgiem. EPUBParser odgrywa tutaj rolę budowniczego, i w momencie rozpoczęcia inicjalizacji dokumentu jego własna instancja zostaje stworzona i "oddelegowana" do wykonania zadania do którego jest przeznaczona. Klasa EPUBParser nie ma innego zastosowania, i nie ma absolutnie żadnego powodu aby używać jej niezależnie i do innych celów niż ten jeden, z góry narzucony. Dlatego też ani klasa, ani jej własności nie są oznaczone publicznymi. Warto zwrócić uwagę na to, iż w swojej deklaracji EPUBParser nie stosuje protokołu EPUBParsable, co wynika ze stylu i wytycznych apple odnośnie projektowania klas. Klasa powinna deklarować to co dla niej najbardziej elementarne, a dopiero przy użyciu "extension" funkcjonalność powinna zostawać do niej dodawana. I tak jest w tym przypadku, gdzie zadeklarowane są zmienne oraz inicjalizator który już wykonuje metody których jeszcze są dla niego nie znane, a zostaną dopiero zaimplementowane po zastosowaniu protokołu.
+W przeciwieństwie do wcześniej zadeklarowanych typów, \texttt{EPUBParser} tak jak i protokół \texttt{EPUBParsable}, nie są oznaczone jako publiczne, więc nie mogą zostać użyte poza biblioteką. Domyślnym parametrem dostępu w Swiftcie jest \texttt{internal}, który ogranicza typ, czy właściwość do użytku w obrębie jednego projektu, w tym przypadku biblioteki. Powodem tego jest sposób w jaki zorganizowana została inizjalizacja \texttt{EPUBDocument}. Osobie z zewnątrz najprawdopodobniej nie zależy, aby się dowiedzieć w jaki sposób powstaje instancja dokumentu, dla niej ważne jest to, że może otrzymać ją podając jako argument inicjalizatora nazwę pliku, a cały proces będzie odbywał się poza jego zasięgiem. \texttt{EPUBParser} odgrywa tutaj rolę budowniczego i w momencie rozpoczęcia inicjalizacji dokumentu, jego własna instancja zostaje stworzona i ,,oddelegowana'' do wykonania zadania do którego jest przeznaczona. Klasa \texttt{EPUBParser} nie ma innego zastosowania  i nie ma absolutnie żadnego powodu aby używać jej niezależnie i do innych celów niż ten jeden, z góry narzucony. Dlatego też ani klasa, ani jej własności nie są oznaczone publicznymi. Warto zwrócić uwagę na to, iż w swojej deklaracji \texttt{EPUBParser} nie stosuje protokołu \texttt{EPUBParsable}, co wynika ze stylu i wytycznych apple odnośnie projektowania klas. Klasa powinna deklarować to co dla niej najbardziej elementarne, a dopiero przy użyciu \texttt{extension} funkcjonalność powinna zostawać do niej dodawana. I tak jest w tym przypadku, gdzie zadeklarowane są zmienne oraz inicjalizator, który już wykonuje metody których jeszcze są dla niego nie znane, a zostaną dopiero zaimplementowane po zastosowaniu protokołu.
 
-\begin{lstlisting}[firstnumber=30,caption={Klasa EPUBParser stosuje protokół EPUBParsable.}, language=swift]
+\begin{lstlisting}[firstnumber=30,caption={Klasa EPUBParser stosuje protokół EPUBParsable}, language=swift,label=awa]
 //MARK: - EPUBParsable
 extension EPUBParser: EPUBParsable {
     func unzip(archive named: String) throws -> URL { ... }
@@ -325,9 +325,9 @@ extension EPUBParser: EPUBParsable {
 }
 \end{lstlisting}
 
-Dobrą praktyką jest dołączenie komentarzu przy każdym rozszerzeniu aby oznaczyć dodatkowo co oferuje dane rozszerzenie. Należy również pamiętać aby dla każdego stosowanego protokołu przeznaczyć osobne rozszerzenie w celu zwiększenia czytelności kodu. Omówię teraz, krok po kroku w jaki sposób postępuje inicjalizacja parsera, i w jaki sposób wywłaszcza on dane z publikacji w formacie EPUB prezentując kod implementacji każdej z metod protokołu.
+Dobrą praktyką jest dołączenie komentarzu przy każdym rozszerzeniu aby oznaczyć dodatkowo co oferuje dane rozszerzenie. Należy również pamiętać, aby dla każdego stosowanego protokołu przeznaczyć osobne rozszerzenie w celu zwiększenia czytelności kodu. Omówię teraz, krok po kroku w jaki sposób postępuje inicjalizacja parsera i w jaki sposób wywłaszcza on dane z publikacji w formacie EPUB prezentując kod implementacji każdej z metod protokołu.
 
-\begin{lstlisting}[language=swift-reference]
+\begin{lstlisting}[language=swift-reference,caption=aaaa,label=bbb]
   init(named: String) throws {
       do {
           ...
@@ -338,15 +338,15 @@ Dobrą praktyką jest dołączenie komentarzu przy każdym rozszerzeniu aby ozna
   }
 \end{lstlisting}
 
-Inicjalizator przyjmuje jako argument nazwę pliku publikacji, i składa się bloku do-catch w którym odbywa się parsowanie. W przypadku gdy któraś z metod rzuci błąd, zostanie on rzucony dalej i zostanie wyświetlona na konsoli informacja o błędzie, który został napotkany. Błędy, które mogą zostać rzucone są typu EPUBParserError, który zostanie omówiony pod koniec podrozdziału dotyczącego parsera. Przejdźmy zatem do instrukcji znajdujących się w bloku do-catch.
+Inicjalizator przyjmuje jako argument nazwę pliku publikacji i składa się bloku \texttt{do-catch} w którym odbywa się parsowanie. W przypadku, gdy któraś z metod rzuci błąd, zostanie on rzucony dalej i zostanie wyświetlona na konsoli informacja o błędzie, który został napotkany. Błędy, które mogą zostać rzucone są typu \texttt{EPUBParserError}, który zostanie omówiony pod koniec podrozdziału dotyczącego parsera. Przejdźmy zatem do instrukcji znajdujących się w bloku \texttt{do-catch}.
 
 \begin{lstlisting}[firstnumber=11, language=swift]
-    directory = try unzip(archive: named)
+directory = try unzip(archive: named)
 \end{lstlisting}
 
 Pierwszą czynnością parsera jest rozpakowanie archiwum .epub, które w rzeczywistości jest archiwum w stylu ZIP, co omówiono dokładnie w rozdziale trzecim. Dzięki wykorzystaniu open-sourcowej biblioteki ZIP, proces jest ten wyjątkowo prosty.
 
-\begin{lstlisting}[caption={Implementacja metody unzip(archive named:).},language=swift-reference]
+\begin{lstlisting}[caption={Implementacja metody unzip (archive named:)},language=swift-reference]
     func unzip(archive named: String) throws -> URL {
         Zip.addCustomFileExtension("epub")
         do {
@@ -359,16 +359,16 @@ Pierwszą czynnością parsera jest rozpakowanie archiwum .epub, które w rzeczy
     }
 \end{lstlisting}
 
-W pierwszej kolejności metoda dodaje do klasy Zip rozszerzenie ".epub" aby biblioteka rozpoznała plik jako archiwum. Następnie w bloku do-catch dochodzi do ustalenia lokalizacji pliku w paczce aplikacji oraz rozpakowania archiwum metodą, która zwraca ścieżkę do docelowego folderu, w którym znajduje się rozpakowana publikacja EPUB. Jeżeli proces rozpakowania przebiegnie bezbłędnie, metoda zwróci ścieżkę.
+W pierwszej kolejności metoda dodaje do klasy \textt{Zip} rozszerzenie .epub, aby biblioteka rozpoznała plik jako archiwum. Następnie w bloku \texttt{do-catch} dochodzi do ustalenia lokalizacji pliku w paczce aplikacji oraz rozpakowania archiwum metodą, która zwraca ścieżkę do docelowego folderu, w którym znajduje się rozpakowana publikacja EPUB. Jeżeli proces rozpakowania przebiegnie bezbłędnie, metoda zwróci ścieżkę.
 
 \begin{lstlisting}[firstnumber=12, language=swift]
     let contentPath = try getContentPath(from: directory!)
     contentDirectory = contentPath.deletingLastPathComponent()
 \end{lstlisting}
 
-Inicjalizator wywołuje następnie metodę, która lokalizuje w publikacji obowiązkowy plik "content.opf" w folderze "META-INF" a następnie szuka w nim elementu "rootfile", który jest plikiem OPF, opisującym zawartość całej publikacji.
+Inicjalizator wywołuje następnie metodę, która lokalizuje w publikacji obowiązkowy plik \texttt{content.opf} w folderze \texttt{META-INF}, a następnie szuka w nim elementu \texttt{rootfile}, który jest plikiem OPF, opisującym zawartość całej publikacji.
 
-\begin{lstlisting}[caption={Implementacja metody getContentPath(from bookDirectory:).},language=swift-reference]
+\begin{lstlisting}[caption={Implementacja metody getContentPath(from bookDirectory:)},language=swift-reference]
     func getContentPath(from bookDirectory: URL) throws -> URL {
         do {
             let path = bookDirectory.appendingPathComponent("META-INF/container.xml")
@@ -382,24 +382,24 @@ Inicjalizator wywołuje następnie metodę, która lokalizuje w publikacji obowi
     }
 \end{lstlisting}
 
-Po raz kolejny instrukcje metody znajdują się w bloku do-catch aby zapewnić obsługę ewentualnych błędów. W przypadku zlokalizowania pliku OPF, ścieżka do niego zostaje zwrócona a w przeciwnym wypadku, zostanie rzucony błąd. Jeżeli funkcja zwróci ścieżkę pliku OPF, inicjalizator przypisze do zmiennej "contentDirectory" ścieżkę do folderu w którym się on znajduje przez usunięcie ostatniego komponentu ścieżki.
+Po raz kolejny instrukcje metody znajdują się w bloku \texttt{do-catch}, aby zapewnić obsługę ewentualnych błędów. W przypadku zlokalizowania pliku OPF, ścieżka do niego zostaje zwrócona, a w przeciwnym wypadku zostanie rzucony błąd. Jeżeli funkcja zwróci ścieżkę pliku OPF, inicjalizator przypisze do zmiennej \texttt{contentDirectory} ścieżkę do folderu w którym się on znajduje przez usunięcie ostatniego komponentu ścieżki.
 
-\begin{lstlisting}[firstnumber=14, language=swift]
-        let data = try Data(contentsOf: contentPath)
-        let content = try AEXMLDocument(xml: data)
+\begin{lstlisting}[firstnumber=14, language=swift,caption=aaa,label=cccc]
+let data = try Data(contentsOf: contentPath)
+let content = try AEXMLDocument(xml: data)
 \end{lstlisting}
 
-Znając już lokalizację pliku OPF, należy go sparsować przy użyciu zewnętrznej biblioteki AEXML. Dzięki temu dostęp do elementów dokumentu będzie znacznie uproszczony, dokument zostanie przedstawiony w formie klasy AEXMLDocument. Jeżeli próba inicjalizacji klas Data oraz AEXMLDocument przebiegnie poprawnie, otrzymamy zmienna "content", z której parser będzie wywłaszczał kluczowe informacje dotyczące dokumentu.
+Znając już lokalizację pliku OPF, należy go sparsować przy użyciu zewnętrznej biblioteki AEXML. Dzięki temu dostęp do elementów dokumentu będzie znacznie uproszczony, dokument zostanie przedstawiony w formie klasy \texttt{AEXMLDocument}. Jeżeli próba inicjalizacji klas \texttt{Data} oraz \texttt{AEXMLDocument} przebiegnie poprawnie, otrzymamy zmienna \texttt{content}, z której parser będzie wywłaszczał kluczowe informacje dotyczące dokumentu.
 
-\begin{lstlisting}[firstnumber=16, language=swift]
-        metadata = getMetadata(from: content.root["metadata"])
-        manifest = getManifest(from: content.root["manifest"])
-        spine =  getSpine(from: content.root["spine"])
+\begin{lstlisting}[firstnumber=16, language=swift,caption=aa=,label=fdffr]
+metadata = getMetadata(from: content.root["metadata"])
+manifest = getManifest(from: content.root["manifest"])
+spine =  getSpine(from: content.root["spine"])
 \end{lstlisting}
 
-Inicjalizator gdy znajdzie się w posiadaniu dokumentu OPF w formie dokumentu AEXMLDocument, będzie następnie podawał jako argumenty odpowiednim funkcjom jego elementy.
+Inicjalizator, gdy znajdzie się w posiadaniu dokumentu OPF w formie dokumentu AEXMLDocument, będzie następnie podawał jako argumenty odpowiednim funkcjom jego elementy.
 
-\begin{lstlisting}[caption={Implementacja metody getMetadata(from xmlElement:).},language=swift-reference]
+\begin{lstlisting}[caption={Implementacja metody \texttt{getMetadata(from xmlElement:)}},language=swift-reference,label=hhhh]
     func getMetadata(from xmlElement: AEXMLElement) -> EPUBMetadata {
         var metadata = EPUBMetadata()
         metadata.contributor = EPUBMetadata.Creator(name: xmlElement["dc:contributor"].value,
@@ -430,9 +430,9 @@ Inicjalizator gdy znajdzie się w posiadaniu dokumentu OPF w formie dokumentu AE
     }
 \end{lstlisting}
 
-Działanie metody agregującej meta dane jest relatywnie proste, musi ona przeanalizować elementy zawarte w przekazanej instancji AEXMLElement. Elementy te są oznaczone w sposób określony w specyfikacji, więc nazwane onę będą zawsze w ten sam sposób co znacznie upraszcza proces budowy instancji EPUBMetadata.
+Działanie metody agregującej metadane jest relatywnie proste, musi ona przeanalizować elementy zawarte w przekazanej instancji \texttt{AEXMLElement}. Elementy te są oznaczone w sposób określony w specyfikacji, więc nazwane będą zawsze w ten sam sposób co znacznie upraszcza proces budowy instancji \texttt{EPUBMetadata}.
 
-\begin{lstlisting}[caption={Implementacja metody getManifest(from xmlElement:).},language=swift-reference]
+\begin{lstlisting}[caption={Implementacja metody \texttt{getManifest(from xmlElement:)}},language=swift-reference,label=gggg]
     func getManifest(from xmlElement: AEXMLElement) -> EPUBManifest {
         var items: [String:EPUBManifest.Item] = [:]
         for item in xmlElement["item"].all! {
@@ -446,9 +446,9 @@ Działanie metody agregującej meta dane jest relatywnie proste, musi ona przean
     }
 \end{lstlisting}
 
-Metoda "getManifest(from content:)" w pierwszej kolejności tworzy instancję słownika, który znamy ze struktury EPUBManifest. reprezentuje on wszystkie elementy wymienione w manifeście. Następnie iteruje po tablicy elementów zawartych w parametrze "xmlElement", i inicjalizuje przy każdym z nich nową instancję struktury EPUBManifest.Item z informacji, które udało jej się wywłaszczyć.
+Metoda \texttt{getManifest(from content:)} w pierwszej kolejności tworzy instancję słownika, który znamy ze struktury \texttt{EPUBManifest}. Reprezentuje on wszystkie elementy wymienione w manifeście. Następnie iteruje po tablicy elementów zawartych w parametrze \texttt{xmlElement}, i inicjalizuje przy każdym z nich nową instancję struktury \texttt{EPUBManifest.Item} z informacji, które udało jej się wywłaszczyć.
 
-\begin{lstlisting}[caption={Implementacja metody getSpine(from xmlElement:).},language=swift-reference]
+\begin{lstlisting}[caption={Implementacja metody \texttt{getSpine(from xmlElement:)}},language=swift-reference,label=jjjj]
     func getSpine(from xmlElement: AEXMLElement) -> EPUBSpine {
         var items: [EPUBSpine.Item] = []
         for item in xmlElement["itemref"].all! {
@@ -462,9 +462,9 @@ Metoda "getManifest(from content:)" w pierwszej kolejności tworzy instancję s�
     }
 \end{lstlisting}
 
-W identycznym stylu działa metoda "getSpine(from content:)", której zadaniem jest stworzenie instancji struktury EPUBSpine.
+W identycznym stylu działa metoda \texttt{getSpine(from content:)}, której zadaniem jest stworzenie instancji struktury \texttt{EPUBSpine}.
 
-\begin{lstlisting}[firstnumber=19, language=swift]
+\begin{lstlisting}[firstnumber=19, language=swift,caption=test,label=test]
         let tocPath = contentDirectory!.appendingPathComponent(try manifest!.path(forItemWithId: spine?.toc ?? ""))
         let tocData = try Data(contentsOf: tocPath)
         let tocContent = try AEXMLDocument(xml: tocData)
@@ -473,7 +473,7 @@ W identycznym stylu działa metoda "getSpine(from content:)", której zadaniem j
 
 Ostatnimi czynnościami parsera są odszukanie w publikacji dokumentu typu NCX, który reprezentuje spis treści (table of contents) i przedstawienie go w formie struktury EPUBTableOfContents poprzez parsowanie pliku NCX.
 
-\begin{lstlisting}[caption={Implementacja metody getTableOfContents(from xmlElement:).},language=swift-reference]
+\begin{lstlisting}[caption={Implementacja metody \texttt{getTableOfContents(from xmlElement:)}},language=swift-reference,label=ioioioio]
     func getTableOfContents(from xmlElement: AEXMLElement) -> EPUBTableOfContents {
         let item = xmlElement["head"]["meta"].all(withAttributes: ["name":"dtb=uid"])?.first?.attributes["content"]
         var tableOfContents = EPUBTableOfContents(label: xmlElement["docTitle"]["text"].value!, id: "0", item: item, subTable: [])
@@ -502,7 +502,7 @@ W tym miejscu praca parsera kończy się. Jego inicjalizacja dobiegła końcowi,
 
 Aby w razie niepowodzenia któregoś z etapów parsowania błąd był bardziej czytelny, zdecydowałem aby zaimplementować własny typ błędów.
 
-\begin{lstlisting}[caption={Enumeracja EPUBParserError.},language=swift]
+\begin{lstlisting}[caption={Enumeracja \texttt{EPUBParserError}},language=swift,label=ertyu]
 enum EPUBParserError {
     case unZipError
     case containerParseError
@@ -511,9 +511,9 @@ enum EPUBParserError {
 }
 \end{lstlisting}
 
-EPUBParserError przewiduje kilka sytuacji, które mogą wymagać wyrzucenia błędu ponieważ są one krytyczny, a dalsze przeprowadzenie procesu parsowanie nie jest możliwe. Taką sytuacją może być niepowodzenie przy rozpakowywaniu archiwum, a ponieważ biblioteka która jest wykorzystana do tego celu posiada obsługę błędów, to w razie się jego pojawienia nie zostanie on przeoczony. Gdyby parser próbował kontynuować swoją pracę, oczywiście skończyło by się to niepowodzeniu każdej instrukcji. Dzięki zadeklarowanemu typowi, można w prosty sposób wykryć w którym miejscu program się przerywa.
+\texttt{EPUBParserError} przewiduje kilka sytuacji, które mogą wymagać wyrzucenia błędu ponieważ są one krytyczny, a dalsze przeprowadzenie procesu parsowanie nie jest możliwe. Taką sytuacją może być niepowodzenie przy rozpakowywaniu archiwum, a ponieważ biblioteka która jest wykorzystana do tego celu posiada obsługę błędów, to w razie się jego pojawienia nie zostanie on przeoczony. Gdyby parser próbował kontynuować swoją pracę, oczywiście skończyło by się to niepowodzeniu każdej instrukcji. Dzięki zadeklarowanemu typowi, można w prosty sposób wykryć w którym miejscu program się przerywa.
 
-\begin{lstlisting}[firstnumber=8,caption={Rozszeżenie EPUBParserError z zastosowaniem protokołu LocalizedError.},language=swift]
+\begin{lstlisting}[firstnumber=8,caption={Rozszeżenie EPUBParserError z zastosowaniem protokołu LocalizedError},language=swift,label=opopopop]
 //MARK: - LocalizedError
 extension EPUBParserError: LocalizedError {
     var errorDescription: String? {
@@ -555,9 +555,9 @@ extension EPUBParserError: LocalizedError {
 }
 \end{lstlisting}
 
-Jednakże deklaracje EPUBParserError jeszcze nie czyni typu błędem, który by był tolerowany przez Swift, ponieważ nie stosuje protokołu "Error". Natomiast aby zapewnić dodatkową wartość informacyjną, zdecydowałem się zastosować protokół "LocalizedError", który wymaga zadeklarowania zmiennych które dostarczą opisy błędu, jego przyczyny oraz sugestię jego rozwiązania. Wyrażenie "switch" w swifcie pozwala na zdefiniowanie działania dla każdego przypadku błędu gdy jako argument poda się "self", czyli samego siebie a w tym przypadku konkretna instancję enumeracji.
+Jednakże deklaracje \texttt{EPUBParserError} jeszcze nie czynią typu błędem, który byłby tolerowany przez Swift, ponieważ nie stosuje protokołu \texttt{Error}. Natomiast aby zapewnić dodatkową wartość informacyjną, zdecydowałem się zastosować protokół \texttt{LocalizedError}, który wymaga zadeklarowania zmiennych które dostarczą opisy błędu, jego przyczyny oraz sugestię jego rozwiązania. Wyrażenie \texttt{switch} w swiftcie pozwala na zdefiniowanie działania dla każdego przypadku błędu gdy jako argument poda się \texttt{self}, czyli samego siebie a w tym przypadku konkretną instancję enumeracji.
 
-Tutaj kończy się opisywanie parsera, który w roli "budowniczego" przyczynia się do inicjalizacji EPUBDocument poprzez parsowanie publikacji EPUB. Jest on częścią modelu w architekturze MVC, ponieważ na dobrą sprawę nie odpowiada za to w jaki sposób dane są wyświetlane na widoku więc nie sposób nazwać go kontrolorem. Prawdę mówiąc, rola kontrolera zostanie opisana przy okazji omawiania widoku ponieważ ściśle ze sobą współpracują, a jak już wcześniej wspomniano, biblioteka EPUBKit dostarcza bardzo prosty widok dla modelu.
+Tutaj kończy się opisywanie parsera, który w roli budowniczego przyczynia się do inicjalizacji \texttt{EPUBDocument} poprzez parsowanie publikacji EPUB. Jest on częścią modelu w architekturze MVC, ponieważ na dobrą sprawę nie odpowiada za to w jaki sposób dane są wyświetlane na widoku, więc nie sposób nazwać go kontrolerem. Prawdę mówiąc, rola kontrolera zostanie opisana przy okazji omawiania widoku, ponieważ ściśle ze sobą współpracują, a jak już wcześniej wspomniano, biblioteka EPUBKit dostarcza bardzo prosty widok dla modelu.
 
 \section{Widok}
 
