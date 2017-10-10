@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Witold Bobrowski
+# Witold Bobrowski ; Group 2
 
 # FUNCTIONS
 quiet() {
