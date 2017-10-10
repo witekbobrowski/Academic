@@ -6,7 +6,7 @@ quiet() {
 	exit $error
 }
 display_help() {
-	echo "Usage: ./script.sh [--help] [-h] [--quiet] [-q]"
+	echo "Usage: ./whoami-bash.sh [--help] [-h] [--quiet] [-q]"
 	echo
 	echo "Options:"
 	echo "	-h | --help 	Show help"

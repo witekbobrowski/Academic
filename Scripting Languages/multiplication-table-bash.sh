@@ -5,11 +5,7 @@
 
 # reduce: Take two parameters and concatenate arg1 with arg2 depending on arg2 value
 reduce() {
-  if (( $1 < 10 )); then
-    buffer="$buffer  $1"
-  else
-    buffer="$buffer $1"
-  fi
+  (( $1 < 10 )) && buffer="$buffer  $1" || buffer="$buffer $1"
 }
 
 # print_multiplication_table: iterate over 1-9 digits and using 'reduce' accumulate output in 'buffer'
