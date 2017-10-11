@@ -20,4 +20,6 @@ print_multiplication_table() {
   done
 }
 
+# Main program
+
 print_multiplication_table

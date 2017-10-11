@@ -30,14 +30,14 @@ reduce() {
 #	3) Operator for the loop to determine in which direction should it go
 #	3) Operator for the loop to determine the way current position should change
 print_multiplication_table() {
- 	for ((i = $1; $(($i $3 $2)); $(($4"i")))); do
+	for ((i = $1; $(($i $3 $2)); $(($4"i")))); do
 		buffer=""
 		reduce $i "|"
-    	for ((j = $1; $(($j $3 $2)); $(($4"j")))); do
-      		reduce $(( $i * $j ))
-    	done
-    	echo "$buffer"
-  	done
+  	for ((j = $1; $(($j $3 $2)); $(($4"j")))); do
+    	reduce $(( $i * $j ))
+		done
+    echo "$buffer"
+	done
 }
 
 # For the sake of nice and readable output
@@ -56,7 +56,7 @@ define_longest_result_length() {
 validate_arguments_types() {
 	local is_numerical='^[+|-]*[0-9]+$'
 	if ! [[ $1 =~ $is_numerical ]] || ! [[ $2 =~ $is_numerical ]]; then
-   		echo "error: You have to use a pair of numbers as input!" >&2; exit 1
+  	echo "error: You have to use a pair of numbers as input!" >&2; exit 1
 	fi
 }
 
