@@ -16,11 +16,27 @@ change_operator="++"
 
 # Accumulate buffer with new value and proper spacing
 # Arguments:
-#   1) A number that should be added to the buffer
-#   2) Oprional suffix that will be added directly after the first argument
-reduce() {
-	local space_count="$(printf "%$(($(($length_of_longest_result - ${#1} + 1))))s")"
-	buffer+="${space_count// /" "}"$1$2
+#	1) Separator that will be used as spacing
+#   2) A number that should be added to the buffer
+#   3) Optional suffix that will be added directly after the first argument
+reduce_with_separator() {
+	local space_separator="$(printf "%$(($(($length_of_longest_result - ${#2} + 1))))s")"
+	buffer+="${space_separator// /"$1"}"$2$3
+}
+
+# Print table header
+# Arguments:
+#   1) First number to determine the range
+#   2) Second number to determine the range
+#	3) Operator for the loop to determine in which direction should it go
+#	3) Operator for the loop to determine the way current position should change
+print_table_header() {
+	buffer=""
+	reduce_with_separator " " "*" " "
+	for ((j = $1; $(($j $3 $2)); $(($4"j")))); do
+		reduce_with_separator "_" $j
+	done
+	echo "$buffer"
 }
 
 # Print multiplication table
@@ -32,11 +48,11 @@ reduce() {
 print_multiplication_table() {
 	for ((i = $1; $(($i $3 $2)); $(($4"i")))); do
 		buffer=""
-		reduce $i "|"
-  	for ((j = $1; $(($j $3 $2)); $(($4"j")))); do
-    	reduce $(( $i * $j ))
+		reduce_with_separator " " $i "|"
+  		for ((j = $1; $(($j $3 $2)); $(($4"j")))); do
+    		reduce_with_separator " " $(( $i * $j ))
 		done
-    echo "$buffer"
+    	echo "$buffer"
 	done
 }
 
@@ -74,4 +90,5 @@ validate_arguments_order() {
 
 validate_arguments_types $1 $2
 validate_arguments_order $1 $2
+print_table_header $1 $2 $comparsion_operator $change_operator
 print_multiplication_table $1 $2 $comparsion_operator $change_operator
