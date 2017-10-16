@@ -27,7 +27,7 @@ length_of_longest_result=1
 #   3) Optional suffix that will be added directly after the first argument
 reduce_with_separator() {
 	local space_separator="$(printf "%$(($(($length_of_longest_result - ${#2} + 1))))s")"
-	buffer+="${space_separator// /"$1"}"$2$3
+	buffer+="${space_separator// /$1}"$2$3
 }
 
 # Print table header
@@ -39,7 +39,7 @@ reduce_with_separator() {
 print_table_header() {
 	buffer=""
 	reduce_with_separator " " "$calculation_operator" " "
-	for ((j = $1; $(($j $3 $2)); $(($4"j")))); do
+	for ((j = $1; $(($j $3 $2)); $(($4j)))); do
 		reduce_with_separator "_" $j
 	done
 	echo "$buffer"
@@ -52,10 +52,10 @@ print_table_header() {
 #	3) Operator for the loop to determine in which direction should it go
 #	3) Operator for the loop to determine the way current position should change
 print_operation_table() {
-	for ((i = $1; $(($i $3 $2)); $(($4"i")))); do
+	for ((i = $1; $(($i $3 $2)); $(($4i)))); do
 		buffer=""
 		reduce_with_separator " " $i "|"
-  		for ((j = $1; $(($j $3 $2)); $(($4"j")))); do
+  		for ((j = $1; $(($j $3 $2)); $(($4j)))); do
     		reduce_with_separator " " $(( $i $calculation_operator $j ))
 		done
     	echo "$buffer"
@@ -123,7 +123,7 @@ validate_arguments() {
 				b=$argument
 			fi
 		elif [[ $argument =~ $is_operator ]]; then
-			calculation_operator="$argument"
+			calculation_operator=$argument
 		else
 			display_error
 		fi
