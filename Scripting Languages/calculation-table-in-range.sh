@@ -94,7 +94,7 @@ display_error() {
 	echo "	> (Is greater)"
 	echo "	>= (Is greater or equal)"
 	echo
-	echo "Note: order of arguments is not strictly defined"
+	echo "Note: order of arguments is not strictly defined, any any special characers need to be escaped with '\\'"
 	echo
 	echo "Example: ./calculation-table-in-range-bash.sh 1 * 15"
 	echo
@@ -114,8 +114,8 @@ display_error() {
 #   1) Second argument of the program
 validate_arguments() {
 	local is_numerical='^[+|-]*[0-9]+$'
-	local is_operator='^[\+\-\/\*\%\>\<]$|^\*{2}$|^\<\=$|^\>\=$|^\=\=$'
-	for argument in $1 $2 $3; do
+	local is_operator='^[\+-\/\*\%\>\<]$|^\*{2}$|^\<\=$|^\>\=$|^\=\=$'
+	for argument in "$1" "$2" "$3"; do
 		if [[ $argument =~ $is_numerical ]]; then
 			if [[ $a = "" ]]; then
 				a=$argument
@@ -140,8 +140,7 @@ validate_arguments_order() {
 }
 
 # Main program
-
-validate_arguments $1 $2 $3
+validate_arguments "$1" "$2" "$3"
 validate_arguments_order $a $b
 define_longest_result_length $a $b
 print_table_header $a $b $comparsion_operator $change_operator $calculation_operator
