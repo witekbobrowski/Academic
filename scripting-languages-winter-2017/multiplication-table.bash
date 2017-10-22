@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Witold Bobrowski ; Group 2
 #
-# Print calssic multiplication table
+# Print classic multiplication table
 
 # FUNCTIONS
 
