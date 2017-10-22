@@ -12,7 +12,7 @@ This folder contains my solutions to assignments for Scripting Languages course.
 - [x] 1. Print current user [`bash`](whoami.bash) [`tcsh`](whoami.tcsh)
 - [x] 2a. Multiplication table [`bash`](multiplication-table.bash) [`tcsh`](multiplication-table.tcsh)
 - [x] 2b. Multiplication table with given range [`bash`](multiplication-table-in-range.bash) [`tcsh`](multiplication-table-in-range.tcsh)
-- [ ] 2c. Any calculation table with given range [`bash`](calculation-table-in-range.bash) `tcsh`
+- [x] 2c. Any calculation table with given range [`bash`](calculation-table-in-range.bash) [`tcsh`](calculation-table-in-range.tcsh)
 - [ ] 3. Ping IP's in range `bash` `tcsh`
 - [ ] 4. Describe active IP `bash` `tcsh`
 
