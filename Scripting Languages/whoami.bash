@@ -13,7 +13,9 @@ quiet() {
 }
 
 display_help() {
-	echo "Usage: ./whoami-bash.sh [--help] [-h] [--quiet] [-q]"
+  echo "whoami.tcsh -- print current user"
+  echo
+	echo "Usage: ./whoami.bash [--help] [-h] [--quiet] [-q]"
 	echo
 	echo "Options:"
 	echo "	-h | --help 	Show help"
