@@ -7,6 +7,10 @@
 
 This folder contains my solutions to assignments for Scripting Languages course. Each of the assignments needs more the one solution (for example in `bash` and `tcsh`). I will do my best and try to follow the best practices while writing those scripts, but don't take my word for it...
 
+IMPORTANT: Before you consider writing your script in c shell - if reading my scripts in tcsh wasn't enough you might want to take a look at those:
+- [CSH PROGRAMMING CONSIDERED HARMFUL](http://www.faqs.org/faqs/unix-faq/shell/csh-whynot/)
+- [Top Ten Reasons not to use the C shell](http://www.grymoire.com/unix/CshTop10.txt)
+
 ## Tasks
 
 - [x] 1. Print current user [`bash`](whoami.bash) [`tcsh`](whoami.tcsh)
