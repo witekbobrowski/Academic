@@ -2,6 +2,7 @@
 ![OS](https://img.shields.io/badge/macOS-v10.13-orange.svg)
 ![bash](https://img.shields.io/badge/bash-v4.4-green.svg)
 ![tcsh](https://img.shields.io/badge/tcsh-v6.18.01-blue.svg)
+![perl](https://img.shields.io/badge/perl-v5.18.2-red.svg)
 
 ## About
 
@@ -25,7 +26,7 @@ IMPORTANT: Before you consider writing your script in c shell - if reading my sc
 
 #### Perl
 
-- [ ] 1. Print file `perl`
+- [ ] 1. Print file [`perl`](shell/print-file.pl)
 - [ ] 2. Print file without comments `perl`
 - [ ] 3. Print file with numbered lines `perl`
 - [ ] 4. Print file with numbered lines (separated) `perl`
@@ -42,4 +43,10 @@ Make sure the one of these shells is installed and shebang included in the scrip
 
 ```
 $ ./script.sh
+```
+
+#### perl
+
+```
+$ perl script.pl
 ```
