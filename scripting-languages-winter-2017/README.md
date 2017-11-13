@@ -13,12 +13,26 @@ IMPORTANT: Before you consider writing your script in c shell - if reading my sc
 
 ## Tasks
 
+#### Shell (bash and tcsh)
+
 - [x] 1. Print current user [`bash`](whoami.bash) [`tcsh`](whoami.tcsh)
 - [x] 2a. Multiplication table [`bash`](multiplication-table.bash) [`tcsh`](multiplication-table.tcsh)
 - [x] 2b. Multiplication table with given range [`bash`](multiplication-table-in-range.bash) [`tcsh`](multiplication-table-in-range.tcsh)
 - [x] 2c. Any calculation table with given range [`bash`](calculation-table-in-range.bash) [`tcsh`](calculation-table-in-range.tcsh)
 - [ ] 3. Ping IP's in range [`bash`](ping-in-range.bash) `tcsh`
 - [ ] 4. Describe active IP `bash` `tcsh`
+- [ ] 5. Counting server + client `bash` `tcsh`
+
+#### Perl
+
+- [ ] 1. Print file `perl`
+- [ ] 2. Print file without comments `perl`
+- [ ] 3. Print file with numbered lines `perl`
+- [ ] 4. Print file with numbered lines (separated) `perl`
+- [ ] 5. Print words in given range `perl`
+- [ ] 6. Print words in given range (numbers) `perl`
+- [ ] 7. Print words in given range with separator `perl`
+- [ ] 8. Print words in given range (numbers) with separator `perl`
 
 ## Usage
 
