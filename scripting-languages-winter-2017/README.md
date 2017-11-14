@@ -27,7 +27,7 @@ IMPORTANT: Before you consider writing your script in c shell - if reading my sc
 #### Perl
 
 - [ ] 1. Print file [`perl`](perl/print-file.pl)
-- [ ] 2. Print file without comments `perl`
+- [ ] 2. Print file without comments [`perl`](perl/print-file-comments.pl)
 - [ ] 3. Print file with numbered lines `perl`
 - [ ] 4. Print file with numbered lines (separated) `perl`
 - [ ] 5. Print words in given range `perl`
@@ -46,6 +46,8 @@ $ ./script.sh
 ```
 
 #### perl
+
+Again, make sure your perl installation matches the header in script file. Then simply run the following:
 
 ```
 $ perl script.pl
