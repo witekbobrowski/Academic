@@ -3,7 +3,4 @@
 #
 # Print file line-by-line
 
-use warnings;
-use strict;
-
-print while <>;
+print <>;

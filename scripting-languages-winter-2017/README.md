@@ -26,7 +26,7 @@ IMPORTANT: Before you consider writing your script in c shell - if reading my sc
 
 #### Perl
 
-- [ ] 1. Print file [`perl`](shell/print-file.pl)
+- [ ] 1. Print file [`perl`](perl/print-file.pl)
 - [ ] 2. Print file without comments `perl`
 - [ ] 3. Print file with numbered lines `perl`
 - [ ] 4. Print file with numbered lines (separated) `perl`
