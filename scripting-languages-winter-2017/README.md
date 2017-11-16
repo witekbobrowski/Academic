@@ -26,10 +26,7 @@ IMPORTANT: Before you consider writing your script in c shell - if reading my sc
 
 #### Perl
 
-- [ ] 1. Print file [`perl`](perl/print-file.pl)
-- [ ] 2. Print file without comments [`perl`](perl/print-file-comments.pl)
-- [ ] 3. Print file with numbered lines `perl`
-- [ ] 4. Print file with numbered lines (separated) [`perl`](perl/print-file-comments-numbered.pl)
+- [ ] 1-4. Print file with options [`perl`](perl/print-file.pl)
 - [ ] 5. Print words in given range `perl`
 - [ ] 6. Print words in given range (numbers) `perl`
 - [ ] 7. Print words in given range with separator `perl`
