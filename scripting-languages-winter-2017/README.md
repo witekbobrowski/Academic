@@ -26,7 +26,7 @@ IMPORTANT: Before you consider writing your script in c shell - if reading my sc
 
 #### Perl
 
-- [ ] 1-4. Print file with options [`perl`](perl/print-file.pl)
+- [x] 1-4. Print file with options [`perl`](perl/print-file.pl)
 - [ ] 5. Print words in given range `perl`
 - [ ] 6. Print words in given range (numbers) `perl`
 - [ ] 7. Print words in given range with separator `perl`
