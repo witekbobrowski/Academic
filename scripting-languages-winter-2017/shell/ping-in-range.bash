@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Witold Bobrowski ; Group 2
 #
-# Ping all adresses in given range
+# Ping all addresses in given range
 
 # VARIABLES (with default values)
 

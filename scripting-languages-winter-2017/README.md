@@ -20,7 +20,7 @@ IMPORTANT: Before you consider writing your script in c shell - if reading my sc
 - [x] 2a. Multiplication table [`bash`](shell/multiplication-table.bash) [`tcsh`](shell/multiplication-table.tcsh)
 - [x] 2b. Multiplication table with given range [`bash`](shell/multiplication-table-in-range.bash) [`tcsh`](shell/multiplication-table-in-range.tcsh)
 - [x] 2c. Any calculation table with given range [`bash`](shell/calculation-table-in-range.bash) [`tcsh`](shell/calculation-table-in-range.tcsh)
-- [ ] 3. Ping IP's in range [`bash`](shell/ping-in-range.bash) `tcsh`
+- [x] 3. Ping IP's in range [`bash`](shell/ping-in-range.bash) [`tcsh`](shell/ping-in-range.tcsh)
 - [ ] 4. Describe active IP `bash` `tcsh`
 - [ ] 5. Counting server + client `bash` `tcsh`
 
