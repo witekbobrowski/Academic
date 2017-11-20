@@ -32,7 +32,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="triangleContainerView" destination="oR4-aO-9SV" id="qsx-VT-BBS"/>
+                        <outlet property="starsContainerView" destination="oR4-aO-9SV" id="qsx-VT-BBS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

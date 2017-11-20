@@ -7,15 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		414BFB521FC3651E008E504E /* ShapeGrammarBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414BFB511FC3651E008E504E /* ShapeGrammarBrain.swift */; };
+		414BFB571FC375D1008E504E /* Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414BFB561FC375D1008E504E /* Shape.swift */; };
+		414BFB591FC37648008E504E /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414BFB581FC37648008E504E /* Triangle.swift */; };
+		414BFB5B1FC37ADE008E504E /* Star.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414BFB5A1FC37ADE008E504E /* Star.swift */; };
 		F9B8ECCD1F9F264B00C990E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B8ECCC1F9F264B00C990E6 /* AppDelegate.swift */; };
 		F9B8ECCF1F9F264B00C990E6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B8ECCE1F9F264B00C990E6 /* ViewController.swift */; };
 		F9B8ECD21F9F264B00C990E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9B8ECD01F9F264B00C990E6 /* Main.storyboard */; };
 		F9B8ECD41F9F264B00C990E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9B8ECD31F9F264B00C990E6 /* Assets.xcassets */; };
 		F9B8ECD71F9F264B00C990E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9B8ECD51F9F264B00C990E6 /* LaunchScreen.storyboard */; };
-		F9B8ECE41F9F271900C990E6 /* TriangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B8ECE31F9F271900C990E6 /* TriangleView.swift */; };
+		F9B8ECE41F9F271900C990E6 /* StarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B8ECE31F9F271900C990E6 /* StarsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		414BFB511FC3651E008E504E /* ShapeGrammarBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeGrammarBrain.swift; sourceTree = "<group>"; };
+		414BFB561FC375D1008E504E /* Shape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shape.swift; sourceTree = "<group>"; };
+		414BFB581FC37648008E504E /* Triangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
+		414BFB5A1FC37ADE008E504E /* Star.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Star.swift; sourceTree = "<group>"; };
 		F9B8ECC91F9F264B00C990E6 /* ShapeGrammar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShapeGrammar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9B8ECCC1F9F264B00C990E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F9B8ECCE1F9F264B00C990E6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -23,7 +31,7 @@
 		F9B8ECD31F9F264B00C990E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F9B8ECD61F9F264B00C990E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F9B8ECD81F9F264B00C990E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F9B8ECE31F9F271900C990E6 /* TriangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriangleView.swift; sourceTree = "<group>"; };
+		F9B8ECE31F9F271900C990E6 /* StarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +45,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		414BFB531FC37579008E504E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				414BFB511FC3651E008E504E /* ShapeGrammarBrain.swift */,
+				414BFB561FC375D1008E504E /* Shape.swift */,
+				414BFB581FC37648008E504E /* Triangle.swift */,
+				414BFB5A1FC37ADE008E504E /* Star.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		414BFB541FC3758A008E504E /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F9B8ECCE1F9F264B00C990E6 /* ViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		414BFB551FC375A6008E504E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F9B8ECE31F9F271900C990E6 /* StarsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		F9B8ECC01F9F264A00C990E6 = {
 			isa = PBXGroup;
 			children = (
@@ -57,8 +92,9 @@
 			isa = PBXGroup;
 			children = (
 				F9B8ECE01F9F26DF00C990E6 /* SupportingFiles */,
-				F9B8ECE21F9F26FB00C990E6 /* ViewControllers */,
-				F9B8ECE11F9F26F300C990E6 /* Views */,
+				414BFB531FC37579008E504E /* Model */,
+				414BFB541FC3758A008E504E /* View Controllers */,
+				414BFB551FC375A6008E504E /* Views */,
 				F9B8ECD01F9F264B00C990E6 /* Main.storyboard */,
 			);
 			path = ShapeGrammar;
@@ -73,22 +109,6 @@
 				F9B8ECD81F9F264B00C990E6 /* Info.plist */,
 			);
 			name = SupportingFiles;
-			sourceTree = "<group>";
-		};
-		F9B8ECE11F9F26F300C990E6 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				F9B8ECE31F9F271900C990E6 /* TriangleView.swift */,
-			);
-			name = Views;
-			sourceTree = "<group>";
-		};
-		F9B8ECE21F9F26FB00C990E6 /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				F9B8ECCE1F9F264B00C990E6 /* ViewController.swift */,
-			);
-			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,8 +182,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				414BFB571FC375D1008E504E /* Shape.swift in Sources */,
 				F9B8ECCF1F9F264B00C990E6 /* ViewController.swift in Sources */,
-				F9B8ECE41F9F271900C990E6 /* TriangleView.swift in Sources */,
+				F9B8ECE41F9F271900C990E6 /* StarsView.swift in Sources */,
+				414BFB5B1FC37ADE008E504E /* Star.swift in Sources */,
+				414BFB591FC37648008E504E /* Triangle.swift in Sources */,
+				414BFB521FC3651E008E504E /* ShapeGrammarBrain.swift in Sources */,
 				F9B8ECCD1F9F264B00C990E6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
