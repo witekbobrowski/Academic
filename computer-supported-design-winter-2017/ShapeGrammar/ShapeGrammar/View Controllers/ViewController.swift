@@ -9,8 +9,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet private weak var starsContainerView: UIView!
-    private var starsView: StarsView?
+    @IBOutlet private weak var shapeContainerView: UIView!
+    private var shapeView: ShapeView?
     private let brain = ShapeGrammarBrain()
     
     override func viewDidLoad() {
@@ -28,20 +28,23 @@ class ViewController: UIViewController {
 extension ViewController {
     
     private func configure() {
-        let starsView = StarsView(frame: starsContainerView.bounds)
-        starsContainerView.addSubview(starsView)
-        starsView.isOpaque = false
-        self.starsView = starsView
+        let shapeView = ShapeView(frame: shapeContainerView.bounds)
+        shapeContainerView.addSubview(shapeView)
+        shapeView.isOpaque = false
+        self.shapeView = shapeView
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(backgroundDidTap(_:)))
         view.addGestureRecognizer(tapGesture)
     }
     
 }
 
+//MARK: - ShapeGrammarBrainDelegate
 extension ViewController: ShapeGrammarBrainDelegate {
     
     func shapeGrammarBrain(_ shapeGrammarBrain: ShapeGrammarBrain, didEndCalculatingShape shape: Shape) {
-        //TODO: Redraw View with new shape
+        shapeView?.addPathForShape(shape)
     }
     
 }
+
+

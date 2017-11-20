@@ -16,7 +16,7 @@
 		F9B8ECD21F9F264B00C990E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9B8ECD01F9F264B00C990E6 /* Main.storyboard */; };
 		F9B8ECD41F9F264B00C990E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9B8ECD31F9F264B00C990E6 /* Assets.xcassets */; };
 		F9B8ECD71F9F264B00C990E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9B8ECD51F9F264B00C990E6 /* LaunchScreen.storyboard */; };
-		F9B8ECE41F9F271900C990E6 /* StarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B8ECE31F9F271900C990E6 /* StarsView.swift */; };
+		F9B8ECE41F9F271900C990E6 /* ShapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B8ECE31F9F271900C990E6 /* ShapeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +31,7 @@
 		F9B8ECD31F9F264B00C990E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F9B8ECD61F9F264B00C990E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F9B8ECD81F9F264B00C990E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F9B8ECE31F9F271900C990E6 /* StarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsView.swift; sourceTree = "<group>"; };
+		F9B8ECE31F9F271900C990E6 /* ShapeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +67,7 @@
 		414BFB551FC375A6008E504E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F9B8ECE31F9F271900C990E6 /* StarsView.swift */,
+				F9B8ECE31F9F271900C990E6 /* ShapeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -184,7 +184,7 @@
 			files = (
 				414BFB571FC375D1008E504E /* Shape.swift in Sources */,
 				F9B8ECCF1F9F264B00C990E6 /* ViewController.swift in Sources */,
-				F9B8ECE41F9F271900C990E6 /* StarsView.swift in Sources */,
+				F9B8ECE41F9F271900C990E6 /* ShapeView.swift in Sources */,
 				414BFB5B1FC37ADE008E504E /* Star.swift in Sources */,
 				414BFB591FC37648008E504E /* Triangle.swift in Sources */,
 				414BFB521FC3651E008E504E /* ShapeGrammarBrain.swift in Sources */,

@@ -14,6 +14,14 @@ class ShapeGrammarBrain {
     
 }
 
+extension ShapeGrammarBrain {
+    
+    public func defineTriangles(in star: Star) {
+        
+    }
+    
+}
+
 protocol ShapeGrammarBrainDelegate: AnyObject {
     func shapeGrammarBrain(_ shapeGrammarBrain: ShapeGrammarBrain, didEndCalculatingShape shape: Shape)
 }
