@@ -9,11 +9,26 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    private var triangleView: TriangleView?
+    private enum Constants {
+        static let trianglePairHeightRatio: CGFloat = 2/3
+        static let trianglePairOriginRatio: CGFloat = 1/3
+    }
+    
+    @IBOutlet private weak var triangleContainerView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
+    }
+    
+    @objc private func backgroundDidTap(_ recognizer: UITapGestureRecognizer) {
+        guard let triangleView = recognizer.view?.subviews.first as? TriangleView else { return }
+        guard !triangleView.isUpsideDown else { return }
+        let y = triangleView.bounds.height/2 - triangleView.height/2
+        let triangle = TriangleView(frame: CGRect(x: triangleView.bounds.origin.x, y: y, width: triangleView.bounds.width, height: triangleView.bounds.height))
+        triangleView.addSubview(triangle)
+        triangle.isOpaque = false
+        triangle.isUpsideDown = true
     }
 
 }
@@ -22,20 +37,11 @@ class ViewController: UIViewController {
 extension ViewController {
     
     private func configure() {
-        let triangle = TriangleView()
-        view.addSubview(triangle)
+        let triangle = TriangleView(frame: CGRect(origin: triangleContainerView.bounds.origin, size: CGSize(width: triangleContainerView.bounds.width, height: triangleContainerView.bounds.height * Constants.trianglePairHeightRatio)))
+        triangleContainerView.addSubview(triangle)
         triangle.isOpaque = false
-        triangle.frame = view.bounds
-        triangleView = triangle
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(backgroundDidTap(_:)))
-        view.addGestureRecognizer(tapGesture)
-    }
-    
-    @objc private func backgroundDidTap(_ recogniser: UITapGestureRecognizer) {
-        guard let isUpsideDown = triangleView?.isUpsideDown else {
-            return
-        }
-        triangleView?.isUpsideDown = !isUpsideDown
+        triangleContainerView.addGestureRecognizer(tapGesture)
     }
     
 }

@@ -25,12 +25,16 @@ class TriangleView: UIView {
         }
     }
     
+    public var size: CGFloat {
+        return min(bounds.width, bounds.height)
+    }
+    
+    public var height: CGFloat {
+        return (size * sqrt(3))/2
+    }
+    
     override func draw(_ rect: CGRect) {
         var path: UIBezierPath
-        let size: CGFloat = min(bounds.width, bounds.height)
-        print(size)
-        let height: CGFloat = (size * sqrt(3))/2
-        print(height)
         if isUpsideDown {
             path = UIBezierPath()
             path.move(to: CGPoint(x: bounds.width/2, y: bounds.height/2 + height/2))
