@@ -7,42 +7,70 @@
 
 import CoreGraphics
 
-class ShapeGrammarBrain {
+enum Location: Int {
+    case north = 0
+    case northEast = 1
+    case southEast = 2
+    case south = 3
+    case southWest = 4
+    case northWest = 5
+    
+    case center = 6
+}
 
-    private var stars: [[Star]] = []
+class ShapeGrammarBrain {
+    
+    private class Item {
+        var shape: Shape
+        var location: Location
+        var items: [Location:Item]
+        
+        init(shape: Shape, location: Location, items: [Location:Item]) {
+            self.shape = shape
+            self.location = location
+            self.items = items
+        }
+    }
+    
+    private var item: Item?
     public weak var delegate: ShapeGrammarBrainDelegate?
+    
+}
+
+//MARK: - Public
+extension ShapeGrammarBrain {
+    
     public var isEmpty: Bool {
-        return stars.isEmpty
+        return item == nil
     }
     
     public func clear() {
-        stars = []
+        item = nil
     }
     
-    public func addShape(_ shape: Shape) {
-        if let triangle = shape as? Triangle {
-            stars.append([Star(triangles: (triangle, nil))])
-        } else if let star = shape as? Star {
-            stars.append([star])
-        }
+    public func add(_ shape: Shape) {
+        item = Item(shape: shape, location: .center, items: [:])
         delegate?.shapeGrammarBrain(self, didBuildShape: shape)
     }
     
-    public func buildShapes() {
-        guard let stars = stars.last else {
+    public func build(in locations: [Location]) {
+        guard let item = item else {
             return
         }
-        var newStars: [Star] = []
-        var triangles: [Triangle] = []
-        for star in stars {
-            triangles.append(contentsOf: defineTriangles(in: star))
-        }
-        for triangle in triangles {
+        if let triangle = item.shape as? Triangle {
             let star = Star(triangle: triangle)
-            newStars.append(star)
+            item.shape = star
             delegate?.shapeGrammarBrain(self, didBuildShape: star)
+            return
         }
-        self.stars.append(newStars)
+        //TODO: Build only in desired locatnios
+    }
+    
+    public func random() {
+        guard let item = item else {
+            return
+        }
+        //TODO: Build random shape
     }
     
 }
@@ -50,26 +78,39 @@ class ShapeGrammarBrain {
 //MARK: - Private
 extension ShapeGrammarBrain {
     
-    private func defineTriangles(in star: Star) -> [Triangle] {
-        guard let triangleZero = star.triangles.0, let triangleOne = star.triangles.1 else {
-            return [star.triangles.0, star.triangles.1].flatMap {$0}
-        }
-        guard triangleZero.height > 3 && triangleOne.height > 3 else { return [] }
-        var triangles: [Triangle] = []
+    private func getTriangles(in star: Star) -> [Location:Triangle] {
+        guard star.triangles.0.height > 3 && star.triangles.1.height > 3 else { return [:] }
+        var triangles: [Location:Triangle] = [:]
         let center = star.center ?? .zero
-        let size = triangleOne.size/3
-        let regular = triangleOne.isUpsideDown ? triangleZero : triangleOne
-        let reverted = triangleOne.isUpsideDown ? triangleOne : triangleZero
-        let northVertix: CGPoint = regular.vertices.0.y == regular.vertices.1.y ? regular.vertices.2 : regular.vertices.0.y == regular.vertices.2.y ? regular.vertices.1 : regular.vertices.0
-        let southVertix: CGPoint = reverted.vertices.0.y == reverted.vertices.1.y ? reverted.vertices.2 : reverted.vertices.0.y == reverted.vertices.2.y ? reverted.vertices.1 : reverted.vertices.0
-        let height = (center.y - northVertix.y)/2
-        triangles.append(Triangle(rect: star.rect, vertices: (CGPoint(x: center.x - size/2, y: northVertix.y + height), northVertix, CGPoint(x: northVertix.x + size/2, y: center.y - height))))
-        triangles.append(Triangle(rect: star.rect, vertices: (CGPoint(x: center.x + size/2, y: center.y - height), CGPoint(x: center.x + size, y: center.y), CGPoint(x: center.x + size * 1.5, y: center.y - height))))
-        triangles.append(Triangle(rect: star.rect, vertices: (CGPoint(x: center.x + size/2, y: center.y + height), CGPoint(x: center.x + size, y: center.y), CGPoint(x: center.x + size * 1.5, y: center.y + height))))
-        triangles.append(Triangle(rect: star.rect, vertices: (CGPoint(x: center.x - size/2, y: southVertix.y - height), southVertix, CGPoint(x: center.x + size/2, y: southVertix.y - height))))
-        triangles.append(Triangle(rect: star.rect, vertices: (CGPoint(x: center.x - size/2, y: center.y + height), CGPoint(x: center.x - size, y: center.y), CGPoint(x: center.x - size * 1.5, y: center.y + height))))
-        triangles.append(Triangle(rect: star.rect, vertices: (CGPoint(x: center.x - size/2, y: center.y - height), CGPoint(x: center.x - size, y: center.y), CGPoint(x: center.x - size * 1.5, y: center.y - height))))
+        let size = star.triangles.1.size/3
+        let vertices = getVertices(in: star)
+        let height = (center.y - vertices[.north]!.y)/2
+        let internalNW = CGPoint(x: center.x - size/2, y: center.y - height)
+        let internalNE = CGPoint(x: center.x + size/2, y: center.y - height)
+        let internalE = CGPoint(x: center.x + size, y: center.y)
+        let internalSE = CGPoint(x: center.x + size/2, y: center.y + height)
+        let internalSW = CGPoint(x: center.x - size/2, y: center.y + height)
+        let internalN = CGPoint(x: center.x - size, y: center.y)
+        triangles[.north] = Triangle(rect: star.rect, vertices: (internalNW, vertices[.north]!, internalNE))
+        triangles[.northEast] = Triangle(rect: star.rect, vertices: (internalNE, internalE, vertices[.northEast]!))
+        triangles[.southEast] = Triangle(rect: star.rect, vertices: (internalSE, internalE, vertices[.southEast]!))
+        triangles[.south] = Triangle(rect: star.rect, vertices: (internalSW, vertices[.south]!, internalSE))
+        triangles[.southWest] = Triangle(rect: star.rect, vertices: (vertices[.southWest]!, internalN, internalSW))
+        triangles[.northWest] = Triangle(rect: star.rect, vertices: (vertices[.northWest]!, internalN, internalNW))
         return triangles
+    }
+    
+    private func getVertices(in star: Star) -> [Location:CGPoint] {
+        var vertices: [Location:CGPoint] = [:]
+        var sortedVertices = [star.triangles.0.vertices.0, star.triangles.0.vertices.1, star.triangles.0.vertices.2,
+                              star.triangles.1.vertices.0, star.triangles.1.vertices.1, star.triangles.1.vertices.2].sorted {$0.y < $1.y}
+        vertices[.north] = sortedVertices.first
+        vertices[.south] = sortedVertices.last
+        vertices[.northWest] = sortedVertices[1].x < sortedVertices[2].x ? sortedVertices[1] : sortedVertices[2]
+        vertices[.northEast] = sortedVertices[1].x < sortedVertices[2].x ? sortedVertices[2] : sortedVertices[1]
+        vertices[.southWest] = sortedVertices[3].x < sortedVertices[4].x ? sortedVertices[3] : sortedVertices[4]
+        vertices[.southEast] = sortedVertices[3].x < sortedVertices[4].x ? sortedVertices[4] : sortedVertices[3]
+        return vertices
     }
     
 }

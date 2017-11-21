@@ -14,14 +14,13 @@ struct Star: Shape {
     }
     
     var rect: CGRect
-    var triangles: (Triangle?, Triangle?)
+    var triangles: (Triangle, Triangle)
     var center: CGPoint? {
-        guard let triangleA = triangles.0, let triangleB = triangles.1 else { return nil }
-        return CGPoint(x: triangleA.center.x, y: triangleA.center.y + (triangleB.center.y - triangleA.center.y)/2)
+        return CGPoint(x: triangles.0.center.x, y: triangles.0.center.y + (triangles.1.center.y - triangles.0.center.y)/2)
     }
     init(rect: CGRect) {
-        self.rect = rect
-        self.triangles = (nil, nil)
+        let triangle = Triangle(rect: rect)
+        self.init(triangle: triangle)
     }
     
     init(triangle: Triangle) {
@@ -36,9 +35,9 @@ struct Star: Shape {
         self.rect = triangle.rect.union(newTriangle.rect)
     }
     
-    init(triangles: (Triangle?, Triangle?)) {
+    init(triangles: (Triangle, Triangle)) {
         self.triangles = triangles
-        self.rect = triangles.0?.rect.union(triangles.1?.rect ?? .zero) ?? .zero
+        self.rect = triangles.0.rect.union(triangles.1.rect)
     }
 
 }

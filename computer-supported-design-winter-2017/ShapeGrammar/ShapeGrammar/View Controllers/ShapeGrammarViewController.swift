@@ -33,9 +33,9 @@ class ShapeGrammarViewController: UIViewController {
         UIView.transition(with: shapeView, duration: 0.5, options: [.transitionCrossDissolve], animations: {
             if self.brain.isEmpty {
                 self.descriptionLabel.isHidden = true
-                self.brain.addShape(Triangle(rect: shapeView.bounds))
+                self.brain.add(Triangle(rect: shapeView.bounds))
             } else {
-                self.brain.buildShapes()
+                self.brain.build(in: [.north])
             }
         })
     }
