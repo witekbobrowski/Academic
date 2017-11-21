@@ -1,6 +1,6 @@
-#Zestaw 4
+# Assignment 4
 
-![balls](/Java/Zestaw_4/Balls.png)
+![balls](Balls.png)
 
 ## Threads
 

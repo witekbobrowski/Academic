@@ -1,6 +1,6 @@
-# Zestaw 9
+# Assignment 9
 
-![reflection](/Java/Zestaw_9/reflection.png)
+![reflection](reflection.png)
 
 ## Reflection
 

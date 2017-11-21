@@ -1,6 +1,6 @@
-# Zestaw 2
+# Assignment 2
 
-![adder](/Java/Zestaw_2/Adder.png)
+![adder](Adder.png)
 
 ## I/O operations, exceptions
 

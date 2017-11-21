@@ -1,6 +1,6 @@
-# Zestaw 7
+# Assignment 7
 
-![chat](/Java/Zestaw_7/Chat.png)
+![chat](Chat.png)
 
 credit: Client made by @vyzyv
 

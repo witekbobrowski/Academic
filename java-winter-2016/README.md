@@ -2,12 +2,14 @@
 
 Here you can find homework assignments for Java uni class.
 
-- [x] [Zestaw 1](https://github.com/witekbobrowski/Academic/tree/master/Java/Zestaw_1) `Introduction`
-- [x] [Zestaw 2](https://github.com/witekbobrowski/Academic/tree/master/Java/Zestaw_2) `I/O operations, exceptions`
-- [x] [Zestaw 3](https://github.com/witekbobrowski/Academic/tree/master/Java/Zestaw_3) `Mandelbrot`
-- [x] [Zestaw 4](https://github.com/witekbobrowski/Academic/tree/master/Java/Zestaw_4) `Threads`
-- [x] [Zestaw 5](https://github.com/witekbobrowski/Academic/tree/master/Java/Zestaw_5) `Generics`
-- [x] [Zestaw 6](https://github.com/witekbobrowski/Academic/tree/master/Java/Zestaw_6) `Serialize`
-- [x] [Zestaw 7](https://github.com/witekbobrowski/Academic/tree/master/Java/Zestaw_7) `Project: Instant Messenger`
-- [x] [Zestaw 8](https://github.com/witekbobrowski/Academic/tree/master/Java/Zestaw_8) `Native`
-- [x] [Zestaw 9](https://github.com/witekbobrowski/Academic/tree/master/Java/Zestaw_9) `Reflection`
+## Assignments
+
+- [x] 1. [`Introduction`](assignment-1-introduction/)
+- [x] 2. [`I/O operations, exceptions`](assignment-2-exceptions/)
+- [x] 3. [`Mandelbrot`](assignment-3-mandelbrot/)
+- [x] 4. [`Threads`](assignment-4-threads/)
+- [x] 5. [`Generics`](assignment-5-generics/)
+- [x] 6. [`Serialize`](assignment-6-serialize/)
+- [x] 7. [`Project: Instant Messenger`](assignment-7-messenger/)
+- [x] 8. [`Native`](assignment-8-native/)
+- [x] 9. [`Reflection`](assignment-9-reflection/)

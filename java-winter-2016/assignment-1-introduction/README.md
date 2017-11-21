@@ -1,6 +1,6 @@
-# Assignment 1
+# Zestaw 1
 
-![hello](/Java/Zestaw_1/Hello.png)
+![hello](Hello.png)
 
 ## Introduction
 

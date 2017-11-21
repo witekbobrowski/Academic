@@ -1,6 +1,6 @@
-# Zestaw 3
+# Assignment 3
 
-![mandelbrot](/Java/Zestaw_3/Mandelbrot.png)
+![mandelbrot](Mandelbrot.png)
 
 ## Mandelbrot
 

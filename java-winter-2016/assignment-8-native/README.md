@@ -1,6 +1,6 @@
-# Zestaw 8
+# Assignment 8
 
-![native](/Java/Zestaw_8/native.png)
+![native](native.png)
 
 ## Native
 
