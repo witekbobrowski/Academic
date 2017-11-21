@@ -17,8 +17,8 @@ class ShapeGrammarBrain {
     
     private var stars: [[Star]] = []
     
-    init() {
-        self.buildShapes()
+    public var isEmpty: Bool {
+        return stars.isEmpty
     }
     
 }
@@ -26,23 +26,42 @@ class ShapeGrammarBrain {
 //MARK: - Configuration
 extension ShapeGrammarBrain {
     
-    private func buildShapes() {
-        guard let stars = stars.first else {
+    public func clear() {
+        stars = []
+    }
+    
+    public func addShape(_ shape: Shape) {
+        if let triangle = shape as? Triangle {
+            stars.append([Star(triangles: (triangle, nil))])
+        } else if let star = shape as? Star {
+            stars.append([star])
+        }
+        delegate?.shapeGrammarBrain(self, didBuildShape: shape)
+    }
+    
+    public func buildShapes() {
+        guard let stars = stars.last else {
             return
         }
         var newStars: [Star] = []
+        var triangles: [Triangle] = []
         for star in stars {
-            for triangle in defineTriangles(in: star) {
-                let star = buildStar(from: triangle)
-                newStars.append(star)
-                delegate?.shapeGrammarBrain(self, didBuildShape: star)
-            }
+            triangles.append(contentsOf: defineTriangles(in: star))
+        }
+        for triangle in triangles {
+            let star = buildStar(from: triangle)
+            newStars.append(star)
+            delegate?.shapeGrammarBrain(self, didBuildShape: star)
         }
         self.stars.append(newStars)
     }
     
     private func defineTriangles(in star: Star) -> [Triangle] {
-        return []
+        guard let triangleZero = star.triangles.0, let triangleOne = star.triangles.1 else {
+            return [star.triangles.0, star.triangles.1].flatMap {$0}
+        }
+        
+        return [triangleZero, triangleOne]
     }
     
     private func buildStar(from triangle: Triangle) -> Star {

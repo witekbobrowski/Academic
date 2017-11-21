@@ -19,12 +19,15 @@ class ShapeView: UIView {
         path.stroke()
     }
 
-    public func addPathForShape(_ shape: Shape) {
+    public func addPathForShape(_ shape: Shape?) {
         var triangles: [Triangle] = []
         if let triangle = shape as? Triangle {
             triangles = [triangle]
         } else if let star = shape as? Star {
             triangles = [star.triangles.1, star.triangles.0].flatMap { $0 }
+        } else {
+            self.path = UIBezierPath()
+            return
         }
         let path = self.path
         for triangle in triangles {
