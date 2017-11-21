@@ -10,6 +10,7 @@ import UIKit
 class ShapeGrammarViewController: UIViewController {
     
     @IBOutlet private weak var label: UILabel!
+    @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var shapeContainerView: UIView!
     @IBOutlet private weak var button: UIButton!
     private let gradient = CAGradientLayer()
@@ -30,6 +31,7 @@ class ShapeGrammarViewController: UIViewController {
         }
         UIView.transition(with: shapeView, duration: 0.5, options: [.transitionCrossDissolve], animations: {
             if self.brain.isEmpty {
+                self.descriptionLabel.isHidden = true
                 self.brain.addShape(Triangle(rect: shapeView.bounds))
             } else {
                 self.brain.buildShapes()
@@ -40,6 +42,7 @@ class ShapeGrammarViewController: UIViewController {
     @objc private func buttonDidTap(_ sender: UIButton) {
         shapeView?.addPathForShape(nil)
         brain.clear()
+        descriptionLabel.isHidden = false
     }
     
 }
@@ -58,8 +61,11 @@ extension ShapeGrammarViewController {
     
     private func configureLabel() {
         label.text = "ShapeGrammar"
-        label.textColor = UIColor(red: 66/255, green: 66/255, blue: 66/255, alpha: 1)
-        label.textAlignment = .center
+        descriptionLabel.text = "Tap to turn every △ into ✡"
+        [label, descriptionLabel].forEach {
+            $0?.textColor = UIColor(red: 66/255, green: 66/255, blue: 66/255, alpha: 1)
+            $0?.textAlignment = .center
+        }
     }
     
     private func configureShapeView() {
