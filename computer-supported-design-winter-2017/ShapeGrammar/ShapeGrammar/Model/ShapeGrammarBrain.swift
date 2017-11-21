@@ -46,9 +46,13 @@ extension ShapeGrammarBrain {
     }
     
     private func buildStar(from triangle: Triangle) -> Star {
-        let size = triangle.size
-        let height = (size * sqrt(3))/2
-        var newTriangle = Triangle(rect: triangle.rect)
+        let offset = triangle.height * Constants.offsetRatio
+        let isUpsideDown = triangle.isUpsideDown
+        let difference = isUpsideDown ? -offset : offset
+        var newTriangle = triangle.reversed()
+        newTriangle.vertices.0.y += difference
+        newTriangle.vertices.1.y += difference
+        newTriangle.vertices.2.y += difference
         return Star(triangles: (triangle, newTriangle))
     }
 }

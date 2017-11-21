@@ -22,6 +22,9 @@ struct Triangle: Shape {
         let y = vertices.0.y != vertices.1.y ? (min(vertices.0.y, vertices.1.y) + height/2) : vertices.0.y != vertices.2.y ? (min(vertices.0.y, vertices.2.y) + height/2) : (min(vertices.1.y, vertices.2.y) + height/2)
         return CGPoint(x: x, y: y)
     }
+    public var isUpsideDown: Bool {
+        return vertices.0.y == vertices.1.y ? vertices.0.y < vertices.2.y : (vertices.0.y == vertices.2.y ? vertices.0.y < vertices.1.y : vertices.1.y < vertices.0.y )
+    }
     
     init(rect: CGRect) {
         self.rect = rect
@@ -31,6 +34,15 @@ struct Triangle: Shape {
     init(rect: CGRect, vertices: (CGPoint, CGPoint, CGPoint)) {
         self.rect = rect
         self.vertices = vertices
+    }
+    
+    public func reversed() -> Triangle {
+        let center = self.center
+        let height = self.height
+        let vertexOne = CGPoint(x: vertices.0.x, y: vertices.0.y < center.y ? vertices.0.y + height : vertices.0.y - height)
+        let vertexThree = CGPoint(x: vertices.1.x, y: vertices.1.y < center.y ? vertices.1.y + height : vertices.1.y - height)
+        let vertexTwo = CGPoint(x: vertices.2.x, y: vertices.2.y < center.y ? vertices.2.y + height : vertices.2.y - height)
+        return Triangle(rect: rect, vertices: (vertexOne, vertexTwo, vertexThree))
     }
     
 }
