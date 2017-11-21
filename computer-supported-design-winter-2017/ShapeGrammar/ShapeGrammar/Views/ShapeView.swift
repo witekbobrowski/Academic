@@ -9,12 +9,12 @@ import UIKit
 
 class ShapeView: UIView {
     
-    public var lineWidth: CGFloat = 3.0 { didSet { setNeedsDisplay() } }
+    public var lineWidth: CGFloat = 2.0 { didSet { setNeedsDisplay() } }
     public var color: UIColor = UIColor.black { didSet { setNeedsDisplay() } }
     private var path = UIBezierPath() { didSet { setNeedsDisplay() } }
     
     override func draw(_ rect: CGRect) {
-        path.fill()
+        path.lineWidth = lineWidth
         color.setStroke()
         path.stroke()
     }
@@ -28,8 +28,8 @@ class ShapeView: UIView {
         }
         let path = self.path
         for triangle in triangles {
-            path.move(to: triangle.vertices.a)
-            [triangle.vertices.b, triangle.vertices.c, triangle.vertices.a].forEach { path.addLine(to: $0) }
+            path.move(to: triangle.vertices.0)
+            [triangle.vertices.1, triangle.vertices.2, triangle.vertices.0].forEach { path.addLine(to: $0) }
         }
         self.path = path
     }

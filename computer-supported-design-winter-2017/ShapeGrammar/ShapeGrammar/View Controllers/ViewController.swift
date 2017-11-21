@@ -23,7 +23,12 @@ class ViewController: UIViewController {
     }
     
     @objc private func backgroundDidTap(_ recognizer: UITapGestureRecognizer) {
-        //TODO: Handle Tap
+        guard let shapeView = self.shapeView else {
+            return
+        }
+        UIView.transition(with: shapeView, duration: 0.5, options: [.transitionCrossDissolve], animations: {
+            shapeView.addPathForShape(Triangle(rect: shapeView.bounds))
+        })
     }
 
 }
@@ -46,6 +51,7 @@ extension ViewController {
         let shapeView = ShapeView(frame: shapeContainerView.bounds)
         shapeContainerView.addSubview(shapeView)
         shapeView.isOpaque = false
+        shapeView.color = UIColor(red: 66/255, green: 66/255, blue: 66/255, alpha: 1)
         self.shapeView = shapeView
     }
     
@@ -54,7 +60,7 @@ extension ViewController {
 //MARK: - ShapeGrammarBrainDelegate
 extension ViewController: ShapeGrammarBrainDelegate {
     
-    func shapeGrammarBrain(_ shapeGrammarBrain: ShapeGrammarBrain, didEndCalculatingShape shape: Shape) {
+    func shapeGrammarBrain(_ shapeGrammarBrain: ShapeGrammarBrain, didBuildShape shape: Shape) {
         shapeView?.addPathForShape(shape)
     }
     

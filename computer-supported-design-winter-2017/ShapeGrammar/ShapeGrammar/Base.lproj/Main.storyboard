@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -39,15 +40,18 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oR4-aO-9SV">
-                                <rect key="frame" x="15" y="100" width="345" height="552"/>
+                                <rect key="frame" x="15" y="100" width="345" height="414"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="oR4-aO-9SV" secondAttribute="height" multiplier="5:6" id="ncu-M5-Uz0"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="oR4-aO-9SV" firstAttribute="top" secondItem="OEb-gq-a3a" secondAttribute="bottom" constant="15" id="77V-z4-vGC"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="oR4-aO-9SV" secondAttribute="trailing" constant="15" id="Aln-VA-tU6"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="oR4-aO-9SV" secondAttribute="bottom" constant="15" id="Ikl-Da-5e2"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="oR4-aO-9SV" secondAttribute="bottom" constant="15" id="Ikl-Da-5e2"/>
                             <constraint firstItem="OEb-gq-a3a" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="gR1-dV-LpJ"/>
                             <constraint firstItem="OEb-gq-a3a" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="15" id="hXM-4B-VpT"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="OEb-gq-a3a" secondAttribute="trailing" constant="15" id="ueS-Xf-CPy"/>
@@ -63,7 +67,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="24.800000000000001" y="29.23538230884558"/>
+            <point key="canvasLocation" x="52" y="66"/>
         </scene>
     </scenes>
 </document>
