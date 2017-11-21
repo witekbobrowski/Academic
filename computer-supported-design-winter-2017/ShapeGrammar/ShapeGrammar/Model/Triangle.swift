@@ -47,7 +47,7 @@ struct Triangle: Shape {
     
 }
 
-//MARK: - Configuration
+//MARK: - Private
 extension Triangle {
     
     private func getVertices() -> (CGPoint, CGPoint, CGPoint) {
