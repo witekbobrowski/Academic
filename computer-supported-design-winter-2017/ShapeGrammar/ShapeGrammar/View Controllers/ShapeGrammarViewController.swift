@@ -47,7 +47,7 @@ class ShapeGrammarViewController: UIViewController {
     }
     
     @objc private func randomButtonDidTap(_ sender: UIButton) {
-        //TODO: Draw random shape
+        brain.random()
     }
     
 }

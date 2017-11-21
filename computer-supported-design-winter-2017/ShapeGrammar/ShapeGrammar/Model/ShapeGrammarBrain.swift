@@ -63,14 +63,11 @@ extension ShapeGrammarBrain {
             delegate?.shapeGrammarBrain(self, didBuildShape: star)
             return
         }
-        //TODO: Build only in desired locatnios
+        
     }
     
     public func random() {
-        guard let item = item else {
-            return
-        }
-        //TODO: Build random shape
+        
     }
     
 }
