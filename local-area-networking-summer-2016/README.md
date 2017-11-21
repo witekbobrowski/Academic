@@ -84,7 +84,7 @@ $ run ping 192.168.X.any_local routing-instance ROUTERX
 $ set routing-instances M-X-Y instance-type virtual-router
 $ set routing-instances M-X-Y interface ge-0/0/P.0
 $ set interfaces ge-0/0/Z unit 0 family inet address 192.N.X.H/24
-$ set routing-instances M-X-Y routing-options static route 0/0 next-hop 192.S.X.1
+$ set routing-instances M-X-Y routing-options static route 0/0 next-hop 192.N.X.1
 ```
 `M` - Group member `N` - Group network `H` - Member host `P` - Router port
 
