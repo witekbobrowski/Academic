@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -43,10 +44,20 @@
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <state key="normal" title="Button"/>
                             </button>
+                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lbT-fO-mDC">
+                                <rect key="frame" x="172" y="86" width="31" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="lbT-fO-mDC" secondAttribute="height" multiplier="0.86" id="CyZ-SF-jcF"/>
+                                    <constraint firstAttribute="height" constant="36" id="ahu-CR-MdH"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="dice"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="lbT-fO-mDC" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="223-L6-OJe"/>
                             <constraint firstItem="xcZ-gb-wl0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="8Oc-sX-T3Z"/>
+                            <constraint firstItem="lbT-fO-mDC" firstAttribute="top" secondItem="0k3-IN-i3q" secondAttribute="bottom" constant="8" id="8na-mj-v4L"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="oR4-aO-9SV" secondAttribute="trailing" constant="32" id="Aln-VA-tU6"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xcZ-gb-wl0" secondAttribute="trailing" constant="30" id="CVn-2B-wQO"/>
                             <constraint firstItem="oR4-aO-9SV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="15" id="Efb-aC-4Nk"/>
@@ -64,9 +75,10 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="button" destination="A4Q-1e-bzB" id="QTZ-ys-MVr"/>
+                        <outlet property="clearButton" destination="A4Q-1e-bzB" id="Hf1-ji-e9g"/>
                         <outlet property="descriptionLabel" destination="xcZ-gb-wl0" id="MMJ-kV-3GX"/>
                         <outlet property="label" destination="0k3-IN-i3q" id="i8o-Xt-1H9"/>
+                        <outlet property="randomButton" destination="lbT-fO-mDC" id="RAc-ds-kwb"/>
                         <outlet property="shapeContainerView" destination="oR4-aO-9SV" id="qsx-VT-BBS"/>
                     </connections>
                 </viewController>
@@ -75,4 +87,7 @@
             <point key="canvasLocation" x="52" y="65.217391304347828"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="dice" width="1807" height="2083"/>
+    </resources>
 </document>

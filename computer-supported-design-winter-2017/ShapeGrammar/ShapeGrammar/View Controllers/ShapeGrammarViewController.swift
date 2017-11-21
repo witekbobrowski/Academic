@@ -12,7 +12,8 @@ class ShapeGrammarViewController: UIViewController {
     @IBOutlet private weak var label: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var shapeContainerView: UIView!
-    @IBOutlet private weak var button: UIButton!
+    @IBOutlet private weak var randomButton: UIButton!
+    @IBOutlet private weak var clearButton: UIButton!
     private let gradient = CAGradientLayer()
     private var shapeView: ShapeView?
     private let brain = ShapeGrammarBrain()
@@ -39,10 +40,14 @@ class ShapeGrammarViewController: UIViewController {
         })
     }
 
-    @objc private func buttonDidTap(_ sender: UIButton) {
+    @objc private func clearButtonDidTap(_ sender: UIButton) {
         shapeView?.addPathForShape(nil)
         brain.clear()
         descriptionLabel.isHidden = false
+    }
+    
+    @objc private func randomButtonDidTap(_ sender: UIButton) {
+        //TODO: Draw random shape
     }
     
 }
@@ -78,11 +83,13 @@ extension ShapeGrammarViewController {
     }
     
     private func configureButton() {
-        button.backgroundColor = UIColor(red: 255/255, green: 44/255, blue: 36/255, alpha: 1)
-        button.setTitle("Clear", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.addTarget(self, action: #selector(buttonDidTap(_:)), for: .touchUpInside)
-        button.layer.cornerRadius = 8
+        randomButton.tintColor = UIColor(red: 255/255, green: 44/255, blue: 36/255, alpha: 1)
+        clearButton.addTarget(self, action: #selector(randomButtonDidTap(_:)), for: .touchUpInside)
+        clearButton.backgroundColor = UIColor(red: 255/255, green: 44/255, blue: 36/255, alpha: 1)
+        clearButton.setTitle("Clear", for: .normal)
+        clearButton.setTitleColor(.white, for: .normal)
+        clearButton.addTarget(self, action: #selector(clearButtonDidTap(_:)), for: .touchUpInside)
+        clearButton.layer.cornerRadius = 8
     }
     
 }
