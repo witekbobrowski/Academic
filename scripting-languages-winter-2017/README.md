@@ -2,6 +2,7 @@
 ![OS](https://img.shields.io/badge/macOS-v10.13-orange.svg)
 ![bash](https://img.shields.io/badge/bash-v4.4-green.svg)
 ![tcsh](https://img.shields.io/badge/tcsh-v6.18.01-blue.svg)
+![perl](https://img.shields.io/badge/perl-v5.18.2-red.svg)
 
 ## About
 
@@ -13,12 +14,23 @@ IMPORTANT: Before you consider writing your script in c shell - if reading my sc
 
 ## Tasks
 
-- [x] 1. Print current user [`bash`](whoami.bash) [`tcsh`](whoami.tcsh)
-- [x] 2a. Multiplication table [`bash`](multiplication-table.bash) [`tcsh`](multiplication-table.tcsh)
-- [x] 2b. Multiplication table with given range [`bash`](multiplication-table-in-range.bash) [`tcsh`](multiplication-table-in-range.tcsh)
-- [x] 2c. Any calculation table with given range [`bash`](calculation-table-in-range.bash) [`tcsh`](calculation-table-in-range.tcsh)
-- [ ] 3. Ping IP's in range `bash` `tcsh`
+#### Shell (bash and tcsh)
+
+- [x] 1. Print current user [`bash`](shell/whoami.bash) [`tcsh`](shell/whoami.tcsh)
+- [x] 2a. Multiplication table [`bash`](shell/multiplication-table.bash) [`tcsh`](shell/multiplication-table.tcsh)
+- [x] 2b. Multiplication table with given range [`bash`](shell/multiplication-table-in-range.bash) [`tcsh`](shell/multiplication-table-in-range.tcsh)
+- [x] 2c. Any calculation table with given range [`bash`](shell/calculation-table-in-range.bash) [`tcsh`](shell/calculation-table-in-range.tcsh)
+- [x] 3. Ping IP's in range [`bash`](shell/ping-in-range.bash) [`tcsh`](shell/ping-in-range.tcsh)
 - [ ] 4. Describe active IP `bash` `tcsh`
+- [ ] 5. Counting server + client `bash` `tcsh`
+
+#### Perl
+
+- [x] 1-4. Print file with options [`perl`](perl/print-file.pl)
+- [ ] 5. Print words in given range `perl`
+- [ ] 6. Print words in given range (numbers) `perl`
+- [ ] 7. Print words in given range with separator `perl`
+- [ ] 8. Print words in given range (numbers) with separator `perl`
 
 ## Usage
 
@@ -28,4 +40,12 @@ Make sure the one of these shells is installed and shebang included in the scrip
 
 ```
 $ ./script.sh
+```
+
+#### perl
+
+Again, make sure your perl installation matches the header in script file. Then simply run the following:
+
+```
+$ perl script.pl
 ```
