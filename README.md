@@ -6,6 +6,10 @@ This repository was created to help me stay organised with my uni assignments.
 
 > The academic year in Poland is divided into two semesters of 15 weeks each – the winter and the summer semester
 
+#### Summer 2016
+
+- [Local Area Networking](local-area-networking-summer-2016/)
+
 #### Winter 2016
 
 - [Databases](databases-winter-2016/)
