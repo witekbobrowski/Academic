@@ -1,20 +1,22 @@
 #!/usr/bin/perl
 # Witold Bobrowski ; Group 2
 #
-# Print words from line
+# Print words from line with custom split string
 
 use strict;
 use warnings;
 
 # VARIABLES
 
-my $first  = 0;
-my $second = 0;
+my $first        = 0;
+my $second       = 0;
+my $split_string = " ";
 
 # SUBROUTINES
 
 sub print_error_and_exit {
-    print STDERR "Usage: perl print-file-words-range.pl [first] [second] [file name] [...]\n";
+    print STDERR
+"Usage: perl print-file-words-range.pl [split string] [first] [second] [file name] [...]\n";
     exit;
 }
 
@@ -28,34 +30,37 @@ sub print_file {
     my $number = 0;
     while ( my $line = <$data> ) {
         ++$number;
-        my @words = split( " ", $line );
+        my @words = split( "$split_string", $line );
         chomp $line;
         if ( $first <= $#words && $second <= $#words ) {
-            foreach my $word ($first, $second) {
+            foreach my $word ( $first, $second ) {
                 print "$words[$word] ";
             }
             print "\n";
-        } else {
-          print STDERR "Line $number out of range in file: $_[0]\n"
+        }
+        else {
+            print STDERR "Line $number out of range in file: $_[0]\n";
         }
     }
 }
 
 # Main program
 
-if ( $#ARGV < 2 ) {
+if ( $#ARGV < 3 ) {
     print_error_and_exit;
 }
 
-foreach my $argument ( 0 .. 1 ) {
+$split_string = "$ARGV[0]";
+
+foreach my $argument ( 1 .. 2 ) {
     if ( !is_numeric_and_positive( $ARGV[$argument] ) ) {
         print_error_and_exit;
     }
 }
 
-$first = $ARGV[0];
-$second = $ARGV[1];
+$first  = $ARGV[1];
+$second = $ARGV[2];
 
-foreach my $argument ( 2 .. $#ARGV ) {
+foreach my $argument ( 3 .. $#ARGV ) {
     print_file( $ARGV[$argument] );
 }

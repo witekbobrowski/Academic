@@ -35,8 +35,7 @@ sub get_range {
 }
 
 sub range_is_valid {
-    return ( ( $left_bound < $_[0] && $right_bound <= $_[0] )
-          || ( $right_bound < $_[0] && $left_bound <= $_[0] ) );
+    return ( $left_bound <= $_[0] && $right_bound <= $_[0] );
 }
 
 sub print_file {

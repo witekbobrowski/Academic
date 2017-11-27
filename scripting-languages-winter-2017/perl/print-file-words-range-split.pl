@@ -1,22 +1,23 @@
 #!/usr/bin/perl
 # Witold Bobrowski ; Group 2
 #
-# Print words in range
+# Print words in range with custom split string
 
 use strict;
 use warnings;
 
 # VARIABLES
 
-my $left_bound  = 0;
-my $right_bound = 0;
-my @range       = ();
+my $left_bound   = 0;
+my $right_bound  = 0;
+my @range        = ();
 my $split_string = " ";
 
 # SUBROUTINES
 
 sub print_error_and_exit {
-    print STDERR "Usage: perl print-file-words-range.pl [split string] [lower bound] [upper bound] [file name] [...]\n";
+    print STDERR
+"Usage: perl print-file-words-range.pl [split string] [lower bound] [upper bound] [file name] [...]\n";
     exit;
 }
 
@@ -36,8 +37,7 @@ sub get_range {
 }
 
 sub range_is_valid {
-    return ( ( $left_bound < $_[0] && $right_bound <= $_[0] )
-          || ( $right_bound < $_[0] && $left_bound <= $_[0] ) );
+    return ( $left_bound <= $_[0] && $right_bound <= $_[0] );
 }
 
 sub print_file {
@@ -56,8 +56,6 @@ sub print_file {
 }
 
 # Main program
-
-print $#ARGV;
 
 if ( $#ARGV < 3 ) {
     print_error_and_exit;
