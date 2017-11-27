@@ -25,15 +25,19 @@ sub is_numeric_and_positive {
 sub print_file {
     open( my $data, '<:encoding(UTF-8)', $_[0] )
       or die "Could not open file '$_[0]' $!";
+    my $number = 0;
     while ( my $line = <$data> ) {
+        ++$number;
         my @words = split( " ", $line );
         chomp $line;
         if ( $first < $#words && $second < $#words ) {
             foreach my $word ($first, $second) {
                 print "$words[$word] ";
             }
+            print "\n";
+        } else {
+          print STDERR "Line $number out of range in file: $_[0]\n"
         }
-        print "\n";
     }
 }
 
