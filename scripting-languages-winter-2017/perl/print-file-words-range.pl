@@ -26,12 +26,12 @@ sub is_numeric_and_positive {
 
 sub get_range {
     $left_bound  = $_[0];
-    $right_bound = $_[0];
+    $right_bound = $_[1];
     if ( $left_bound < $right_bound ) {
         return ( $left_bound .. $right_bound );
     }
     else {
-        return reverse( $right_bound .. $left_bound );
+        return ( $right_bound .. $left_bound );
     }
 }
 
