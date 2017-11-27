@@ -14,7 +14,7 @@ my $second = 0;
 # SUBROUTINES
 
 sub print_error_and_exit {
-    print STDERR "Usage: perl print-file-words-range.pl [lower bound] [upper bound] [file name] [...]\n";
+    print STDERR "Usage: perl print-file-words-range.pl [first] [second] [file name] [...]\n";
     exit;
 }
 
