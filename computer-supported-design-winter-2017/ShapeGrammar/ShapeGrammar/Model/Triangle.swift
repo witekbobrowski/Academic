@@ -5,14 +5,15 @@
 //  Created by Witek on 20/11/2017.
 //
 
-import CoreGraphics
+import UIKit
 
 struct Triangle: Shape {
     
     public var rect: CGRect
     public var vertices: (CGPoint, CGPoint, CGPoint) = (.zero, .zero, .zero)
     public var size: CGFloat {
-        return vertices.0.y == vertices.1.y ? abs(vertices.0.x - vertices.1.x) : (vertices.0.y == vertices.2.y ? abs(vertices.0.x - vertices.2.x) : abs(vertices.1.x - vertices.2.x))
+        let verts = [vertices.0.x, vertices.1.x, vertices.2.x].sorted()
+        return verts.last! - verts.first!
     }
     public var height: CGFloat {
         return (size * sqrt(3))/2
@@ -23,7 +24,8 @@ struct Triangle: Shape {
         return CGPoint(x: x, y: y)
     }
     public var isUpsideDown: Bool {
-        return vertices.0.y == vertices.1.y ? vertices.0.y < vertices.2.y : (vertices.0.y == vertices.2.y ? vertices.0.y < vertices.1.y : vertices.1.y < vertices.0.y )
+        let verts = [vertices.0, vertices.1, vertices.2].sorted(by: {$0.x<$1.x})
+        return verts[0].y < verts[1].y
     }
     
     init(rect: CGRect) {

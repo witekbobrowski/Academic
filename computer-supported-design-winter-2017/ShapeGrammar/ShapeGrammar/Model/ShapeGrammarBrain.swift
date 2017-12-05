@@ -55,7 +55,7 @@ extension ShapeGrammarBrain {
         var directions: [[Location]] = []
         for _ in 0...3 {
             var locations: Set<Location> = []
-            for _ in 0...Int(arc4random_uniform(UInt32(12))) {
+            for _ in 0...Int(arc4random_uniform(UInt32(6))) {
                 locations.insert(Location(rawValue: Int(arc4random_uniform(UInt32(6))))!)
             }
             directions.append(Array(locations))
@@ -83,8 +83,9 @@ extension ShapeGrammarBrain {
         } else if let star = item.shape as? Star {
             let triangles = getTriangles(in: star)
             locations.forEach {
-                items[$0] = Item(shape: Star(triangle: triangles[$0]!), location: $0, items: [:])
-                delegate?.shapeGrammarBrain(self, didBuildShape: Star(triangle: triangles[$0]!))
+                let star = Star(triangle: triangles[$0]!)
+                items[$0] = Item(shape: star, location: $0, items: [:])
+                delegate?.shapeGrammarBrain(self, didBuildShape: star.triangles.1)
             }
         }
         return items

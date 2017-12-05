@@ -41,12 +41,11 @@ class ShapeGrammarViewController: UIViewController {
     }
 
     @objc private func clearButtonDidTap(_ sender: UIButton) {
-        shapeView?.addPathForShape(nil)
-        brain.clear()
-        descriptionLabel.isHidden = false
+        clear()
     }
     
     @objc private func randomButtonDidTap(_ sender: UIButton) {
+        clear()
         brain.set(Triangle(rect: shapeView?.bounds ?? .zero), at: .center)
         brain.random()
     }
@@ -55,7 +54,7 @@ class ShapeGrammarViewController: UIViewController {
 
 //MARK: - Configuration
 extension ShapeGrammarViewController {
-    
+
     private func configure() {
         gradient.frame = view.layer.bounds
         view.layer.insertSublayer(gradient, at: 0)
@@ -91,6 +90,12 @@ extension ShapeGrammarViewController {
         clearButton.setTitleColor(.white, for: .normal)
         clearButton.addTarget(self, action: #selector(clearButtonDidTap(_:)), for: .touchUpInside)
         clearButton.layer.cornerRadius = 8
+    }
+    
+    private func clear() {
+        shapeView?.addPathForShape(nil)
+        brain.clear()
+        descriptionLabel.isHidden = true
     }
     
 }
