@@ -33,9 +33,9 @@ class ShapeGrammarViewController: UIViewController {
         UIView.transition(with: shapeView, duration: 0.5, options: [.transitionCrossDissolve], animations: {
             if self.brain.isEmpty {
                 self.descriptionLabel.isHidden = true
-                self.brain.add(Triangle(rect: shapeView.bounds))
+                self.brain.set(Triangle(rect: shapeView.bounds), at: .center)
             } else {
-                self.brain.build(in: [.north])
+                self.brain.addLayer(at: [.north])
             }
         })
     }
@@ -47,6 +47,7 @@ class ShapeGrammarViewController: UIViewController {
     }
     
     @objc private func randomButtonDidTap(_ sender: UIButton) {
+        brain.set(Triangle(rect: shapeView?.bounds ?? .zero), at: .center)
         brain.random()
     }
     
@@ -84,7 +85,7 @@ extension ShapeGrammarViewController {
     
     private func configureButton() {
         randomButton.tintColor = UIColor(red: 255/255, green: 44/255, blue: 36/255, alpha: 1)
-        clearButton.addTarget(self, action: #selector(randomButtonDidTap(_:)), for: .touchUpInside)
+        randomButton.addTarget(self, action: #selector(randomButtonDidTap(_:)), for: .touchUpInside)
         clearButton.backgroundColor = UIColor(red: 255/255, green: 44/255, blue: 36/255, alpha: 1)
         clearButton.setTitle("Clear", for: .normal)
         clearButton.setTitleColor(.white, for: .normal)

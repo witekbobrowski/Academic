@@ -20,19 +20,13 @@ enum Location: Int {
 
 class ShapeGrammarBrain {
     
-    private class Item {
+    struct Item {
         var shape: Shape
         var location: Location
         var items: [Location:Item]
-        
-        init(shape: Shape, location: Location, items: [Location:Item]) {
-            self.shape = shape
-            self.location = location
-            self.items = items
-        }
     }
     
-    private var item: Item?
+    private var items: [Location:Item] = [:]
     public weak var delegate: ShapeGrammarBrainDelegate?
     
 }
@@ -41,33 +35,38 @@ class ShapeGrammarBrain {
 extension ShapeGrammarBrain {
     
     public var isEmpty: Bool {
-        return item == nil
+        return items.isEmpty
     }
     
     public func clear() {
-        item = nil
+        items = [:]
     }
     
-    public func add(_ shape: Shape) {
-        item = Item(shape: shape, location: .center, items: [:])
+    public func set(_ shape: Shape, at location: Location) {
+        items = [location:Item(shape: shape, location: location, items: [:])]
         delegate?.shapeGrammarBrain(self, didBuildShape: shape)
     }
     
-    public func build(in locations: [Location]) {
-        guard let item = item else {
-            return
-        }
-        if let triangle = item.shape as? Triangle {
-            let star = Star(triangle: triangle)
-            item.shape = star
-            delegate?.shapeGrammarBrain(self, didBuildShape: star)
-            return
-        }
+    public func addLayer(at locations: [Location]) {
         
     }
     
     public func random() {
-        
+        var directions: [[Location]] = []
+        for _ in 0...3 {
+            var locations: Set<Location> = []
+            for _ in 0...Int(arc4random_uniform(UInt32(12))) {
+                locations.insert(Location(rawValue: Int(arc4random_uniform(UInt32(6))))!)
+            }
+            directions.append(Array(locations))
+        }
+        guard let item = items[.center] else { return }
+        var current: [Item] = [item]
+        for direction in directions {
+            var newItems: [Item] = []
+            current.forEach { newItems.append(contentsOf: build(from: $0, at: direction).values)}
+            current = newItems
+        }
     }
     
 }
@@ -75,10 +74,26 @@ extension ShapeGrammarBrain {
 //MARK: - Private
 extension ShapeGrammarBrain {
     
+    private func build(from item: Item, at locations: [Location]) -> [Location:Item] {
+        var items: [Location:Item] = [:]
+        if let triangle = item.shape as? Triangle {
+            let star = Star(triangle: triangle)
+            items[.center] = Item(shape: star, location: item.location, items: [:])
+            delegate?.shapeGrammarBrain(self, didBuildShape: star)
+        } else if let star = item.shape as? Star {
+            let triangles = getTriangles(in: star)
+            locations.forEach {
+                items[$0] = Item(shape: Star(triangle: triangles[$0]!), location: $0, items: [:])
+                delegate?.shapeGrammarBrain(self, didBuildShape: Star(triangle: triangles[$0]!))
+            }
+        }
+        return items
+    }
+    
     private func getTriangles(in star: Star) -> [Location:Triangle] {
         guard star.triangles.0.height > 3 && star.triangles.1.height > 3 else { return [:] }
         var triangles: [Location:Triangle] = [:]
-        let center = star.center ?? .zero
+        let center = star.center!
         let size = star.triangles.1.size/3
         let vertices = getVertices(in: star)
         let height = (center.y - vertices[.north]!.y)/2
@@ -87,13 +102,19 @@ extension ShapeGrammarBrain {
         let internalE = CGPoint(x: center.x + size, y: center.y)
         let internalSE = CGPoint(x: center.x + size/2, y: center.y + height)
         let internalSW = CGPoint(x: center.x - size/2, y: center.y + height)
-        let internalN = CGPoint(x: center.x - size, y: center.y)
-        triangles[.north] = Triangle(rect: star.rect, vertices: (internalNW, vertices[.north]!, internalNE))
-        triangles[.northEast] = Triangle(rect: star.rect, vertices: (internalNE, internalE, vertices[.northEast]!))
-        triangles[.southEast] = Triangle(rect: star.rect, vertices: (internalSE, internalE, vertices[.southEast]!))
-        triangles[.south] = Triangle(rect: star.rect, vertices: (internalSW, vertices[.south]!, internalSE))
-        triangles[.southWest] = Triangle(rect: star.rect, vertices: (vertices[.southWest]!, internalN, internalSW))
-        triangles[.northWest] = Triangle(rect: star.rect, vertices: (vertices[.northWest]!, internalN, internalNW))
+        let internalW = CGPoint(x: center.x - size, y: center.y)
+        triangles[.north] = Triangle(rect: star.rect, vertices:
+            (internalNW, vertices[.north]!, internalNE))
+        triangles[.northEast] = Triangle(rect: star.rect, vertices:
+            (internalNE, internalE, vertices[.northEast]!))
+        triangles[.southEast] = Triangle(rect: star.rect, vertices:
+            (internalSE, internalE, vertices[.southEast]!))
+        triangles[.south] = Triangle(rect: star.rect, vertices:
+            (internalSW, vertices[.south]!, internalSE))
+        triangles[.southWest] = Triangle(rect: star.rect, vertices:
+            (vertices[.southWest]!, internalW, internalSW))
+        triangles[.northWest] = Triangle(rect: star.rect, vertices:
+            (vertices[.northWest]!, internalW, internalNW))
         return triangles
     }
     
