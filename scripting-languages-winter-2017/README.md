@@ -27,10 +27,11 @@ IMPORTANT: Before you consider writing your script in c shell - if reading my sc
 #### Perl
 
 - [x] 1-4. Print file with options [`perl`](perl/print-file.pl)
-- [x] 5. Print file with word range [`perl`](perl/print-file-words-range.pl)
-- [ ] 6. Print words in given range (numbers) `perl`
-- [ ] 7. Print words in given range with separator `perl`
-- [ ] 8. Print words in given range (numbers) with separator `perl`
+- [x] 5. Print file with words range [`perl`](perl/print-file-words-range.pl)
+- [x] 6. Print file with words pair [`perl`](perl/print-file-words-pair.pl)
+- [x] 7. Print file with words range with custom split [`perl`](perl/print-file-words-range-split.pl)
+- [x] 8. Print file with words pair with custom split [`perl`](perl/print-file-words-pair-split.pl)
+- [ ] 9. Word count `perl`
 
 ## Usage
 
