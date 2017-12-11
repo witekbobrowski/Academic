@@ -37,7 +37,7 @@ IMPORTANT: Before you consider writing your script in c shell - if reading my sc
 #### Python
 
 - [x] 1. Multiplication table [`python`](python/mul-tab.py)
-
+- [x] 2. Quadratic equation [`python`](python/quad-eq.py)
 
 ## Usage
 
