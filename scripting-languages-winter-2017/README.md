@@ -3,6 +3,7 @@
 ![bash](https://img.shields.io/badge/bash-v4.4-green.svg)
 ![tcsh](https://img.shields.io/badge/tcsh-v6.18.01-blue.svg)
 ![perl](https://img.shields.io/badge/perl-v5.18.2-red.svg)
+![python](https://img.shields.io/badge/python-v3.6.3-blue.svg)
 
 ## About
 
@@ -32,6 +33,11 @@ IMPORTANT: Before you consider writing your script in c shell - if reading my sc
 - [x] 7. Print file with words range with custom split [`perl`](perl/print-file-words-range-split.pl)
 - [x] 8. Print file with words pair with custom split [`perl`](perl/print-file-words-pair-split.pl)
 - [ ] 9. Word count `perl`
+
+#### Python
+
+- [x] 1. Multiplication table [`python`](python/mul-tab.py)
+
 
 ## Usage
 
