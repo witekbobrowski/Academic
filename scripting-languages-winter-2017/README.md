@@ -57,3 +57,11 @@ Again, make sure your perl installation matches the header in script file. Then 
 ```
 $ perl script.pl
 ```
+
+#### python
+
+... and again. Make sure shebang matches python installation and if it actually is python 3:
+
+```
+$ python3 script.py
+```
