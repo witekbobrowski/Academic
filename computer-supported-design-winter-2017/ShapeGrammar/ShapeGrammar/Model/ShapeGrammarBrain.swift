@@ -18,58 +18,35 @@ enum Location: Int {
     case center = 6
 }
 
+protocol ShapeGrammarBrainDelegate: AnyObject {
+    func shapeGrammarBrain(_ shapeGrammarBrain: ShapeGrammarBrain, didBuildShape shape: Shape)
+    func rectForDrawing(_ shapeGrammarBraint: ShapeGrammarBrain) -> CGRect
+}
+
 class ShapeGrammarBrain {
     
-    struct Item {
-        var shape: Shape
-        var location: Location
-        var items: [Location:Item]
-    }
-    
-    private var items: [Location:Item] = [:]
+    private var shape: Shape?
     public weak var delegate: ShapeGrammarBrainDelegate?
-    
+
 }
 
 //MARK: - Public
 extension ShapeGrammarBrain {
     
     public var isEmpty: Bool {
-        return items.isEmpty
+        return shape == nil
     }
     
     public func clear() {
-        items = [:]
+        shape = nil
     }
     
-    public func set(_ shape: Shape, at location: Location) {
-        items = [location:Item(shape: shape, location: location, items: [:])]
-        delegate?.shapeGrammarBrain(self, didBuildShape: shape)
-    }
-    
-    public func addLayer(at locations: [Location]) {
+    public func addLayer() {
         
     }
     
     public func random() {
-        var directions: [[Location]] = []
-        for _ in 0...3 {
-            var locations: Set<Location> = []
-//            for _ in 0...Int(arc4random_uniform(UInt32(6))) {
-//                locations.insert(Location(rawValue: Int(arc4random_uniform(UInt32(6))))!)
-//            }
-            for int in 0...5 {
-                locations.insert(Location(rawValue: int)!)
-            }
-            directions.append(Array(locations))
-        }
-        guard let item = items[.center] else { return }
-        var current: [Item] = [item]
-        for direction in directions {
-            var newItems: [Item] = []
-            current.forEach { newItems.append(contentsOf: build(from: $0, at: direction).values)}
-            current = newItems
-        }
+        random(shape ?? setup(Triangle(rect: delegate?.rectForDrawing(self) ?? .zero)), maxDepth: 5)
     }
     
 }
@@ -77,21 +54,37 @@ extension ShapeGrammarBrain {
 //MARK: - Private
 extension ShapeGrammarBrain {
     
-    private func build(from item: Item, at locations: [Location]) -> [Location:Item] {
-        var items: [Location:Item] = [:]
-        if let triangle = item.shape as? Triangle {
+    private func setup(_ shape: Shape) -> Shape {
+        delegate?.shapeGrammarBrain(self, didBuildShape: shape)
+        return shape
+    }
+    
+    private func random(_ shape: Shape, maxDepth depth: Int) {
+        guard depth > 0 else { return }
+        var locations: Set<Location> = []
+        for _ in 0...Int(arc4random_uniform(UInt32(6))) {
+            locations.insert(Location(rawValue: Int(arc4random_uniform(UInt32(6))))!)
+        }
+        build(from: shape, at: Array(locations)).values.forEach { shape in
+            random(shape, maxDepth: depth-1)
+        }
+    }
+    
+    private func build(from shape: Shape, at locations: [Location]) -> [Location:Shape] {
+        var shapes: [Location:Shape] = [:]
+        if let triangle = shape as? Triangle {
             let star = Star(triangle: triangle)
-            items[.center] = Item(shape: star, location: item.location, items: [:])
+            shapes[.center] = star
             delegate?.shapeGrammarBrain(self, didBuildShape: star)
-        } else if let star = item.shape as? Star {
+        } else if let star = shape as? Star {
             let triangles = getTriangles(in: star)
             locations.forEach {
                 let star = Star(triangle: triangles[$0]!)
-                items[$0] = Item(shape: star, location: $0, items: [:])
+                shapes[$0] = star
                 delegate?.shapeGrammarBrain(self, didBuildShape: star.triangles.1)
             }
         }
-        return items
+        return shapes
     }
     
     private func getTriangles(in star: Star) -> [Location:Triangle] {
@@ -136,8 +129,3 @@ extension ShapeGrammarBrain {
     }
     
 }
-
-protocol ShapeGrammarBrainDelegate: AnyObject {
-    func shapeGrammarBrain(_ shapeGrammarBrain: ShapeGrammarBrain, didBuildShape shape: Shape)
-}
-

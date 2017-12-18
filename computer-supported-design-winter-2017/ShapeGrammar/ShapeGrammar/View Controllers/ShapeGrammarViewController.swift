@@ -9,9 +9,6 @@ import UIKit
 
 class ShapeGrammarViewController: UIViewController {
     
-    private enum Constants {
-        static let inset: CGFloat = 16
-    }
     
     @IBOutlet private weak var label: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
@@ -34,23 +31,20 @@ class ShapeGrammarViewController: UIViewController {
         guard let shapeView = self.shapeView else {
             return
         }
+        descriptionLabel.isHidden = true
         UIView.transition(with: shapeView, duration: 0.5, options: [.transitionCrossDissolve], animations: {
-            if self.brain.isEmpty {
-                self.descriptionLabel.isHidden = true
-                self.brain.set(Triangle(rect: shapeView.bounds), at: .center)
-            } else {
-                self.brain.addLayer(at: [.north])
-            }
+            
         })
     }
 
     @objc private func clearButtonDidTap(_ sender: UIButton) {
         clear()
+        descriptionLabel.isHidden = false
     }
     
     @objc private func randomButtonDidTap(_ sender: UIButton) {
         clear()
-        brain.set(Triangle(rect: shapeView?.bounds ?? .zero), at: .center)
+        descriptionLabel.isHidden = true
         brain.random()
     }
     
@@ -99,13 +93,16 @@ extension ShapeGrammarViewController {
     private func clear() {
         shapeView?.addPathForShape(nil)
         brain.clear()
-        descriptionLabel.isHidden = true
     }
     
 }
 
 //MARK: - ShapeGrammarBrainDelegate
 extension ShapeGrammarViewController: ShapeGrammarBrainDelegate {
+    
+    func rectForDrawing(_ shapeGrammarBraint: ShapeGrammarBrain) -> CGRect {
+        return shapeView?.bounds ?? .zero
+    }
     
     func shapeGrammarBrain(_ shapeGrammarBrain: ShapeGrammarBrain, didBuildShape shape: Shape) {
         shapeView?.addPathForShape(shape)
