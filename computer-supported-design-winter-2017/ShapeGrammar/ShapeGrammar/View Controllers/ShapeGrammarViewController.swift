@@ -9,6 +9,10 @@ import UIKit
 
 class ShapeGrammarViewController: UIViewController {
     
+    private enum Constants {
+        static let inset: CGFloat = 16
+    }
+    
     @IBOutlet private weak var label: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var shapeContainerView: UIView!
@@ -83,7 +87,7 @@ extension ShapeGrammarViewController {
     }
     
     private func configureButton() {
-        randomButton.tintColor = UIColor(red: 255/255, green: 44/255, blue: 36/255, alpha: 1)
+        randomButton.tintColor = UIColor(red: 66/255, green: 66/255, blue: 66/255, alpha: 1)
         randomButton.addTarget(self, action: #selector(randomButtonDidTap(_:)), for: .touchUpInside)
         clearButton.backgroundColor = UIColor(red: 255/255, green: 44/255, blue: 36/255, alpha: 1)
         clearButton.setTitle("Clear", for: .normal)

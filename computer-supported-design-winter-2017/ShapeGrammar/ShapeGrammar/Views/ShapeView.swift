@@ -9,12 +9,13 @@ import UIKit
 
 class ShapeView: UIView {
     
-    public var lineWidth: CGFloat = 2.0 { didSet { setNeedsDisplay() } }
+    public var lineWidth: CGFloat = 1.5 { didSet { setNeedsDisplay() } }
     public var color: UIColor = UIColor.black { didSet { setNeedsDisplay() } }
     private var path = UIBezierPath() { didSet { setNeedsDisplay() } }
     
     override func draw(_ rect: CGRect) {
         path.lineWidth = lineWidth
+        path.lineCapStyle = .round
         color.setStroke()
         path.stroke()
     }

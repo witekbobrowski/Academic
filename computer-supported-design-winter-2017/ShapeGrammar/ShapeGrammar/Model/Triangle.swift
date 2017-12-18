@@ -16,11 +16,12 @@ struct Triangle: Shape {
         return verts.last! - verts.first!
     }
     public var height: CGFloat {
-        return (size * sqrt(3))/2
+        let verts = [vertices.0.y, vertices.1.y, vertices.2.y].sorted()
+        return verts.last! - verts.first!
     }
     public var center: CGPoint {
-        let x = vertices.0.x < vertices.1.x ? (vertices.1.x < vertices.2.x ? vertices.1.x : vertices.2.x) : (vertices.0.x < vertices.2.x ? vertices.0.x : (vertices.1.x < vertices.2.x ? vertices.2.x : vertices.1.x))
-        let y = vertices.0.y != vertices.1.y ? (min(vertices.0.y, vertices.1.y) + height/2) : vertices.0.y != vertices.2.y ? (min(vertices.0.y, vertices.2.y) + height/2) : (min(vertices.1.y, vertices.2.y) + height/2)
+        let x = [vertices.0.x, vertices.1.x, vertices.2.x].sorted()[1]
+        let y = [vertices.0.y, vertices.1.y, vertices.2.y].sorted().last! - (height / 2)
         return CGPoint(x: x, y: y)
     }
     public var isUpsideDown: Bool {

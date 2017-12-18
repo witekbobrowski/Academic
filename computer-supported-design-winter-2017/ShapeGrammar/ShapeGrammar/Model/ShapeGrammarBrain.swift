@@ -55,8 +55,11 @@ extension ShapeGrammarBrain {
         var directions: [[Location]] = []
         for _ in 0...3 {
             var locations: Set<Location> = []
-            for _ in 0...Int(arc4random_uniform(UInt32(6))) {
-                locations.insert(Location(rawValue: Int(arc4random_uniform(UInt32(6))))!)
+//            for _ in 0...Int(arc4random_uniform(UInt32(6))) {
+//                locations.insert(Location(rawValue: Int(arc4random_uniform(UInt32(6))))!)
+//            }
+            for int in 0...5 {
+                locations.insert(Location(rawValue: int)!)
             }
             directions.append(Array(locations))
         }
