@@ -33,12 +33,15 @@ IMPORTANT: Before you consider writing your script in c shell - if reading my sc
 - [x] 7. Print file with words range with custom split [`perl`](perl/print-file-words-range-split.pl)
 - [x] 8. Print file with words pair with custom split [`perl`](perl/print-file-words-pair-split.pl)
 - [ ] 9. Word count `perl`
+- [ ] 10. Register `perl`
 
 #### Python
 
 - [x] 1. Multiplication table [`python`](python/mul-tab.py)
 - [x] 2. Quadratic equation [`python`](python/quad-eq.py)
 - [x] 3-4. Quadratic equation with arguments [`python`](python/quad-eq-args.py)
+- [ ] 5. Concatenate `python`
+- [ ] 6. Word count `pyhton`
 
 ## Usage
 
