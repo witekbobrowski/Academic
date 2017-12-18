@@ -40,7 +40,7 @@ IMPORTANT: Before you consider writing your script in c shell - if reading my sc
 - [x] 1. Multiplication table [`python`](python/mul-tab.py)
 - [x] 2. Quadratic equation [`python`](python/quad-eq.py)
 - [x] 3-4. Quadratic equation with arguments [`python`](python/quad-eq-args.py)
-- [ ] 5. Concatenate `python`
+- [x] 5. Concatenate [`python`](python/cat.py)
 - [ ] 6. Word count `pyhton`
 
 ## Usage
