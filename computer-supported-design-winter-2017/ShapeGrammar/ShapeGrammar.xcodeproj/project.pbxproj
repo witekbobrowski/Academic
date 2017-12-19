@@ -11,6 +11,8 @@
 		414BFB571FC375D1008E504E /* Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414BFB561FC375D1008E504E /* Shape.swift */; };
 		414BFB591FC37648008E504E /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414BFB581FC37648008E504E /* Triangle.swift */; };
 		414BFB5B1FC37ADE008E504E /* Star.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414BFB5A1FC37ADE008E504E /* Star.swift */; };
+		F92706351FE8FEF3001CD524 /* Grammar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92706341FE8FEF3001CD524 /* Grammar.swift */; };
+		F92706381FE901F1001CD524 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92706371FE901F1001CD524 /* Location.swift */; };
 		F9B8ECCD1F9F264B00C990E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B8ECCC1F9F264B00C990E6 /* AppDelegate.swift */; };
 		F9B8ECCF1F9F264B00C990E6 /* ShapeGrammarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B8ECCE1F9F264B00C990E6 /* ShapeGrammarViewController.swift */; };
 		F9B8ECD21F9F264B00C990E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9B8ECD01F9F264B00C990E6 /* Main.storyboard */; };
@@ -24,6 +26,8 @@
 		414BFB561FC375D1008E504E /* Shape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shape.swift; sourceTree = "<group>"; };
 		414BFB581FC37648008E504E /* Triangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
 		414BFB5A1FC37ADE008E504E /* Star.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Star.swift; sourceTree = "<group>"; };
+		F92706341FE8FEF3001CD524 /* Grammar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grammar.swift; sourceTree = "<group>"; };
+		F92706371FE901F1001CD524 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		F9B8ECC91F9F264B00C990E6 /* ShapeGrammar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShapeGrammar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9B8ECCC1F9F264B00C990E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F9B8ECCE1F9F264B00C990E6 /* ShapeGrammarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeGrammarViewController.swift; sourceTree = "<group>"; };
@@ -49,9 +53,9 @@
 			isa = PBXGroup;
 			children = (
 				414BFB511FC3651E008E504E /* ShapeGrammarBrain.swift */,
-				414BFB561FC375D1008E504E /* Shape.swift */,
-				414BFB581FC37648008E504E /* Triangle.swift */,
-				414BFB5A1FC37ADE008E504E /* Star.swift */,
+				F92706341FE8FEF3001CD524 /* Grammar.swift */,
+				F92706371FE901F1001CD524 /* Location.swift */,
+				F92706361FE901D9001CD524 /* Shape */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -70,6 +74,16 @@
 				F9B8ECE31F9F271900C990E6 /* ShapeView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		F92706361FE901D9001CD524 /* Shape */ = {
+			isa = PBXGroup;
+			children = (
+				414BFB561FC375D1008E504E /* Shape.swift */,
+				414BFB581FC37648008E504E /* Triangle.swift */,
+				414BFB5A1FC37ADE008E504E /* Star.swift */,
+			);
+			path = Shape;
 			sourceTree = "<group>";
 		};
 		F9B8ECC01F9F264A00C990E6 = {
@@ -186,9 +200,11 @@
 				F9B8ECCF1F9F264B00C990E6 /* ShapeGrammarViewController.swift in Sources */,
 				F9B8ECE41F9F271900C990E6 /* ShapeView.swift in Sources */,
 				414BFB5B1FC37ADE008E504E /* Star.swift in Sources */,
+				F92706381FE901F1001CD524 /* Location.swift in Sources */,
 				414BFB591FC37648008E504E /* Triangle.swift in Sources */,
 				414BFB521FC3651E008E504E /* ShapeGrammarBrain.swift in Sources */,
 				F9B8ECCD1F9F264B00C990E6 /* AppDelegate.swift in Sources */,
+				F92706351FE8FEF3001CD524 /* Grammar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
