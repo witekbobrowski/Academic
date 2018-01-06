@@ -1,12 +1,12 @@
 #!/usr/bin/perl
-# Witold Bobrowski ; Group 2
+# Witold Bobrowski ; Group 9.8765E4
 #
 # Print word count for input files
 
 use strict;
 use warnings;
 use bytes;
-use Scalar::Util qw(looks_like_number);
+use Utils;
 
 # CONSTANTS
 
@@ -58,9 +58,9 @@ sub word_count {
     $byte_count += bytes::length($line);
     for my $word (@words) {
       $words_count += 1;
-			if (looks_like_number($word)) {
+			if (Utils::looks_like_number($word)) {
 				$num_count += 1;
-				if ($word =~ /^[+-]?\d+$/) {
+				if (Utils::looks_like_integer($word)) {
 					$int_count += 1;
 				}
 			}

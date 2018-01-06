@@ -35,6 +35,8 @@ IMPORTANT: Before you consider writing your script in c shell - if reading my sc
 - [x] 9. Word count [`perl`](perl/word-count.pl)
 - [ ] 10. Register `perl`
 
+\+ Utils module [`perl module`](perl/Utils.pm)
+
 #### Python
 
 - [x] 1. Multiplication table [`python`](python/mul-tab.py)
