@@ -9,15 +9,16 @@ import CoreGraphics
 
 protocol ShapeGrammarBrainDelegate: AnyObject {
     func shapeGrammarBrain(_ shapeGrammarBrain: ShapeGrammarBrain, didFinishBuildingGrammar grammar: Grammar<Shape>)
-    func shapeGrammarBrain(_ shapeGrammarBrain: ShapeGrammarBrain, didFinishCalculatingScore score: Int)
-    func rectForDrawing(_ shapeGrammarBraint: ShapeGrammarBrain) -> CGRect
+    func rectForDrawing(_ shapeGrammarBraint: ShapeGrammarBrain) -> CGRect?
 }
 
 class ShapeGrammarBrain {
     
-    typealias Node = Grammar<Shape>.Node
+    typealias ShapeGrammar = Grammar<Shape>
+    typealias Node = ShapeGrammar.Node
     
-    private var grammar: Grammar<Shape>?
+    private var grammar: Grammar<Shape>? { didSet { gatherBestSamples() } }
+    private var bestSamples: [Node] = []
     
     public weak var delegate: ShapeGrammarBrainDelegate?
 
@@ -34,21 +35,29 @@ extension ShapeGrammarBrain {
         grammar = nil
     }
     
-    public func addLayer() {
+    public func setup() {
+        guard let rect = delegate?.rectForDrawing(self) else { return }
+        let grammar = ShapeGrammar(element: Star(rect: rect))
+        self.grammar = grammar
+        delegate?.shapeGrammarBrain(self, didFinishBuildingGrammar: grammar)
+    }
+    
+    public func evolve() {
+        guard let grammar = grammar else { return }
         
     }
     
     public func random() {
-        let grammar = Grammar<Shape>(element: Triangle(rect: delegate?.rectForDrawing(self) ?? .zero))
-        random(grammar.head, maxDepth: Int(arc4random_uniform(UInt32(4))) + 1)
-        delegate?.shapeGrammarBrain(self, didFinishCalculatingScore: ShapeGradingHelper.shared.getGrade(fromGrammar: grammar.head))
+        guard let rect = delegate?.rectForDrawing(self) else { return }
+        let grammar = ShapeGrammar(element: Star(rect: rect))
+        random(grammar.head, maxDepth: Int(arc4random_uniform(UInt32(4))) + 2)
         self.grammar = grammar
         delegate?.shapeGrammarBrain(self, didFinishBuildingGrammar: grammar)
     }
     
 }
 
-//MARK: - Private
+//MARK: - Private - Building
 extension ShapeGrammarBrain {
     
     private func random(_ node: Node, maxDepth depth: Int) {
@@ -114,6 +123,31 @@ extension ShapeGrammarBrain {
         vertices[.southWest] = sortedVertices[3].x < sortedVertices[4].x ? sortedVertices[3] : sortedVertices[4]
         vertices[.southEast] = sortedVertices[3].x < sortedVertices[4].x ? sortedVertices[4] : sortedVertices[3]
         return vertices
+    }
+    
+}
+
+//MARK: - Private - Evolution
+extension ShapeGrammarBrain {
+    
+    private func gatherBestSamples() {
+        var samples: [(grammar: ShapeGrammar, grade: Int)] = []
+        for _ in 0...100 {
+            let grammar = ShapeGrammar(element: Triangle(rect: delegate?.rectForDrawing(self) ?? .zero))
+            random(grammar.head, maxDepth: Int(arc4random_uniform(UInt32(3))))
+            samples.append((grammar: grammar, grade: ShapeGradingHelper.shared.getGrade(fromGrammar: grammar.head)))
+        }
+        samples.sort { $0.grade < $1.grade }
+        bestSamples = samples.suffix(3).map { $0.grammar.head }
+    }
+    
+    private func applySample(at node: Node, sample: Node) {
+        
+    }
+    
+    private func addSamples(toNode node: Node, samples: [Location:Node]) {
+        let shapes = build(from: node.element, at: Array<Location>(samples.keys))
+        shapes.forEach { node.nodes[$0.key] = Node(element: $0.value) }
     }
     
 }

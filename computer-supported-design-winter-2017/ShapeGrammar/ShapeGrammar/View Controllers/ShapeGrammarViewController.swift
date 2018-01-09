@@ -28,23 +28,21 @@ class ShapeGrammarViewController: UIViewController {
     }
     
     @objc private func backgroundDidTap(_ recognizer: UITapGestureRecognizer) {
-        guard let shapeView = self.shapeView else {
-            return
+        if descriptionLabel.alpha == 1 {
+            brain.setup()
+            toggleViews(descriptionShouldHide: true)
         }
-        descriptionLabel.isHidden = true
-        UIView.transition(with: shapeView, duration: 0.5, options: [.transitionCrossDissolve], animations: {
-            
-        })
+        brain.evolve()
     }
 
     @objc private func clearButtonDidTap(_ sender: UIButton) {
         clear()
-        descriptionLabel.isHidden = false
+        toggleViews(descriptionShouldHide: false)
     }
     
     @objc private func randomButtonDidTap(_ sender: UIButton) {
         clear()
-        descriptionLabel.isHidden = true
+        toggleViews(descriptionShouldHide: true)
         brain.random()
     }
     
@@ -52,7 +50,7 @@ class ShapeGrammarViewController: UIViewController {
 
 //MARK: - Configuration
 extension ShapeGrammarViewController {
-
+    
     private func configure() {
         gradient.frame = view.layer.bounds
         view.layer.insertSublayer(gradient, at: 0)
@@ -64,7 +62,7 @@ extension ShapeGrammarViewController {
     
     private func configureLabel() {
         label.text = "ShapeGrammar"
-        descriptionLabel.text = "Tap to turn every △ into ✡"
+        descriptionLabel.text = "Tap to grow the shape"
         [label, descriptionLabel].forEach {
             $0?.textColor = UIColor(red: 66/255, green: 66/255, blue: 66/255, alpha: 1)
             $0?.textAlignment = .center
@@ -75,6 +73,7 @@ extension ShapeGrammarViewController {
         let shapeView = ShapeView(frame: shapeContainerView.bounds)
         shapeContainerView.addSubview(shapeView)
         shapeContainerView.backgroundColor = .clear
+        shapeContainerView.alpha = 0
         shapeView.isOpaque = false
         shapeView.color = UIColor(red: 66/255, green: 66/255, blue: 66/255, alpha: 1)
         self.shapeView = shapeView
@@ -95,17 +94,37 @@ extension ShapeGrammarViewController {
         brain.clear()
     }
     
+    private func toggleViews(descriptionShouldHide: Bool) {
+        UIView.animateKeyframes(withDuration: 1, delay: 0, options: [.calculationModeCubic], animations: {
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5, animations: {
+                if descriptionShouldHide {
+                    self.descriptionLabel.alpha = 0
+                } else {
+                    self.shapeContainerView.alpha = 0
+                }
+            })
+            UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.5, animations: {
+                if descriptionShouldHide {
+                    self.shapeContainerView.alpha = 1
+                } else {
+                    self.descriptionLabel.alpha = 1
+                }
+            })
+        }, completion: nil)
+    }
+    
 }
 
 //MARK: - ShapeGrammarBrainDelegate
 extension ShapeGrammarViewController: ShapeGrammarBrainDelegate {
     
-    func rectForDrawing(_ shapeGrammarBraint: ShapeGrammarBrain) -> CGRect {
-        return shapeView?.bounds ?? .zero
+    func rectForDrawing(_ shapeGrammarBraint: ShapeGrammarBrain) -> CGRect? {
+        return shapeView?.bounds
     }
     
     func shapeGrammarBrain(_ shapeGrammarBrain: ShapeGrammarBrain, didFinishBuildingGrammar grammar: Grammar<Shape>) {
         var nodes = [grammar.head]
+        shapeView?.addPathForShape(nil)
         while let current = nodes.popLast() {
             shapeView?.addPathForShape(current.element)
             nodes.append(contentsOf: current.nodes.values)
