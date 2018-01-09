@@ -10,7 +10,7 @@
 //      0 embeded shape = 6 pts : always symmetric but lower score for quantity
 //      1 embeded shape = 2 pts
 //      2 embeded shape = 6 pts : +4 for symmetric pair : -2 for non-symmetric pair
-//      3 embeded shape = 2 pts : gets lower score for being always non-symmetric
+//      3 embeded shape = 6 pts : +4 for symmetric triplet : -2 for non-symmetric triplet
 //      4 embeded shape = 4 pts : +3 for each symmetric pair : -2 for each non-symmetric pair
 //      5 embeded shape = 2 pts : gets lower score for being always non-symme tric
 //      6 embeded shape = 2 pts : always symmetric but lower score for quantity
@@ -67,14 +67,16 @@ extension ShapeGradingHelper {
             score = 6
         case 2:
             score = 6
-            guard let first = nodes.first, let second = nodes.last else { break }
-            score += areSummetrlyLayedOut(a: first, b: second) ? 4 : -2
+            score += areSummetrlyLayedOut(a: nodes[0], b: nodes[1], c: nil) ? 4 : -2
+        case 3:
+            score = 6
+            score += areSummetrlyLayedOut(a: nodes[0], b: nodes[1], c: nodes[2]) ? 4 : -2
         case 4:
             score = 4
             var results: [Bool] = []
             for index in 0..<3 {
                 for latterIndex in (index + 1)..<4 {
-                    results.append(areSummetrlyLayedOut(a: nodes[index], b: nodes[latterIndex]))
+                    results.append(areSummetrlyLayedOut(a: nodes[index], b: nodes[latterIndex], c: nil))
                 }
             }
             let symmetricPairs = results.filter {$0}.count
@@ -86,22 +88,29 @@ extension ShapeGradingHelper {
     }
     
     // Compare two locations to check ther relative position
-    private func areSummetrlyLayedOut(a: Location, b: Location) -> Bool {
+    private func areSummetrlyLayedOut(a: Location, b: Location, c: Location?) -> Bool {
         switch a {
         case .north:
-            return b == .south
+            guard let c = c else { return b == .south }
+            return [b, c].contains(.southEast) && [b, c].contains(.southWest)
         case .northEast:
-            return b == .southWest
+            guard let c = c else { return b == .southWest }
+            return [b, c].contains(.south) && [b, c].contains(.northWest)
         case .southEast:
-            return b == .northWest
+            guard let c = c else { return b == .northWest }
+            return [b, c].contains(.north) && [b, c].contains(.southWest)
         case .south:
-            return b == .north
+            guard let c = c else { return b == .north }
+            return [b, c].contains(.northWest) && [b, c].contains(.northEast)
         case .southWest:
-            return b == .northEast
+            guard let c = c else { return b == .northEast }
+            return [b, c].contains(.southEast) && [b, c].contains(.north)
         case .northWest:
-            return b == .southEast
+            guard let c = c else { return b == .southEast }
+            return [b, c].contains(.south) && [b, c].contains(.northEast)
         case .center:
-            return b == .center
+            guard let c = c else { return b == .center }
+            return b == .center && c == .center
         }
     }
     
