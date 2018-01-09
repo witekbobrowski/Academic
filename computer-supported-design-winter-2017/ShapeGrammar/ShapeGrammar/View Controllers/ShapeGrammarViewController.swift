@@ -108,4 +108,8 @@ extension ShapeGrammarViewController: ShapeGrammarBrainDelegate {
         shapeView?.addPathForShape(shape)
     }
     
+    func shapeGrammarBrain(_ shapeGrammarBrain: ShapeGrammarBrain, didFinishCalculatingScore score: Int) {
+        print(score)
+    }
+    
 }

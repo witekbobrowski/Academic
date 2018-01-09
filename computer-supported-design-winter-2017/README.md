@@ -12,6 +12,6 @@ To do these I will be working on one project which is the [ShapeGrammar](ShapeGr
 
 	Create a simple shape using the defined grammar
 
-- [ ] 2. Random function
+- [x] 2. Random generator and grading function
 
-	Implement a function that will generate a random shape using your grammar
+	Implement a function that will generate a random shape using your grammar. Next add function that will evaluate generated shape and give it a score depending on preferences.

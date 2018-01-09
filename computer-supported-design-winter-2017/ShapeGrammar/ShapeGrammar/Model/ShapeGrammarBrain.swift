@@ -9,12 +9,22 @@ import CoreGraphics
 
 protocol ShapeGrammarBrainDelegate: AnyObject {
     func shapeGrammarBrain(_ shapeGrammarBrain: ShapeGrammarBrain, didBuildShape shape: Shape)
+    func shapeGrammarBrain(_ shapeGrammarBrain: ShapeGrammarBrain, didFinishCalculatingScore score: Int)
     func rectForDrawing(_ shapeGrammarBraint: ShapeGrammarBrain) -> CGRect
+}
+
+class Node {
+    var shape: Shape
+    var nodes: [Location:Node] = [:]
+    init(shape: Shape) {
+        self.shape = shape
+    }
 }
 
 class ShapeGrammarBrain {
     
-    private var shape: Shape?
+    private var head: Node?
+    
     public weak var delegate: ShapeGrammarBrainDelegate?
 
 }
@@ -23,11 +33,11 @@ class ShapeGrammarBrain {
 extension ShapeGrammarBrain {
     
     public var isEmpty: Bool {
-        return shape == nil
+        return head == nil
     }
     
     public func clear() {
-        shape = nil
+        head = nil
     }
     
     public func addLayer() {
@@ -35,7 +45,10 @@ extension ShapeGrammarBrain {
     }
     
     public func random() {
-        random(shape ?? setup(Triangle(rect: delegate?.rectForDrawing(self) ?? .zero)), maxDepth: 5)
+        let node = Node(shape: setup(Triangle(rect: delegate?.rectForDrawing(self) ?? .zero)))
+        random(node, maxDepth: Int(arc4random_uniform(UInt32(4))) + 1)
+        delegate?.shapeGrammarBrain(self, didFinishCalculatingScore: ShapeGradingHelper.getGrade(fromGrammar: node))
+        head = node
     }
     
 }
@@ -48,14 +61,16 @@ extension ShapeGrammarBrain {
         return shape
     }
     
-    private func random(_ shape: Shape, maxDepth depth: Int) {
+    private func random(_ node: Node, maxDepth depth: Int) {
         guard depth > 0 else { return }
         var locations: Set<Location> = []
         for _ in 0...Int(arc4random_uniform(UInt32(6))) {
             locations.insert(Location(rawValue: Int(arc4random_uniform(UInt32(6))))!)
         }
-        build(from: shape, at: Array(locations)).values.forEach { shape in
-            random(shape, maxDepth: depth-1)
+        build(from: node.shape, at: Array(locations)).forEach { (location, shape) in
+            let new = Node(shape: shape)
+            node.nodes[location] = new
+            random(new, maxDepth: depth-1)
         }
     }
     
