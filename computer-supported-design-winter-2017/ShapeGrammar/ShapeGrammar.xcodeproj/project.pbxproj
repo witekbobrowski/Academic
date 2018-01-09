@@ -54,11 +54,11 @@
 		414BFB531FC37579008E504E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				414BFB511FC3651E008E504E /* ShapeGrammarBrain.swift */,
+				F92706361FE901D9001CD524 /* Shape */,
 				F92706341FE8FEF3001CD524 /* Grammar.swift */,
 				F92706371FE901F1001CD524 /* Location.swift */,
-				F92706361FE901D9001CD524 /* Shape */,
 				414E00792003E58100E96BFF /* ShapeGradingHelper.swift */,
+				414BFB511FC3651E008E504E /* ShapeGrammarBrain.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

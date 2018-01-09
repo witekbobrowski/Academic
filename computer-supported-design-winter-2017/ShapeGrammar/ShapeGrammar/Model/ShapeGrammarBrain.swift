@@ -13,17 +13,11 @@ protocol ShapeGrammarBrainDelegate: AnyObject {
     func rectForDrawing(_ shapeGrammarBraint: ShapeGrammarBrain) -> CGRect
 }
 
-class Node {
-    var shape: Shape
-    var nodes: [Location:Node] = [:]
-    init(shape: Shape) {
-        self.shape = shape
-    }
-}
-
 class ShapeGrammarBrain {
     
-    private var head: Node?
+    typealias Node = Grammar<Shape>.Node
+    
+    private var grammar: Grammar<Shape>?
     
     public weak var delegate: ShapeGrammarBrainDelegate?
 
@@ -33,11 +27,11 @@ class ShapeGrammarBrain {
 extension ShapeGrammarBrain {
     
     public var isEmpty: Bool {
-        return head == nil
+        return grammar == nil
     }
     
     public func clear() {
-        head = nil
+        grammar = nil
     }
     
     public func addLayer() {
@@ -45,10 +39,10 @@ extension ShapeGrammarBrain {
     }
     
     public func random() {
-        let node = Node(shape: setup(Triangle(rect: delegate?.rectForDrawing(self) ?? .zero)))
-        random(node, maxDepth: Int(arc4random_uniform(UInt32(4))) + 1)
-        delegate?.shapeGrammarBrain(self, didFinishCalculatingScore: ShapeGradingHelper.getGrade(fromGrammar: node))
-        head = node
+        grammar = Grammar<Shape>(element: setup(Triangle(rect: delegate?.rectForDrawing(self) ?? .zero)))
+        guard let head = grammar?.head else { return }
+        random(head, maxDepth: Int(arc4random_uniform(UInt32(4))) + 1)
+        delegate?.shapeGrammarBrain(self, didFinishCalculatingScore: ShapeGradingHelper.shared.getGrade(fromGrammar: head))
     }
     
 }
@@ -67,8 +61,8 @@ extension ShapeGrammarBrain {
         for _ in 0...Int(arc4random_uniform(UInt32(6))) {
             locations.insert(Location(rawValue: Int(arc4random_uniform(UInt32(6))))!)
         }
-        build(from: node.shape, at: Array(locations)).forEach { (location, shape) in
-            let new = Node(shape: shape)
+        build(from: node.element, at: Array(locations)).forEach { (location, shape) in
+            let new = Node(element: shape)
             node.nodes[location] = new
             random(new, maxDepth: depth-1)
         }

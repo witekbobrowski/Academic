@@ -7,36 +7,40 @@
 
 import Foundation
 
-struct Grammar<Element> {
+class Grammar<Element> {
     
     class Node {
-        var element: Element?
+        var element: Element
         var nodes: [Location:Node] = [:]
         init(element: Element) {
             self.element = element
         }
     }
     
-    var head: Node?
+    var head: Node
+    
+    init(element: Element) {
+        self.head = Node(element: element)
+    }
     
 }
 
 //MARK: - Public
 extension Grammar {
     
-    public func node(atPath locationPath: LocationPath) throws -> Node? {
+    public func node(atPath locationPath: LocationPath) throws -> Node {
         do {
             return try locationPath.reduce(head) { result, location in
-                guard let node = result else { throw LocationPathError.PathOutOfRange }
-                return node.nodes[location]
+                guard let node = result.nodes[location] else { throw LocationPathError.PathOutOfRange }
+                return node
             }
         } catch {
             throw error
         }
     }
     
-    public mutating func insert(_ element: Element, atPath locationPath: LocationPath) {
-        guard let node = try? node(atPath: Array(locationPath.dropLast(1))), let tail = node else {
+    public func insert(_ element: Element, atPath locationPath: LocationPath) {
+        guard let tail = try? node(atPath: Array(locationPath.dropLast(1))) else {
             self.head = Node(element: element)
             return
         }

@@ -4,9 +4,6 @@
 //
 //  Created by Witek on 08/01/2018.
 //
-
-import Foundation
-
 //  Grading function gives higher score for small and symetric shapes
 //
 //  For shape with :
@@ -28,39 +25,32 @@ import Foundation
 //      33 - X Total shapes = -(All points) Fatal penalty - shape too big!
 //
 
+import Foundation
+
 class ShapeGradingHelper {
     
-    // 0 - Worst, 10 - Best
-    var score: Int = 0
+    typealias Node = Grammar<Shape>.Node
+    
+    // Static instace of class for more convinient usage
+    public static let shared = ShapeGradingHelper()
     
 }
 
 //MARK: - Public
 extension ShapeGradingHelper {
     
-    public static func getGrade(fromGrammar head: Node) -> Int {
-        let helper = ShapeGradingHelper()
+    // returns score from 0-10 evaluating node and its child nodes respectively with specifiacation above
+    public func getGrade(fromGrammar head: Node) -> Int {
         var scores: [Int] = []
         var nodes: [Node] = [head]
+        // while there is something in the array of nodes pop item and assing it to the `current` variable
         while let current = nodes.popLast() {
-            scores.append(helper.evaluateNode(current))
+            // evaluation of node returns score from 0-10, append the score to array `scores`
+            scores.append(evaluateNode(current))
+            // append all children nodes for further evaluation
             nodes.append(contentsOf: current.nodes.flatMap {$0.value})
         }
-        let average = scores.reduce(0, {$0+$1})/scores.count
-        var penalty = 0
-        switch scores.count {
-        case 0...8:
-            penalty = -2
-        case 9...16:
-            penalty = 0
-        case 17...24:
-            penalty = 2
-        case 25...32:
-            penalty = 4
-        default:
-            penalty = average
-        }
-        return average - penalty
+        return calculateFinalScore(fromScores: scores)
     }
     
 }
@@ -68,6 +58,7 @@ extension ShapeGradingHelper {
 //MARK: - Private
 extension ShapeGradingHelper {
     
+    // Find the number of child nodes and return appropiate score
     private func evaluateNode(_ node: Node) -> Int {
         var score: Int = 0
         let nodes = node.nodes.flatMap { $0.key }
@@ -94,6 +85,7 @@ extension ShapeGradingHelper {
         return score
     }
     
+    // Compare two locations to check ther relative position
     private func areSummetrlyLayedOut(a: Location, b: Location) -> Bool {
         switch a {
         case .north:
@@ -111,6 +103,27 @@ extension ShapeGradingHelper {
         case .center:
             return b == .center
         }
+    }
+    
+    // Calculate average from gathered scores and apply penalty
+    private func calculateFinalScore(fromScores scores: [Int]) -> Int {
+        let average = scores.reduce(0, {$0+$1})/scores.count
+        var penalty = 0
+        // figure out penalty for the number of nodes as described above
+        switch scores.count {
+        case 0...8:
+            penalty = -2
+        case 9...16:
+            penalty = 0
+        case 17...24:
+            penalty = 2
+        case 25...32:
+            penalty = 4
+        default:
+            penalty = average
+        }
+        // return calculated average with subrtacting the penalty
+        return average - penalty
     }
     
 }
