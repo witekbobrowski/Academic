@@ -28,9 +28,10 @@ class ShapeGrammarViewController: UIViewController {
     }
     
     @objc private func backgroundDidTap(_ recognizer: UITapGestureRecognizer) {
-        if descriptionLabel.alpha == 1 {
+        guard shapeContainerView.alpha == 1 else {
             brain.setup()
             toggleViews(descriptionShouldHide: true)
+            return
         }
         brain.evolve()
     }

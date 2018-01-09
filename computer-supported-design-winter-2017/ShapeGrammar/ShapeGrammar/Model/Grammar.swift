@@ -48,4 +48,20 @@ extension Grammar {
         tail.nodes[location] = Node(element: element)
     }
     
+    public func getPaths() -> [LocationPath] {
+        return head.nodes.reduce([]) { $0 + extractPaths(fromNode: $1.value, at: $1.key) }
+    }
+    
+}
+
+//MARK: - Private
+extension Grammar {
+    
+    private func extractPaths(fromNode node: Node, at location: Location) -> [LocationPath] {
+        guard !node.nodes.isEmpty else { return [[location]] }
+        var paths: [LocationPath] = []
+        node.nodes.forEach { paths.append(contentsOf: extractPaths(fromNode: $0.value, at: $0.key))}
+        return paths.map { [location] + $0 }
+    }
+    
 }

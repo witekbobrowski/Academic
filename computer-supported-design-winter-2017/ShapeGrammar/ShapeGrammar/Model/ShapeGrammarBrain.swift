@@ -44,7 +44,16 @@ extension ShapeGrammarBrain {
     
     public func evolve() {
         guard let grammar = grammar else { return }
-        
+        let paths = pickPaths(inGrammar: grammar)
+        if paths.isEmpty {
+            applySample(at: grammar.head, sample: bestSamples[Int(arc4random_uniform(UInt32(3)))])
+        } else {
+            for path in paths {
+                guard path.count < 3, let node = try? grammar.node(atPath: path) else { continue }
+                applySample(at: node, sample: bestSamples[Int(arc4random_uniform(UInt32(3)))])
+            }
+        }
+        delegate?.shapeGrammarBrain(self, didFinishBuildingGrammar: grammar)
     }
     
     public func random() {
@@ -97,6 +106,7 @@ extension ShapeGrammarBrain {
         let internalSE = CGPoint(x: center.x + size/2, y: center.y + height)
         let internalSW = CGPoint(x: center.x - size/2, y: center.y + height)
         let internalW = CGPoint(x: center.x - size, y: center.y)
+        triangles[.center] = star.triangles.0
         triangles[.north] = Triangle(rect: star.rect, vertices:
             (internalNW, vertices[.north]!, internalNE))
         triangles[.northEast] = Triangle(rect: star.rect, vertices:
@@ -131,18 +141,28 @@ extension ShapeGrammarBrain {
 extension ShapeGrammarBrain {
     
     private func gatherBestSamples() {
+        guard let grammar = grammar else { return }
         var samples: [(grammar: ShapeGrammar, grade: Int)] = []
-        for _ in 0...100 {
-            let grammar = ShapeGrammar(element: Triangle(rect: delegate?.rectForDrawing(self) ?? .zero))
-            random(grammar.head, maxDepth: Int(arc4random_uniform(UInt32(3))))
+        for _ in 0...50 {
+            let grammar = ShapeGrammar(element: grammar.head.element)
+            random(grammar.head, maxDepth: Int(arc4random_uniform(UInt32(4))) + 1)
             samples.append((grammar: grammar, grade: ShapeGradingHelper.shared.getGrade(fromGrammar: grammar.head)))
         }
         samples.sort { $0.grade < $1.grade }
         bestSamples = samples.suffix(3).map { $0.grammar.head }
     }
     
+    private func pickPaths(inGrammar grammar: ShapeGrammar) -> [LocationPath] {
+        var paths: [LocationPath] = grammar.getPaths()
+        return paths
+    }
+    
     private func applySample(at node: Node, sample: Node) {
-        
+        addSamples(toNode: node, samples: sample.nodes)
+        for location in node.nodes.keys {
+            guard let node = node.nodes[location], let sample = sample.nodes[location] else { continue }
+            applySample(at: node, sample: sample)
+        }
     }
     
     private func addSamples(toNode node: Node, samples: [Location:Node]) {
