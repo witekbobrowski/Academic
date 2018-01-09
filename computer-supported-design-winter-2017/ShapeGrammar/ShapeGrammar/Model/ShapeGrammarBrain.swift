@@ -8,7 +8,7 @@
 import CoreGraphics
 
 protocol ShapeGrammarBrainDelegate: AnyObject {
-    func shapeGrammarBrain(_ shapeGrammarBrain: ShapeGrammarBrain, didBuildShape shape: Shape)
+    func shapeGrammarBrain(_ shapeGrammarBrain: ShapeGrammarBrain, didFinishBuildingGrammar grammar: Grammar<Shape>)
     func shapeGrammarBrain(_ shapeGrammarBrain: ShapeGrammarBrain, didFinishCalculatingScore score: Int)
     func rectForDrawing(_ shapeGrammarBraint: ShapeGrammarBrain) -> CGRect
 }
@@ -39,21 +39,17 @@ extension ShapeGrammarBrain {
     }
     
     public func random() {
-        grammar = Grammar<Shape>(element: setup(Triangle(rect: delegate?.rectForDrawing(self) ?? .zero)))
-        guard let head = grammar?.head else { return }
-        random(head, maxDepth: Int(arc4random_uniform(UInt32(4))) + 1)
-        delegate?.shapeGrammarBrain(self, didFinishCalculatingScore: ShapeGradingHelper.shared.getGrade(fromGrammar: head))
+        let grammar = Grammar<Shape>(element: Triangle(rect: delegate?.rectForDrawing(self) ?? .zero))
+        random(grammar.head, maxDepth: Int(arc4random_uniform(UInt32(4))) + 1)
+        delegate?.shapeGrammarBrain(self, didFinishCalculatingScore: ShapeGradingHelper.shared.getGrade(fromGrammar: grammar.head))
+        self.grammar = grammar
+        delegate?.shapeGrammarBrain(self, didFinishBuildingGrammar: grammar)
     }
     
 }
 
 //MARK: - Private
 extension ShapeGrammarBrain {
-    
-    private func setup(_ shape: Shape) -> Shape {
-        delegate?.shapeGrammarBrain(self, didBuildShape: shape)
-        return shape
-    }
     
     private func random(_ node: Node, maxDepth depth: Int) {
         guard depth > 0 else { return }
@@ -71,16 +67,10 @@ extension ShapeGrammarBrain {
     private func build(from shape: Shape, at locations: [Location]) -> [Location:Shape] {
         var shapes: [Location:Shape] = [:]
         if let triangle = shape as? Triangle {
-            let star = Star(triangle: triangle)
-            shapes[.center] = star
-            delegate?.shapeGrammarBrain(self, didBuildShape: star)
+            shapes[.center] = Star(triangle: triangle)
         } else if let star = shape as? Star {
             let triangles = getTriangles(in: star)
-            locations.forEach {
-                let star = Star(triangle: triangles[$0]!)
-                shapes[$0] = star
-                delegate?.shapeGrammarBrain(self, didBuildShape: star.triangles.1)
-            }
+            locations.forEach { shapes[$0] = Star(triangle: triangles[$0]!) }
         }
         return shapes
     }

@@ -104,8 +104,12 @@ extension ShapeGrammarViewController: ShapeGrammarBrainDelegate {
         return shapeView?.bounds ?? .zero
     }
     
-    func shapeGrammarBrain(_ shapeGrammarBrain: ShapeGrammarBrain, didBuildShape shape: Shape) {
-        shapeView?.addPathForShape(shape)
+    func shapeGrammarBrain(_ shapeGrammarBrain: ShapeGrammarBrain, didFinishBuildingGrammar grammar: Grammar<Shape>) {
+        var nodes = [grammar.head]
+        while let current = nodes.popLast() {
+            shapeView?.addPathForShape(current.element)
+            nodes.append(contentsOf: current.nodes.values)
+        }
     }
     
     func shapeGrammarBrain(_ shapeGrammarBrain: ShapeGrammarBrain, didFinishCalculatingScore score: Int) {
