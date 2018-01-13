@@ -18,11 +18,10 @@
 //  Final score will be calculades as a result of adding above evaluation for each shape then
 //  dividing by a number of shapes.
 //  Finnaly the can be another penalty given for total number of shapes:
-//      0 - 8 Total shapes = +2 pts
-//      9 - 16 Total shapes = +0 pts
-//      17 - 24 Total shapes = -2 pts
-//      25 - 32 Total shapes = -4 pts
-//      33 - X Total shapes = -(All points) Fatal penalty - shape too big!
+//      0 - 4 Total shapes = +1 pts
+//      5 - 8 Total shapes = -3 pts
+//      9 - 12 Total shapes = -6 pts
+//      13 - X Total shapes = -(All points) Fatal penalty - shape too big!
 //
 
 import Foundation
@@ -46,7 +45,8 @@ extension ShapeGradingHelper {
         // while there is something in the array of nodes pop item and assing it to the `current` variable
         while let current = nodes.popLast() {
             // evaluation of node returns score from 0-10, append the score to array `scores`
-            scores.append(evaluateNode(current))
+            guard let score = evaluateNode(current) else { continue }
+            scores.append(score)
             // append all children nodes for further evaluation
             nodes.append(contentsOf: current.nodes.flatMap {$0.value})
         }
@@ -59,18 +59,18 @@ extension ShapeGradingHelper {
 extension ShapeGradingHelper {
     
     // Find the number of child nodes and return appropiate score
-    private func evaluateNode(_ node: Node) -> Int {
+    private func evaluateNode(_ node: Node) -> Int? {
         var score: Int = 0
         let nodes = node.nodes.flatMap { $0.key }
         switch nodes.count {
         case 0:
-            score = 6
+            return nil
         case 2:
             score = 6
             score += areSummetrlyLayedOut(a: nodes[0], b: nodes[1], c: nil) ? 4 : -2
         case 3:
             score = 6
-            score += areSummetrlyLayedOut(a: nodes[0], b: nodes[1], c: nodes[2]) ? 4 : -2
+            score += areSummetrlyLayedOut(a: nodes[0], b: nodes[1], c: nodes[2]) ? 4 : -4
         case 4:
             score = 4
             var results: [Bool] = []
@@ -80,7 +80,7 @@ extension ShapeGradingHelper {
                 }
             }
             let symmetricPairs = results.filter {$0}.count
-            score += symmetricPairs == 2 ? 6 : symmetricPairs == 1 ? 1 : -4
+            score += symmetricPairs == 2 ? 6 : symmetricPairs == 1 ? 3 : -2
         default:
             score = 2
         }
@@ -120,19 +120,17 @@ extension ShapeGradingHelper {
         var penalty = 0
         // figure out penalty for the number of nodes as described above
         switch scores.count {
-        case 0...8:
-            penalty = -2
-        case 9...16:
-            penalty = 0
-        case 17...24:
-            penalty = 2
-        case 25...32:
-            penalty = 4
+        case 0...4:
+            penalty = -1
+        case 5...8:
+            penalty = 3
+        case 9...12:
+            penalty = 6
         default:
             penalty = average
         }
         // return calculated average with subrtacting the penalty
-        return average - penalty
+        return min(10, average - penalty)
     }
     
 }
