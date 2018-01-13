@@ -14,6 +14,7 @@
 		414E007A2003E58100E96BFF /* ShapeGradingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414E00792003E58100E96BFF /* ShapeGradingHelper.swift */; };
 		41F454FE200A6A8600CBAD7C /* SampleGrammarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F454FC200A6A8600CBAD7C /* SampleGrammarCollectionViewCell.swift */; };
 		41F454FF200A6A8600CBAD7C /* SampleGrammarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41F454FD200A6A8600CBAD7C /* SampleGrammarCollectionViewCell.xib */; };
+		41F45501200A6F6D00CBAD7C /* SamplesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F45500200A6F6D00CBAD7C /* SamplesViewController.swift */; };
 		F92706351FE8FEF3001CD524 /* Grammar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92706341FE8FEF3001CD524 /* Grammar.swift */; };
 		F92706381FE901F1001CD524 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92706371FE901F1001CD524 /* Location.swift */; };
 		F9B8ECCD1F9F264B00C990E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B8ECCC1F9F264B00C990E6 /* AppDelegate.swift */; };
@@ -32,6 +33,7 @@
 		414E00792003E58100E96BFF /* ShapeGradingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeGradingHelper.swift; sourceTree = "<group>"; };
 		41F454FC200A6A8600CBAD7C /* SampleGrammarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleGrammarCollectionViewCell.swift; sourceTree = "<group>"; };
 		41F454FD200A6A8600CBAD7C /* SampleGrammarCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SampleGrammarCollectionViewCell.xib; sourceTree = "<group>"; };
+		41F45500200A6F6D00CBAD7C /* SamplesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplesViewController.swift; sourceTree = "<group>"; };
 		F92706341FE8FEF3001CD524 /* Grammar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grammar.swift; sourceTree = "<group>"; };
 		F92706371FE901F1001CD524 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		F9B8ECC91F9F264B00C990E6 /* ShapeGrammar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShapeGrammar.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				F9B8ECCE1F9F264B00C990E6 /* ShapeGrammarViewController.swift */,
+				41F45500200A6F6D00CBAD7C /* SamplesViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -208,6 +211,7 @@
 			files = (
 				414BFB571FC375D1008E504E /* Shape.swift in Sources */,
 				F9B8ECCF1F9F264B00C990E6 /* ShapeGrammarViewController.swift in Sources */,
+				41F45501200A6F6D00CBAD7C /* SamplesViewController.swift in Sources */,
 				414E007A2003E58100E96BFF /* ShapeGradingHelper.swift in Sources */,
 				F9B8ECE41F9F271900C990E6 /* ShapeView.swift in Sources */,
 				414BFB5B1FC37ADE008E504E /* Star.swift in Sources */,
