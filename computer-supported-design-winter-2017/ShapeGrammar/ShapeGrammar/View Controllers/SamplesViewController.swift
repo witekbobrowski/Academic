@@ -76,7 +76,7 @@ extension SamplesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: SampleGrammarCollectionViewCell.self), for: indexPath) as! SampleGrammarCollectionViewCell
         let item = items[indexPath.row]
-        cell.configure(with: item.grammar, score: item.score, zisHighlighed: item.isHighlighed)
+        cell.configure(with: item.grammar, score: item.score, isHighlighed: item.isHighlighed)
         return cell
     }
     

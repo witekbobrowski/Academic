@@ -10,11 +10,14 @@ import UIKit
 class ShapeGrammarViewController: UIViewController {
     
     
+    @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var label: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var shapeContainerView: UIView!
     @IBOutlet private weak var randomButton: UIButton!
     @IBOutlet private weak var clearButton: UIButton!
+    @IBOutlet private weak var mainContainerView: UIView!
+    @IBOutlet private weak var samplesContainerView: UIView!
     private let gradient = CAGradientLayer()
     private var shapeView: ShapeView?
     private let brain = ShapeGrammarBrain()
@@ -53,8 +56,11 @@ class ShapeGrammarViewController: UIViewController {
 extension ShapeGrammarViewController {
     
     private func configure() {
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.isPagingEnabled = true
         gradient.frame = view.layer.bounds
         view.layer.insertSublayer(gradient, at: 0)
+        [mainContainerView, samplesContainerView].forEach { $0?.backgroundColor = .clear}
         gradient.colors = [UIColor(red: 182/255, green: 251/255, blue: 255/255, alpha: 1).cgColor, UIColor(red: 131/255, green: 164/255, blue: 212/255, alpha: 1).cgColor]
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(backgroundDidTap(_:)))
         view.addGestureRecognizer(tapGesture)
