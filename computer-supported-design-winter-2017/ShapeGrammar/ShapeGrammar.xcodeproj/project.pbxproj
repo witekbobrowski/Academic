@@ -62,11 +62,10 @@
 		414BFB531FC37579008E504E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				41F090D7200AB11000BAD8EF /* Utils */,
 				F92706361FE901D9001CD524 /* Shape */,
 				F92706341FE8FEF3001CD524 /* Grammar.swift */,
 				F92706371FE901F1001CD524 /* Location.swift */,
-				41F090D5200AAA8B00BAD8EF /* ShapeBuildingHelper.swift */,
-				414E00792003E58100E96BFF /* ShapeGradingHelper.swift */,
 				414BFB511FC3651E008E504E /* ShapeGrammarBrain.swift */,
 			);
 			path = Model;
@@ -89,6 +88,15 @@
 				41F454FD200A6A8600CBAD7C /* SampleGrammarCollectionViewCell.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		41F090D7200AB11000BAD8EF /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				41F090D5200AAA8B00BAD8EF /* ShapeBuildingHelper.swift */,
+				414E00792003E58100E96BFF /* ShapeGradingHelper.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		F92706361FE901D9001CD524 /* Shape */ = {

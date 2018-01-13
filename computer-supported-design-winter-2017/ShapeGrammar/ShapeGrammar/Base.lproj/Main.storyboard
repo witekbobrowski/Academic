@@ -83,6 +83,9 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9iM-0d-vyX">
                                                 <rect key="frame" x="0.0" y="32" width="375" height="250.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="250.5" id="gif-Vx-7p3"/>
+                                                </constraints>
                                             </view>
                                         </subviews>
                                         <constraints>

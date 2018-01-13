@@ -44,6 +44,7 @@ class ShapeGrammarViewController: UIViewController {
 
     @objc private func clearButtonDidTap(_ sender: UIButton) {
         clear()
+        samplesViewController?.items = []
         toggleViews(descriptionShouldHide: false)
     }
     

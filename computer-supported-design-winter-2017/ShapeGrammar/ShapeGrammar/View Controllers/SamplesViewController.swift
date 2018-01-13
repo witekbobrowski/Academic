@@ -12,7 +12,7 @@ class SamplesViewController: UIViewController {
     public typealias Item = (grammar: Grammar<Shape>, score: Int)
     
     private enum Constants {
-        static let visibleItems: CGFloat = 2
+        static let visibleItems: CGFloat = 3
         static let spacing: CGFloat = 16
     }
     
@@ -49,11 +49,15 @@ extension SamplesViewController {
 extension SamplesViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (collectionView.bounds.width - (Constants.spacing * (Constants.visibleItems + 1))) / Constants.visibleItems
+        let width = (collectionView.bounds.width - (Constants.spacing * (Constants.visibleItems + 1 ))) / Constants.visibleItems
         return CGSize(width: width, height: collectionView.bounds.height - Constants.spacing * 2)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return Constants.spacing
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return Constants.spacing
     }
     

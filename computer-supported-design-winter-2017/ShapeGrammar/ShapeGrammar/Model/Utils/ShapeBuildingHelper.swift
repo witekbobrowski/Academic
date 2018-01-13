@@ -16,8 +16,17 @@ class ShapeBuildingHelper {
 //MARK: - Public
 extension ShapeBuildingHelper {
     
-    public static func rebuildShapesFromGrammar(_ grammar: Grammar<Shape>, inRect rect: CGRect) -> UIBezierPath? {
-        return nil
+    public static func rebuildShapesInGrammar(_ grammar: Grammar<Shape>, toFitRect rect: CGRect) {
+        grammar.head.element = Star(rect: rect)
+        var nodes: [Grammar<Shape>.Node] = [grammar.head]
+        while let node = nodes.popLast() {
+            let shapes = build(from: node.element, at: Array(node.nodes.keys))
+            node.nodes.forEach { location, child in
+                guard let shape = shapes[location] else { return }
+                child.element = shape
+            }
+            nodes.append(contentsOf: node.nodes.values)
+        }
     }
     
     public static func build(from shape: Shape, at locations: [Location]) -> [Location:Shape] {
@@ -50,7 +59,6 @@ extension ShapeBuildingHelper {
     }
     
     private func getTriangles(in star: Star) -> [Location:Triangle] {
-        guard star.triangles.0.height > 3 && star.triangles.1.height > 3 else { return [:] }
         var triangles: [Location:Triangle] = [:]
         let center = star.center!
         let size = star.triangles.1.size/3

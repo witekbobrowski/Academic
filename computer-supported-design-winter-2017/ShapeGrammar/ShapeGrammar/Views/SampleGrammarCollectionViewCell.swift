@@ -23,20 +23,22 @@ class SampleGrammarCollectionViewCell: UICollectionViewCell {
         scoreLabel.text = ""
         layer.borderColor = UIColor.lightGray.cgColor
     }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        shapeView.frame = bounds
-    }
     
 }
 
 //MARK: - Public
 extension SampleGrammarCollectionViewCell {
     
-    public func configure(with Grammar: Grammar<Shape>, score: Int, isHighlighed: Bool) {
+    public func configure(with grammar: Grammar<Shape>, score: Int, isHighlighed: Bool) {
+        layoutIfNeeded()
         scoreLabel.text = "Score: \(score)"
-        layer.borderColor = isHighlighed ? UIColor.green.cgColor : UIColor.lightGray.cgColor
+        ShapeBuildingHelper.rebuildShapesInGrammar(grammar, toFitRect: shapeView.bounds)
+        var nodes = [grammar.head]
+        shapeView.addPathForShape(nil)
+        while let current = nodes.popLast() {
+            shapeView.addPathForShape(current.element)
+            nodes.append(contentsOf: current.nodes.values)
+        }
     }
     
 }
@@ -46,11 +48,15 @@ extension SampleGrammarCollectionViewCell {
     
     private func configure() {
         let shapeView = ShapeView()
-        shapeView.frame = containerView.bounds
         [self, containerView].forEach { $0.backgroundColor = .clear }
         containerView.addSubview(shapeView)
         shapeView.isOpaque = false
         shapeView.color = UIColor(red: 66/255, green: 66/255, blue: 66/255, alpha: 1)
+        shapeView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.trailingAnchor.constraint(equalTo: shapeView.trailingAnchor).isActive = true
+        containerView.leadingAnchor.constraint(equalTo: shapeView.leadingAnchor).isActive = true
+        containerView.topAnchor.constraint(equalTo: shapeView.topAnchor).isActive = true
+        containerView.bottomAnchor.constraint(equalTo: shapeView.bottomAnchor).isActive = true
         self.shapeView = shapeView
         scoreLabel.textAlignment = .center
         scoreLabel.textColor = UIColor(red: 66/255, green: 66/255, blue: 66/255, alpha: 1)

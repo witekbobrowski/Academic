@@ -19,7 +19,7 @@ class ShapeGrammarBrain {
     typealias Node = ShapeGrammar.Node
     
     private enum Constants {
-        static let bestSamplesCount: Int = 2
+        static let bestSamplesCount: Int = 3
         static let totalSampleCount: Int = 100
     }
     
