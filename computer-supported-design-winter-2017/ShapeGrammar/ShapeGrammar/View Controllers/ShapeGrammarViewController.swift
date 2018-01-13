@@ -18,6 +18,7 @@ class ShapeGrammarViewController: UIViewController {
     @IBOutlet private weak var clearButton: UIButton!
     @IBOutlet private weak var mainContainerView: UIView!
     @IBOutlet private weak var samplesContainerView: UIView!
+    private weak var samplesViewController: SamplesViewController?
     private let gradient = CAGradientLayer()
     private var shapeView: ShapeView?
     private let brain = ShapeGrammarBrain()
@@ -28,6 +29,7 @@ class ShapeGrammarViewController: UIViewController {
         configureLabel()
         configureShapeView()
         configureButton()
+        configureSamplesVC()
     }
     
     @objc private func backgroundDidTap(_ recognizer: UITapGestureRecognizer) {
@@ -94,6 +96,16 @@ extension ShapeGrammarViewController {
         clearButton.setTitleColor(.white, for: .normal)
         clearButton.addTarget(self, action: #selector(clearButtonDidTap(_:)), for: .touchUpInside)
         clearButton.layer.cornerRadius = 8
+    }
+    
+    private func configureSamplesVC() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let samplesViewController = storyboard.instantiateViewController(withIdentifier: String(describing: SamplesViewController.self)) as! SamplesViewController
+        addChildViewController(samplesViewController)
+        samplesViewController.didMove(toParentViewController: self)
+        samplesViewController.view.frame = samplesContainerView.bounds
+        samplesContainerView.addSubview(samplesViewController.view)
+        self.samplesViewController = samplesViewController
     }
     
     private func clear() {
