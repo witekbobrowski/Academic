@@ -18,22 +18,31 @@
                 <rect key="frame" x="0.0" y="0.0" width="171" height="156"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ixi-af-HBB">
+                        <rect key="frame" x="0.0" y="0.0" width="171" height="156"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ELl-SQ-LPM">
-                        <rect key="frame" x="8" y="8" width="155" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="8" y="8" width="155" height="16"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
             </view>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="Ixi-af-HBB" secondAttribute="trailing" id="A5S-3I-MvF"/>
+                <constraint firstItem="Ixi-af-HBB" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Dt7-mT-yaq"/>
                 <constraint firstAttribute="trailing" secondItem="ELl-SQ-LPM" secondAttribute="trailing" constant="8" id="Jx7-mi-faF"/>
                 <constraint firstItem="ELl-SQ-LPM" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="NBE-vX-YPO"/>
+                <constraint firstItem="Ixi-af-HBB" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="VcM-he-AAj"/>
                 <constraint firstItem="ELl-SQ-LPM" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="cKK-sb-WhK"/>
+                <constraint firstAttribute="bottom" secondItem="Ixi-af-HBB" secondAttribute="bottom" id="jGe-2Y-6mE"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="171" height="156"/>
             <connections>
+                <outlet property="containerView" destination="Ixi-af-HBB" id="Gti-Ix-mul"/>
                 <outlet property="scoreLabel" destination="ELl-SQ-LPM" id="bVt-ry-RUG"/>
             </connections>
             <point key="canvasLocation" x="85.5" y="105"/>

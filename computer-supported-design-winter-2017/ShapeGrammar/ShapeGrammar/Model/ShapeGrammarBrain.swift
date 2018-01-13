@@ -9,6 +9,7 @@ import CoreGraphics
 
 protocol ShapeGrammarBrainDelegate: AnyObject {
     func shapeGrammarBrain(_ shapeGrammarBrain: ShapeGrammarBrain, didFinishBuildingGrammar grammar: Grammar<Shape>)
+    func shapeGrammarBrain(_ shapeGrammarBrain: ShapeGrammarBrain, didFinishGradingSamples samples: [(Grammar<Shape>, Int)])
     func rectForDrawing(_ shapeGrammarBraint: ShapeGrammarBrain) -> CGRect?
 }
 
@@ -153,8 +154,9 @@ extension ShapeGrammarBrain {
             random(grammar.head, maxDepth: Int(arc4random_uniform(UInt32(4))) + 1)
             samples.append((grammar: grammar, grade: ShapeGradingHelper.shared.getGrade(fromGrammar: grammar.head)))
         }
-        samples.sort { $0.grade < $1.grade }
-        bestSamples = Array(samples.suffix(Constants.bestSamplesCount)).map { $0.grammar.head }
+        samples.sort { $0.grade > $1.grade }
+        delegate?.shapeGrammarBrain(self, didFinishGradingSamples: samples)
+        bestSamples = Array(samples.prefix(Constants.bestSamplesCount)).map { $0.grammar.head }
     }
     
     private func pickPaths(inGrammar grammar: ShapeGrammar) -> [LocationPath] {

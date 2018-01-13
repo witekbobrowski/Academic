@@ -17,6 +17,7 @@ class ShapeGrammarViewController: UIViewController {
     @IBOutlet private weak var randomButton: UIButton!
     @IBOutlet private weak var clearButton: UIButton!
     @IBOutlet private weak var mainContainerView: UIView!
+    @IBOutlet private weak var samplesLabel: UILabel!
     @IBOutlet private weak var samplesContainerView: UIView!
     private weak var samplesViewController: SamplesViewController?
     private let gradient = CAGradientLayer()
@@ -65,17 +66,19 @@ extension ShapeGrammarViewController {
         [mainContainerView, samplesContainerView].forEach { $0?.backgroundColor = .clear}
         gradient.colors = [UIColor(red: 182/255, green: 251/255, blue: 255/255, alpha: 1).cgColor, UIColor(red: 131/255, green: 164/255, blue: 212/255, alpha: 1).cgColor]
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(backgroundDidTap(_:)))
-        view.addGestureRecognizer(tapGesture)
+        mainContainerView.addGestureRecognizer(tapGesture)
         brain.delegate = self
     }
     
     private func configureLabel() {
         label.text = "ShapeGrammar"
         descriptionLabel.text = "Tap to grow the shape"
+        samplesLabel.text = "Samples"
         [label, descriptionLabel].forEach {
             $0?.textColor = UIColor(red: 66/255, green: 66/255, blue: 66/255, alpha: 1)
             $0?.textAlignment = .center
         }
+        samplesLabel.textColor = UIColor(red: 66/255, green: 66/255, blue: 66/255, alpha: 1)
     }
     
     private func configureShapeView() {
@@ -136,6 +139,10 @@ extension ShapeGrammarViewController {
 
 //MARK: - ShapeGrammarBrainDelegate
 extension ShapeGrammarViewController: ShapeGrammarBrainDelegate {
+
+    func shapeGrammarBrain(_ shapeGrammarBrain: ShapeGrammarBrain, didFinishGradingSamples samples: [(Grammar<Shape>, Int)]) {
+        samplesViewController?.items = samples
+    }
     
     func rectForDrawing(_ shapeGrammarBraint: ShapeGrammarBrain) -> CGRect? {
         return shapeView?.bounds

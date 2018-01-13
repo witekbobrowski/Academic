@@ -68,21 +68,44 @@
                                             <constraint firstItem="oR4-aO-9SV" firstAttribute="leading" secondItem="OuP-CV-waI" secondAttribute="leading" constant="20" id="vBf-wB-fZu"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9iM-0d-vyX">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ca9-hU-LtQ">
                                         <rect key="frame" x="0.0" y="565" width="375" height="282.5"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V6w-x6-C19">
+                                                <rect key="frame" x="8" y="8" width="359" height="24"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="24" id="OgZ-eo-F6y"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9iM-0d-vyX">
+                                                <rect key="frame" x="0.0" y="32" width="375" height="250.5"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="9iM-0d-vyX" secondAttribute="bottom" id="4hs-Wv-Ku9"/>
+                                            <constraint firstItem="9iM-0d-vyX" firstAttribute="top" secondItem="V6w-x6-C19" secondAttribute="bottom" id="N9E-BX-VI1"/>
+                                            <constraint firstAttribute="trailing" secondItem="9iM-0d-vyX" secondAttribute="trailing" id="cc4-UZ-hBX"/>
+                                            <constraint firstItem="V6w-x6-C19" firstAttribute="top" secondItem="Ca9-hU-LtQ" secondAttribute="top" constant="8" id="kvd-Qh-hZl"/>
+                                            <constraint firstItem="V6w-x6-C19" firstAttribute="leading" secondItem="Ca9-hU-LtQ" secondAttribute="leading" constant="8" id="w4v-iL-02W"/>
+                                            <constraint firstItem="9iM-0d-vyX" firstAttribute="leading" secondItem="Ca9-hU-LtQ" secondAttribute="leading" id="y9Y-dF-XQG"/>
+                                            <constraint firstAttribute="trailing" secondItem="V6w-x6-C19" secondAttribute="trailing" constant="8" id="yAi-b5-666"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="OuP-CV-waI" secondAttribute="trailing" id="2wO-pe-SfK"/>
-                                    <constraint firstItem="9iM-0d-vyX" firstAttribute="top" secondItem="OuP-CV-waI" secondAttribute="bottom" id="4DD-qM-GQa"/>
-                                    <constraint firstItem="9iM-0d-vyX" firstAttribute="leading" secondItem="cVF-Nw-WEB" secondAttribute="leading" id="64I-Te-yPQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ca9-hU-LtQ" secondAttribute="trailing" id="6KN-6j-a5Q"/>
+                                    <constraint firstItem="Ca9-hU-LtQ" firstAttribute="top" secondItem="OuP-CV-waI" secondAttribute="bottom" id="8sL-xF-nbS"/>
                                     <constraint firstItem="OuP-CV-waI" firstAttribute="top" secondItem="cVF-Nw-WEB" secondAttribute="top" id="GeA-BH-Gs4"/>
-                                    <constraint firstAttribute="trailing" secondItem="9iM-0d-vyX" secondAttribute="trailing" id="JZY-Pg-HBO"/>
                                     <constraint firstItem="OuP-CV-waI" firstAttribute="leading" secondItem="cVF-Nw-WEB" secondAttribute="leading" id="OGz-sq-sA8"/>
-                                    <constraint firstItem="9iM-0d-vyX" firstAttribute="height" secondItem="cVF-Nw-WEB" secondAttribute="height" multiplier="1:2" id="YVb-qE-Uf5"/>
+                                    <constraint firstItem="Ca9-hU-LtQ" firstAttribute="height" secondItem="cVF-Nw-WEB" secondAttribute="height" multiplier="1:2" id="ezW-jR-fpr"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ca9-hU-LtQ" secondAttribute="bottom" id="jGv-cK-F4C"/>
                                     <constraint firstItem="OuP-CV-waI" firstAttribute="width" secondItem="cVF-Nw-WEB" secondAttribute="width" id="kLv-IH-1Dz"/>
-                                    <constraint firstAttribute="bottom" secondItem="9iM-0d-vyX" secondAttribute="bottom" id="m2i-gW-AE6"/>
+                                    <constraint firstItem="Ca9-hU-LtQ" firstAttribute="leading" secondItem="cVF-Nw-WEB" secondAttribute="leading" id="lVv-rz-Uhp"/>
                                     <constraint firstItem="OuP-CV-waI" firstAttribute="height" secondItem="cVF-Nw-WEB" secondAttribute="height" id="xef-kf-4jO"/>
                                 </constraints>
                             </scrollView>
@@ -114,6 +137,7 @@
                         <outlet property="mainContainerView" destination="OuP-CV-waI" id="J2p-nJ-oPR"/>
                         <outlet property="randomButton" destination="lbT-fO-mDC" id="RAc-ds-kwb"/>
                         <outlet property="samplesContainerView" destination="9iM-0d-vyX" id="g75-5B-GuX"/>
+                        <outlet property="samplesLabel" destination="V6w-x6-C19" id="RSh-mv-cJQ"/>
                         <outlet property="scrollView" destination="cVF-Nw-WEB" id="orf-R9-evR"/>
                         <outlet property="shapeContainerView" destination="oR4-aO-9SV" id="qsx-VT-BBS"/>
                     </connections>

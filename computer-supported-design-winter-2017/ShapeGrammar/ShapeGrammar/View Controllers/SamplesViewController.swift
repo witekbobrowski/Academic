@@ -9,7 +9,7 @@ import UIKit
 
 class SamplesViewController: UIViewController {
 
-    public typealias Item = (grammar: Grammar<Shape>, score: Int, isHighlighed: Bool)
+    public typealias Item = (grammar: Grammar<Shape>, score: Int)
     
     private enum Constants {
         static let visibleItems: CGFloat = 2
@@ -38,8 +38,9 @@ extension SamplesViewController {
         [view, collectionView].forEach { $0?.backgroundColor = .clear }
         collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.showsHorizontalScrollIndicator = false
         let bundle = Bundle(for: type(of: self))
-        collectionView.register( UINib(nibName: String(describing: SampleGrammarCollectionViewCell.self), bundle: bundle), forCellWithReuseIdentifier: String(describing: SampleGrammarCollectionViewCell.self))
+        collectionView.register(UINib(nibName: String(describing: SampleGrammarCollectionViewCell.self), bundle: bundle), forCellWithReuseIdentifier: String(describing: SampleGrammarCollectionViewCell.self))
     }
     
 }
@@ -49,7 +50,7 @@ extension SamplesViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (collectionView.bounds.width - (Constants.spacing * (Constants.visibleItems + 1))) / Constants.visibleItems
-        return CGSize(width: width, height: collectionView.bounds.width - Constants.spacing * 2)
+        return CGSize(width: width, height: collectionView.bounds.height - Constants.spacing * 2)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -76,7 +77,7 @@ extension SamplesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: SampleGrammarCollectionViewCell.self), for: indexPath) as! SampleGrammarCollectionViewCell
         let item = items[indexPath.row]
-        cell.configure(with: item.grammar, score: item.score, isHighlighed: item.isHighlighed)
+        cell.configure(with: item.grammar, score: item.score, isHighlighed: false)
         return cell
     }
     

@@ -10,6 +10,7 @@ import UIKit
 class SampleGrammarCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet private weak var scoreLabel: UILabel!
+    @IBOutlet private weak var containerView: UIView!
     private weak var shapeView: ShapeView!
     
     override func awakeFromNib() {
@@ -44,12 +45,15 @@ extension SampleGrammarCollectionViewCell {
 extension SampleGrammarCollectionViewCell {
     
     private func configure() {
-        backgroundColor = .clear
-        layer.cornerRadius = 16
-        layer.borderWidth = 2
-        let shapeView = ShapeView(frame: bounds)
-        insertSubview(shapeView, at: 0)
+        let shapeView = ShapeView()
+        shapeView.frame = containerView.bounds
+        [self, containerView].forEach { $0.backgroundColor = .clear }
+        containerView.addSubview(shapeView)
+        shapeView.isOpaque = false
+        shapeView.color = UIColor(red: 66/255, green: 66/255, blue: 66/255, alpha: 1)
         self.shapeView = shapeView
+        scoreLabel.textAlignment = .center
+        scoreLabel.textColor = UIColor(red: 66/255, green: 66/255, blue: 66/255, alpha: 1)
     }
     
 }
