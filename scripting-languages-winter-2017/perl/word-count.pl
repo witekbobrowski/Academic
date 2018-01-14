@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# Witold Bobrowski ; Group 9.8765E4
+# Witold Bobrowski ; Group 2
 #
 # Print word count for input files
 
