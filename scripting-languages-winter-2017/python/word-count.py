@@ -8,24 +8,10 @@ import argparse as ap
 import utils
 
 # CONSTANTS
-
-FILE = "file"
-WORDS = "words"
-LINES = "lines"
-CHARS = "chars"
-BYTES = "bytes"
-INTS = "ints"
-NUMS = "nums"
+FILE, WORDS, LINES, CHARS, BYTES, INTS, NUMS = "file", "words", "lines", "chars", "bytes", "ints", "nums"
 
 # VARIABLES
-
-total_lines = 0
-total_words = 0
-total_chars = 0
-total_bytes = 0
-total_ints = 0
-total_nums = 0
-
+total_lines, total_words, total_chars, total_bytes, total_ints, total_nums = 0, 0, 0, 0, 0, 0
 # Longest result
 long_res = 0
 
