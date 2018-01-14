@@ -9,6 +9,7 @@ import UIKit
 
 class ShapeBuildingHelper {
     
+    // Static instace of class for more convinient usage
     public static let shared: ShapeBuildingHelper = ShapeBuildingHelper()
     
 }
@@ -16,9 +17,9 @@ class ShapeBuildingHelper {
 //MARK: - Public
 extension ShapeBuildingHelper {
     
-    public static func rebuildShapesInGrammar(_ grammar: Grammar<Shape>, toFitRect rect: CGRect) {
+    public func rebuildShapesInGrammar(_ grammar: ShapeGrammar, toFitRect rect: CGRect) {
         grammar.head.element = Star(rect: rect)
-        var nodes: [Grammar<Shape>.Node] = [grammar.head]
+        var nodes: [Node] = [grammar.head]
         while let node = nodes.popLast() {
             let shapes = build(from: node.element, at: Array(node.nodes.keys))
             node.nodes.forEach { location, child in
@@ -29,12 +30,12 @@ extension ShapeBuildingHelper {
         }
     }
     
-    public static func build(from shape: Shape, at locations: [Location]) -> [Location:Shape] {
+    public func build(from shape: Shape, at locations: [Location]) -> [Location:Shape] {
         var shapes: [Location:Shape] = [:]
         if let triangle = shape as? Triangle {
             shapes[.center] = Star(triangle: triangle)
         } else if let star = shape as? Star {
-            let triangles = shared.getTriangles(in: star)
+            let triangles = getTriangles(in: star)
             locations.forEach { shapes[$0] = Star(triangle: triangles[$0]!) }
         }
         return shapes

@@ -8,22 +8,22 @@
 import CoreGraphics
 
 protocol ShapeGrammarBrainDelegate: AnyObject {
-    func shapeGrammarBrain(_ shapeGrammarBrain: ShapeGrammarBrain, didFinishBuildingGrammar grammar: Grammar<Shape>)
-    func shapeGrammarBrain(_ shapeGrammarBrain: ShapeGrammarBrain, didFinishGradingSamples samples: [(Grammar<Shape>, Int)])
+    func shapeGrammarBrain(_ shapeGrammarBrain: ShapeGrammarBrain, didFinishBuildingGrammar grammar: ShapeGrammar)
+    func shapeGrammarBrain(_ shapeGrammarBrain: ShapeGrammarBrain, didFinishGradingSamples samples: [(ShapeGrammar, Int)])
     func rectForDrawing(_ shapeGrammarBraint: ShapeGrammarBrain) -> CGRect?
 }
 
+typealias ShapeGrammar = Grammar<Shape>
+typealias Node = ShapeGrammar.Node
+
 class ShapeGrammarBrain {
-    
-    typealias ShapeGrammar = Grammar<Shape>
-    typealias Node = ShapeGrammar.Node
     
     private enum Constants {
         static let bestSamplesCount: Int = 3
         static let totalSampleCount: Int = 100
     }
     
-    private var grammar: Grammar<Shape>? { didSet { gatherBestSamples() } }
+    private var grammar: ShapeGrammar? { didSet { gatherBestSamples() } }
     private var bestSamples: [Node] = []
     
     public weak var delegate: ShapeGrammarBrainDelegate?
@@ -81,7 +81,7 @@ extension ShapeGrammarBrain {
         for _ in 0...Int(arc4random_uniform(UInt32(6))) {
             locations.insert(Location(rawValue: Int(arc4random_uniform(UInt32(6))))!)
         }
-        ShapeBuildingHelper.build(from: node.element, at: Array(locations)).forEach { (location, shape) in
+        ShapeBuildingHelper.shared.build(from: node.element, at: Array(locations)).forEach { (location, shape) in
             let new = Node(element: shape)
             node.nodes[location] = new
             random(new, maxDepth: depth-1)
@@ -115,7 +115,7 @@ extension ShapeGrammarBrain {
     }
     
     private func addSamples(toNode node: Node, samples: [Location:Node]) {
-        let shapes = ShapeBuildingHelper.build(from: node.element, at: Array<Location>(samples.keys))
+        let shapes = ShapeBuildingHelper.shared.build(from: node.element, at: Array<Location>(samples.keys))
         shapes.forEach { node.nodes[$0.key] = Node(element: $0.value) }
     }
     

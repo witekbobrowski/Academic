@@ -141,7 +141,7 @@ extension ShapeGrammarViewController {
 //MARK: - ShapeGrammarBrainDelegate
 extension ShapeGrammarViewController: ShapeGrammarBrainDelegate {
 
-    func shapeGrammarBrain(_ shapeGrammarBrain: ShapeGrammarBrain, didFinishGradingSamples samples: [(Grammar<Shape>, Int)]) {
+    func shapeGrammarBrain(_ shapeGrammarBrain: ShapeGrammarBrain, didFinishGradingSamples samples: [(ShapeGrammar, Int)]) {
         samplesViewController?.items = samples
     }
     
@@ -149,7 +149,7 @@ extension ShapeGrammarViewController: ShapeGrammarBrainDelegate {
         return shapeView?.bounds
     }
     
-    func shapeGrammarBrain(_ shapeGrammarBrain: ShapeGrammarBrain, didFinishBuildingGrammar grammar: Grammar<Shape>) {
+    func shapeGrammarBrain(_ shapeGrammarBrain: ShapeGrammarBrain, didFinishBuildingGrammar grammar: ShapeGrammar) {
         var nodes = [grammar.head]
         shapeView?.addPathForShape(nil)
         while let current = nodes.popLast() {

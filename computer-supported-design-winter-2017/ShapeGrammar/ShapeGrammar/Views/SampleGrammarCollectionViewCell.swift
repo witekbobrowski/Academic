@@ -29,10 +29,10 @@ class SampleGrammarCollectionViewCell: UICollectionViewCell {
 //MARK: - Public
 extension SampleGrammarCollectionViewCell {
     
-    public func configure(with grammar: Grammar<Shape>, score: Int, isHighlighed: Bool) {
+    public func configure(with grammar: ShapeGrammar, score: Int, isHighlighed: Bool) {
         layoutIfNeeded()
         scoreLabel.text = "Score: \(score)"
-        ShapeBuildingHelper.rebuildShapesInGrammar(grammar, toFitRect: shapeView.bounds)
+        ShapeBuildingHelper.shared.rebuildShapesInGrammar(grammar, toFitRect: shapeView.bounds)
         var nodes = [grammar.head]
         shapeView.addPathForShape(nil)
         while let current = nodes.popLast() {

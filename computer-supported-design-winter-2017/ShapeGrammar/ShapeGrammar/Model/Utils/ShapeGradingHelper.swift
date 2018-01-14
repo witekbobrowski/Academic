@@ -28,8 +28,6 @@ import Foundation
 
 class ShapeGradingHelper {
     
-    typealias Node = Grammar<Shape>.Node
-    
     // Static instace of class for more convinient usage
     public static let shared = ShapeGradingHelper()
     

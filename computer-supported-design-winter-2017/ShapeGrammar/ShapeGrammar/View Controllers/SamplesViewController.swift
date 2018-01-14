@@ -9,7 +9,7 @@ import UIKit
 
 class SamplesViewController: UIViewController {
 
-    public typealias Item = (grammar: Grammar<Shape>, score: Int)
+    public typealias Item = (grammar: ShapeGrammar, score: Int)
     
     private enum Constants {
         static let visibleItems: CGFloat = 3
