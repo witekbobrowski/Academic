@@ -18,10 +18,10 @@
 //  Final score will be calculades as a result of adding above evaluation for each shape then
 //  dividing by a number of shapes.
 //  Finnaly the can be another penalty given for total number of shapes:
-//      0 - 4 Total shapes = +1 pts
-//      5 - 8 Total shapes = -3 pts
-//      9 - 12 Total shapes = -6 pts
-//      13 - X Total shapes = -(All points) Fatal penalty - shape too big!
+//      0 - 1 Total evaluated shapes = +1 pts
+//      2 - 4 Total evaluated shapes = 0 pts
+//      5 - 16 Total evaluated shapes = -3 pts
+//      17 - X Total evaluated shapes = -(All points) Fatal penalty - shape too big!
 //
 
 import Foundation
@@ -120,12 +120,12 @@ extension ShapeGradingHelper {
         var penalty = 0
         // figure out penalty for the number of nodes as described above
         switch scores.count {
-        case 0...4:
+        case 0...1:
             penalty = -1
-        case 5...8:
+        case 2...4:
+            penalty = 0
+        case 5...16:
             penalty = 3
-        case 9...12:
-            penalty = 6
         default:
             penalty = average
         }
