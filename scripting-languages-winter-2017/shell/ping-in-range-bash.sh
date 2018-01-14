@@ -31,6 +31,7 @@ transform_and_compare_addresses() {
 	local temp_b=(0 0 0 0)
 	IFS='.' read -r -a temp_a <<< "$1"
 	IFS='.' read -r -a temp_b <<< "$2"
+	address_a=("${temp_a[@]}") ; address_b=("${temp_b[@]}")
 	for index in "${!temp_a[@]}"
 	do
 		if (( ${temp_a[index]} < ${temp_b[index]} )); then
