@@ -43,7 +43,8 @@ IMPORTANT: Before you consider writing your script in c shell - if reading my sc
 - [x] 2. Quadratic equation [`python`](python/quad-eq.py)
 - [x] 3-4. Quadratic equation with arguments [`python`](python/quad-eq-args.py)
 - [x] 5. Concatenate [`python`](python/cat.py)
-- [ ] 6. Word count `pyhton`
+- [x] 6. Word count [`pyhton`](python/word-count.py)
+- [ ] 7. Finder `python`
 
 ## Usage
 
