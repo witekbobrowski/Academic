@@ -20,8 +20,8 @@ class ShapeGrammarViewController: UIViewController {
     @IBOutlet private weak var samplesLabel: UILabel!
     @IBOutlet private weak var samplesContainerView: UIView!
     private weak var samplesViewController: SamplesViewController?
+    private weak var shapeView: ShapeView!
     private let gradient = CAGradientLayer()
-    private var shapeView: ShapeView?
     private let brain = ShapeGrammarBrain()
     
     override func viewDidLoad() {
@@ -150,12 +150,7 @@ extension ShapeGrammarViewController: ShapeGrammarBrainDelegate {
     }
     
     func shapeGrammarBrain(_ shapeGrammarBrain: ShapeGrammarBrain, didFinishBuildingGrammar grammar: ShapeGrammar) {
-        var nodes = [grammar.head]
-        shapeView?.addPathForShape(nil)
-        while let current = nodes.popLast() {
-            shapeView?.addPathForShape(current.element)
-            nodes.append(contentsOf: current.nodes.values)
-        }
+        ShapeDrawingHelper.shared.draw(grammar, inShapeView: shapeView)
     }
     
     func shapeGrammarBrain(_ shapeGrammarBrain: ShapeGrammarBrain, didFinishCalculatingScore score: Int) {

@@ -13,6 +13,7 @@
 		414BFB5B1FC37ADE008E504E /* Star.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414BFB5A1FC37ADE008E504E /* Star.swift */; };
 		414E007A2003E58100E96BFF /* ShapeGradingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414E00792003E58100E96BFF /* ShapeGradingHelper.swift */; };
 		41F090D6200AAA8B00BAD8EF /* ShapeBuildingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F090D5200AAA8B00BAD8EF /* ShapeBuildingHelper.swift */; };
+		41F090D9200B4D2E00BAD8EF /* ShapeDrawingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F090D8200B4D2E00BAD8EF /* ShapeDrawingHelper.swift */; };
 		41F454FE200A6A8600CBAD7C /* SampleGrammarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F454FC200A6A8600CBAD7C /* SampleGrammarCollectionViewCell.swift */; };
 		41F454FF200A6A8600CBAD7C /* SampleGrammarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41F454FD200A6A8600CBAD7C /* SampleGrammarCollectionViewCell.xib */; };
 		41F45501200A6F6D00CBAD7C /* SamplesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F45500200A6F6D00CBAD7C /* SamplesViewController.swift */; };
@@ -33,6 +34,7 @@
 		414BFB5A1FC37ADE008E504E /* Star.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Star.swift; sourceTree = "<group>"; };
 		414E00792003E58100E96BFF /* ShapeGradingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeGradingHelper.swift; sourceTree = "<group>"; };
 		41F090D5200AAA8B00BAD8EF /* ShapeBuildingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeBuildingHelper.swift; sourceTree = "<group>"; };
+		41F090D8200B4D2E00BAD8EF /* ShapeDrawingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeDrawingHelper.swift; sourceTree = "<group>"; };
 		41F454FC200A6A8600CBAD7C /* SampleGrammarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleGrammarCollectionViewCell.swift; sourceTree = "<group>"; };
 		41F454FD200A6A8600CBAD7C /* SampleGrammarCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SampleGrammarCollectionViewCell.xib; sourceTree = "<group>"; };
 		41F45500200A6F6D00CBAD7C /* SamplesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplesViewController.swift; sourceTree = "<group>"; };
@@ -62,7 +64,6 @@
 		414BFB531FC37579008E504E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				41F090D7200AB11000BAD8EF /* Utils */,
 				F92706361FE901D9001CD524 /* Shape */,
 				F92706341FE8FEF3001CD524 /* Grammar.swift */,
 				F92706371FE901F1001CD524 /* Location.swift */,
@@ -95,6 +96,7 @@
 			children = (
 				41F090D5200AAA8B00BAD8EF /* ShapeBuildingHelper.swift */,
 				414E00792003E58100E96BFF /* ShapeGradingHelper.swift */,
+				41F090D8200B4D2E00BAD8EF /* ShapeDrawingHelper.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -129,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				F9B8ECE01F9F26DF00C990E6 /* SupportingFiles */,
+				41F090D7200AB11000BAD8EF /* Utils */,
 				414BFB531FC37579008E504E /* Model */,
 				414BFB541FC3758A008E504E /* View Controllers */,
 				414BFB551FC375A6008E504E /* Views */,
@@ -232,6 +235,7 @@
 				414BFB591FC37648008E504E /* Triangle.swift in Sources */,
 				414BFB521FC3651E008E504E /* ShapeGrammarBrain.swift in Sources */,
 				F9B8ECCD1F9F264B00C990E6 /* AppDelegate.swift in Sources */,
+				41F090D9200B4D2E00BAD8EF /* ShapeDrawingHelper.swift in Sources */,
 				F92706351FE8FEF3001CD524 /* Grammar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

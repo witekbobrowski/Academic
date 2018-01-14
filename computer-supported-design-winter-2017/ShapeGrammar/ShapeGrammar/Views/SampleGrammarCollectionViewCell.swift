@@ -33,12 +33,7 @@ extension SampleGrammarCollectionViewCell {
         layoutIfNeeded()
         scoreLabel.text = "Score: \(score)"
         ShapeBuildingHelper.shared.rebuildShapesInGrammar(grammar, toFitRect: shapeView.bounds)
-        var nodes = [grammar.head]
-        shapeView.addPathForShape(nil)
-        while let current = nodes.popLast() {
-            shapeView.addPathForShape(current.element)
-            nodes.append(contentsOf: current.nodes.values)
-        }
+        ShapeDrawingHelper.shared.draw(grammar, inShapeView: shapeView)
     }
     
 }
