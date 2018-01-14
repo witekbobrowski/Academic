@@ -109,7 +109,7 @@ def word_count(file, should_ignore_comments):
     total_nums += num_count
     compare_to_longest_string(
         [total_lines, total_words, total_chars, total_bytes, total_ints, total_nums])
-    return {FILE: file, LINES: lines_count, WORDS: words_count, CHARS: char_count, BYTES: byte_count, INTS: int_count, NUMS: num_count}
+    return {FILE: file.name, LINES: lines_count, WORDS: words_count, CHARS: char_count, BYTES: byte_count, INTS: int_count, NUMS: num_count}
 
 
 def get_output(options, result):
@@ -126,7 +126,7 @@ def get_output(options, result):
         output += "    " + str(format_result(result[INTS]))
     if options.should_print_nums:
         output += "    " + str(format_result(result[NUMS]))
-    output += " " + result[FILE].name
+    output += " " + result[FILE]
     return output
 
 
@@ -138,3 +138,6 @@ if __name__ == "__main__":
                for file in arguments.files]
     for result in results:
         print(get_output(arguments, result))
+    if len(results) > 1:
+        print(get_output(arguments, {FILE: "total", LINES: total_lines, WORDS: total_words,
+                                     CHARS: total_chars, BYTES: total_bytes, INTS: total_ints, NUMS: total_nums}))
