@@ -19,7 +19,7 @@
 //  dividing by a number of shapes.
 //  Finnaly the can be another penalty given for total number of shapes:
 //      0 - 1 Total evaluated shapes = +1 pts
-//      2 - 4 Total evaluated shapes = 0 pts
+//      2 - 4 Total evaluated shapes = -1 pts
 //      5 - 16 Total evaluated shapes = -3 pts
 //      17 - X Total evaluated shapes = -(All points) Fatal penalty - shape too big!
 //
@@ -78,7 +78,7 @@ extension ShapeGradingHelper {
                 }
             }
             let symmetricPairs = results.filter {$0}.count
-            score += symmetricPairs == 2 ? 6 : symmetricPairs == 1 ? 3 : -2
+            score += symmetricPairs == 2 ? 4 : symmetricPairs == 1 ? 2 : -2
         default:
             score = 2
         }
@@ -121,7 +121,7 @@ extension ShapeGradingHelper {
         case 0...1:
             penalty = -1
         case 2...4:
-            penalty = 0
+            penalty = 1
         case 5...16:
             penalty = 3
         default:

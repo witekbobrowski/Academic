@@ -113,12 +113,12 @@ extension ShapeGrammarViewController {
     }
     
     private func clear() {
-        shapeView?.addPathForShape(nil)
+        shapeView?.path = UIBezierPath()
         brain.clear()
     }
     
     private func toggleViews(descriptionShouldHide: Bool) {
-        UIView.animateKeyframes(withDuration: 1, delay: 0, options: [.calculationModeCubic], animations: {
+        UIView.animateKeyframes(withDuration: 0.5, delay: 0, options: [.calculationModeCubic], animations: {
             UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5, animations: {
                 if descriptionShouldHide {
                     self.descriptionLabel.alpha = 0
@@ -150,7 +150,7 @@ extension ShapeGrammarViewController: ShapeGrammarBrainDelegate {
     }
     
     func shapeGrammarBrain(_ shapeGrammarBrain: ShapeGrammarBrain, didFinishBuildingGrammar grammar: ShapeGrammar) {
-        ShapeDrawingHelper.shared.draw(grammar, inShapeView: shapeView)
+        shapeView.path = ShapeDrawingHelper.shared.getPathForGrammar(grammar)
     }
     
     func shapeGrammarBrain(_ shapeGrammarBrain: ShapeGrammarBrain, didFinishCalculatingScore score: Int) {

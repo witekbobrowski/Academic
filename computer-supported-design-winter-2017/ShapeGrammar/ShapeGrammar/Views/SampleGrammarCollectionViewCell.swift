@@ -19,7 +19,7 @@ class SampleGrammarCollectionViewCell: UICollectionViewCell {
     }
     
     override func prepareForReuse() {
-        shapeView.addPathForShape(nil)
+        shapeView.path = UIBezierPath()
         scoreLabel.text = ""
         layer.borderColor = UIColor.lightGray.cgColor
     }
@@ -33,7 +33,7 @@ extension SampleGrammarCollectionViewCell {
         layoutIfNeeded()
         scoreLabel.text = "Score: \(score)"
         ShapeBuildingHelper.shared.rebuildShapesInGrammar(grammar, toFitRect: shapeView.bounds)
-        ShapeDrawingHelper.shared.draw(grammar, inShapeView: shapeView)
+        shapeView.path = ShapeDrawingHelper.shared.getPathForGrammar(grammar)
     }
     
 }

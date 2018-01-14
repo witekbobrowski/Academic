@@ -20,22 +20,8 @@ class ShapeView: UIView {
         path.stroke()
     }
 
-    public func addPathForShape(_ shape: Shape?) {
-        var triangles: [Triangle] = []
-        if let triangle = shape as? Triangle {
-            triangles = [triangle]
-        } else if let star = shape as? Star {
-            triangles = [star.triangles.1, star.triangles.0].flatMap { $0 }
-        } else {
-            self.path = UIBezierPath()
-            return
-        }
-        let path = self.path
-        for triangle in triangles {
-            path.move(to: triangle.vertices.0)
-            [triangle.vertices.1, triangle.vertices.2, triangle.vertices.0].forEach { path.addLine(to: $0) }
-        }
-        self.path = path
+    public func addPathForShape(_ shape: Shape) {
+        ShapeDrawingHelper.shared.addPathForShape(shape, toPath: path)
     }
     
 }
