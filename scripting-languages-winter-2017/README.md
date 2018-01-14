@@ -35,7 +35,7 @@ IMPORTANT: Before you consider writing your script in c shell - if reading my sc
 - [x] 9. Word count [`perl`](perl/word-count.pl)
 - [ ] 10. Register `perl`
 
-\+ Utils module [`perl module`](perl/Utils.pm)
++ Utils module [`perl module`](perl/Utils.pm)
 
 #### Python
 
@@ -45,6 +45,8 @@ IMPORTANT: Before you consider writing your script in c shell - if reading my sc
 - [x] 5. Concatenate [`python`](python/cat.py)
 - [x] 6. Word count [`pyhton`](python/word-count.py)
 - [ ] 7. Finder `python`
+
++ utils module [`python module`](python/utils.py)
 
 ## Usage
 

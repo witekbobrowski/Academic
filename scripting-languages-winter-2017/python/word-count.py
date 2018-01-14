@@ -5,6 +5,7 @@
 
 import sys
 import argparse as ap
+import utils
 
 # CONSTANTS
 
@@ -88,6 +89,12 @@ def word_count(file, should_ignore_comments):
             words_count += len(words_list)
             char_count += len(line)
             byte_count += sys.getsizeof(line)
+            for word in words_list:
+                if utils.looks_like_integer(word):
+                    int_count += 1
+                    num_count += 1
+                elif utils.looks_like_number(word):
+                    num_count += 1
     global total_lines
     global total_words
     global total_chars
