@@ -35,7 +35,7 @@ IMPORTANT: Before you consider writing your script in c shell - if reading my sc
 - [x] 9. Word count [`perl`](perl/word-count.pl)
 - [ ] 10. Register `perl`
 
-+ Utils module [`perl module`](perl/Utils.pm)
++ Utils [`perl module`](perl/Utils.pm)
 
 #### Python
 
@@ -45,8 +45,13 @@ IMPORTANT: Before you consider writing your script in c shell - if reading my sc
 - [x] 5. Concatenate [`python`](python/cat.py)
 - [x] 6. Word count [`pyhton`](python/word-count.py)
 - [ ] 7. Finder `python`
+- [ ] 8. Register `python`
 
-+ utils module [`python module`](python/utils.py)
++ utils [`python module`](python/utils.py)
+
+#### Final project
+
+  Python script that will parse [Library of Congress Classification](https://www.loc.gov/catdir/cpso/lcco/) and generate its implementation in swift language. I will probably post in on separate repository.
 
 ## Usage
 
