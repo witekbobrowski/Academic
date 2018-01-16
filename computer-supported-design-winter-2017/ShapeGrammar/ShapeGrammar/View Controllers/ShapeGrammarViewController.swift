@@ -17,7 +17,6 @@ class ShapeGrammarViewController: UIViewController {
     @IBOutlet private weak var randomButton: UIButton!
     @IBOutlet private weak var clearButton: UIButton!
     @IBOutlet private weak var mainContainerView: UIView!
-    @IBOutlet private weak var samplesLabel: UILabel!
     @IBOutlet private weak var samplesContainerView: UIView!
     private weak var samplesViewController: SamplesViewController?
     private weak var shapeView: ShapeView!
@@ -44,7 +43,7 @@ class ShapeGrammarViewController: UIViewController {
 
     @objc private func clearButtonDidTap(_ sender: UIButton) {
         clear()
-        samplesViewController?.items = []
+        samplesViewController?.clear()
         toggleViews(descriptionShouldHide: false)
     }
     
@@ -74,12 +73,10 @@ extension ShapeGrammarViewController {
     private func configureLabel() {
         label.text = "ShapeGrammar"
         descriptionLabel.text = "Tap to grow the shape"
-        samplesLabel.text = "Samples"
         [label, descriptionLabel].forEach {
             $0?.textColor = UIColor(red: 66/255, green: 66/255, blue: 66/255, alpha: 1)
             $0?.textAlignment = .center
         }
-        samplesLabel.textColor = UIColor(red: 66/255, green: 66/255, blue: 66/255, alpha: 1)
     }
     
     private func configureShapeView() {
@@ -108,6 +105,7 @@ extension ShapeGrammarViewController {
         addChildViewController(samplesViewController)
         samplesViewController.didMove(toParentViewController: self)
         samplesViewController.view.frame = samplesContainerView.bounds
+        samplesViewController.title = "Samples"
         samplesContainerView.addSubview(samplesViewController.view)
         self.samplesViewController = samplesViewController
     }
@@ -142,7 +140,7 @@ extension ShapeGrammarViewController {
 extension ShapeGrammarViewController: ShapeGrammarBrainDelegate {
 
     func shapeGrammarBrain(_ shapeGrammarBrain: ShapeGrammarBrain, didFinishGradingSamples samples: [(ShapeGrammar, Int)]) {
-        samplesViewController?.items = samples
+        samplesViewController?.insertGeneration(ofItems: samples)
     }
     
     func rectForDrawing(_ shapeGrammarBraint: ShapeGrammarBrain) -> CGRect? {

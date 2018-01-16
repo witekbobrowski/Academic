@@ -29,9 +29,10 @@ class SampleGrammarCollectionViewCell: UICollectionViewCell {
 //MARK: - Public
 extension SampleGrammarCollectionViewCell {
     
-    public func configure(with grammar: ShapeGrammar, score: Int, isHighlighed: Bool) {
+    public func configure(with grammar: ShapeGrammar, title: String, isHighlighed: Bool) {
         layoutIfNeeded()
-        scoreLabel.text = "Score: \(score)"
+        scoreLabel.text = title
+        shapeView.color = isHighlighed ? UIColor(red: 163/255, green: 241/255, blue: 158/255, alpha: 1) : UIColor(red: 66/255, green: 66/255, blue: 66/255, alpha: 1)
         ShapeBuildingHelper.shared.rebuildShapesInGrammar(grammar, toFitRect: shapeView.bounds)
         shapeView.path = ShapeDrawingHelper.shared.getPathForGrammar(grammar)
     }

@@ -9,6 +9,10 @@ import UIKit
 
 struct Triangle: Shape {
     
+    private enum Constants {
+        static let spacingInRect: CGFloat = 8
+    }
+    
     public var rect: CGRect
     public var vertices: (CGPoint, CGPoint, CGPoint) = (.zero, .zero, .zero)
     public var size: CGFloat {
@@ -54,7 +58,7 @@ struct Triangle: Shape {
 extension Triangle {
     
     private func getVertices() -> (CGPoint, CGPoint, CGPoint) {
-        let size = min(rect.height, rect.width)
+        let size = min(rect.height, rect.width) - 2 * Constants.spacingInRect
         let height = (size * sqrt(3))/2
         let vertexOne = CGPoint(x: rect.width/2 - size/2, y: (rect.height + height)/2)
         let vertexThree = CGPoint(x: rect.width/2, y: (rect.height - height)/2)
