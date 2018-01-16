@@ -84,6 +84,7 @@ extension SamplesViewController {
         collectionView.showsHorizontalScrollIndicator = false
         let bundle = Bundle(for: type(of: self))
         collectionView.register(UINib(nibName: String(describing: SampleGrammarCollectionViewCell.self), bundle: bundle), forCellWithReuseIdentifier: String(describing: SampleGrammarCollectionViewCell.self))
+        collectionView.register(UINib(nibName: String(describing: SampleGrammarCollectionSectionHeaderView.self), bundle: bundle), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: String(describing: SampleGrammarCollectionSectionHeaderView.self))
     }
     
     private func updateButton(forEnabled enabled: Bool) {
@@ -104,6 +105,14 @@ extension SamplesViewController: UICollectionViewDelegate {
         }
         updateButton(forEnabled: !selected.isEmpty)
         collectionView.reloadItems(at: [indexPath])
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.bounds.width/3, height: collectionView.bounds.height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: String(describing: SampleGrammarCollectionSectionHeaderView.self), for: indexPath)
     }
     
 }
@@ -146,6 +155,12 @@ extension SamplesViewController: UICollectionViewDataSource {
         let item = model[indexPath.section].items[indexPath.row]
         cell.configure(with: item.grammar, title: "Score: \(item.score)", isHighlighed: selected.contains(indexPath))
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
+        guard let headerView = view as? SampleGrammarCollectionSectionHeaderView else { return }
+        let secion = model[indexPath.section]
+        headerView.configure(withTitle: secion.title, disclosure: "Population: \(secion.items.count)")
     }
     
 }
