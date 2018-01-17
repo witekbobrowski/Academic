@@ -22,7 +22,7 @@ IMPORTANT: Before you consider writing your script in c shell - if reading my sc
 - [x] 2b. Multiplication table with given range [`bash`](shell/multiplication-table-in-range-bash.sh) [`tcsh`](shell/multiplication-table-in-range-tcsh.sh)
 - [x] 2c. Any calculation table with given range [`bash`](shell/calculation-table-in-range-bash.sh) [`tcsh`](shell/calculation-table-in-range-tcsh.sh)
 - [x] 3. Ping IP's in range [`bash`](shell/ping-in-range-bash.sh) [`tcsh`](shell/ping-in-range-tcsh.sh)
-- [ ] 4. Describe active IP `bash` `tcsh`
+- [ ] 4. Describe active IP [`bash`](shell/ping-and-describe-bash.sh) `tcsh`
 - [ ] 5. Counting server + client `bash` `tcsh`
 
 #### Perl
@@ -33,7 +33,7 @@ IMPORTANT: Before you consider writing your script in c shell - if reading my sc
 - [x] 7. Print file with words range with custom split [`perl`](perl/print-file-words-range-split.pl)
 - [x] 8. Print file with words pair with custom split [`perl`](perl/print-file-words-pair-split.pl)
 - [x] 9. Word count [`perl`](perl/word-count.pl)
-- [ ] 10. Register `perl`
+- [ ] 10. Registry `perl`
 
 + Utils [`perl module`](perl/Utils.pm)
 
@@ -43,9 +43,9 @@ IMPORTANT: Before you consider writing your script in c shell - if reading my sc
 - [x] 2. Quadratic equation [`python`](python/quad-eq.py)
 - [x] 3-4. Quadratic equation with arguments [`python`](python/quad-eq-args.py)
 - [x] 5. Concatenate [`python`](python/cat.py)
-- [x] 6. Word count [`pyhton`](python/word-count.py)
+- [x] 6. Word count [`python`](python/word-count.py)
 - [ ] 7. Finder `python`
-- [ ] 8. Register `python`
+- [ ] 8. Registry `python`
 
 + utils [`python module`](python/utils.py)
 
