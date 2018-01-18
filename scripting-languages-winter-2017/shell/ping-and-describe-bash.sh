@@ -5,7 +5,7 @@
 
 # CONSTANTS
 
-declare -A PORTS=( ["FTP"]=21 ["SSH"]=22 ["SMTP"]=25 ["HTTP"]=80 ["HTTPS"]=443 )
+declare -A PORTS=( [21]="FTP" [22]="SSH" [25]="SMTP" [80]="HTTP" [443]="HTTPS" )
 
 # VARIABLES (with default values)
 
@@ -81,17 +81,37 @@ get_next_address() {
 	done
 }
 
-# Ping given port on specified address
+# Ping given port on specified address and print description
 # Arguments:
 #   1) string representing the address
 #   2) string representing the port
 ping_port_at_address() {
-	echo "Pinging port $2 at $1"
-  if  nc -v -z -w 1 $1 $2 &> /dev/null; then
-    echo "Port $2 is open"
+	local output=""
+  if nc -v -n -z -G 2 -w 1 $1 $2 &> /dev/null; then
+		local result=""
+		local protocol=${PORTS["$2"]}
+		if [ $protocol == "FTP" ]; then
+			result=$(echo -e "QUIT" | nc $1 $2)
+			result=$(echo "$result" | grep -oe '220.*')
+		elif [[ $protocol == "SSH" ]]; then
+			result=$(echo -e "\n" | nc $1 $2)
+			result=$(echo "$result" | grep -oe 'SSH.*')
+		elif [[ $protocol == "SMPT" ]]; then
+			result=($(echo -e "QUIT" | nc $1 $2))
+			result=$(echo "$result" | grep -oe '220.*')
+		elif [[ $protocol == "HTTP" ]] || [[ $protocol == "HTTPS" ]]; then
+			result=$(echo -e "GET / HTTP/1.1\r\n\r\n" | nc $1 $2)
+			result=$(echo "$result" | grep -oe 'Server: .*')
+		fi
+		if [[ -z $result ]]; then
+		 	output="Port "$2" is open"
+		else
+			output="Port $2 "$result
+		fi
 	else
-		echo "Port $2 is closed"
+		output="Port $2 is closed"
 	fi
+	echo "|- "$output
 }
 
 # Ping address
@@ -100,12 +120,13 @@ ping_port_at_address() {
 #   2) array of ports to ping if address is alive
 ping_address() {
   declare -a ports=("${!2}")
-	echo "Pinging $1"
+	echo "Pinging $1 ..."
 	if ping -c 1 $1 &> /dev/null; then
 		echo "$1 is alive"
 		for port in "${ports[@]}"; do
 			ping_port_at_address $1 $port
 		done
+		echo ""
 	else
 		echo "$1 is dead"
 	fi
