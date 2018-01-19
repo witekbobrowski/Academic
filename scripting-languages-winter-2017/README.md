@@ -33,7 +33,7 @@ IMPORTANT: Before you consider writing your script in c shell - if reading my sc
 - [x] 7. Print file with words range with custom split [`perl`](perl/print-file-words-range-split.pl)
 - [x] 8. Print file with words pair with custom split [`perl`](perl/print-file-words-pair-split.pl)
 - [x] 9. Word count [`perl`](perl/word-count.pl)
-- [ ] 10. Registry `perl`
+- [x] 10. Registry [`perl`](perl/registry.pl)
 
 + Utils [`perl module`](perl/Utils.pm)
 

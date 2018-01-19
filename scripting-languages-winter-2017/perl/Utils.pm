@@ -51,7 +51,9 @@ sub get_grade {
         $floating_point = +0.25;
         $number = substr( "$possible_grade", 1 );
     }
-    return ( 2 <= $number + $floating_point && $number + $floating_point <= 5 ) ? $number + $floating_point : 0;
+    return ( 2 <= $number + $floating_point && $number + $floating_point <= 5 )
+      ? $number + $floating_point
+      : 0;
 }
 
 # regexp's from https://docstore.mik.ua/orelly/perl4/cook/ch02_02.htm
