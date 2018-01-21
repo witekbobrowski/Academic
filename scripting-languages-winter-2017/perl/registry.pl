@@ -8,12 +8,17 @@ use warnings;
 use Utils;
 use File::Basename;
 
-#TODO: - Add documentation
+# VARIABLES
 
 my $longest_name_length = 0;
 my $longest_grade       = 0;
 my $longest_list        = 0;
 
+# SUBROUTINES
+
+# Parse file contents into a hash table
+# Arguments:
+#   1) string - file name
 sub evaluate_inout_file {
     my %registry;
     open( my $data, '<:encoding(UTF-8)', $_[0] )
@@ -37,6 +42,9 @@ sub evaluate_inout_file {
     return \%registry;
 }
 
+# Format array of student names into a one string prefixed with approproate amount of spaces
+# Arguments:
+#   1) string array - Array of names [$first_name, $last_name]
 sub format_name {
     my @names      = split /-/, "$_[0]";
     my $last_name  = ucfirst $names[0];
@@ -47,12 +55,18 @@ sub format_name {
     return "  $spaces$result";
 }
 
+# Format grade by prefixing with approproate amount of spaces
+# Arguments:
+#   1) float - grade
 sub format_grade {
     my $n      = $longest_grade - length("$_[0]");
     my $spaces = ( ' ' x $n );
     return "$spaces$_[0]";
 }
 
+# Compare given full name with the longest yet recorded, replace if it's longer
+# Arguments:
+#   1) string - fullname
 sub compare_to_longest_name {
     for my $string (@_) {
         if ( length($string) > $longest_name_length ) {
@@ -61,6 +75,9 @@ sub compare_to_longest_name {
     }
 }
 
+# Compare given grade with the longest yet recorded, replace if it's longer
+# Arguments:
+#   1) string - grade
 sub compare_to_longest_grade {
     for my $string (@_) {
         if ( length($string) > $longest_grade ) {
@@ -69,6 +86,10 @@ sub compare_to_longest_grade {
     }
 }
 
+# Create and return string with sorted students with their grades and average
+# Arguments:
+#   1) hash array reference - dictionary of grades for each students
+#   2) string - file name
 sub generate_output_files {
     my %registry               = %{ $_[0] };
     my $file_name              = basename( $_[1] );
@@ -99,6 +120,7 @@ sub generate_output_files {
 }
 
 # Main program
+
 foreach my $i ( 0 .. $#ARGV ) {
     my $file = "$ARGV[$i]";
     print generate_output_files( evaluate_inout_file($file), $file );

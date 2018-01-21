@@ -25,7 +25,7 @@ sub looks_like_number {
     return "$_[0]" =~ /^([+-]?)(?=\d|\.\d)\d*(\.\d*)?([Ee]([+-]?\d+))?$/;
 }
 
-# get grade from string
+# Get grade from string
 sub get_grade {
     my $possible_grade = "$_[0]";
     my $floating_point = 0;
