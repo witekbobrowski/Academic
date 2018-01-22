@@ -45,7 +45,7 @@ IMPORTANT: Before you consider writing your script in c shell - if reading my sc
 - [x] 5. Concatenate [`python`](python/cat.py)
 - [x] 6. Word count [`python`](python/word-count.py)
 - [ ] 7. Finder `python`
-- [ ] 8. Registry `python`
+- [x] 8. Registry [`python`](python/registry.py)
 
 + utils [`python module`](python/utils.py)
 

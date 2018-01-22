@@ -12,14 +12,13 @@ use File::Basename;
 
 my $longest_name_length = 0;
 my $longest_grade       = 0;
-my $longest_list        = 0;
 
 # SUBROUTINES
 
 # Parse file contents into a hash table
 # Arguments:
 #   1) string - file name
-sub evaluate_inout_file {
+sub evaluate_input_file {
     my %registry;
     open( my $data, '<:encoding(UTF-8)', $_[0] )
       or die "Could not open file '$_[0]' $!";
@@ -90,9 +89,8 @@ sub compare_to_longest_grade {
 # Arguments:
 #   1) hash array reference - dictionary of grades for each students
 #   2) string - file name
-sub generate_output_files {
+sub generate_output {
     my %registry               = %{ $_[0] };
-    my $file_name              = basename( $_[1] );
     my $output                 = "";
     my $total_sum              = 0;
     my $total_number_of_grades = 0;
@@ -112,16 +110,16 @@ sub generate_output_files {
         $total_sum              += $sum;
         $total_number_of_grades += $number_of_grades;
     }
-    my $n       = $longest_name_length - length($file_name);
+    my $n       = $longest_name_length - length($_[1]);
     my $spaces  = ( '-' x $n );
     my $average = $total_sum / $total_number_of_grades;
     return
-      "--$spaces$file_name - Average for all students: $average\n$output\n";
+      "--$spaces$_[1] - Average for all students: $average\n$output\n";
 }
 
 # Main program
 
 foreach my $i ( 0 .. $#ARGV ) {
     my $file = "$ARGV[$i]";
-    print generate_output_files( evaluate_inout_file($file), $file );
+    print generate_output(evaluate_input_file($file), basename($file));
 }
