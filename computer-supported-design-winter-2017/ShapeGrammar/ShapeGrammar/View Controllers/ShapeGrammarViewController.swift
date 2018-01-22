@@ -106,6 +106,7 @@ extension ShapeGrammarViewController {
         samplesViewController.didMove(toParentViewController: self)
         samplesViewController.view.frame = samplesContainerView.bounds
         samplesViewController.title = "Samples"
+        samplesViewController.delegate = self
         samplesContainerView.addSubview(samplesViewController.view)
         self.samplesViewController = samplesViewController
     }
@@ -153,6 +154,22 @@ extension ShapeGrammarViewController: ShapeGrammarBrainDelegate {
     
     func shapeGrammarBrain(_ shapeGrammarBrain: ShapeGrammarBrain, didFinishCalculatingScore score: Int) {
         print(score)
+    }
+    
+}
+
+//MARK: - SamplesViewControllerDelegate
+extension ShapeGrammarViewController: SamplesViewControllerDelegate {
+    
+    func samplesViewController(_ samplesViewController: SamplesViewController, didPickGrammarsToCrossbreed grammars: [(grammar: ShapeGrammar, score: Int)]) {
+        let prefix = Array(grammars.prefix(grammars.count/2))
+        let suffix = Array(grammars.suffix(grammars.count/2))
+        guard prefix.count == suffix.count else { return }
+        let pairs = (0..<prefix.count).map { (a: prefix[$0], b: suffix[$0]) }
+        let newGeneration = pairs
+            .flatMap { ShapeCrossbreedingHelper.shared.crossbreed(a: $0.a.grammar, b: $0.b.grammar) }
+            .map { (grammar: $0, score: ShapeGradingHelper.shared.getGrade(fromGrammar: $0.head)) }
+        samplesViewController.insertGeneration(ofItems: newGeneration)
     }
     
 }

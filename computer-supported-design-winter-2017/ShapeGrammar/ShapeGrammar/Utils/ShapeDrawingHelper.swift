@@ -8,7 +8,6 @@
 import UIKit
 
 class ShapeDrawingHelper {
-    
     // Static instace of class for more convinient usage
     public static let shared = ShapeDrawingHelper()
     

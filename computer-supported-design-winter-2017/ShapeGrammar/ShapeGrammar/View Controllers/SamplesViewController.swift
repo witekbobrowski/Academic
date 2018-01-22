@@ -8,7 +8,7 @@
 import UIKit
 
 protocol SamplesViewControllerDelegate: AnyObject {
-    func samplesViewController(_ samplesViewController: SamplesViewController, didPickGrammarsToCross grammars: [(grammar: ShapeGrammar, score: Int)])
+    func samplesViewController(_ samplesViewController: SamplesViewController, didPickGrammarsToCrossbreed grammars: [(grammar: ShapeGrammar, score: Int)])
 }
 
 class SamplesViewController: UIViewController {
@@ -29,8 +29,7 @@ class SamplesViewController: UIViewController {
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var crossButton: UIButton!
     
-    private var model: [Section] = []  { didSet { collectionView.reloadData() } }
-    private var selected: [IndexPath] = []
+    private var model: [Section] = [] { didSet { collectionView.reloadData() } }
     
     public var delegate: SamplesViewControllerDelegate?
     
@@ -48,11 +47,8 @@ class SamplesViewController: UIViewController {
     }
 
     @objc private func crossButtonDidTap(_ sender: UIButton) {
-        guard !selected.isEmpty else { return }
-        let selectedItems = selected.map { self.model[$0.section].items[$0.row] }
-        selected = []
-        insertGeneration(ofItems: selectedItems)
-        updateButton(forEnabled: !selected.isEmpty)
+        guard let currentGeneration = model.first?.items, !currentGeneration.isEmpty else { return }
+        delegate?.samplesViewController(self, didPickGrammarsToCrossbreed: currentGeneration)
     }
     
 }
@@ -61,12 +57,14 @@ class SamplesViewController: UIViewController {
 extension SamplesViewController {
     
     public func insertGeneration(ofItems items: [Item]) {
-        let section = Section(title: "Generation \(model.count)", items: items)
+        updateButton(forEnabled: true)
+        let section = Section(title: "Generation \(model.count)", items: items.sorted { $0.score > $1.score})
         model.insert(section, at: 0)
     }
     
     public func clear() {
-        
+        updateButton(forEnabled: false)
+        model = []
     }
     
 }
@@ -77,7 +75,7 @@ extension SamplesViewController {
     private func configure() {
         [view, collectionView].forEach { $0?.backgroundColor = .clear }
         titleLabel.textColor = UIColor(red: 66/255, green: 66/255, blue: 66/255, alpha: 1)
-        crossButton.setTitle("Cross selected", for: .normal)
+        crossButton.setTitle("Cross generation", for: .normal)
         crossButton.addTarget(self, action: #selector(crossButtonDidTap(_:)), for: .touchUpInside)
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -96,16 +94,6 @@ extension SamplesViewController {
 
 //MARK: - UICollectionViewDelegateFlowLayout
 extension SamplesViewController: UICollectionViewDelegate {
-
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let index = selected.index(of: indexPath) {
-            selected.remove(at: index)
-        } else {
-            selected.append(indexPath)
-        }
-        updateButton(forEnabled: !selected.isEmpty)
-        collectionView.reloadItems(at: [indexPath])
-    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: collectionView.bounds.width/3, height: collectionView.bounds.height)
@@ -153,7 +141,7 @@ extension SamplesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: SampleGrammarCollectionViewCell.self), for: indexPath) as! SampleGrammarCollectionViewCell
         let item = model[indexPath.section].items[indexPath.row]
-        cell.configure(with: item.grammar, title: "Score: \(item.score)", isHighlighed: selected.contains(indexPath))
+        cell.configure(with: item.grammar, title: "Score: \(item.score)", isHighlighed: false)
         return cell
     }
     

@@ -21,4 +21,23 @@ public enum Location: Int {
     case southWest = 4
     case northWest = 5
     case center = 6
+    
+    var reversed: Location {
+        switch self {
+        case .center:
+            return .center
+        case .north:
+            return .south
+        case .northEast:
+            return .southWest
+        case .southEast:
+            return .northWest
+        case .south:
+            return .north
+        case .southWest:
+            return .northEast
+        case .northWest:
+            return .southEast
+        }
+    }
 }

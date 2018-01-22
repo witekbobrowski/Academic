@@ -8,7 +8,7 @@
 import Foundation
 
 class Grammar<Element> {
-    
+
     class Node {
         var element: Element
         var nodes: [Location:Node] = [:]
@@ -28,19 +28,15 @@ class Grammar<Element> {
 //MARK: - Public
 extension Grammar {
     
-    public func node(atPath locationPath: LocationPath) throws -> Node {
-        do {
-            return try locationPath.reduce(head) { result, location in
-                guard let node = result.nodes[location] else { throw LocationPathError.PathOutOfRange }
-                return node
-            }
-        } catch {
-            throw error
+    public func node(atPath locationPath: LocationPath) -> Node? {
+        return locationPath.reduce(head) { (result, location) -> Node? in
+            guard let node = result?.nodes[location] else { return nil }
+            return node
         }
     }
     
     public func insert(_ element: Element, atPath locationPath: LocationPath) {
-        guard let tail = try? node(atPath: Array(locationPath.dropLast(1))) else {
+        guard let tail = node(atPath: Array(locationPath.dropLast(1))) else {
             self.head = Node(element: element)
             return
         }

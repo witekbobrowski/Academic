@@ -8,7 +8,6 @@
 import UIKit
 
 class ShapeBuildingHelper {
-    
     // Static instace of class for more convinient usage
     public static let shared: ShapeBuildingHelper = ShapeBuildingHelper()
     

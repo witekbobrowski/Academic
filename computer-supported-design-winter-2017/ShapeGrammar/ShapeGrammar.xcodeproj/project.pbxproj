@@ -12,6 +12,7 @@
 		414BFB591FC37648008E504E /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414BFB581FC37648008E504E /* Triangle.swift */; };
 		414BFB5B1FC37ADE008E504E /* Star.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414BFB5A1FC37ADE008E504E /* Star.swift */; };
 		414E007A2003E58100E96BFF /* ShapeGradingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414E00792003E58100E96BFF /* ShapeGradingHelper.swift */; };
+		41BD92BC201681310059D435 /* ShapeCrossbreedingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BD92BB201681310059D435 /* ShapeCrossbreedingHelper.swift */; };
 		41E695D8200EB4190014DC83 /* SampleGrammarCollectionSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E695D6200EB4190014DC83 /* SampleGrammarCollectionSectionHeaderView.swift */; };
 		41E695D9200EB4190014DC83 /* SampleGrammarCollectionSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41E695D7200EB4190014DC83 /* SampleGrammarCollectionSectionHeaderView.xib */; };
 		41F090D6200AAA8B00BAD8EF /* ShapeBuildingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F090D5200AAA8B00BAD8EF /* ShapeBuildingHelper.swift */; };
@@ -35,6 +36,7 @@
 		414BFB581FC37648008E504E /* Triangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
 		414BFB5A1FC37ADE008E504E /* Star.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Star.swift; sourceTree = "<group>"; };
 		414E00792003E58100E96BFF /* ShapeGradingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeGradingHelper.swift; sourceTree = "<group>"; };
+		41BD92BB201681310059D435 /* ShapeCrossbreedingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeCrossbreedingHelper.swift; sourceTree = "<group>"; };
 		41E695D6200EB4190014DC83 /* SampleGrammarCollectionSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleGrammarCollectionSectionHeaderView.swift; sourceTree = "<group>"; };
 		41E695D7200EB4190014DC83 /* SampleGrammarCollectionSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SampleGrammarCollectionSectionHeaderView.xib; sourceTree = "<group>"; };
 		41F090D5200AAA8B00BAD8EF /* ShapeBuildingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeBuildingHelper.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				41F090D5200AAA8B00BAD8EF /* ShapeBuildingHelper.swift */,
 				414E00792003E58100E96BFF /* ShapeGradingHelper.swift */,
 				41F090D8200B4D2E00BAD8EF /* ShapeDrawingHelper.swift */,
+				41BD92BB201681310059D435 /* ShapeCrossbreedingHelper.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 				F9B8ECCF1F9F264B00C990E6 /* ShapeGrammarViewController.swift in Sources */,
 				41F45501200A6F6D00CBAD7C /* SamplesViewController.swift in Sources */,
 				414E007A2003E58100E96BFF /* ShapeGradingHelper.swift in Sources */,
+				41BD92BC201681310059D435 /* ShapeCrossbreedingHelper.swift in Sources */,
 				F9B8ECE41F9F271900C990E6 /* ShapeView.swift in Sources */,
 				41E695D8200EB4190014DC83 /* SampleGrammarCollectionSectionHeaderView.swift in Sources */,
 				414BFB5B1FC37ADE008E504E /* Star.swift in Sources */,

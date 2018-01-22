@@ -20,7 +20,7 @@ class ShapeGrammarBrain {
     
     private enum Constants {
         static let bestSamplesCount: Int = 3
-        static let totalSampleCount: Int = 100
+        static var initialGenerationCount: Int { return Int(arc4random_uniform(16)) + 16 }
     }
     
     private var grammar: ShapeGrammar? { didSet { gatherBestSamples() } }
@@ -55,7 +55,7 @@ extension ShapeGrammarBrain {
             applySample(at: grammar.head, sample: bestSamples[Int(arc4random_uniform(UInt32(Constants.bestSamplesCount)))])
         } else {
             for path in paths {
-                guard path.count < 4, let node = try? grammar.node(atPath: path) else { continue }
+                guard path.count < 4, let node = grammar.node(atPath: path) else { continue }
                 applySample(at: node, sample: bestSamples[Int(arc4random_uniform(UInt32(Constants.bestSamplesCount)))])
             }
         }
@@ -96,7 +96,7 @@ extension ShapeGrammarBrain {
     private func gatherBestSamples() {
         guard let grammar = grammar else { return }
         var samples: [(grammar: ShapeGrammar, grade: Int)] = []
-        for _ in 0..<Constants.totalSampleCount {
+        for _ in 0..<Constants.initialGenerationCount {
             let grammar = ShapeGrammar(element: grammar.head.element)
             random(grammar.head, maxDepth: Int(arc4random_uniform(UInt32(4))) + 1)
             samples.append((grammar: grammar, grade: ShapeGradingHelper.shared.getGrade(fromGrammar: grammar.head)))
@@ -120,3 +120,4 @@ extension ShapeGrammarBrain {
     }
     
 }
+

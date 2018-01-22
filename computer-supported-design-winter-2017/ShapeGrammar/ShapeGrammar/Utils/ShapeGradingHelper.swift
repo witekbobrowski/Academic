@@ -27,7 +27,6 @@
 import Foundation
 
 class ShapeGradingHelper {
-    
     // Static instace of class for more convinient usage
     public static let shared = ShapeGradingHelper()
     
@@ -87,33 +86,28 @@ extension ShapeGradingHelper {
     
     // Compare two locations to check ther relative position
     private func areSummetrlyLayedOut(a: Location, b: Location, c: Location?) -> Bool {
+        guard let c = c else { return a == b.reversed }
         switch a {
         case .north:
-            guard let c = c else { return b == .south }
             return [b, c].contains(.southEast) && [b, c].contains(.southWest)
         case .northEast:
-            guard let c = c else { return b == .southWest }
             return [b, c].contains(.south) && [b, c].contains(.northWest)
         case .southEast:
-            guard let c = c else { return b == .northWest }
             return [b, c].contains(.north) && [b, c].contains(.southWest)
         case .south:
-            guard let c = c else { return b == .north }
             return [b, c].contains(.northWest) && [b, c].contains(.northEast)
         case .southWest:
-            guard let c = c else { return b == .northEast }
             return [b, c].contains(.southEast) && [b, c].contains(.north)
         case .northWest:
-            guard let c = c else { return b == .southEast }
             return [b, c].contains(.south) && [b, c].contains(.northEast)
         case .center:
-            guard let c = c else { return b == .center }
             return b == .center && c == .center
         }
     }
     
     // Calculate average from gathered scores and apply penalty
     private func calculateFinalScore(fromScores scores: [Int]) -> Int {
+        guard scores.count > 0 else { return 2 }
         let average = scores.reduce(0, {$0+$1})/scores.count
         var penalty = 0
         // figure out penalty for the number of nodes as described above
@@ -128,7 +122,7 @@ extension ShapeGradingHelper {
             penalty = average
         }
         // return calculated average with subrtacting the penalty
-        return min(10, average - penalty)
+        return max(1, min(10, average - penalty))
     }
     
 }
