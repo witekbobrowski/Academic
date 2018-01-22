@@ -11,7 +11,7 @@ import utils
 FILE, WORDS, LINES, CHARS, BYTES, INTS, NUMS = "file", "words", "lines", "chars", "bytes", "ints", "nums"
 
 # VARIABLES
-total_lines, total_words, total_chars, total_bytes, total_ints, total_nums = 0, 0, 0, 0, 0, 0
+total_count = {LINES: 0, WORDS: 0, CHARS: 0, BYTES: 0, INTS: 0, NUMS: 0}
 # Longest result
 long_res = 0
 
@@ -65,37 +65,27 @@ def format_result(string):
 
 
 def word_count(file, should_ignore_comments):
-    words_count, lines_count, char_count, byte_count, int_count, num_count = 0, 0, 0, 0, 0, 0
+    global total_count
+    count = {FILE: file, LINES: 0, WORDS: 0, CHARS: 0, BYTES: 0, INTS: 0, NUMS: 0}
     with open(file, 'r') as file:
+        count[FILE] = file.name
         for line in file:
             if should_ignore_comments and line.startswith("#"):
                 continue
-            lines_count += 1
-            words_list = line.split()
-            words_count += len(words_list)
-            char_count += len(line)
-            byte_count += sys.getsizeof(line)
-            for word in words_list:
-                if utils.looks_like_integer(word):
-                    int_count += 1
-                    num_count += 1
-                elif utils.looks_like_number(word):
-                    num_count += 1
-    global total_lines
-    global total_words
-    global total_chars
-    global total_bytes
-    global total_ints
-    global total_nums
-    total_lines += lines_count
-    total_words += words_count
-    total_chars += char_count
-    total_bytes += byte_count
-    total_ints += int_count
-    total_nums += num_count
-    compare_to_longest_string(
-        [total_lines, total_words, total_chars, total_bytes, total_ints, total_nums])
-    return {FILE: file.name, LINES: lines_count, WORDS: words_count, CHARS: char_count, BYTES: byte_count, INTS: int_count, NUMS: num_count}
+            words = line.split()
+            count[LINES] += 1
+            count[WORDS] += len(words)
+            count[CHARS] += len(line)
+            count[BYTES] += sys.getsizeof(line)
+            for word in words:
+                if utils.looks_like_number(word):
+                    count[NUMS] += 1
+                    if utils.looks_like_integer(word):
+                        count[INTS] += 1
+    for key in total_count:
+        total_count[key] += count[key]
+        compare_to_longest_string([total_count[key]])
+    return count
 
 
 def get_output(options, result):
@@ -125,5 +115,5 @@ if __name__ == "__main__":
     for result in results:
         print(get_output(arguments, result))
     if len(results) > 1:
-        print(get_output(arguments, {FILE: "total", LINES: total_lines, WORDS: total_words,
-                                     CHARS: total_chars, BYTES: total_bytes, INTS: total_ints, NUMS: total_nums}))
+        total_count[FILE] = "total"
+        print(get_output(arguments, total_count))
