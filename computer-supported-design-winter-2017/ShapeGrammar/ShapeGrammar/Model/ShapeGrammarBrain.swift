@@ -19,12 +19,10 @@ typealias Node = ShapeGrammar.Node
 class ShapeGrammarBrain {
     
     private enum Constants {
-        static let bestSamplesCount: Int = 3
         static var initialGenerationCount: Int { return Int(arc4random_uniform(16)) + 16 }
     }
     
     private var grammar: ShapeGrammar? { didSet { gatherBestSamples() } }
-    private var bestSamples: [Node] = []
     
     public weak var delegate: ShapeGrammarBrainDelegate?
 
@@ -48,15 +46,15 @@ extension ShapeGrammarBrain {
         delegate?.shapeGrammarBrain(self, didFinishBuildingGrammar: grammar)
     }
     
-    public func evolve() {
-        guard let grammar = grammar else { return }
+    public func evolve(withGrammars grammars: [ShapeGrammar]) {
+        guard let grammar = grammar, !grammars.isEmpty else { return }
         let paths = grammar.getPaths()
         if paths.isEmpty {
-            applySample(at: grammar.head, sample: bestSamples[Int(arc4random_uniform(UInt32(Constants.bestSamplesCount)))])
+            applySample(at: grammar.head, sample: grammars[Int(arc4random_uniform(UInt32(grammars.count)))].head)
         } else {
             for path in paths {
                 guard path.count < 4, let node = grammar.node(atPath: path) else { continue }
-                applySample(at: node, sample: bestSamples[Int(arc4random_uniform(UInt32(Constants.bestSamplesCount)))])
+                applySample(at: node, sample: grammars[Int(arc4random_uniform(UInt32(grammars.count)))].head)
             }
         }
         delegate?.shapeGrammarBrain(self, didFinishBuildingGrammar: grammar)
@@ -103,7 +101,6 @@ extension ShapeGrammarBrain {
         }
         samples.sort { $0.grade > $1.grade }
         delegate?.shapeGrammarBrain(self, didFinishGradingSamples: samples)
-        bestSamples = Array(samples.prefix(Constants.bestSamplesCount)).map { $0.grammar.head }
     }
     
     private func applySample(at node: Node, sample: Node) {

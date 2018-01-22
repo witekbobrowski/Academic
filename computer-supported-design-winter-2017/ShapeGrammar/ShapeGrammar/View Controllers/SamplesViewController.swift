@@ -56,6 +56,10 @@ class SamplesViewController: UIViewController {
 //MARK: - Public
 extension SamplesViewController {
     
+    public var currentGeneration: [ShapeGrammar] {
+        return model.first?.items.map { $0.grammar } ?? []
+    }
+    
     public func insertGeneration(ofItems items: [Item]) {
         updateButton(forEnabled: true)
         let section = Section(title: "Generation \(model.count)", items: items.sorted { $0.score > $1.score})

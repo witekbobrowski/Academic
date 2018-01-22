@@ -38,7 +38,8 @@ class ShapeGrammarViewController: UIViewController {
             toggleViews(descriptionShouldHide: true)
             return
         }
-        brain.evolve()
+        guard let grammars = samplesViewController?.currentGeneration, !grammars.isEmpty else { return }
+        brain.evolve(withGrammars: Array(grammars.prefix(3)))
     }
 
     @objc private func clearButtonDidTap(_ sender: UIButton) {
