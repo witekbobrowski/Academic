@@ -7,7 +7,7 @@
 
 ## Assignments
 
-Solutions for the assignments below are implemented in the ShapeGrammar iOS app. I have tried to extract the implementation of each task to separate file/class, so all the other I won't mention other files here - only the ones containing the essential logic.
+Solutions for the assignments below are implemented in the ShapeGrammar iOS app. I have tried to extract the implementation of each task to separate file/class, so all the other files (classes for views, view controllers, etc.) won't be mentioned here - only the ones containing the essential logic.
 
 - [x] 1. Shape grammar
 
