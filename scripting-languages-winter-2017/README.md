@@ -44,7 +44,7 @@ IMPORTANT: Before you consider writing your script in c shell - if reading my sc
 - [x] 3-4. Quadratic equation with arguments [`python`](python/quad-eq-args.py)
 - [x] 5. Concatenate [`python`](python/cat.py)
 - [x] 6. Word count [`python`](python/word-count.py)
-- [ ] 7. Finder `python`
+- [x] 7. Finder [`python`](python/finder.py)
 - [x] 8. Registry [`python`](python/registry.py)
 
 + utils [`python module`](python/utils.py)

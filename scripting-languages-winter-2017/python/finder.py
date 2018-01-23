@@ -6,6 +6,7 @@
 import sys
 import os
 import ntpath
+from functools import reduce
 
 # VARIABLES
 should_print_lines = False
@@ -46,16 +47,22 @@ def find(pattern, filename):
         return
     with open(filename, 'r') as file:
         for line in file:
-            lines.append(line.replace('\n', ' ').replace('\r', '').replace(pattern, '\x1b[6;30;42m' + pattern + '\x1b[0m'))
+            if pattern in line:
+                lines.append(line.replace('\n', ' ').replace('\r', '').replace(
+                    pattern, '\033[1;31m' + pattern + '\x1b[0m'))
     return (filename, lines)
 
 
 def print_results(results):
-    for result in results:
-        if result == None:
-            continue
-        for line in result[1]:
-            print(result[0] + ":" + line)
+    if should_print_lines:
+        for result in results:
+            if result == None:
+                continue
+            for line in result[1]:
+                print(result[0] + ":" + line)
+    else:
+        count = reduce(lambda x, y: x + len(y[1]), [result for result in results if result != None], 0)
+        print("Found " + str(count) + " occurances")
 
 
 # Main
