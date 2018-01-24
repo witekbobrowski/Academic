@@ -86,22 +86,18 @@ get_next_address() {
 #   1) string representing the address
 #   2) string representing the port
 ping_port_at_address() {
-	local output=""
-  if nc -v -n -z -G 2 -w 1 $1 $2 &> /dev/null; then
+    local output=""
+    if nc -v -n -z -G 2 -w 1 $1 $2 &> /dev/null; then
 		local result=""
 		local protocol=${PORTS["$2"]}
 		if [ $protocol == "FTP" ]; then
-			result=$(echo -e "QUIT" | nc $1 $2)
-			result=$(echo "$result" | grep -oe '220.*')
+			result=$(echo -e "QUIT" | nc $1 $2 | grep -oe '220.*')
 		elif [[ $protocol == "SSH" ]]; then
-			result=$(echo -e "\n" | nc $1 $2)
-			result=$(echo "$result" | grep -oe 'SSH.*')
+			result=$(echo -e "\n" | nc $1 $2 | grep -oe 'SSH.*')
 		elif [[ $protocol == "SMPT" ]]; then
-			result=($(echo -e "QUIT" | nc $1 $2))
-			result=$(echo "$result" | grep -oe '220.*')
+			result=$(echo -e "QUIT" | nc $1 $2 | grep -oe '220.*')
 		elif [[ $protocol == "HTTP" ]] || [[ $protocol == "HTTPS" ]]; then
-			result=$(echo -e "GET / HTTP/1.1\r\n\r\n" | nc $1 $2)
-			result=$(echo "$result" | grep -oe 'Server: .*')
+			result=$(echo -e "GET / HTTP/1.1\r\n\r\n" | nc $1 $2 | grep -oe 'Server: .*')
 		fi
 		if [[ -z $result ]]; then
 		 	output="Port "$2" is open"
