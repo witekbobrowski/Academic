@@ -249,25 +249,6 @@ Kraków, dnia  \hfill Podpis kierującego pracą
 
 %\end{center}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%% strona z podziekowaniami
-
-\clearpage \titlepage
-
-\vspace*{15cm} \vfill
-\begin{flushright}
-\begin{minipage}[!h]{11cm}
-{\Large{\itshape
-
-podziękowania
-
-\vspace{1cm}
-
-i więcej podziękowań
-
-}}
-\end{minipage}
-\end{flushright}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%% strona z abstractem
 
 \clearpage \titlepage
@@ -277,7 +258,9 @@ i więcej podziękowań
 
 \begin{flushleft}
 {\large
-streszczenie
+Poniższa praca powstała w celu opisania biblioteki \textbf{EPUBKit}. Biblioteka ta ma na celu obsługę plików w formacie \textit{EPUB}, oraz dostarczenie możliwości ich wyświetlenia. \textbf{EPUBKit} jest napisany w języku Swift na platformę iOS. Rozpoczynając od opisu użytych narzędzi oraz technologii, przechodzę do charakteryzacji standardu \textit{EPUB}, szczegółowo omawiając jego strukturę. Kolejny rozdział zawiera dogłębną analizę biblioteki \textbf{EPUBKit}. Pracę kończy omówienie procesu tworzenia aplikacji na iOS oraz wykorzystania w niej biblioteki \textbf{EPUBKit}.
+
+    \textbf{Słowa kluczowe:} iOS, Swift, EPUB, parser, czytnik książek elektronicznych, aplikacja.
 }
 \end{flushleft}
 
@@ -289,7 +272,9 @@ streszczenie
 
 \begin{flushleft}
 {\large
-abstract
+The purpose of this thesis is to present the \textbf{EPUBKit} library. The goal of the library is to handle \textit{EPUB} documents and give the possibility of displaying them on an iOS device. \textbf{EPUBKit} is written using swift language and avaiable exclusively for iOS platform. Starting off with the description of used tools and technologies, I will move onto covering the \textit{EPUB} standard in greater depth. Afterwards, deep analysis of my library will follow. Thesis ends with the description of iOS applications creation process with special emphasis on the \textbf{EPUBKit} and how it fits in this landscape.
+
+    \textbf{Keywords:} iOS, Swift, EPUB, parser, e-reader, application.
 }
 \end{flushleft}
 
