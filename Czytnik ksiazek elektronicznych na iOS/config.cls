@@ -66,7 +66,26 @@
 \definecolor{maroon}{rgb}{0.5,0,0}
 \definecolor{darkgreen}{rgb}{0,0.5,0}
 \definecolor{darkblue}{rgb}{0,0,.3}
-
+\definecolor{swift-keyword}{rgb}{0.66,0.05,0.56}
+\definecolor{swift-comment}{rgb}{0,0.45,0}
+\definecolor{swift-type}{rgb}{0.24,0.43,0.45}
+\definecolor{swift-string}{rgb}{0.76,0.10,0.08}
+%
+% \lstset{identifierstyle=\idstyle}
+%
+% \makeatletter
+% \newcommand*\idstyle{%
+%         \expandafter\id@style\the\lst@token\relax
+% }
+% \def\id@style#1#2\relax{%
+%         \ifcat#1\relax\else
+%                 \ifnum`#1=\uccode`#1%
+%                         \color{swift-type}\bfseries
+%                 \fi
+%         \fi
+% }
+% \makeatother
+%
 \lstdefinelanguage{JavaScript}{
   keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
   keywordstyle=\color{blue}\bfseries,
@@ -85,11 +104,11 @@
 \lstdefinelanguage{swift}{
   backgroundcolor=\color{white},
   keywords={associatedtype, class, deinit, enum, extension, fileprivate, func, import, init, inout, internal, let, open, operator, private, protocol, public, static, struct, subscript, typealias, var, break, case, continue, default, defer, do, else, fallthrough, for, guard, if, in, repeat, return, switch, where, while, as, Any, catch, false, is, nil, rethrows, super, self, Self, throw, throws, true, try},
-  keywordstyle=\color{purple}\bfseries,
   comment=[l]{//},
   morecomment=[s]{/*}{*/},
-  commentstyle=\color{darkgreen}\ttfamily,
-  stringstyle=\color{red}\ttfamily,
+  keywordstyle=\color{swift-keyword}\bfseries,
+  commentstyle=\color{swift-comment}\ttfamily,
+  stringstyle=\color{swift-string}\ttfamily,
   morestring=[b]',
   morestring=[b]"
 }
@@ -98,11 +117,11 @@
   numbers=none,
   backgroundcolor=\color{white},
   keywords={associatedtype, class, deinit, enum, extension, fileprivate, func, import, init, inout, internal, let, open, operator, private, protocol, public, static, struct, subscript, typealias, var, break, case, continue, default, defer, do, else, fallthrough, for, guard, if, in, repeat, return, switch, where, while, as, Any, catch, false, is, nil, rethrows, super, self, Self, throw, throws, true, try},
-  keywordstyle=\color{purple}\bfseries,
   comment=[l]{//},
   morecomment=[s]{/*}{*/},
-  commentstyle=\color{darkgreen}\ttfamily,
-  stringstyle=\color{red}\ttfamily,
+  keywordstyle=\color{swift-keyword}\bfseries,
+  commentstyle=\color{swift-comment}\ttfamily,
+  stringstyle=\color{swift-string}\ttfamily,
   morestring=[b]',
   morestring=[b]"
 }

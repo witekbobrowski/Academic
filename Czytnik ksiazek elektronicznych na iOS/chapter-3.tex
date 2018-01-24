@@ -16,7 +16,7 @@ Poniższa specyfikacja jest podzbiorem najważniejszych informacji wyselekcjonow
 
 Format EPUB definiuje jego najwyższy abstrakcyjny model jakim jest EPUB Publication. Model ten składa się z interpretacji jego zawartości. Interpretacja, która jest przedstawiona za pomocą EPUB Package, zawiera już bezpośrednio zawartość dokumentu, oraz poboczne zasoby mające na celu wspomagać system czytający (z ang. ze specyfikacji \textit{Reading System}, jakim jest EPUBKit). Kluczowym elementem jest Package Document, który zawiera wszystkie metadane, które są używane następnie przez system czytające do zaprezentowania publikacji użytkownikowi. Zawiera on również kompletny manifest zasobów publikacji oraz \textit{kręgosłup} (z ang. ze specyfikacji \textit{Spine}), który reprezentuje sekwencję w jakiej system czytający ma wyświetlać poszczególne elementy. EPUB Package zawiera również Navigation Document pełniący rolę spisu treści, przeznaczony dla użytkownika do poruszania się po dokumencie. Wszystko to opakowane jest w archiwum ZIP z rozszerzeniem .epub. Rozszerzenie informuje o charakterze pliku oraz dostarcza informację o archiwum w ZIPowskim stylu za pomocą pliku \textit{mimetype}, oraz zapewnia system o posiadaniu przez niego folderu \texttt{/META-INF}, w którym dostępny jest plik \texttt{container.xml}, niezbędny systemowi do określenia lokalizacji zawartości publikacji.
 
-\begin{lstlisting}[caption={Przykładowy plik container.xml}, language=XML,label=abcd]
+\begin{lstlisting}[caption={Przykładowy plik container.xml}, language=XML,label=container-xml]
 <?xml version="1.0" encoding="UTF-8"?>
 <container version="1.0" xmlns="urn:oasis:names:tc:opendocument:xmlns:container">
     <rootfiles>
@@ -29,9 +29,9 @@ To w jaki sposób zawartość publikacji jest zorganizowana, określa standard E
 
 \subsection{EPUB Content Documents}
 
-Ta sekcja opisuje rolę jaką odgrywają standardy HTML, SVG i CSS w elektronicznej publikacji w formacie EPUB. Wizualna kompozycja publikacji w znacznej mierze oparta jest o pliki XHTML. Specyfikacja EPUB Content Documents 3.1 szczegółowo opisuje semantykę atrybutów wspieranych przez EPUB, które mają na celu wzbogacenie doświadczenia użytkownika. Atrybuty te nadają dodatkową naturę i znaczenie elementom XHTML, przy tym nie nadpisując ich pierwotnej funkcjonalności. Atrybuty te są przeznaczone wyłącznie dla systemów czytających i przekazują istotne informacje odnośnie struktury i zawartości dokumentu. Wsparcie standardu EPUB dla HTML nie odnosi się do konkretnej jego wersji, natomiast pozostawia tę kwestię twórcom systemów czytających. To w ich obowiązkach leży upewnienie się, że każda publikacja zostanie prawidłowo przez system obsłużona.
+Ta sekcja opisuje rolę jaką odgrywają standardy HTML, SVG i CSS w elektronicznej publikacji w formacie EPUB. Wizualna kompozycja publikacji w znacznej mierze oparta jest o pliki XHTML. Specyfikacja EPUB Content Documents 3.1 szczegółowo opisuje semantykę atrybutów wspieranych przez EPUB, które mają na celu wzbogacenie doświadczenia użytkownika. Tak jak pokazano na przykładzie \ref{epub-sample-attribute} atrybuty te nadają dodatkową naturę i znaczenie elementom XHTML, przy tym nie nadpisując ich pierwotnej funkcjonalności. Atrybuty te są przeznaczone wyłącznie dla systemów czytających i przekazują istotne informacje odnośnie struktury i zawartości dokumentu. Wsparcie standardu EPUB dla HTML nie odnosi się do konkretnej jego wersji, natomiast pozostawia tę kwestię twórcom systemów czytających. To w ich obowiązkach leży upewnienie się, że każda publikacja zostanie prawidłowo przez system obsłużona.
 
-\begin{lstlisting}[float=h, caption={Przykładowe wykorzystanie atrybutu epub:type aby oznaczyć zakończenie linii.\protect\cite{EPUBContentDocumentsSpecificationXML}}, language=XML, label=abcde]
+\begin{lstlisting}[float=h, caption={Przykładowe wykorzystanie atrybutu epub:type aby oznaczyć zakończenie linii.\protect\cite{EPUBContentDocumentsSpecificationXML}}, language=XML, label=epub-sample-attribute]
 <html ... xmlns:epub="http://www.idpf.org/2007/ops">
    ...
    <p> ... <span epub:type="pagebreak" title="234" id="p234"/> ... </p>
@@ -53,7 +53,7 @@ Zaobserwować można, że EPUB jako format jest bardzo ściśle wyspecyfikowany 
 
 Wspierane typy obrazów (\textit{Image Types}) to GIF, JPEG, PNG oraz SVG. Ich typy zadeklarowane w standardzie EPUB to kolejno \textit{image/gif}, \textit{image/jpeg}, \textit{image/png}, \textit{image/svg+xml}. Notacja ta wykorzystywana jest w atrybutach elementów wskazujących na konkretny obiekt odpowiedniego typu. Oznaczenia te możemy spotkać w manifeście publikacji.
 
-\begin{lstlisting}[caption={Przykładowy fragment manifestu znajdującego się w pliku content.opf}, language=XML,label=xyzs]
+\begin{lstlisting}[caption={Przykładowy fragment manifestu znajdującego się w pliku content.opf}, language=XML,label=sample-manifest]
 <manifest>
   ...
   <item href="Images/image-1.jpg" id="id1" media-type="image/jpeg"/>
@@ -62,7 +62,7 @@ Wspierane typy obrazów (\textit{Image Types}) to GIF, JPEG, PNG oraz SVG. Ich t
 </manifest>
 \end{lstlisting}
 
-Ten sposób oznaczenia elementów wykorzystywany jest w deklarowaniu każdego obiektu o wspierany przez EPUB typie.
+Sposób oznaczenia elementów zademonstrowany na przykładzie \ref{sample-manifest}, wykorzystywany jest w deklarowaniu każdego obiektu o wspierany przez EPUB typie.
 
 \subsubsection*{Audio Types}
 
