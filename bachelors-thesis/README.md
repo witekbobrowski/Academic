@@ -1,6 +1,7 @@
-# Bachelor's Thesis
+# Electronic book reader for iOS
+[![Thesis](https://img.shields.io/badge/Thesis-Bachelor's-blue.svg)]()
 [![Language](https://img.shields.io/badge/Language-PL-red.svg)]()
-[![Document](https://img.shields.io/badge/document-LaTeX-green.svg)](https://www.latex-project.org)
+[![Document](https://img.shields.io/badge/Document-LaTeX-green.svg)](https://www.latex-project.org)
 
 From abstract:
 
