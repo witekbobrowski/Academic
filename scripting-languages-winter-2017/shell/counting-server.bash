@@ -80,25 +80,31 @@ evaluate_defined_properties() {
 }
 
 get_from_rc_file() {
-    line=$(cat $RC_FILE_PATH | grep -n '^$1')
+    line=$(grep -e "^$1"=".*" $RC_FILE_PATH | grep -o "[0-9.]\+")
     if [[ -z $line ]]; then
-        write_to_rc_file $1 ${DEFAULTS["$1"]}
-        echo ${DEFAULTS["$1"]}
+        echo $(write_to_rc_file $1 ${DEFAULTS["$1"]})
     else
-        echo "|$(cat $RC_FILE_PATH)|"|tr '\n' ' '
+        echo $line
     fi
 }
 
 write_to_rc_file() {
-    echo $1"="$2 > $RC_FILE_PATH
+    line=$(cat $RC_FILE_PATH | grep -nr '^$1')
+    echo $line
+    if [[ -z $line ]]; then
+        echo -e $1"="$2 >> $RC_FILE_PATH
+    else
+        sed -i '"$line"s/.*/$1=$2/' $RC_FILE_PATH
+    fi
+    echo $2
 }
 
 listen() {
-    echo $(get_from_rc_file $COUNT_STR)
+    echo "listen"
 }
 
 connect() {
-    echo $(get_from_rc_file $COUNT_STR)
+    echo "connect"
 }
 
 # Main program
