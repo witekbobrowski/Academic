@@ -82,29 +82,41 @@ evaluate_defined_properties() {
 get_from_rc_file() {
     line=$(grep -e "^$1"=".*" $RC_FILE_PATH | grep -o "[0-9.]\+")
     if [[ -z $line ]]; then
-        echo $(write_to_rc_file $1 ${DEFAULTS["$1"]})
+        write_to_rc_file $1 ${DEFAULTS["$1"]}
+        echo ${DEFAULTS["$1"]}
     else
         echo $line
     fi
 }
 
 write_to_rc_file() {
-    line=$(cat $RC_FILE_PATH | grep -nr '^$1')
-    echo $line
+    line="$(cat $RC_FILE_PATH | grep -n "^$1" | cut -d : -f 1 | tail -1)"
     if [[ -z $line ]]; then
-        echo -e $1"="$2 >> $RC_FILE_PATH
+        echo $1"="$2 >> $RC_FILE_PATH
     else
-        sed -i '"$line"s/.*/$1=$2/' $RC_FILE_PATH
+        sed -e "$line s/.*/$1=$2/" -i "" $RC_FILE_PATH
     fi
-    echo $2
 }
 
 listen() {
-    echo "listen"
+    if nc -v -n -z -G 2 -w 1 $LOCALHOST $port &> /dev/null; then
+        echo "[!] There is a server running at $LOCALHOST:$port. Try different port." >&2
+        exit
+    fi
+    count=$(get_from_rc_file $COUNT_STR)
+    while nc -l $LOCALHOST $port; do
+        count=$(( $count + 1 ))
+        echo $count
+        write_to_rc_file $COUNT_STR $count
+    done
 }
 
 connect() {
-    echo "connect"
+    if echo "Hello!" | nc -v -n -w 1 $LOCALHOST $port &> /dev/null; then
+        echo $LOCALHOST:$port "Count = "$(get_from_rc_file $COUNT_STR)
+    else
+        echo "[!] Connection to $LOCALHOST:$port failed. The server is not running." >&2
+    fi
 }
 
 # Main program
