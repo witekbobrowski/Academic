@@ -12,7 +12,7 @@ COUNT="count"
 RC_FILE_PATH="rc_path"
 ADDRESS="address"
 
-declare -A DEFAULTS=( [$PORT]="8080" [$COUNT]="1" [$RC_FILE_PATH]="${HOME}/.countrc" [$ADDRESS]="127.0.0.1")
+declare -A DEFAULTS=( [$PORT]="8080" [$COUNT]="0" [$RC_FILE_PATH]="${HOME}/.countrc" [$ADDRESS]="127.0.0.1")
 
 # VARIABLES
 
@@ -95,37 +95,38 @@ evaluate_defined_properties() {
         rc_file_path=${DEFAULTS["$RC_FILE_PATH"]}
     fi
     if [[ -z $address ]]; then
-        address=${DEFAULTS["$ADDRESS"]}
+        address=$(get_from_rc_file $ADDRESS)
     fi
     if [[ -z $port ]]; then
         port=$(get_from_rc_file $PORT)
     fi
 }
 
-get_from_rc_file() {
-    create_rc_file_if_needed $1 ${DEFAULTS["$1"]}
-    line=$(grep -e "^$1"=".*" $rc_file_path | grep -o "[0-9.]\+")
-    if [[ -z $line ]]; then
-        write_to_rc_file $1 ${DEFAULTS["$1"]}
-        echo ${DEFAULTS["$1"]}
-    else
-        echo $line
+create_rc_file_if_needed() {
+    if ! [[ -f $rc_file_path ]]; then
+        echo $3$1=$2 > $rc_file_path
     fi
 }
 
 write_to_rc_file() {
-    create_rc_file_if_needed $1 $2
-    line="$(cat $rc_file_path | grep -n "^$1" | cut -d : -f 1 | tail -1)"
+    create_rc_file_if_needed $1 $2 $3
+    line="$(cat $rc_file_path | grep -n "$3$1" | cut -d : -f 1 | tail -1)"
     if [[ -z $line ]]; then
-        echo $1"="$2 >> $rc_file_path
+        echo "$3$1=$2" >> $rc_file_path
     else
-        sed -e "$line s/.*/$1=$2/" -i "" $rc_file_path
+        sed -e "$line s/.*/$3$1=$2/" -i "" $rc_file_path
     fi
 }
 
-create_rc_file_if_needed() {
-    if ! [[ -f $rc_file_path ]]; then
-        echo $1=$2 > $rc_file_path
+get_from_rc_file() {
+    create_rc_file_if_needed $1 ${DEFAULTS["$1"]}
+    prefix="$2$1="
+    line=$(grep -e "$prefix" $rc_file_path)
+    if [[ -z $line ]]; then
+        write_to_rc_file $1 ${DEFAULTS["$1"]} "$2"
+        echo ${DEFAULTS["$1"]}
+    else
+        echo "${line#$prefix}"
     fi
 }
 
@@ -134,17 +135,18 @@ listen() {
         echo "[!] There is a server running at $address:$port. Try different port." >&2
         exit
     fi
-    count=$(get_from_rc_file $COUNT)
+    count=$(get_from_rc_file $COUNT "$address:$port ")
+    echo "Listening to $address:$port.  Current count = $count"
     while nc -l $address $port; do
         count=$(( $count + 1 ))
         echo "Count: "$count
-        write_to_rc_file $COUNT $count
+        write_to_rc_file $COUNT $count "$address:$port "
     done
 }
 
 connect() {
     if echo "Hello!" | nc -v -n -w 1 $address $port &> /dev/null; then
-        echo $address:$port "ID = "$(get_from_rc_file $COUNT)
+        echo $address:$port "ID = "$(get_from_rc_file $COUNT "$address:$port ")
     else
         echo "[!] Connection to $address:$port failed. The server is not running." >&2
         exit
