@@ -7,19 +7,19 @@
 
 SERVER_MODE="server"
 CLIENT_MODE="client"
-PORT_STR="port"
-COUNT_STR="count"
-LOCALHOST="127.0.0.1"
-RC_FILE_PATH="${HOME}/.countrc"
+PORT="port"
+COUNT="count"
+RC_FILE_PATH="rc_path"
+ADDRESS="address"
 
-# CONSTANTS
-
-declare -A DEFAULTS=( [$PORT_STR]="8080" [$COUNT_STR]="0" )
+declare -A DEFAULTS=( [$PORT]="8080" [$COUNT]="1" [$RC_FILE_PATH]="${HOME}/.countrc" [$ADDRESS]="127.0.0.1")
 
 # VARIABLES
 
 mode=""
 port=""
+rc_file_path=""
+address=""
 count=0
 
 # FUNCTIONS
@@ -27,13 +27,15 @@ count=0
 display_help() {
     echo "counting-server.bash -- Listen on specific port and count logs."
     echo
-    echo "Usage: ./counting-server.bash [--help] [--server | --client] [--port=port]"
+    echo "Usage: ./counting-server.bash [--help] [--server | --client] [--port=port] [--ipaddress=address] [--rcfile=file]"
     echo
     echo "Options:"
-    echo "	-h | --help 	Show help"
-    echo "	-p | --port 	port to listen to"
-    echo "	-c | --client 	run as client"
-    echo "	-s | --server 	run as server"
+    echo "	-h | --help 	    Show help"
+    echo "	-p | --port       	port to listen to"
+    echo "	-i | --ipaddress 	ip address to listen to"
+    echo "	-f | --rcfile 	    path to rc file"
+    echo "	-c | --client     	run as client"
+    echo "	-s | --server    	run as server"
     exit
 }
 
@@ -48,39 +50,61 @@ evaluate_script_name() {
 evaluate_arguments() {
     local looks_like_integer='^[0-9]+$'
     local expects_port=false
+    local expects_address=false
+    local expects_rcfile=false
     for argument in $@; do
         case "$argument" in
-            -h|--help)
-                display_help ;;
-            -c|--client)
-                mode=$CLIENT_MODE
-                shift ;;
-            -s|--server)
-                mode=$SERVER_MODE
-                shift ;;
-            -p|--port)
-                expects_port=true
-                shift ;;
+            -h|--help) display_help ;;
+            -c|--client) mode=$CLIENT_MODE ;;
+            -s|--server) mode=$SERVER_MODE ;;
+            -p|--port) check_expecting_options; expects_port=true ;;
+            -i|--ipaddress) check_expecting_options; expects_address=true ;;
+            -f|--rcfile) check_expecting_options; expects_rcfile=true ;;
             *)
                 if [[ $expects_port == true ]] && [[ "$argument" =~ $looks_like_integer ]]; then
                     port="$argument"
+                    expects_port=false
+                fi
+                if [[ $expects_address == true ]] && [[ "$argument" =~ $looks_like_integer ]]; then
+                    address="$argument"
+                    expects_address=false
+                fi
+                if [[ $expects_rcfile == true ]]; then
+                    rc_file_path="$argument"
+                    expects_rcfile=false
                 fi
                 shift ;;
         esac
     done
+    check_expecting_options
+}
+
+check_expecting_options() {
+    if [[ $expects_port == true ]] || [[ $expects_address == true ]] || [[ $expects_rcfile == true ]]; then
+        echo "[!] Wrong usage." >&2
+        display_help
+        exit
+    fi
 }
 
 evaluate_defined_properties() {
     if [[ -z $mode ]]; then
         echo "[!] Please define mode."
     fi
+    if [[ -z $rc_file_path ]]; then
+        rc_file_path=${DEFAULTS["$RC_FILE_PATH"]}
+    fi
+    if [[ -z $address ]]; then
+        address=${DEFAULTS["$ADDRESS"]}
+    fi
     if [[ -z $port ]]; then
-        port=$(get_from_rc_file $PORT_STR)
+        port=$(get_from_rc_file $PORT)
     fi
 }
 
 get_from_rc_file() {
-    line=$(grep -e "^$1"=".*" $RC_FILE_PATH | grep -o "[0-9.]\+")
+    create_rc_file_if_needed $1 ${DEFAULTS["$1"]}
+    line=$(grep -e "^$1"=".*" $rc_file_path | grep -o "[0-9.]\+")
     if [[ -z $line ]]; then
         write_to_rc_file $1 ${DEFAULTS["$1"]}
         echo ${DEFAULTS["$1"]}
@@ -90,32 +114,40 @@ get_from_rc_file() {
 }
 
 write_to_rc_file() {
-    line="$(cat $RC_FILE_PATH | grep -n "^$1" | cut -d : -f 1 | tail -1)"
+    create_rc_file_if_needed $1 $2
+    line="$(cat $rc_file_path | grep -n "^$1" | cut -d : -f 1 | tail -1)"
     if [[ -z $line ]]; then
-        echo $1"="$2 >> $RC_FILE_PATH
+        echo $1"="$2 >> $rc_file_path
     else
-        sed -e "$line s/.*/$1=$2/" -i "" $RC_FILE_PATH
+        sed -e "$line s/.*/$1=$2/" -i "" $rc_file_path
+    fi
+}
+
+create_rc_file_if_needed() {
+    if ! [[ -f $rc_file_path ]]; then
+        echo $1=$2 > $rc_file_path
     fi
 }
 
 listen() {
-    if nc -v -n -z -G 2 -w 1 $LOCALHOST $port &> /dev/null; then
-        echo "[!] There is a server running at $LOCALHOST:$port. Try different port." >&2
+    if nc -v -n -z -G 2 -w 1 $address $port &> /dev/null; then
+        echo "[!] There is a server running at $address:$port. Try different port." >&2
         exit
     fi
-    count=$(get_from_rc_file $COUNT_STR)
-    while nc -l $LOCALHOST $port; do
+    count=$(get_from_rc_file $COUNT)
+    while nc -l $address $port; do
         count=$(( $count + 1 ))
-        echo $count
-        write_to_rc_file $COUNT_STR $count
+        echo "Count: "$count
+        write_to_rc_file $COUNT $count
     done
 }
 
 connect() {
-    if echo "Hello!" | nc -v -n -w 1 $LOCALHOST $port &> /dev/null; then
-        echo $LOCALHOST:$port "Count = "$(get_from_rc_file $COUNT_STR)
+    if echo "Hello!" | nc -v -n -w 1 $address $port &> /dev/null; then
+        echo $address:$port "ID = "$(get_from_rc_file $COUNT)
     else
-        echo "[!] Connection to $LOCALHOST:$port failed. The server is not running." >&2
+        echo "[!] Connection to $address:$port failed. The server is not running." >&2
+        exit
     fi
 }
 
