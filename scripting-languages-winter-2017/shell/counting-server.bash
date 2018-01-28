@@ -5,6 +5,7 @@
 
 # CONSTANTS
 
+# String for keys
 SERVER_MODE="server"
 CLIENT_MODE="client"
 PORT="port"
@@ -12,6 +13,7 @@ COUNT="count"
 RC_FILE_PATH="rc_path"
 ADDRESS="address"
 
+# Associative array of defaults
 declare -A DEFAULTS=( [$PORT]="8080" [$COUNT]="0" [$RC_FILE_PATH]="${HOME}/.countrc" [$ADDRESS]="127.0.0.1")
 
 # VARIABLES
@@ -20,10 +22,12 @@ mode=""
 port=""
 rc_file_path=""
 address=""
-count=0
 
 # FUNCTIONS
 
+# Print script usage instructions
+# Arguments:
+#   NONE
 display_help() {
     echo "counting-server.bash -- Listen on specific port and count logs."
     echo
@@ -39,6 +43,9 @@ display_help() {
     exit
 }
 
+# Check if script was called using symbolic link, and set mode accordingly
+# Arguments:
+#   1) string describing the name under which this script was called
 evaluate_script_name() {
     if [[ ${0##*/} == "server.sh" ]]; then
         mode=$SERVER_MODE
@@ -47,6 +54,9 @@ evaluate_script_name() {
     fi
 }
 
+# Go throught each argument and evaluate options
+# Arguments:
+#   *) Array of arguments passed to the script
 evaluate_arguments() {
     local looks_like_integer='^[0-9]+$'
     local expects_port=false
@@ -79,6 +89,9 @@ evaluate_arguments() {
     check_expecting_options
 }
 
+# Check if any option was declared to be passed. Print to stderr and exit if true
+# Arguments:
+#   NONE
 check_expecting_options() {
     if [[ $expects_port == true ]] || [[ $expects_address == true ]] || [[ $expects_rcfile == true ]]; then
         echo "[!] Wrong usage." >&2
@@ -87,6 +100,9 @@ check_expecting_options() {
     fi
 }
 
+# Check which variables are not set, if true take appropriate action (ex. set default value)
+# Arguments:
+#  NONE
 evaluate_defined_properties() {
     if [[ -z $mode ]]; then
         echo "[!] Please define mode."
@@ -102,12 +118,22 @@ evaluate_defined_properties() {
     fi
 }
 
+# Try to find rc file at given path, if missing create it by appendin passed arguments
+# Arguments:
+#   1) key string under which value in next string will be saved
+#   2) value for key
+#   3) prefix that will be inserted before key for extra context
 create_rc_file_if_needed() {
     if ! [[ -f $rc_file_path ]]; then
         echo $3$1=$2 > $rc_file_path
     fi
 }
 
+# Append passed arguments to rc file to new or existing line
+# Arguments:
+#   1) key string under which value in next string will be saved
+#   2) value for key
+#   3) prefix that will be inserted before key for extra context
 write_to_rc_file() {
     create_rc_file_if_needed $1 $2 $3
     line="$(cat $rc_file_path | grep -n "$3$1" | cut -d : -f 1 | tail -1)"
@@ -118,6 +144,10 @@ write_to_rc_file() {
     fi
 }
 
+# Return value from rc file for given key (with optional prefix)
+# Arguments:
+#  1) key string under which value is stored
+#  2) prefix that will be inserted before key for extra context
 get_from_rc_file() {
     create_rc_file_if_needed $1 ${DEFAULTS["$1"]}
     prefix="$2$1="
@@ -130,25 +160,32 @@ get_from_rc_file() {
     fi
 }
 
+# Listen and count visitors on passed ip_address:port
+# Arguments:
+#   1) string representing the address
+#   2) string representing the port
 listen() {
-    if nc -v -n -z -G 2 -w 1 $address $port &> /dev/null; then
-        echo "[!] There is a server running at $address:$port. Try different port." >&2
+    if nc -v -n -z -G 2 -w 1 $1 $2 &> /dev/null; then
+        echo "[!] There is a server running at $1:$2. Try different port." >&2
         exit
     fi
-    count=$(get_from_rc_file $COUNT "$address:$port ")
-    echo "Listening to $address:$port.  Current count = $count"
-    while nc -l $address $port; do
-        count=$(( $count + 1 ))
-        echo "Count: "$count
-        write_to_rc_file $COUNT $count "$address:$port "
+    count=$(get_from_rc_file $COUNT "$1:$2 ")
+    echo "Listening to $1:$2.  Current count = $count"
+    while nc -l $1 $2; do
+        write_to_rc_file $COUNT $(( $(get_from_rc_file $COUNT "$1:$2 ") + 1 )) "$1:$2 "
+        echo "Count: "$(get_from_rc_file $COUNT "$1:$2 ")
     done
 }
 
+# Call port on some address to say hello
+# Arguments:
+#   1) string representing the address
+#   2) string representing the port
 connect() {
-    if echo "Hello!" | nc -v -n -w 1 $address $port &> /dev/null; then
-        echo $address:$port "ID = "$(get_from_rc_file $COUNT "$address:$port ")
+    if echo "Hello!" | nc -v -n -w 1 $1 $2 &> /dev/null; then
+        echo $1:$2 "ID = "$(get_from_rc_file $COUNT "$1:$2 ")
     else
-        echo "[!] Connection to $address:$port failed. The server is not running." >&2
+        echo "[!] Connection to $1:$2 failed. The server is not running." >&2
         exit
     fi
 }
@@ -159,6 +196,6 @@ evaluate_arguments $@
 evaluate_defined_properties
 
 case "$mode" in
-    $SERVER_MODE) listen $port ;;
-    $CLIENT_MODE) connect $port ;;
+    $SERVER_MODE) listen $address $port ;;
+    $CLIENT_MODE) connect $address $port ;;
 esac
