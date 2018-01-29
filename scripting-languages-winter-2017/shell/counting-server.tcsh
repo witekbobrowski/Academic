@@ -23,20 +23,103 @@ set ADDRESS_DEFAULT = "127.0.0.1"
 
 # VARIABLES
 
-set mode = $CLIENT_MODE
-set port = $PORT_DEFAULT
-set rc_file_path = $RC_FILE_PATH_DEFAULT
-set address = $ADDRESS_DEFAULT
+set mode = ""
+set port = ""
+set rc_file_path = ""
+set address = ""
 
 # ALIASES
 
-alias create_rc_file_if_needed 'if !( -f $rc_file_path ) echo \!:3\!:1=\!:2 > $rc_file_path;'
 alias get_line_number_from_rc_file 'cat $rc_file_path | grep -n \!:1 | cut -d : -f 1 | tail -1'
 alias get_line_from_rc_file 'grep -e \!:1 $rc_file_path'
-alias write_to_rc_file 'create_rc_file_if_needed \!:1 \!:2 \!:3 ; if ( `get_line_number_from_rc_file "\!:3\!:1"` == "" ) echo "\!:3\!:1=\!:2" >> $rc_file_path ; if ( `get_line_number_from_rc_file "\!:3\!:1"` != "" ) sed -e "`get_line_number_from_rc_file "\!:3\!:1"` s/.*/\!:3\!:1=\!:2/" -i "" $rc_file_path'
+alias write_to_rc_file 'if ( `get_line_number_from_rc_file "\!:3\!:1"` == "" ) echo "\!:3\!:1=\!:2" >>! $rc_file_path ; if ( `get_line_number_from_rc_file "\!:3\!:1"` != "" ) sed -e "`get_line_number_from_rc_file "\!:3\!:1"` s/.*/\!:3\!:1=\!:2/" -i "" $rc_file_path'
 alias get_from_rc_file 'if ( `get_line_from_rc_file "\!:2\!:1="` == "" ) echo ""; if ( `get_line_from_rc_file "\!:2\!:1="` != "" ) echo `get_line_from_rc_file "\!:2\!:1=" | cut -d = -f 2`'
-
+alias check_expecting_options 'if ( $expects_port || $expects_address || $expects_rcfile ) goto HELP'
 # Main program
+
+EVALUATE_ARGUMENTS:
+    set expects_port = 0
+    set expects_address = 0
+    set expects_rcfile = 0
+    foreach argument ($argv)
+        switch ($argument)
+            case "-h":
+            case "--help":
+                check_expecting_options
+                goto HELP
+                breaksw
+            case "-c":
+            case "--client":
+                check_expecting_options
+                set mode = $CLIENT_MODE
+                breaksw
+            case "-s":
+            case "--server":
+                check_expecting_options
+                set mode = $SERVER_MODE
+                breaksw
+            case "-p":
+            case "--port":
+                check_expecting_options
+                set expects_port = 1
+                breaksw
+            case "-i":
+            case "--ipaddress":
+                check_expecting_options
+                set expects_address = 1
+                breaksw
+            case "-f":
+            case "--rcfile":
+                check_expecting_options
+                set expects_rcfile = 1
+                breaksw
+            case *:
+                if ( $expects_port && `echo $argument | egrep -e '^[0-9]+$'` ) then
+                    set port = "$argument"
+                    set expects_port = 0
+                endif
+                if ( $expects_address && `echo $argument | egrep -e '^[0-9]+$'` ) then
+                    set address = "$argument"
+                    set expects_address = 0
+                endif
+                if ( $expects_rcfile ) then
+                    set rc_file_path = "$argument"
+                    set expects_rcfile = 0
+                endif
+                breaksw
+        endsw
+    end
+    check_expecting_options
+
+EVALUATE_SCRIPT_NAME:
+    if (  `basename $0` == "server.sh" ) then
+        set mode = $SERVER_MODE
+    else if ( `basename $0` == "client.sh" ) then
+        set mode = $CLIENT_MODE
+    endif
+
+EVALUATE_PROPERTIES:
+    if ( $mode == "" ) then
+        echo "[!] Please define mode."
+        goto HELP
+    endif
+    if ( $rc_file_path == "" ) then
+        set rc_file_path = $RC_FILE_PATH_DEFAULT
+    endif
+    if ( $address == "" ) then
+        set address = `get_from_rc_file $ADDRESS ""`
+        if ( $address == "" ) then
+            set address = $ADDRESS_DEFAULT
+            write_to_rc_file $ADDRESS $address ""
+        endif
+    endif
+    if ( $port == "" ) then
+        set port = `get_from_rc_file $PORT ""`
+        if ( $port == "" ) then
+            set port = $PORT_DEFAULT
+            write_to_rc_file $PORT $port ""
+        endif
+    endif
 
 MAIN:
     switch ( $mode )

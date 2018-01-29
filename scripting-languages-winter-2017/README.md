@@ -23,7 +23,7 @@ IMPORTANT: Before you consider writing your script in c shell - if reading my sc
 - [x] 2c. Any calculation table with given range [`bash`](shell/calculation-table-in-range.bash) [`tcsh`](shell/calculation-table-in-range.tcsh)
 - [x] 3. Ping IP's in range [`bash`](shell/ping.bash) [`tcsh`](shell/ping.tcsh)
 - [x] 4. Describe active IP [`bash`](shell/ping-and-describe.bash) [`tcsh`](shell/ping-and-describe.tcsh)
-- [ ] 5. Counting server + client [`bash`](shell/counting-server.bash) `tcsh`
+- [x] 5. Counting server + client [`bash`](shell/counting-server.bash) [`tcsh`](shell/counting-server.tcsh)
 
 #### Perl
 
