@@ -7,15 +7,15 @@
 
 ## About
 
-This folder contains my solutions to assignments for Scripting Languages course. Each of the assignments needs more the one solution (for example in `bash` and `tcsh`). I will do my best and try to follow the best practices while writing those scripts, but don't take my word for it...
+This folder contains my solutions to assignments for Scripting Languages course. Im an amateur - first timer user - with these languages but I will do my best and try to follow the best practices while writing those scripts, but don't take my word for it...
 
 IMPORTANT: Before you consider writing your script in c shell - if reading my scripts in tcsh wasn't enough you might want to take a look at those:
 - [CSH PROGRAMMING CONSIDERED HARMFUL](http://www.faqs.org/faqs/unix-faq/shell/csh-whynot/)
 - [Top Ten Reasons not to use the C shell](http://www.grymoire.com/unix/CshTop10.txt)
 
-## Tasks
+## Assignments
 
-#### Shell (bash and tcsh)
+#### Shell (bash / tcsh)
 
 - [x] 1. Print current user [`bash`](shell/whoami.bash) [`tcsh`](shell/whoami.tcsh)
 - [x] 2a. Multiplication table [`bash`](shell/multiplication-table.bash) [`tcsh`](shell/multiplication-table.tcsh)
@@ -35,7 +35,7 @@ IMPORTANT: Before you consider writing your script in c shell - if reading my sc
 - [x] 9. Word count [`perl`](perl/word-count.pl)
 - [x] 10. Registry [`perl`](perl/registry.pl)
 
-+ Utils [`perl module`](perl/Utils.pm)
++ Utils [`module`](perl/Utils.pm)
 
 #### Python
 
@@ -47,7 +47,7 @@ IMPORTANT: Before you consider writing your script in c shell - if reading my sc
 - [x] 7. Finder [`python`](python/finder.py)
 - [x] 8. Registry [`python`](python/registry.py)
 
-+ utils [`python module`](python/utils.py)
++ utils [`module`](python/utils.py)
 
 #### Final project
 
@@ -55,7 +55,7 @@ IMPORTANT: Before you consider writing your script in c shell - if reading my sc
 
 ## Usage
 
-#### bash / tcsh
+#### Shell (bash / tcsh)
 
 Make sure the one of these shells is installed and shebang included in the script file matches your shell location on your system, then from command line run:
 
@@ -63,7 +63,7 @@ Make sure the one of these shells is installed and shebang included in the scrip
 $ ./script.sh
 ```
 
-#### perl
+#### Perl
 
 Again, make sure your perl installation matches the header in script file. Then simply run the following:
 
@@ -71,10 +71,26 @@ Again, make sure your perl installation matches the header in script file. Then 
 $ perl script.pl
 ```
 
-#### python
+#### Python
 
 ... and again. Make sure shebang matches python installation and if it actually is python 3:
 
 ```
 $ python3 script.py
+```
+
+#### General
+
+Most of the scripts expect some input and options so try to pass `-h` or `--help` to find out how to use them.
+
+```
+$ ./whoami.tcsh --help
+
+whoami.tcsh -- print current user
+
+Usage: ./whoami.tcsh [--help] [-h] [--quiet] [-q]
+
+Options:
+	-h | --help 	Show help
+	-q | --quiet 	exit
 ```
