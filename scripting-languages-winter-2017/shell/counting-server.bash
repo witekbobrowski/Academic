@@ -5,9 +5,11 @@
 
 # CONSTANTS
 
-# String for keys
+# possible modes
 SERVER_MODE="server"
 CLIENT_MODE="client"
+
+# String for keys
 PORT="port"
 COUNT="count"
 RC_FILE_PATH="rc_path"
@@ -182,7 +184,7 @@ listen() {
 #   1) string representing the address
 #   2) string representing the port
 connect() {
-    if echo "Hello!" | nc -v -n -w 1 $1 $2 &> /dev/null; then
+    if echo "Hello! bash client here" | nc -v -n -w 1 $1 $2 &> /dev/null; then
         echo $1:$2 "ID = "$(get_from_rc_file $COUNT "$1:$2 ")
     else
         echo "[!] Connection to $1:$2 failed. The server is not running." >&2
