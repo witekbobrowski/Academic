@@ -12,16 +12,16 @@ In this class I was assigned with multiple statistical exercises. Most of them a
 
 #### Gambler's ruin problem
 
+Solutions [`jupyter notebook`](gamblers-ruin-problem.ipynb)
+
 - [x] 1. [R]
 - [x] 2. [R]
 - [x] 3. [R]
 - [x] 4. [R]
 - [ ] 5. [O]
-- [ ] 6. [R]
+- [x] 6. [R]
 - [ ] 7. [R]
 - [ ] 8. [O]
-
-- Solutions [`jupyter notebook`](gamblers-ruin-problem.ipynb)
 
 #### Markov processes
 
