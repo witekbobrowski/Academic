@@ -20,7 +20,7 @@ Solutions [`jupyter notebook`](gamblers-ruin-problem.ipynb)
 - [x] 4. [R]
 - [ ] 5. [O]
 - [x] 6. [R]
-- [ ] 7. [R]
+- [x] 7. [R]
 - [ ] 8. [O]
 
 #### Markov processes
