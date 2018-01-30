@@ -4,25 +4,38 @@
 
 ## About
 
-In this class I was assigned with multiple statistical exercises. Most of them are required and some are optional. The outline can be found in the section below. All of the solutions that I have managed to complete are included in the only jupyter notebook from this directory:
+In this class I was assigned with multiple statistical exercises. Most of them are required and some are optional. The outline can be found in the section below.
 
-- statistical-methods-solutions [`jupyter notebook`](statistical-methods-solutions.ipynb)
+## Assignments
 
-## Tasks
+[R] - required, [O] - optional
 
-- [x] 1. `required`
-- [x] 2. `required`
-- [x] 3. `required`
-- [x] 4. `required`
-- [ ] 5. `optional`
-- [ ] 6. `required`
-- [ ] 7. `required`
-- [ ] 8. `optional`
-- [ ] 9. `required`
-- [ ] 10. `optional`
-- [ ] 11. `required`
-- [ ] 12. `optional`
-- [ ] 13. `required`
-- [ ] 14. `optional`
-- [ ] 15. `optional`
-- [ ] 16. `optional`
+#### Gambler's ruin problem
+
+- [x] 1. [R]
+- [x] 2. [R]
+- [x] 3. [R]
+- [x] 4. [R]
+- [ ] 5. [O]
+- [ ] 6. [R]
+- [ ] 7. [R]
+- [ ] 8. [O]
+
+- Solutions [`jupyter notebook`](gamblers-ruin-problem.ipynb)
+
+#### Markov processes
+
+- [ ] 9. [R]
+- [ ] 10. [O]
+
+#### Poisson point process
+
+- [ ] 11. [R]
+- [ ] 12. [O]
+
+#### Queueing Processes
+
+- [ ] 13. [R]
+- [ ] 14. [O]
+- [ ] 15. [O]
+- [ ] 16. [O]
