@@ -8,17 +8,17 @@ This repository was created to help me stay organised with my uni assignments.
 
 ### Bachelor's Degree
 #### Summer 2016
-- [Local Area Networking](local-area-networking-summer-2016/)
+- 🖥 [Local Area Networking](local-area-networking-summer-2016/)
 
 #### Winter 2016
-- [Databases](databases-winter-2016/)
-- [Java](java-winter-2016/)
+- 🗂 [Databases](databases-winter-2016/)
+- ☕️ [Java](java-winter-2016/)
 
 #### Thesis
-- [Bachelor's Thesis](bachelors-thesis/)
+- 📜 [Bachelor's Thesis](bachelors-thesis/)
 
 ### Master's Degree
 #### Winter 2017
-- [Scripting Languages](scripting-languages-winter-2017)
-- [Statistical Methods](statistical-methods-winter-2017)
-- [Computer Supported Design](computer-supported-design-winter-2017)
+- 🐍 [Scripting Languages](scripting-languages-winter-2017)
+- 📉 [Statistical Methods](statistical-methods-winter-2017)
+- 🎨 [Computer Supported Design](computer-supported-design-winter-2017)
