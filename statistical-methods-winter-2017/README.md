@@ -18,7 +18,7 @@ Solutions [`jupyter notebook`](gamblers-ruin-problem.ipynb)
 - [x] 2. [R]
 - [x] 3. [R]
 - [x] 4. [R]
-- [ ] 5. [O]
+- [x] 5. [O]
 - [x] 6. [R]
 - [x] 7. [R]
 - [ ] 8. [O]
