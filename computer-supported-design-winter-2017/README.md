@@ -1,9 +1,21 @@
 # Computer Supported Design (Winter 2017)
-[![IDE](https://img.shields.io/badge/Xcode-9-blue.svg)](https://developer.apple.com/xcode/)
-[![Language](https://img.shields.io/badge/swift-4-orange.svg)](https://swift.org)
-[![Platform](https://img.shields.io/badge/platform-iOS%2011-green.svg)](https://developer.apple.com/ios/)
 
-![screens](screens.png)
+<p align=center>
+<a href="">
+<img alt="" src="screens.png">
+</a>
+</p>
+<p align=center>
+<a href="https://developer.apple.com/xcode/">
+<img alt="ide" src="https://img.shields.io/badge/Xcode-9-blue.svg">
+</a>
+<a href="https://swift.org">
+<img alt="language" src="https://img.shields.io/badge/swift-4-orange.svg">
+</a>
+<a href="https://developer.apple.com/ios/">
+<img alt="platform" src="https://img.shields.io/badge/platform-iOS%2011-green.svg">
+</a>
+</p>
 
 ## Assignments
 
