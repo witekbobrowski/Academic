@@ -1,4 +1,4 @@
-# Computer Supported Design (Winter 2017)
+# Computer-aided Design (Winter 2017)
 
 <p align=center>
 <a href="">
