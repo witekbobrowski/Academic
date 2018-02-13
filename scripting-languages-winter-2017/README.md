@@ -51,7 +51,7 @@ IMPORTANT: Before you consider writing your script in c shell - if reading my sc
 
 #### Final project
 
-  Python script that will parse [Library of Congress Classification](https://www.loc.gov/catdir/cpso/lcco/) and generate its implementation in swift language. I will probably post in on separate repository.
+> Soon: Scraping Humble Bundle book bundle and getting grades from Goodreads.
 
 ## Usage
 
