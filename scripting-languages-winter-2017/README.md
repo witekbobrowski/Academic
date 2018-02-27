@@ -51,7 +51,8 @@ IMPORTANT: Before you consider writing your script in c shell - if reading my sc
 
 #### Final project
 
-> Soon: Scraping Humble Bundle book bundle and getting grades from Goodreads.
+Python project - [humblecritic](https://github.com/witekbobrowski/humblecritic)
+> 💯 Get score for HumbleBundle bundle
 
 ## Usage
 
