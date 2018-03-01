@@ -37,7 +37,9 @@ Solutions [`jupyter notebook`](gamblers-ruin-problem.ipynb)
 
 #### Markov processes
 
-- [ ] 9. [R]
+Solutions [`jupyter notebook`](markov-processes.ipynb)
+
+- [x] 9. [R]
 - [ ] 10. [O]
 
 #### Poisson point process
