@@ -51,5 +51,3 @@ Solutions [`jupyter notebook`](markov-processes.ipynb)
 
 - [ ] 13. [R]
 - [ ] 14. [O]
-- [ ] 15. [O]
-- [ ] 16. [O]
