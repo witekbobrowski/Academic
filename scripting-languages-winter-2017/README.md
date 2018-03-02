@@ -54,6 +54,9 @@ IMPORTANT: Before you consider writing your script in c shell - if reading my sc
 Python project - [humblecritic](https://github.com/witekbobrowski/humblecritic)
 > 💯 Get score for HumbleBundle bundle
 
++ Humblecritic plot [`perl`](perl/humblecritic-plot.pl)
+> Script that takes json exported from humblecritic to plot data
+
 ## Usage
 
 #### Shell (bash / tcsh)
