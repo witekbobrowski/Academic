@@ -44,6 +44,8 @@ Solutions [`jupyter notebook`](markov-processes.ipynb)
 
 #### Poisson point process
 
+Solutions [`jupyter notebook`](poisson-processes.ipynb)
+
 - [ ] 11. [R]
 - [ ] 12. [O]
 
