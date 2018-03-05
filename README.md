@@ -2,4 +2,4 @@
 
 ## Assignments
 
-- [ ] Setup Docker with Scala and Slick
+- [x] Setup Docker with Scala and Slick
