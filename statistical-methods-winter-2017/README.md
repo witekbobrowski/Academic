@@ -33,7 +33,7 @@ Solutions [`jupyter notebook`](gamblers-ruin-problem.ipynb)
 - [x] 5. [O]
 - [x] 6. [R]
 - [x] 7. [R]
-- [ ] 8. [O]
+- [x] 8. [O]
 
 #### Markov processes
 
@@ -46,7 +46,7 @@ Solutions [`jupyter notebook`](markov-processes.ipynb)
 
 Solutions [`jupyter notebook`](poisson-processes.ipynb)
 
-- [ ] 11. [R]
+- [x] 11. [R]
 - [ ] 12. [O]
 
 #### Queueing Processes
