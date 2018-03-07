@@ -22,3 +22,6 @@ This repository was created to help me stay organised with my uni assignments.
 - 🐍 [Scripting Languages](scripting-languages-winter-2017)
 - 📉 [Statistical Methods](statistical-methods-winter-2017)
 - 🎨 [Computer-aided design](computer-aided-design-winter-2017)
+
+#### Summer 2018
+- 🧠 [Machine Learning](machine-learning-summer-2018)
