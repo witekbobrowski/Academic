@@ -17,4 +17,4 @@ Machine Learning class, which will cover the very basics of ML.
 
 ## Assignments
 
-- [ ] 1. Warm up homework [`jupyter notebook`](warm-up-homework.ipynb)
+- [x] 1. Warm up homework [`jupyter notebook`](warm-up-homework.ipynb)
