@@ -11,8 +11,10 @@
 
 ## About
 
-Introduction to Machine Learning class.
+Machine Learning class, which will cover the very basics of ML.
+
+[Course website](http://cs.if.uj.edu.pl/piotrek/ML2018/)
 
 ## Assignments
 
-- [ ] 1. Warm up homework
+- [ ] 1. Warm up homework [`jupyter notebook`](warm-up-homework.ipynb)
