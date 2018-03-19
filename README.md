@@ -2,4 +2,6 @@
 
 ## Assignments
 
-- [x] Setup Docker with Scala and Slick
+- [x] 1. Setup Docker with Scala and Slick
+
+- [x] 2. Add MySQL integration to project
