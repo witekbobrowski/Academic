@@ -8,12 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		41492D4D20653EA900B87433 /* ForsetiApiKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 41492D4B20653EA900B87433 /* ForsetiApiKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5E39E568CF602F036DA7065 /* Pods_ForsetiApiKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F033BB5017D6218792BF71D7 /* Pods_ForsetiApiKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3160628883E8D9211561604A /* Pods-ForsetiApiKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ForsetiApiKit.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-ForsetiApiKit/Pods-ForsetiApiKit.debug.xcconfig"; sourceTree = "<group>"; };
 		41492D4820653EA900B87433 /* ForsetiApiKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ForsetiApiKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		41492D4B20653EA900B87433 /* ForsetiApiKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForsetiApiKit.h; sourceTree = "<group>"; };
 		41492D4C20653EA900B87433 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8CC115A7F18ECA63313534E7 /* Pods-ForsetiApiKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ForsetiApiKit.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-ForsetiApiKit/Pods-ForsetiApiKit.release.xcconfig"; sourceTree = "<group>"; };
+		F033BB5017D6218792BF71D7 /* Pods_ForsetiApiKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ForsetiApiKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -21,17 +25,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5E39E568CF602F036DA7065 /* Pods_ForsetiApiKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		02D537FC4E8ABA7EA14F87D7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F033BB5017D6218792BF71D7 /* Pods_ForsetiApiKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		41492D3E20653EA900B87433 = {
 			isa = PBXGroup;
 			children = (
 				41492D4A20653EA900B87433 /* ForsetiApiKit */,
 				41492D4920653EA900B87433 /* Products */,
+				96B16CBE4CA344BC742DBD50 /* Pods */,
+				02D537FC4E8ABA7EA14F87D7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -52,6 +67,15 @@
 			path = ForsetiApiKit;
 			sourceTree = "<group>";
 		};
+		96B16CBE4CA344BC742DBD50 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3160628883E8D9211561604A /* Pods-ForsetiApiKit.debug.xcconfig */,
+				8CC115A7F18ECA63313534E7 /* Pods-ForsetiApiKit.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -70,10 +94,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 41492D5020653EA900B87433 /* Build configuration list for PBXNativeTarget "ForsetiApiKit" */;
 			buildPhases = (
+				8774315BC8C251196FBFACEA /* [CP] Check Pods Manifest.lock */,
 				41492D4320653EA900B87433 /* Sources */,
 				41492D4420653EA900B87433 /* Frameworks */,
 				41492D4520653EA900B87433 /* Headers */,
 				41492D4620653EA900B87433 /* Resources */,
+				273615B3A9F0F26BB9231647 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -125,6 +151,42 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		273615B3A9F0F26BB9231647 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../../Pods/Target Support Files/Pods-ForsetiApiKit/Pods-ForsetiApiKit-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8774315BC8C251196FBFACEA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ForsetiApiKit-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		41492D4320653EA900B87433 /* Sources */ = {
@@ -252,6 +314,7 @@
 		};
 		41492D5120653EA900B87433 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3160628883E8D9211561604A /* Pods-ForsetiApiKit.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
@@ -273,6 +336,7 @@
 		};
 		41492D5220653EA900B87433 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8CC115A7F18ECA63313534E7 /* Pods-ForsetiApiKit.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;

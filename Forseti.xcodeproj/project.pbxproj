@@ -10,14 +10,20 @@
 		41492D2D20653C4F00B87433 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41492D2C20653C4F00B87433 /* AppDelegate.swift */; };
 		41492D3420653C4F00B87433 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41492D3320653C4F00B87433 /* Assets.xcassets */; };
 		41492D3720653C4F00B87433 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41492D3520653C4F00B87433 /* LaunchScreen.storyboard */; };
+		41492D532065422200B87433 /* ForsetiApiKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41492D542065422300B87433 /* ForsetiApiKit.framework */; };
+		9F75367945F9DD32BD030CB1 /* Pods_Forseti.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF33947CC90951B283E6F662 /* Pods_Forseti.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04C25C466C9F408364DD9EC4 /* Pods-Forseti.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Forseti.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Forseti/Pods-Forseti.debug.xcconfig"; sourceTree = "<group>"; };
+		27352C0F46B2D62A91F3FEBC /* Pods-Forseti.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Forseti.release.xcconfig"; path = "Pods/Target Support Files/Pods-Forseti/Pods-Forseti.release.xcconfig"; sourceTree = "<group>"; };
 		41492D2920653C4F00B87433 /* Forseti.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Forseti.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41492D2C20653C4F00B87433 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		41492D3320653C4F00B87433 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		41492D3620653C4F00B87433 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		41492D3820653C4F00B87433 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		41492D542065422300B87433 /* ForsetiApiKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ForsetiApiKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF33947CC90951B283E6F662 /* Pods_Forseti.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Forseti.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -25,6 +31,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41492D532065422200B87433 /* ForsetiApiKit.framework in Frameworks */,
+				9F75367945F9DD32BD030CB1 /* Pods_Forseti.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -36,6 +44,8 @@
 			children = (
 				41492D2B20653C4F00B87433 /* Forseti */,
 				41492D2A20653C4F00B87433 /* Products */,
+				CA7563D78A5B2C0221EDF454 /* Pods */,
+				4312EA2BEF3EDCFF45308E67 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,6 +68,24 @@
 			path = Forseti;
 			sourceTree = "<group>";
 		};
+		4312EA2BEF3EDCFF45308E67 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				41492D542065422300B87433 /* ForsetiApiKit.framework */,
+				FF33947CC90951B283E6F662 /* Pods_Forseti.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CA7563D78A5B2C0221EDF454 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				04C25C466C9F408364DD9EC4 /* Pods-Forseti.debug.xcconfig */,
+				27352C0F46B2D62A91F3FEBC /* Pods-Forseti.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -65,9 +93,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 41492D3B20653C4F00B87433 /* Build configuration list for PBXNativeTarget "Forseti" */;
 			buildPhases = (
+				F1AB7AF94E88C5D1B752968A /* [CP] Check Pods Manifest.lock */,
 				41492D2520653C4F00B87433 /* Sources */,
 				41492D2620653C4F00B87433 /* Frameworks */,
 				41492D2720653C4F00B87433 /* Resources */,
+				A311FC222794CC9341B3CB05 /* [CP] Embed Pods Frameworks */,
+				FF45C9C17B65E1C649171AEB /* [CP] Copy Pods Resources */,
+				41492D55206542DF00B87433 /* Run SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -123,6 +155,76 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		41492D55206542DF00B87433 /* Run SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+		A311FC222794CC9341B3CB05 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Forseti/Pods-Forseti-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Forseti/Pods-Forseti-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F1AB7AF94E88C5D1B752968A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Forseti-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FF45C9C17B65E1C649171AEB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Forseti/Pods-Forseti-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		41492D2520653C4F00B87433 /* Sources */ = {
@@ -256,6 +358,7 @@
 		};
 		41492D3C20653C4F00B87433 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04C25C466C9F408364DD9EC4 /* Pods-Forseti.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -271,6 +374,7 @@
 		};
 		41492D3D20653C4F00B87433 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27352C0F46B2D62A91F3FEBC /* Pods-Forseti.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
