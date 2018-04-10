@@ -18,3 +18,4 @@ Machine Learning class, which will cover the very basics of ML.
 ## Assignments
 
 - [x] 1. Warm up homework [`jupyter notebook`](warm-up-homework.ipynb)
+- [ ] 2. Naive Bayes model [`jupyter notebook`](naive-bayes-model.ipynb)
