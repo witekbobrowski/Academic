@@ -13,7 +13,7 @@
         <!--Review View Controller-->
         <scene sceneID="mvM-UV-Bvz">
             <objects>
-                <viewController storyboardIdentifier="ReviewViewController" id="OTd-eO-Asy" customClass="ReviewViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ReviewViewController" id="OTd-eO-Asy" customClass="ReviewViewController" customModule="Forseti" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ObL-LK-caB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

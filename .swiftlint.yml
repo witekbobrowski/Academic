@@ -3,3 +3,4 @@ excluded:
 
 disabled_rules:
   - line_length
+  - force_cast

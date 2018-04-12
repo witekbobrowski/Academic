@@ -41,6 +41,8 @@ extension AppDelegate {
     private func setupInitialFlow() {
         let storyboard = UIStoryboard(name: "Review", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "ReviewViewController") as! ReviewViewController
+        let viewModel = ReviewViewModelImplementation(reviewService: "")
+        viewController.viewModel = viewModel
         window?.rootViewController = viewController
         window?.makeKeyAndVisible()
     }
