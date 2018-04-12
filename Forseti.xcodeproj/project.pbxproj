@@ -12,6 +12,9 @@
 		41492D3720653C4F00B87433 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41492D3520653C4F00B87433 /* LaunchScreen.storyboard */; };
 		41492D532065422200B87433 /* ForsetiApiKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41492D542065422300B87433 /* ForsetiApiKit.framework */; };
 		9F75367945F9DD32BD030CB1 /* Pods_Forseti.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF33947CC90951B283E6F662 /* Pods_Forseti.framework */; };
+		F933B1C6207F30D100A86511 /* Review.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F933B1C5207F30D100A86511 /* Review.storyboard */; };
+		F933B1C8207F30E800A86511 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F933B1C7207F30E800A86511 /* ReviewViewController.swift */; };
+		F933B1CA207F311600A86511 /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F933B1C9207F311600A86511 /* ReviewViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +26,9 @@
 		41492D3620653C4F00B87433 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		41492D3820653C4F00B87433 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41492D542065422300B87433 /* ForsetiApiKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ForsetiApiKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F933B1C5207F30D100A86511 /* Review.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Review.storyboard; sourceTree = "<group>"; };
+		F933B1C7207F30E800A86511 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
+		F933B1C9207F311600A86511 /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
 		FF33947CC90951B283E6F662 /* Pods_Forseti.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Forseti.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -60,6 +66,7 @@
 		41492D2B20653C4F00B87433 /* Forseti */ = {
 			isa = PBXGroup;
 			children = (
+				F933B1C4207F30C200A86511 /* Review */,
 				41492D2C20653C4F00B87433 /* AppDelegate.swift */,
 				41492D3320653C4F00B87433 /* Assets.xcassets */,
 				41492D3520653C4F00B87433 /* LaunchScreen.storyboard */,
@@ -84,6 +91,16 @@
 				27352C0F46B2D62A91F3FEBC /* Pods-Forseti.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		F933B1C4207F30C200A86511 /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				F933B1C5207F30D100A86511 /* Review.storyboard */,
+				F933B1C7207F30E800A86511 /* ReviewViewController.swift */,
+				F933B1C9207F311600A86511 /* ReviewViewModel.swift */,
+			);
+			path = Review;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,6 +166,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F933B1C6207F30D100A86511 /* Review.storyboard in Resources */,
 				41492D3720653C4F00B87433 /* LaunchScreen.storyboard in Resources */,
 				41492D3420653C4F00B87433 /* Assets.xcassets in Resources */,
 			);
@@ -231,6 +249,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F933B1C8207F30E800A86511 /* ReviewViewController.swift in Sources */,
+				F933B1CA207F311600A86511 /* ReviewViewModel.swift in Sources */,
 				41492D2D20653C4F00B87433 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
