@@ -16,7 +16,7 @@ extension DependencyContainer: ViewControllerFactory {
 
     var reviewViewController: ReviewViewController {
         let storyboard = storyboardProvider.storyboard(.review, bundle: nil)
-        return storyboard.instantiateViewController(withIdentifier: ReviewViewController.name) as! ReviewViewController
+        return storyboard.instantiateViewController(ReviewViewController.self)
     }
 
 }
