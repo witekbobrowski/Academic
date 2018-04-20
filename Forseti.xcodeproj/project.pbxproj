@@ -15,6 +15,7 @@
 		41F051E7208A0070000359DA /* Nameable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F051E6208A0070000359DA /* Nameable.swift */; };
 		41F051EA208A0263000359DA /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F051E9208A0263000359DA /* UIViewController+Extensions.swift */; };
 		41F051EC208A0287000359DA /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F051EB208A0287000359DA /* UIView+Extensions.swift */; };
+		41F051EE208A032A000359DA /* AppDelegate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F051ED208A032A000359DA /* AppDelegate+Extensions.swift */; };
 		9F75367945F9DD32BD030CB1 /* Pods_Forseti.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF33947CC90951B283E6F662 /* Pods_Forseti.framework */; };
 		F933B1C6207F30D100A86511 /* Review.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F933B1C5207F30D100A86511 /* Review.storyboard */; };
 		F933B1C8207F30E800A86511 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F933B1C7207F30E800A86511 /* ReviewViewController.swift */; };
@@ -34,6 +35,7 @@
 		41F051E6208A0070000359DA /* Nameable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nameable.swift; sourceTree = "<group>"; };
 		41F051E9208A0263000359DA /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		41F051EB208A0287000359DA /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		41F051ED208A032A000359DA /* AppDelegate+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Extensions.swift"; sourceTree = "<group>"; };
 		F933B1C5207F30D100A86511 /* Review.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Review.storyboard; sourceTree = "<group>"; };
 		F933B1C7207F30E800A86511 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		F933B1C9207F311600A86511 /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 			children = (
 				41F051E9208A0263000359DA /* UIViewController+Extensions.swift */,
 				41F051EB208A0287000359DA /* UIView+Extensions.swift */,
+				41F051ED208A032A000359DA /* AppDelegate+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				F933B1CA207F311600A86511 /* ReviewViewModel.swift in Sources */,
 				41492D2D20653C4F00B87433 /* AppDelegate.swift in Sources */,
 				41F051EA208A0263000359DA /* UIViewController+Extensions.swift in Sources */,
+				41F051EE208A032A000359DA /* AppDelegate+Extensions.swift in Sources */,
 				41F051E42089FEE7000359DA /* StoryboardProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

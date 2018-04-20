@@ -30,21 +30,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {}
 
 }
-
-extension AppDelegate {
-
-    private func setupWindow() {
-        let window = UIWindow(frame: UIScreen.main.bounds)
-        self.window = window
-    }
-
-    private func setupInitialFlow() {
-        let storyboard = StoryboardProvider.storyboard(.review, bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "ReviewViewController") as! ReviewViewController
-        let viewModel = ReviewViewModelImplementation(reviewService: "")
-        viewController.viewModel = viewModel
-        window?.rootViewController = viewController
-        window?.makeKeyAndVisible()
-    }
-
-}
