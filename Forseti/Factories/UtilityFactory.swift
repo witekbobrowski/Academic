@@ -6,9 +6,21 @@
 //  Copyright © 2018 Witek Bobrowski. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol UtilityFactory {
     var windowManager: WindowManager { get }
     var storyboardProvider: StoryboardProvider { get }
+}
+
+extension DependencyContainer: UtilityFactory {
+
+    var windowManager: WindowManager {
+        return ForsetiWindowManager(window: UIWindow(frame: UIScreen.main.bounds))
+    }
+
+    var storyboardProvider: StoryboardProvider {
+        return ForsetiStoryboardProvider()
+    }
+
 }

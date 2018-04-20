@@ -11,3 +11,11 @@ import Foundation
 protocol ViewModelFactory {
     var reviewViewModel: ReviewViewModel { get }
 }
+
+extension DependencyContainer: ViewModelFactory {
+
+    var reviewViewModel: ReviewViewModel {
+        return ReviewViewModelImplementation(reviewService: 0)
+    }
+
+}

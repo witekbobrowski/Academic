@@ -25,7 +25,7 @@ protocol StoryboardProvider {
     func storyboard(_ type: StoryboardType, bundle: Bundle?) -> UIStoryboard
 }
 
-class ForsetiStoryboardProvider {
+class ForsetiStoryboardProvider: StoryboardProvider {
     func storyboard(_ type: StoryboardType, bundle: Bundle?) -> UIStoryboard {
         return UIStoryboard(name: type.rawValue, bundle: bundle)
     }
