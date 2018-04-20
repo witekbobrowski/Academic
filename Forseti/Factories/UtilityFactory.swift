@@ -1,5 +1,5 @@
 //
-//  UtilitiesFactory.swift
+//  UtilityFactory.swift
 //  Forseti
 //
 //  Created by Witek Bobrowski on 20/04/2018.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol UtilitiesFactory {
+protocol UtilityFactory {
     var windowManager: WindowManager { get }
     var storyboardProvider: StoryboardProvider { get }
 }
