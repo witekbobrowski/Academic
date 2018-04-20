@@ -15,6 +15,7 @@
 		41A45771208A074300D53893 /* WindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A45770208A074300D53893 /* WindowManager.swift */; };
 		41A45774208A0D5000D53893 /* UtilityFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A45773208A0D5000D53893 /* UtilityFactory.swift */; };
 		41A45776208A0DB700D53893 /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A45775208A0DB700D53893 /* ViewControllerFactory.swift */; };
+		41A45778208A0E0300D53893 /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A45777208A0E0300D53893 /* ViewModelFactory.swift */; };
 		41F051E42089FEE7000359DA /* StoryboardProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F051E32089FEE7000359DA /* StoryboardProvider.swift */; };
 		41F051E7208A0070000359DA /* Nameable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F051E6208A0070000359DA /* Nameable.swift */; };
 		41F051EA208A0263000359DA /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F051E9208A0263000359DA /* UIViewController+Extensions.swift */; };
@@ -39,6 +40,7 @@
 		41A45770208A074300D53893 /* WindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowManager.swift; sourceTree = "<group>"; };
 		41A45773208A0D5000D53893 /* UtilityFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityFactory.swift; sourceTree = "<group>"; };
 		41A45775208A0DB700D53893 /* ViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFactory.swift; sourceTree = "<group>"; };
+		41A45777208A0E0300D53893 /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
 		41F051E32089FEE7000359DA /* StoryboardProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardProvider.swift; sourceTree = "<group>"; };
 		41F051E6208A0070000359DA /* Nameable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nameable.swift; sourceTree = "<group>"; };
 		41F051E9208A0263000359DA /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 			children = (
 				41A45773208A0D5000D53893 /* UtilityFactory.swift */,
 				41A45775208A0DB700D53893 /* ViewControllerFactory.swift */,
+				41A45777208A0E0300D53893 /* ViewModelFactory.swift */,
 			);
 			path = Factories;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				41F051EC208A0287000359DA /* UIView+Extensions.swift in Sources */,
+				41A45778208A0E0300D53893 /* ViewModelFactory.swift in Sources */,
 				F933B1C8207F30E800A86511 /* ReviewViewController.swift in Sources */,
 				41F051E7208A0070000359DA /* Nameable.swift in Sources */,
 				41A45774208A0D5000D53893 /* UtilityFactory.swift in Sources */,
