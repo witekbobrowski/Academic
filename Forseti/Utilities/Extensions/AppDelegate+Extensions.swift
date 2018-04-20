@@ -10,15 +10,11 @@ import UIKit
 
 extension AppDelegate {
 
-    func setupInitialFlow() {
-        let windowManager = ForsetiWindowManager(window: UIWindow(frame: UIScreen.main.bounds))
-        window = windowManager.window
-        let storyboardProvider = ForsetiStoryboardProvider()
-        let storyboard = storyboardProvider.storyboard(.review, bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: ReviewViewController.name) as! ReviewViewController
-        let viewModel = ReviewViewModelImplementation(reviewService: "")
-        viewController.viewModel = viewModel
-        windowManager.setRoot(viewController)
+    func initialSetup() {
+        let coordinatorFactory: CoordinatorFactory = DependencyContainer()
+        let reviewCoordinator = coordinatorFactory.reviewCoordinator
+        rootCoordinator = reviewCoordinator
+        reviewCoordinator.start()
     }
 
 }
