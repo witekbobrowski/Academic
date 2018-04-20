@@ -6,9 +6,7 @@
 //  Copyright © 2018 Witek Bobrowski. All rights reserved.
 //
 
-import Foundation
-
-protocol Coordinator {
+protocol Coordinator: class {
     var next: Coordinator? { get set }
     func start()
 }
