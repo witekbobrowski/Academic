@@ -99,7 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				41A45781208A193F00D53893 /* Scenarios */,
-				41A45772208A0D2F00D53893 /* Factories+DI */,
+				41A45772208A0D2F00D53893 /* Factories */,
 				41F051E8208A024C000359DA /* Protocols */,
 				41F051E22089FED7000359DA /* Utilities */,
 				41492D2C20653C4F00B87433 /* AppDelegate.swift */,
@@ -110,7 +110,7 @@
 			path = Forseti;
 			sourceTree = "<group>";
 		};
-		41A45772208A0D2F00D53893 /* Factories+DI */ = {
+		41A45772208A0D2F00D53893 /* Factories */ = {
 			isa = PBXGroup;
 			children = (
 				41A4577F208A184B00D53893 /* CoordinatorModelFactory.swift */,
@@ -120,7 +120,7 @@
 				41A45775208A0DB700D53893 /* ViewControllerFactory.swift */,
 				41A45777208A0E0300D53893 /* ViewModelFactory.swift */,
 			);
-			path = "Factories+DI";
+			path = Factories;
 			sourceTree = "<group>";
 		};
 		41A45781208A193F00D53893 /* Scenarios */ = {
