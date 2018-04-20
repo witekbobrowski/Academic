@@ -12,8 +12,12 @@ enum StoryboardType: String {
     case review = "Review"
 }
 
-struct StoryboardProvider {
-    static func storyboard(_ type: StoryboardType, bundle: Bundle?) -> UIStoryboard {
+protocol StoryboardProvider {
+    func storyboard(_ type: StoryboardType, bundle: Bundle?) -> UIStoryboard
+}
+
+class ForsetiStoryboardProvider {
+    func storyboard(_ type: StoryboardType, bundle: Bundle?) -> UIStoryboard {
         return UIStoryboard(name: type.rawValue, bundle: bundle)
     }
 }

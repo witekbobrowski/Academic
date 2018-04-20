@@ -16,7 +16,8 @@ extension AppDelegate {
     }
 
     func setupInitialFlow() {
-        let storyboard = StoryboardProvider.storyboard(.review, bundle: nil)
+        let storyboardProvider = ForsetiStoryboardProvider()
+        let storyboard = storyboardProvider.storyboard(.review, bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: ReviewViewController.name) as! ReviewViewController
         let viewModel = ReviewViewModelImplementation(reviewService: "")
         viewController.viewModel = viewModel
