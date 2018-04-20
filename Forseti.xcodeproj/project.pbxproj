@@ -12,6 +12,9 @@
 		41492D3720653C4F00B87433 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41492D3520653C4F00B87433 /* LaunchScreen.storyboard */; };
 		41492D532065422200B87433 /* ForsetiApiKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41492D542065422300B87433 /* ForsetiApiKit.framework */; };
 		41F051E42089FEE7000359DA /* StoryboardProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F051E32089FEE7000359DA /* StoryboardProvider.swift */; };
+		41F051E7208A0070000359DA /* Nameable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F051E6208A0070000359DA /* Nameable.swift */; };
+		41F051EA208A0263000359DA /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F051E9208A0263000359DA /* UIViewController+Extensions.swift */; };
+		41F051EC208A0287000359DA /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F051EB208A0287000359DA /* UIView+Extensions.swift */; };
 		9F75367945F9DD32BD030CB1 /* Pods_Forseti.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF33947CC90951B283E6F662 /* Pods_Forseti.framework */; };
 		F933B1C6207F30D100A86511 /* Review.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F933B1C5207F30D100A86511 /* Review.storyboard */; };
 		F933B1C8207F30E800A86511 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F933B1C7207F30E800A86511 /* ReviewViewController.swift */; };
@@ -28,6 +31,9 @@
 		41492D3820653C4F00B87433 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41492D542065422300B87433 /* ForsetiApiKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ForsetiApiKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		41F051E32089FEE7000359DA /* StoryboardProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardProvider.swift; sourceTree = "<group>"; };
+		41F051E6208A0070000359DA /* Nameable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nameable.swift; sourceTree = "<group>"; };
+		41F051E9208A0263000359DA /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		41F051EB208A0287000359DA /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		F933B1C5207F30D100A86511 /* Review.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Review.storyboard; sourceTree = "<group>"; };
 		F933B1C7207F30E800A86511 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		F933B1C9207F311600A86511 /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
@@ -81,9 +87,28 @@
 		41F051E22089FED7000359DA /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				41F051E8208A024C000359DA /* Protocols */,
+				41F051E5208A004E000359DA /* Extensions */,
 				41F051E32089FEE7000359DA /* StoryboardProvider.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		41F051E5208A004E000359DA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				41F051E9208A0263000359DA /* UIViewController+Extensions.swift */,
+				41F051EB208A0287000359DA /* UIView+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		41F051E8208A024C000359DA /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				41F051E6208A0070000359DA /* Nameable.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		4312EA2BEF3EDCFF45308E67 /* Frameworks */ = {
@@ -260,9 +285,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41F051EC208A0287000359DA /* UIView+Extensions.swift in Sources */,
 				F933B1C8207F30E800A86511 /* ReviewViewController.swift in Sources */,
+				41F051E7208A0070000359DA /* Nameable.swift in Sources */,
 				F933B1CA207F311600A86511 /* ReviewViewModel.swift in Sources */,
 				41492D2D20653C4F00B87433 /* AppDelegate.swift in Sources */,
+				41F051EA208A0263000359DA /* UIViewController+Extensions.swift in Sources */,
 				41F051E42089FEE7000359DA /* StoryboardProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
