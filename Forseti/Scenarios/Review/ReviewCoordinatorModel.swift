@@ -28,7 +28,7 @@ class ReviewCoordinatorModelImplementation: ReviewCoordinatorModel {
 
 extension ReviewCoordinatorModelImplementation {
 
-    func configuredReviewViewController() -> ReviewViewController{
+    func configuredReviewViewController() -> ReviewViewController {
         let viewModel = dependencyContainer.reviewViewModel
         let viewController = dependencyContainer.reviewViewController
         viewController.viewModel = viewModel

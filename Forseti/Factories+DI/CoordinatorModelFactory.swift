@@ -14,7 +14,7 @@ protocol CoordinatorModelFactory {
 
 extension DependencyContainer: CoordinatorModelFactory {
 
-    var reviewCoordinatorModel: ReviewCoordinatorModel { [unowned self] in
+    var reviewCoordinatorModel: ReviewCoordinatorModel {
         return ReviewCoordinatorModelImplementation(dependencyContainer: self)
     }
 

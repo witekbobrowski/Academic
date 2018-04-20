@@ -8,7 +8,12 @@
 
 import Foundation
 
+protocol ReviewViewModelDelegate: class {
+    func reviewViewModel(_ reviewViewModel: ReviewViewModel)
+}
+
 protocol ReviewViewModel {
+    var delegate: ReviewViewModelDelegate? { get set }
     var upvoteButtonTitle: String { get }
     var downvoteButtonTitle: String { get }
     func upvoteAction(_ account: String)
@@ -19,8 +24,8 @@ class ReviewViewModelImplementation: ReviewViewModel {
 
     private let reviewService: Any
 
+    weak var delegate: ReviewViewModelDelegate?
     var upvoteButtonTitle: String { return "👍🏼" }
-
     var downvoteButtonTitle: String { return "👎🏼" }
 
     init(reviewService: Any) {
