@@ -12,10 +12,10 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var rootCoordinator: Coordinator?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        setupWindow()
-        setupInitialFlow()
+        initialSetup()
         return true
     }
 
@@ -28,23 +28,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {}
 
     func applicationWillTerminate(_ application: UIApplication) {}
-
-}
-
-extension AppDelegate {
-
-    private func setupWindow() {
-        let window = UIWindow(frame: UIScreen.main.bounds)
-        self.window = window
-    }
-
-    private func setupInitialFlow() {
-        let storyboard = UIStoryboard(name: "Review", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "ReviewViewController") as! ReviewViewController
-        let viewModel = ReviewViewModelImplementation(reviewService: "")
-        viewController.viewModel = viewModel
-        window?.rootViewController = viewController
-        window?.makeKeyAndVisible()
-    }
 
 }
