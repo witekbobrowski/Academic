@@ -35,13 +35,15 @@ extension WelcomeViewController {
 
     private func setupView() {
         titleLabel.text = viewModel.title
+        titleLabel.textColor = #colorLiteral(red: 0.2509803922, green: 0.2588235294, blue: 0.2549019608, alpha: 1)
         loginButton.setTitle(viewModel.loginButtonTitle, for: .normal)
-        registerButton.setTitle(viewModel.registerButtonTitle, for: .normal)
         loginButton.addTarget(self, action: #selector(loginButtonDidTap(_:)), for: .touchUpInside)
+        loginButton.setTitleColor(#colorLiteral(red: 0.2509803922, green: 0.2588235294, blue: 0.2549019608, alpha: 1), for: .normal)
+        registerButton.setTitle(viewModel.registerButtonTitle, for: .normal)
         registerButton.addTarget(self, action: #selector(registerButtonDidTap(_:)), for: .touchUpInside)
         registerButton.layer.cornerRadius = 8
         registerButton.setTitleColor(.white, for: .normal)
-        registerButton.backgroundColor = .blue
+        registerButton.backgroundColor = #colorLiteral(red: 0.2509803922, green: 0.2588235294, blue: 0.2549019608, alpha: 1)
     }
 
 }

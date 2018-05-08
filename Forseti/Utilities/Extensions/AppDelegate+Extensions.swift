@@ -12,9 +12,9 @@ extension AppDelegate {
 
     func initialSetup() {
         let coordinatorFactory: CoordinatorFactory = DependencyContainer()
-        let reviewCoordinator = coordinatorFactory.reviewCoordinator
-        rootCoordinator = reviewCoordinator
-        reviewCoordinator.start()
+        let welcomeCoordinator = coordinatorFactory.welcomeCoordinator
+        rootCoordinator = welcomeCoordinator
+        welcomeCoordinator.start()
     }
 
 }
