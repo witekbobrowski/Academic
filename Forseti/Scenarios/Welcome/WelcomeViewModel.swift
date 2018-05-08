@@ -20,7 +20,7 @@ protocol WelcomeViewModel {
 class WelcomeViewModelImplementation: WelcomeViewModel {
 
     var title: String { return "Forseti" }
-    var loginButtonTitle: String { return "Login" }
+    var loginButtonTitle: String { return "Login with email" }
     var registerButtonTitle: String { return "Register" }
 
     func login() {}
