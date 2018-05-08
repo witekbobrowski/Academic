@@ -11,6 +11,8 @@ import Foundation
 protocol ViewModelFactory {
     var reviewViewModel: ReviewViewModel { get }
     var welcomeViewModel: WelcomeViewModel { get }
+    var authenticationViewModel: AuthenticationViewModel { get }
+
 }
 
 extension DependencyContainer: ViewModelFactory {
@@ -21,6 +23,10 @@ extension DependencyContainer: ViewModelFactory {
 
     var welcomeViewModel: WelcomeViewModel {
         return WelcomeViewModelImplementation()
+    }
+
+    var authenticationViewModel: AuthenticationViewModel {
+        return AuthenticationViewModelImplementation()
     }
 
 }
