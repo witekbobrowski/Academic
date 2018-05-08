@@ -29,3 +29,12 @@ class WelcomeCoordinator: Coordinator {
     }
 
 }
+
+extension WelcomeCoordinator: WelcomeViewModelDelegate {
+
+    func welcomeViewModel(_ welcomeViewModel: WelcomeViewModel,
+                          didRequestAuthenticationType type: AuthenticationType) {
+
+    }
+
+}
