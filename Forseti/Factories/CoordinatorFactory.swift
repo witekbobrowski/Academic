@@ -10,6 +10,7 @@ import Foundation
 
 protocol CoordinatorFactory {
     var reviewCoordinator: ReviewCoordinator { get }
+    var welcomeCoordinator: WelcomeCoordinator { get }
 }
 
 extension DependencyContainer: CoordinatorFactory {
@@ -17,6 +18,11 @@ extension DependencyContainer: CoordinatorFactory {
     var reviewCoordinator: ReviewCoordinator {
         return ReviewCoordinator(coordinatorModel: reviewCoordinatorModel,
                                  windowManager: windowManager)
+    }
+
+    var welcomeCoordinator: WelcomeCoordinator {
+        return WelcomeCoordinator(coordinatorModel: welcomeCoordinatorModel,
+                                  windowManager: windowManager)
     }
 
 }
