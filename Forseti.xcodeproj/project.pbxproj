@@ -10,6 +10,7 @@
 		411230FB20A21FF7005413D7 /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 411230FA20A21FF7005413D7 /* Welcome.storyboard */; };
 		411230FD20A220BB005413D7 /* WelcomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411230FC20A220BB005413D7 /* WelcomeViewModel.swift */; };
 		411230FF20A221F9005413D7 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411230FE20A221F9005413D7 /* WelcomeViewController.swift */; };
+		4112310120A22DA2005413D7 /* WelcomeCoordinatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4112310020A22DA2005413D7 /* WelcomeCoordinatorModel.swift */; };
 		41492D2D20653C4F00B87433 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41492D2C20653C4F00B87433 /* AppDelegate.swift */; };
 		41492D3420653C4F00B87433 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41492D3320653C4F00B87433 /* Assets.xcassets */; };
 		41492D3720653C4F00B87433 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41492D3520653C4F00B87433 /* LaunchScreen.storyboard */; };
@@ -42,6 +43,7 @@
 		411230FA20A21FF7005413D7 /* Welcome.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Welcome.storyboard; sourceTree = "<group>"; };
 		411230FC20A220BB005413D7 /* WelcomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewModel.swift; sourceTree = "<group>"; };
 		411230FE20A221F9005413D7 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		4112310020A22DA2005413D7 /* WelcomeCoordinatorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeCoordinatorModel.swift; sourceTree = "<group>"; };
 		41492D2920653C4F00B87433 /* Forseti.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Forseti.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41492D2C20653C4F00B87433 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		41492D3320653C4F00B87433 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				411230FA20A21FF7005413D7 /* Welcome.storyboard */,
 				411230FC20A220BB005413D7 /* WelcomeViewModel.swift */,
 				411230FE20A221F9005413D7 /* WelcomeViewController.swift */,
+				4112310020A22DA2005413D7 /* WelcomeCoordinatorModel.swift */,
 			);
 			path = Welcome;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				41A4577A208A0E5100D53893 /* DependencyContainer.swift in Sources */,
+				4112310120A22DA2005413D7 /* WelcomeCoordinatorModel.swift in Sources */,
 				411230FD20A220BB005413D7 /* WelcomeViewModel.swift in Sources */,
 				41F051EC208A0287000359DA /* UIView+Extensions.swift in Sources */,
 				41A45783208A195C00D53893 /* ReviewCoordinator.swift in Sources */,
