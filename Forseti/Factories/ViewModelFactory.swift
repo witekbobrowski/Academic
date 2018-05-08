@@ -10,12 +10,17 @@ import Foundation
 
 protocol ViewModelFactory {
     var reviewViewModel: ReviewViewModel { get }
+    var welcomeViewModel: WelcomeViewModel { get }
 }
 
 extension DependencyContainer: ViewModelFactory {
 
     var reviewViewModel: ReviewViewModel {
         return ReviewViewModelImplementation(reviewService: 0)
+    }
+
+    var welcomeViewModel: WelcomeViewModel {
+        return WelcomeViewModelImplementation()
     }
 
 }

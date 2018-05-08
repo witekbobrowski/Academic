@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		411230FB20A21FF7005413D7 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 411230FA20A21FF7005413D7 /* Authentication.storyboard */; };
+		411230FB20A21FF7005413D7 /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 411230FA20A21FF7005413D7 /* Welcome.storyboard */; };
+		411230FD20A220BB005413D7 /* WelcomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411230FC20A220BB005413D7 /* WelcomeViewModel.swift */; };
 		41492D2D20653C4F00B87433 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41492D2C20653C4F00B87433 /* AppDelegate.swift */; };
 		41492D3420653C4F00B87433 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41492D3320653C4F00B87433 /* Assets.xcassets */; };
 		41492D3720653C4F00B87433 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41492D3520653C4F00B87433 /* LaunchScreen.storyboard */; };
@@ -37,7 +38,8 @@
 /* Begin PBXFileReference section */
 		04C25C466C9F408364DD9EC4 /* Pods-Forseti.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Forseti.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Forseti/Pods-Forseti.debug.xcconfig"; sourceTree = "<group>"; };
 		27352C0F46B2D62A91F3FEBC /* Pods-Forseti.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Forseti.release.xcconfig"; path = "Pods/Target Support Files/Pods-Forseti/Pods-Forseti.release.xcconfig"; sourceTree = "<group>"; };
-		411230FA20A21FF7005413D7 /* Authentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
+		411230FA20A21FF7005413D7 /* Welcome.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Welcome.storyboard; sourceTree = "<group>"; };
+		411230FC20A220BB005413D7 /* WelcomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewModel.swift; sourceTree = "<group>"; };
 		41492D2920653C4F00B87433 /* Forseti.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Forseti.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41492D2C20653C4F00B87433 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		41492D3320653C4F00B87433 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -79,12 +81,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		411230F920A21FE3005413D7 /* Authentication */ = {
+		411230F920A21FE3005413D7 /* Welcome */ = {
 			isa = PBXGroup;
 			children = (
-				411230FA20A21FF7005413D7 /* Authentication.storyboard */,
+				411230FA20A21FF7005413D7 /* Welcome.storyboard */,
+				411230FC20A220BB005413D7 /* WelcomeViewModel.swift */,
 			);
-			path = Authentication;
+			path = Welcome;
 			sourceTree = "<group>";
 		};
 		41492D2020653C4F00B87433 = {
@@ -136,7 +139,7 @@
 		41A45781208A193F00D53893 /* Scenarios */ = {
 			isa = PBXGroup;
 			children = (
-				411230F920A21FE3005413D7 /* Authentication */,
+				411230F920A21FE3005413D7 /* Welcome */,
 				F933B1C4207F30C200A86511 /* Review */,
 			);
 			path = Scenarios;
@@ -265,7 +268,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				411230FB20A21FF7005413D7 /* Authentication.storyboard in Resources */,
+				411230FB20A21FF7005413D7 /* Welcome.storyboard in Resources */,
 				F933B1C6207F30D100A86511 /* Review.storyboard in Resources */,
 				41492D3720653C4F00B87433 /* LaunchScreen.storyboard in Resources */,
 				41492D3420653C4F00B87433 /* Assets.xcassets in Resources */,
@@ -350,6 +353,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				41A4577A208A0E5100D53893 /* DependencyContainer.swift in Sources */,
+				411230FD20A220BB005413D7 /* WelcomeViewModel.swift in Sources */,
 				41F051EC208A0287000359DA /* UIView+Extensions.swift in Sources */,
 				41A45783208A195C00D53893 /* ReviewCoordinator.swift in Sources */,
 				41A45778208A0E0300D53893 /* ViewModelFactory.swift in Sources */,
