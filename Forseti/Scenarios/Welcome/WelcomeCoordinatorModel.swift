@@ -10,6 +10,7 @@ import Foundation
 
 protocol WelcomeCoordinatorModel {
     var welcomeViewController: WelcomeViewController { get }
+    func authenticationViewController(_ type: AuthenticationType) -> AuthenticationViewController
 }
 
 class WelcomeCoordinatorModelImplementation: WelcomeCoordinatorModel {
@@ -22,6 +23,13 @@ class WelcomeCoordinatorModelImplementation: WelcomeCoordinatorModel {
 
     init(dependencyContainer: DependencyContainer) {
         self.dependencyContainer = dependencyContainer
+    }
+
+    func authenticationViewController(_ type: AuthenticationType) -> AuthenticationViewController {
+        let viewModel = dependencyContainer.authenticationViewModel(type)
+        let viewController = dependencyContainer.authenticationViewController
+        viewController.viewModel = viewModel
+        return viewController
     }
 
 }

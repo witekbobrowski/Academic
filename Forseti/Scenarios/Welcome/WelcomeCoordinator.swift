@@ -24,8 +24,10 @@ class WelcomeCoordinator: Coordinator {
 
     func start() {
         let viewController = coordinatorModel.welcomeViewController
-        rootViewController = viewController
-        windowManager.setRoot(viewController)
+        viewController.viewModel.delegate = self
+        let navigationController = UINavigationController(rootViewController: viewController)
+        rootViewController = navigationController
+        windowManager.setRoot(navigationController)
     }
 
 }
@@ -34,7 +36,8 @@ extension WelcomeCoordinator: WelcomeViewModelDelegate {
 
     func welcomeViewModel(_ welcomeViewModel: WelcomeViewModel,
                           didRequestAuthenticationType type: AuthenticationType) {
-
+        let viewController = coordinatorModel.authenticationViewController(type)
+        (rootViewController as? UINavigationController)?.pushViewController(viewController, animated: true)
     }
 
 }

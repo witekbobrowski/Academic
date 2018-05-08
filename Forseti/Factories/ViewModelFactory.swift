@@ -11,7 +11,7 @@ import Foundation
 protocol ViewModelFactory {
     var reviewViewModel: ReviewViewModel { get }
     var welcomeViewModel: WelcomeViewModel { get }
-    var authenticationViewModel: AuthenticationViewModel { get }
+    func authenticationViewModel(_ type: AuthenticationType) -> AuthenticationViewModel
 
 }
 
@@ -25,8 +25,8 @@ extension DependencyContainer: ViewModelFactory {
         return WelcomeViewModelImplementation()
     }
 
-    var authenticationViewModel: AuthenticationViewModel {
-        return AuthenticationViewModelImplementation()
+    func authenticationViewModel(_ type: AuthenticationType) -> AuthenticationViewModel {
+        return AuthenticationViewModelImplementation(type: type)
     }
 
 }

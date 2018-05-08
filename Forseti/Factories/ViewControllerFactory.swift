@@ -11,6 +11,7 @@ import Foundation
 protocol ViewControllerFactory {
     var reviewViewController: ReviewViewController { get }
     var welcomeViewController: WelcomeViewController { get }
+    var authenticationViewController: AuthenticationViewController { get }
 }
 
 extension DependencyContainer: ViewControllerFactory {
@@ -24,5 +25,11 @@ extension DependencyContainer: ViewControllerFactory {
         let storyboard = storyboardProvider.storyboard(.welcome, bundle: nil)
         return storyboard.instantiateViewController(WelcomeViewController.self)
     }
+
+    var authenticationViewController: AuthenticationViewController {
+        let storyboard = storyboardProvider.storyboard(.welcome, bundle: nil)
+        return storyboard.instantiateViewController(AuthenticationViewController.self)
+    }
+
 
 }
