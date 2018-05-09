@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4112310A20A38A30005413D7 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4112310920A38A30005413D7 /* Client.swift */; };
+		4112310E20A38C09005413D7 /* RestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4112310D20A38C09005413D7 /* RestClient.swift */; };
+		4112311220A397D2005413D7 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4112311120A397D2005413D7 /* Endpoint.swift */; };
 		41492D4D20653EA900B87433 /* ForsetiApiKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 41492D4B20653EA900B87433 /* ForsetiApiKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F5E39E568CF602F036DA7065 /* Pods_ForsetiApiKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F033BB5017D6218792BF71D7 /* Pods_ForsetiApiKit.framework */; };
 /* End PBXBuildFile section */
@@ -15,6 +17,8 @@
 /* Begin PBXFileReference section */
 		3160628883E8D9211561604A /* Pods-ForsetiApiKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ForsetiApiKit.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-ForsetiApiKit/Pods-ForsetiApiKit.debug.xcconfig"; sourceTree = "<group>"; };
 		4112310920A38A30005413D7 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		4112310D20A38C09005413D7 /* RestClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestClient.swift; sourceTree = "<group>"; };
+		4112311120A397D2005413D7 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		41492D4820653EA900B87433 /* ForsetiApiKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ForsetiApiKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		41492D4B20653EA900B87433 /* ForsetiApiKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForsetiApiKit.h; sourceTree = "<group>"; };
 		41492D4C20653EA900B87433 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -42,6 +46,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4112310B20A38BE6005413D7 /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				4112310C20A38BF0005413D7 /* REST */,
+				4112310920A38A30005413D7 /* Client.swift */,
+			);
+			path = Client;
+			sourceTree = "<group>";
+		};
+		4112310C20A38BF0005413D7 /* REST */ = {
+			isa = PBXGroup;
+			children = (
+				4112310D20A38C09005413D7 /* RestClient.swift */,
+				4112311120A397D2005413D7 /* Endpoint.swift */,
+			);
+			path = REST;
+			sourceTree = "<group>";
+		};
 		41492D3E20653EA900B87433 = {
 			isa = PBXGroup;
 			children = (
@@ -63,7 +85,7 @@
 		41492D4A20653EA900B87433 /* ForsetiApiKit */ = {
 			isa = PBXGroup;
 			children = (
-				4112310920A38A30005413D7 /* Client.swift */,
+				4112310B20A38BE6005413D7 /* Client */,
 				41492D4B20653EA900B87433 /* ForsetiApiKit.h */,
 				41492D4C20653EA900B87433 /* Info.plist */,
 			);
@@ -181,6 +203,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4112310E20A38C09005413D7 /* RestClient.swift in Sources */,
+				4112311220A397D2005413D7 /* Endpoint.swift in Sources */,
 				4112310A20A38A30005413D7 /* Client.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
