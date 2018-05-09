@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4112310A20A38A30005413D7 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4112310920A38A30005413D7 /* Client.swift */; };
 		41492D4D20653EA900B87433 /* ForsetiApiKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 41492D4B20653EA900B87433 /* ForsetiApiKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F5E39E568CF602F036DA7065 /* Pods_ForsetiApiKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F033BB5017D6218792BF71D7 /* Pods_ForsetiApiKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3160628883E8D9211561604A /* Pods-ForsetiApiKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ForsetiApiKit.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-ForsetiApiKit/Pods-ForsetiApiKit.debug.xcconfig"; sourceTree = "<group>"; };
+		4112310920A38A30005413D7 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		41492D4820653EA900B87433 /* ForsetiApiKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ForsetiApiKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		41492D4B20653EA900B87433 /* ForsetiApiKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForsetiApiKit.h; sourceTree = "<group>"; };
 		41492D4C20653EA900B87433 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 		41492D4A20653EA900B87433 /* ForsetiApiKit */ = {
 			isa = PBXGroup;
 			children = (
+				4112310920A38A30005413D7 /* Client.swift */,
 				41492D4B20653EA900B87433 /* ForsetiApiKit.h */,
 				41492D4C20653EA900B87433 /* Info.plist */,
 			);
@@ -120,6 +123,7 @@
 				TargetAttributes = {
 					41492D4720653EA900B87433 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0930;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -177,6 +181,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4112310A20A38A30005413D7 /* Client.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +309,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3160628883E8D9211561604A /* Pods-ForsetiApiKit.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -317,6 +323,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = witek.bobrowski.ForsetiApiKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -326,6 +333,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8CC115A7F18ECA63313534E7 /* Pods-ForsetiApiKit.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
