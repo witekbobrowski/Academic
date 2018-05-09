@@ -19,17 +19,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pto-Kb-x0p">
-                                <rect key="frame" x="32" y="606" width="311" height="45"/>
+                                <rect key="frame" x="32" y="585" width="311" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="oqv-la-6ku"/>
+                                    <constraint firstAttribute="height" constant="50" id="oqv-la-6ku"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <state key="normal" title="Button"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PMu-9f-2dy">
-                                <rect key="frame" x="32" y="561" width="311" height="45"/>
+                                <rect key="frame" x="32" y="527" width="311" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="vDN-BC-NR4"/>
+                                    <constraint firstAttribute="height" constant="50" id="vDN-BC-NR4"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <state key="normal" title="Button"/>
@@ -43,14 +43,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="rz6-Wm-ff3" firstAttribute="bottom" secondItem="pto-Kb-x0p" secondAttribute="bottom" constant="16" id="1G5-X4-WuH"/>
+                            <constraint firstItem="rz6-Wm-ff3" firstAttribute="bottom" secondItem="pto-Kb-x0p" secondAttribute="bottom" constant="32" id="1G5-X4-WuH"/>
                             <constraint firstItem="PMu-9f-2dy" firstAttribute="leading" secondItem="rz6-Wm-ff3" secondAttribute="leading" constant="32" id="53d-e2-EGx"/>
                             <constraint firstItem="rz6-Wm-ff3" firstAttribute="trailing" secondItem="pto-Kb-x0p" secondAttribute="trailing" constant="32" id="5JT-UC-1Y9"/>
                             <constraint firstItem="5Gp-la-3rx" firstAttribute="centerY" secondItem="rz6-Wm-ff3" secondAttribute="centerY" id="6gw-VU-RfW"/>
                             <constraint firstItem="5Gp-la-3rx" firstAttribute="centerX" secondItem="rz6-Wm-ff3" secondAttribute="centerX" id="HnK-2U-1h7"/>
                             <constraint firstItem="pto-Kb-x0p" firstAttribute="leading" secondItem="rz6-Wm-ff3" secondAttribute="leading" constant="32" id="edK-i0-vVk"/>
                             <constraint firstItem="rz6-Wm-ff3" firstAttribute="trailing" secondItem="PMu-9f-2dy" secondAttribute="trailing" constant="32" id="irg-zr-31Y"/>
-                            <constraint firstItem="pto-Kb-x0p" firstAttribute="top" secondItem="PMu-9f-2dy" secondAttribute="bottom" id="v5d-MQ-fT4"/>
+                            <constraint firstItem="pto-Kb-x0p" firstAttribute="top" secondItem="PMu-9f-2dy" secondAttribute="bottom" constant="8" id="v5d-MQ-fT4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rz6-Wm-ff3"/>
                     </view>
@@ -73,15 +73,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GG2-KA-VP1">
-                                <rect key="frame" x="32" y="606" width="311" height="45"/>
+                                <rect key="frame" x="32" y="585" width="311" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="J91-Ki-t8E"/>
+                                    <constraint firstAttribute="height" constant="50" id="J91-Ki-t8E"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <state key="normal" title="Button"/>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="imd-xt-ZNA">
-                                <rect key="frame" x="32" y="434" width="311" height="124"/>
+                                <rect key="frame" x="32" y="413" width="311" height="124"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KWq-XN-hk5">
                                         <rect key="frame" x="0.0" y="0.0" width="311" height="40"/>
@@ -109,14 +109,14 @@
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bgT-kD-on1">
-                                <rect key="frame" x="32" y="433" width="311" height="1"/>
+                                <rect key="frame" x="32" y="412" width="311" height="1"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="mWe-RO-Hrb"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O5I-ed-hYr">
-                                <rect key="frame" x="32" y="522" width="311" height="1"/>
+                                <rect key="frame" x="32" y="501" width="311" height="1"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="ecM-AG-lZF"/>
@@ -131,7 +131,7 @@
                             <constraint firstItem="OU3-mr-cyR" firstAttribute="trailing" secondItem="imd-xt-ZNA" secondAttribute="trailing" constant="32" id="LCv-1S-X4D"/>
                             <constraint firstItem="OU3-mr-cyR" firstAttribute="trailing" secondItem="GG2-KA-VP1" secondAttribute="trailing" constant="32" id="Pgb-jM-7Lz"/>
                             <constraint firstItem="imd-xt-ZNA" firstAttribute="leading" secondItem="bgT-kD-on1" secondAttribute="leading" id="TCZ-8D-8WJ"/>
-                            <constraint firstItem="OU3-mr-cyR" firstAttribute="bottom" secondItem="GG2-KA-VP1" secondAttribute="bottom" constant="16" id="YMt-7F-vfX"/>
+                            <constraint firstItem="OU3-mr-cyR" firstAttribute="bottom" secondItem="GG2-KA-VP1" secondAttribute="bottom" constant="32" id="YMt-7F-vfX"/>
                             <constraint firstItem="imd-xt-ZNA" firstAttribute="trailing" secondItem="bgT-kD-on1" secondAttribute="trailing" id="ZOS-ij-SeS"/>
                             <constraint firstItem="imd-xt-ZNA" firstAttribute="top" secondItem="bgT-kD-on1" secondAttribute="bottom" id="aXB-65-89b"/>
                             <constraint firstItem="GG2-KA-VP1" firstAttribute="leading" secondItem="OU3-mr-cyR" secondAttribute="leading" constant="32" id="fFF-kl-2tA"/>
