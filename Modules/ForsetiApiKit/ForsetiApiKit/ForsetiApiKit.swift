@@ -1,5 +1,5 @@
 //
-//  DependencyContainer.swift
+//  ForsetiApiKit.swift
 //  ForsetiApiKit
 //
 //  Created by Witek Bobrowski on 09/05/2018.
@@ -8,4 +8,6 @@
 
 import Foundation
 
-public class DependencyContainer {}
+public class ForsetiApiKit {
+    public static var client: Client { return DependencyContainer().client }
+}
