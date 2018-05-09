@@ -14,6 +14,8 @@
 		4112311720A39E79005413D7 /* CompletionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4112311620A39E79005413D7 /* CompletionHandler.swift */; };
 		4112311A20A39F56005413D7 /* UserCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4112311920A39F56005413D7 /* UserCredentials.swift */; };
 		4112311D20A39FE7005413D7 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4112311C20A39FE7005413D7 /* AuthenticationService.swift */; };
+		4112312020A3A1D3005413D7 /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4112311F20A3A1D3005413D7 /* DependencyContainer.swift */; };
+		4112312220A3A222005413D7 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4112312120A3A222005413D7 /* ServiceFactory.swift */; };
 		41492D4D20653EA900B87433 /* ForsetiApiKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 41492D4B20653EA900B87433 /* ForsetiApiKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F5E39E568CF602F036DA7065 /* Pods_ForsetiApiKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F033BB5017D6218792BF71D7 /* Pods_ForsetiApiKit.framework */; };
 /* End PBXBuildFile section */
@@ -27,6 +29,8 @@
 		4112311620A39E79005413D7 /* CompletionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionHandler.swift; sourceTree = "<group>"; };
 		4112311920A39F56005413D7 /* UserCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCredentials.swift; sourceTree = "<group>"; };
 		4112311C20A39FE7005413D7 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
+		4112311F20A3A1D3005413D7 /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
+		4112312120A3A222005413D7 /* ServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceFactory.swift; sourceTree = "<group>"; };
 		41492D4820653EA900B87433 /* ForsetiApiKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ForsetiApiKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		41492D4B20653EA900B87433 /* ForsetiApiKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForsetiApiKit.h; sourceTree = "<group>"; };
 		41492D4C20653EA900B87433 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -98,6 +102,15 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		4112311E20A3A1BF005413D7 /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				4112311F20A3A1D3005413D7 /* DependencyContainer.swift */,
+				4112312120A3A222005413D7 /* ServiceFactory.swift */,
+			);
+			path = Factories;
+			sourceTree = "<group>";
+		};
 		41492D3E20653EA900B87433 = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +132,7 @@
 		41492D4A20653EA900B87433 /* ForsetiApiKit */ = {
 			isa = PBXGroup;
 			children = (
+				4112311E20A3A1BF005413D7 /* Factories */,
 				4112311820A39F43005413D7 /* Model */,
 				4112311320A39E17005413D7 /* Utils */,
 				4112310B20A38BE6005413D7 /* Client */,
@@ -245,7 +259,9 @@
 				4112311720A39E79005413D7 /* CompletionHandler.swift in Sources */,
 				4112310A20A38A30005413D7 /* Client.swift in Sources */,
 				4112311A20A39F56005413D7 /* UserCredentials.swift in Sources */,
+				4112312020A3A1D3005413D7 /* DependencyContainer.swift in Sources */,
 				4112311D20A39FE7005413D7 /* AuthenticationService.swift in Sources */,
+				4112312220A3A222005413D7 /* ServiceFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
