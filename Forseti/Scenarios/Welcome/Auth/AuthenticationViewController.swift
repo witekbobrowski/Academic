@@ -40,7 +40,10 @@ extension AuthenticationViewController {
         [upperSeparatorView, bottomsSeparatorView].forEach { $0?.backgroundColor = #colorLiteral(red: 0.2509803922, green: 0.2588235294, blue: 0.2549019608, alpha: 1).withAlphaComponent(0.5) }
         emailTextField.placeholder = viewModel.emailPlaceholder
         passwordTextField.placeholder = viewModel.passwordPlaceholder
-        [emailTextField, passwordTextField].forEach { $0?.borderStyle = .none }
+        [emailTextField, passwordTextField].forEach { textField in
+            textField?.borderStyle = .none
+            textField?.textColor = #colorLiteral(red: 0.2509803922, green: 0.2588235294, blue: 0.2549019608, alpha: 1)
+        }
         forgotPasswordButton.setTitle(viewModel.forgotPasswordButtonTitle, for: .normal)
         forgotPasswordButton.addTarget(self, action: #selector(forgotPasswordButtonDidTap(_:)), for: .touchUpInside)
         forgotPasswordButton.setTitleColor(#colorLiteral(red: 0.2509803922, green: 0.2588235294, blue: 0.2549019608, alpha: 1), for: .normal)

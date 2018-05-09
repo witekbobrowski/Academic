@@ -59,7 +59,7 @@ extension WelcomeViewController {
 
     private func setupNavigationBar() {
         navigationController?.navigationBar.isTranslucent = true
-        navigationController?.navigationBar.tintColor = .black
+        navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.2509803922, green: 0.2588235294, blue: 0.2549019608, alpha: 1)
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
     }

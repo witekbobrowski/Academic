@@ -99,7 +99,6 @@
 				41492D4420653EA900B87433 /* Frameworks */,
 				41492D4520653EA900B87433 /* Headers */,
 				41492D4620653EA900B87433 /* Resources */,
-				273615B3A9F0F26BB9231647 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -153,21 +152,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		273615B3A9F0F26BB9231647 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../../Pods/Target Support Files/Pods-ForsetiApiKit/Pods-ForsetiApiKit-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		8774315BC8C251196FBFACEA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
