@@ -18,9 +18,7 @@ protocol RestClientProtocol {
 
 class RestClient: RestClientProtocol {
 
-    private enum Constants {
-        static let base: URL = URL(string: "http://77.55.213.42:8080/")!
-    }
+    private let base: URL = URL(string: "http://77.55.213.42:8080/")!
 
     func request<T>(_ data: [(Data, String)],
                     method: HTTPMethod,
@@ -30,7 +28,7 @@ class RestClient: RestClientProtocol {
         upload(multipartFormData: { multipartFormData in
                     data.forEach { multipartFormData.append($0.0, withName: $0.1) }
                 },
-               to: URL(string: endpoint.endpoint, relativeTo: Constants.base)!,
+               to: URL(string: endpoint.endpoint, relativeTo: base)!,
                method: method,
                headers: headers,
                encodingCompletion: { [weak self] result in
@@ -45,7 +43,7 @@ extension RestClient {
 
     private func handleUploadResult<T>(_ result: SessionManager.MultipartFormDataEncodingResult,
                                        completion: @escaping CompletionHandler<T>) {
-        //TODO: Handle callback
+        //TODO: Handle callback.
     }
 
 }

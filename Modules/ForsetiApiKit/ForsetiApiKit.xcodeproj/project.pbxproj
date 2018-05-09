@@ -18,6 +18,7 @@
 		4112312220A3A222005413D7 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4112312120A3A222005413D7 /* ServiceFactory.swift */; };
 		4112312420A3A2DD005413D7 /* ClientFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4112312320A3A2DD005413D7 /* ClientFactory.swift */; };
 		4112312620A3A460005413D7 /* ForsetiApiKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4112312520A3A460005413D7 /* ForsetiApiKit.swift */; };
+		4112312B20A3B350005413D7 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4112312A20A3B350005413D7 /* Comment.swift */; };
 		41492D4D20653EA900B87433 /* ForsetiApiKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 41492D4B20653EA900B87433 /* ForsetiApiKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F5E39E568CF602F036DA7065 /* Pods_ForsetiApiKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F033BB5017D6218792BF71D7 /* Pods_ForsetiApiKit.framework */; };
 /* End PBXBuildFile section */
@@ -35,6 +36,7 @@
 		4112312120A3A222005413D7 /* ServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceFactory.swift; sourceTree = "<group>"; };
 		4112312320A3A2DD005413D7 /* ClientFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientFactory.swift; sourceTree = "<group>"; };
 		4112312520A3A460005413D7 /* ForsetiApiKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForsetiApiKit.swift; sourceTree = "<group>"; };
+		4112312A20A3B350005413D7 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		41492D4820653EA900B87433 /* ForsetiApiKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ForsetiApiKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		41492D4B20653EA900B87433 /* ForsetiApiKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForsetiApiKit.h; sourceTree = "<group>"; };
 		41492D4C20653EA900B87433 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				4112311920A39F56005413D7 /* UserCredentials.swift */,
+				4112312A20A3B350005413D7 /* Comment.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				4112310A20A38A30005413D7 /* Client.swift in Sources */,
 				4112311A20A39F56005413D7 /* UserCredentials.swift in Sources */,
 				4112312020A3A1D3005413D7 /* DependencyContainer.swift in Sources */,
+				4112312B20A3B350005413D7 /* Comment.swift in Sources */,
 				4112311D20A39FE7005413D7 /* AuthenticationService.swift in Sources */,
 				4112312220A3A222005413D7 /* ServiceFactory.swift in Sources */,
 				4112312420A3A2DD005413D7 /* ClientFactory.swift in Sources */,
