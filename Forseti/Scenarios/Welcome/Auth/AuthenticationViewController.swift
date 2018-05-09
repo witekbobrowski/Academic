@@ -14,6 +14,8 @@ class AuthenticationViewController: UIViewController {
     @IBOutlet private weak var passwordTextField: UITextField!
     @IBOutlet private weak var forgotPasswordButton: UIButton!
     @IBOutlet private weak var continueButton: UIButton!
+    @IBOutlet private weak var upperSeparatorView: UIView!
+    @IBOutlet private weak var bottomsSeparatorView: UIView!
 
     var viewModel: AuthenticationViewModel!
 
@@ -35,6 +37,7 @@ class AuthenticationViewController: UIViewController {
 extension AuthenticationViewController {
 
     private func setupView() {
+        [upperSeparatorView, bottomsSeparatorView].forEach { $0?.backgroundColor = #colorLiteral(red: 0.2509803922, green: 0.2588235294, blue: 0.2549019608, alpha: 1).withAlphaComponent(0.5) }
         emailTextField.placeholder = viewModel.emailPlaceholder
         passwordTextField.placeholder = viewModel.passwordPlaceholder
         [emailTextField, passwordTextField].forEach { $0?.borderStyle = .none }
