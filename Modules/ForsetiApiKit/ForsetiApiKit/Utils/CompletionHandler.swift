@@ -8,5 +8,5 @@
 
 import Foundation
 
-typealias CompletionHandler<T> = (Result<T>) -> Void
+public typealias CompletionHandler<T> = (Result<T>) -> Void
 

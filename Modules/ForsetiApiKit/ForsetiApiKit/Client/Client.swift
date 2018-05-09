@@ -9,7 +9,7 @@
 import Foundation
 
 public protocol Client {
-    var authenticationService: Any { get }
+    var authenticationService: AuthenticationService { get }
     var userService: Any { get }
     var accountService: Any { get }
 }
@@ -25,7 +25,7 @@ class ForsetiClient: Client {
         self.dependencyContainer = dependencyContainer
     }
 
-    var authenticationService: Any { return dependencyContainer }
+    var authenticationService: AuthenticationService { return AuthenticationServiceImplementation(restClient: restClient) }
     var userService: Any { return dependencyContainer }
     var accountService: Any { return dependencyContainer }
 
