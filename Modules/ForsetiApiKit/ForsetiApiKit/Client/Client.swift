@@ -14,10 +14,10 @@ public protocol Client {
 
 class ForsetiClient: Client {
 
-    private let restClient: RestClient
+    private let restClient: RestClientProtocol
     private let dependencyContainer: DependencyContainer
 
-    init(restClient: RestClient,
+    init(restClient: RestClientProtocol,
          dependencyContainer: DependencyContainer) {
         self.restClient = restClient
         self.dependencyContainer = dependencyContainer
