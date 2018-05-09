@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class WelcomeCoordinator: Coordinator {
 
@@ -46,15 +47,17 @@ extension WelcomeCoordinator: WelcomeViewModelDelegate {
 extension WelcomeCoordinator: AuthenticationViewModelDelegate {
 
     func authenticationViewModel(_ authenticationViewModel: AuthenticationViewModel, didBeginAuthentication type: AuthenticationType) {
-        <#code#>
+        SVProgressHUD.show()
     }
 
     func authenticationViewModel(_ authenticationViewModel: AuthenticationViewModel, didFailAuthentication type: AuthenticationType) {
-        <#code#>
+        SVProgressHUD.showError(withStatus: nil)
+        SVProgressHUD.dismiss(withDelay: 0.5)
     }
 
     func authenticationViewModel(_ authenticationViewModel: AuthenticationViewModel, didSuceedAuthentication type: AuthenticationType) {
-        <#code#>
+        SVProgressHUD.showSuccess(withStatus: nil)
+        SVProgressHUD.dismiss(withDelay: 0.5)
     }
-    
+
 }

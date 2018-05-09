@@ -60,7 +60,7 @@ class AuthenticationViewModelImplementation: AuthenticationViewModel {
         delegate?.authenticationViewModel(self, didBeginAuthentication: type)
         switch type {
         case .login:
-            authenticationService.login(with: userCredentials) { [weak self] in
+            authenticationService.login(with: userCredentials) { [weak self] result in
                 self?.handleAuthenticationCallback(result)
             }
         case .register:
