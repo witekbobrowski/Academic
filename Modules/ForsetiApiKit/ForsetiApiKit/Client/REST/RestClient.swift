@@ -10,7 +10,10 @@ import Foundation
 import Alamofire
 
 protocol RestClientProtocol {
-    func request<T>(_ data: [(Data, String)], method: HTTPMethod, endpoint: Endpoint, _ completion: @escaping (T) -> Void)
+    func request<T>(_ data: [(Data, String)],
+                    method: HTTPMethod,
+                    endpoint: Endpoint,
+                    completion: @escaping CompletionHandler<T>)
 }
 
 class RestClient: RestClientProtocol {
@@ -19,7 +22,10 @@ class RestClient: RestClientProtocol {
         static let base: URL = URL(string: "http://77.55.213.42:8080/")!
     }
 
-    func request<T>(_ data: [(Data, String)], method: HTTPMethod, endpoint: Endpoint, _ completion: @escaping (T) -> Void) {
+    func request<T>(_ data: [(Data, String)],
+                    method: HTTPMethod,
+                    endpoint: Endpoint,
+                    completion: @escaping CompletionHandler<T>) {
         let headers = ["Content-Type": "multipart/form-data", "Accept": "application/json"]
         upload(multipartFormData: { multipartFormData in
                     data.forEach { multipartFormData.append($0.0, withName: $0.1) }
@@ -28,7 +34,7 @@ class RestClient: RestClientProtocol {
                method: method,
                headers: headers,
                encodingCompletion: { [weak self] result in
-                    self?.handleUploadResult(result, completion)
+                    self?.handleUploadResult(result, completion: completion)
                 }
         )
     }
@@ -37,7 +43,8 @@ class RestClient: RestClientProtocol {
 
 extension RestClient {
 
-    private func handleUploadResult<T>(_ result: SessionManager.MultipartFormDataEncodingResult, _ completion: @escaping (T) -> Void) {
+    private func handleUploadResult<T>(_ result: SessionManager.MultipartFormDataEncodingResult,
+                                       completion: @escaping CompletionHandler<T>) {
         //TODO: Handle callback
     }
 
