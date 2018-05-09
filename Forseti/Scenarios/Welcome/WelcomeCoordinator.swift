@@ -47,7 +47,7 @@ extension WelcomeCoordinator: WelcomeViewModelDelegate {
 extension WelcomeCoordinator: AuthenticationViewModelDelegate {
 
     func authenticationViewModel(_ authenticationViewModel: AuthenticationViewModel, didBeginAuthentication type: AuthenticationType) {
-        SVProgressHUD.show()
+//        SVProgressHUD.show()
     }
 
     func authenticationViewModel(_ authenticationViewModel: AuthenticationViewModel, didFailAuthentication type: AuthenticationType) {
