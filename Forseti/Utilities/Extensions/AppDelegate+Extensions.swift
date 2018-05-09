@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import ForsetiApiKit
 
 extension AppDelegate {
 
     func initialSetup() {
         let coordinatorFactory: CoordinatorFactory = DependencyContainer()
-        let welcomeCoordinator = coordinatorFactory.welcomeCoordinator
+        let client = ForsetiApiKit.client
+        let welcomeCoordinator = coordinatorFactory.welcomeCoordinator(client: client)
         rootCoordinator = welcomeCoordinator
         welcomeCoordinator.start()
     }

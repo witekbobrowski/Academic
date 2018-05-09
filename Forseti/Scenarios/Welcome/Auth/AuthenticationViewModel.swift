@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ForsetiApiKit
 
 enum AuthenticationType {
     case login
@@ -25,6 +26,7 @@ protocol AuthenticationViewModel {
 
 class AuthenticationViewModelImplementation: AuthenticationViewModel {
 
+    private let authenticationService: AuthenticationService
     let type: AuthenticationType
 
     var forgotPasswordButtonTitle: String { return "Forgot my password" }
@@ -32,7 +34,9 @@ class AuthenticationViewModelImplementation: AuthenticationViewModel {
     var emailPlaceholder: String { return "Email" }
     var passwordPlaceholder: String { return "Password" }
 
-    init(type: AuthenticationType) {
+    init(authenticationService: AuthenticationService,
+         type: AuthenticationType) {
+        self.authenticationService = authenticationService
         self.type = type
     }
 

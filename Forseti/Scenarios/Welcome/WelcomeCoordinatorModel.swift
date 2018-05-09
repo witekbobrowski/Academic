@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ForsetiApiKit
 
 protocol WelcomeCoordinatorModel {
     var welcomeViewController: WelcomeViewController { get }
@@ -16,17 +17,20 @@ protocol WelcomeCoordinatorModel {
 class WelcomeCoordinatorModelImplementation: WelcomeCoordinatorModel {
 
     private let dependencyContainer: DependencyContainer
+    private let client: Client
 
     var welcomeViewController: WelcomeViewController {
         return configuredWelcomeViewController()
     }
 
-    init(dependencyContainer: DependencyContainer) {
+    init(client: Client,
+         dependencyContainer: DependencyContainer) {
+        self.client = client
         self.dependencyContainer = dependencyContainer
     }
 
     func authenticationViewController(_ type: AuthenticationType) -> AuthenticationViewController {
-        let viewModel = dependencyContainer.authenticationViewModel(type)
+        let viewModel = dependencyContainer.authenticationViewModel(authenticationService: client.authenticationService, type: type)
         let viewController = dependencyContainer.authenticationViewController
         viewController.viewModel = viewModel
         return viewController
