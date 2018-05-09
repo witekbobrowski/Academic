@@ -29,7 +29,8 @@ class AuthenticationViewController: UIViewController {
     }
 
     @objc private func continueButtonDidTap(_ sender: UIButton) {
-        viewModel.continueAction()
+        guard let email = emailTextField.text, let password = passwordTextField.text else { return }
+        viewModel.continueAction(email: email, password: password)
     }
 
 }

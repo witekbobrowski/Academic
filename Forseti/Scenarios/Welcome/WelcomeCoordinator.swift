@@ -37,7 +37,24 @@ extension WelcomeCoordinator: WelcomeViewModelDelegate {
     func welcomeViewModel(_ welcomeViewModel: WelcomeViewModel,
                           didRequestAuthenticationType type: AuthenticationType) {
         let viewController = coordinatorModel.authenticationViewController(type)
+        viewController.viewModel.delegate = self
         (rootViewController as? UINavigationController)?.pushViewController(viewController, animated: true)
     }
 
+}
+
+extension WelcomeCoordinator: AuthenticationViewModelDelegate {
+
+    func authenticationViewModel(_ authenticationViewModel: AuthenticationViewModel, didBeginAuthentication type: AuthenticationType) {
+        <#code#>
+    }
+
+    func authenticationViewModel(_ authenticationViewModel: AuthenticationViewModel, didFailAuthentication type: AuthenticationType) {
+        <#code#>
+    }
+
+    func authenticationViewModel(_ authenticationViewModel: AuthenticationViewModel, didSuceedAuthentication type: AuthenticationType) {
+        <#code#>
+    }
+    
 }
