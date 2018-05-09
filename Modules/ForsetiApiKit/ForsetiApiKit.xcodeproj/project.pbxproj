@@ -11,6 +11,7 @@
 		4112310E20A38C09005413D7 /* RestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4112310D20A38C09005413D7 /* RestClient.swift */; };
 		4112311220A397D2005413D7 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4112311120A397D2005413D7 /* Endpoint.swift */; };
 		4112311520A39E22005413D7 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4112311420A39E22005413D7 /* Result.swift */; };
+		4112311720A39E79005413D7 /* CompletionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4112311620A39E79005413D7 /* CompletionHandler.swift */; };
 		41492D4D20653EA900B87433 /* ForsetiApiKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 41492D4B20653EA900B87433 /* ForsetiApiKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F5E39E568CF602F036DA7065 /* Pods_ForsetiApiKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F033BB5017D6218792BF71D7 /* Pods_ForsetiApiKit.framework */; };
 /* End PBXBuildFile section */
@@ -21,6 +22,7 @@
 		4112310D20A38C09005413D7 /* RestClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestClient.swift; sourceTree = "<group>"; };
 		4112311120A397D2005413D7 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		4112311420A39E22005413D7 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		4112311620A39E79005413D7 /* CompletionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionHandler.swift; sourceTree = "<group>"; };
 		41492D4820653EA900B87433 /* ForsetiApiKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ForsetiApiKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		41492D4B20653EA900B87433 /* ForsetiApiKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForsetiApiKit.h; sourceTree = "<group>"; };
 		41492D4C20653EA900B87433 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				4112311420A39E22005413D7 /* Result.swift */,
+				4112311620A39E79005413D7 /* CompletionHandler.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 				4112310E20A38C09005413D7 /* RestClient.swift in Sources */,
 				4112311220A397D2005413D7 /* Endpoint.swift in Sources */,
 				4112311520A39E22005413D7 /* Result.swift in Sources */,
+				4112311720A39E79005413D7 /* CompletionHandler.swift in Sources */,
 				4112310A20A38A30005413D7 /* Client.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
