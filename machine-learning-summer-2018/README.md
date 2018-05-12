@@ -1,4 +1,4 @@
-# Machine Learning (Summer 2017)
+# Machine Learning (Summer 2018)
 
 <p align=center>
 <a href="">
