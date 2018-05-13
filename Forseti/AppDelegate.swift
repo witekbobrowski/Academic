@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import IQKeyboardManager
+import SVProgressHUD
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,6 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var rootCoordinator: Coordinator?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        SVProgressHUD.setHapticsEnabled(true)
+        SVProgressHUD.setDefaultStyle(.dark)
+        SVProgressHUD.setDefaultMaskType(.black)
+        IQKeyboardManager.shared().isEnabled = true
         initialSetup()
         return true
     }

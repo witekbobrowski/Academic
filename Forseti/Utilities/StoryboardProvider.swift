@@ -10,6 +10,7 @@ import UIKit
 
 enum StoryboardType: String {
     case review = "Review"
+    case welcome = "Welcome"
 }
 
 protocol StoryboardProvider {

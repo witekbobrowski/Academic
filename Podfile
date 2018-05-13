@@ -15,6 +15,7 @@ end
 
 target 'Forseti' do
     project 'Forseti.xcodeproj'
-    pod 'SwiftyBeaver'
+    pod 'IQKeyboardManager'
+    pod 'SVProgressHUD'
     shared_pods
 end

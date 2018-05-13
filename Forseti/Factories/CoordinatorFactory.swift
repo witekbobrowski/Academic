@@ -7,9 +7,11 @@
 //
 
 import Foundation
+import ForsetiApiKit
 
 protocol CoordinatorFactory {
     var reviewCoordinator: ReviewCoordinator { get }
+    func welcomeCoordinator(client: Client) -> WelcomeCoordinator
 }
 
 extension DependencyContainer: CoordinatorFactory {
@@ -17,6 +19,11 @@ extension DependencyContainer: CoordinatorFactory {
     var reviewCoordinator: ReviewCoordinator {
         return ReviewCoordinator(coordinatorModel: reviewCoordinatorModel,
                                  windowManager: windowManager)
+    }
+
+    func welcomeCoordinator(client: Client) -> WelcomeCoordinator {
+        return WelcomeCoordinator(coordinatorModel: welcomeCoordinatorModel(client: client),
+                                  windowManager: windowManager)
     }
 
 }

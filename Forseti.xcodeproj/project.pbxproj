@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		411230FB20A21FF7005413D7 /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 411230FA20A21FF7005413D7 /* Welcome.storyboard */; };
+		411230FD20A220BB005413D7 /* WelcomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411230FC20A220BB005413D7 /* WelcomeViewModel.swift */; };
+		411230FF20A221F9005413D7 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411230FE20A221F9005413D7 /* WelcomeViewController.swift */; };
+		4112310120A22DA2005413D7 /* WelcomeCoordinatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4112310020A22DA2005413D7 /* WelcomeCoordinatorModel.swift */; };
+		4112310320A22F0C005413D7 /* WelcomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4112310220A22F0C005413D7 /* WelcomeCoordinator.swift */; };
+		4112310620A23668005413D7 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4112310520A23668005413D7 /* AuthenticationViewModel.swift */; };
+		4112310820A23873005413D7 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4112310720A23873005413D7 /* AuthenticationViewController.swift */; };
+		4112312720A3ADF1005413D7 /* ForsetiApiKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41492D542065422300B87433 /* ForsetiApiKit.framework */; };
+		4112312820A3ADF1005413D7 /* ForsetiApiKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 41492D542065422300B87433 /* ForsetiApiKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		41492D2D20653C4F00B87433 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41492D2C20653C4F00B87433 /* AppDelegate.swift */; };
 		41492D3420653C4F00B87433 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41492D3320653C4F00B87433 /* Assets.xcassets */; };
 		41492D3720653C4F00B87433 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41492D3520653C4F00B87433 /* LaunchScreen.storyboard */; };
@@ -33,9 +42,30 @@
 		F933B1CA207F311600A86511 /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F933B1C9207F311600A86511 /* ReviewViewModel.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		4112312920A3ADF1005413D7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4112312820A3ADF1005413D7 /* ForsetiApiKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		04C25C466C9F408364DD9EC4 /* Pods-Forseti.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Forseti.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Forseti/Pods-Forseti.debug.xcconfig"; sourceTree = "<group>"; };
 		27352C0F46B2D62A91F3FEBC /* Pods-Forseti.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Forseti.release.xcconfig"; path = "Pods/Target Support Files/Pods-Forseti/Pods-Forseti.release.xcconfig"; sourceTree = "<group>"; };
+		411230FA20A21FF7005413D7 /* Welcome.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Welcome.storyboard; sourceTree = "<group>"; };
+		411230FC20A220BB005413D7 /* WelcomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewModel.swift; sourceTree = "<group>"; };
+		411230FE20A221F9005413D7 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		4112310020A22DA2005413D7 /* WelcomeCoordinatorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeCoordinatorModel.swift; sourceTree = "<group>"; };
+		4112310220A22F0C005413D7 /* WelcomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeCoordinator.swift; sourceTree = "<group>"; };
+		4112310520A23668005413D7 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
+		4112310720A23873005413D7 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		41492D2920653C4F00B87433 /* Forseti.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Forseti.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41492D2C20653C4F00B87433 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		41492D3320653C4F00B87433 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -70,6 +100,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				41492D532065422200B87433 /* ForsetiApiKit.framework in Frameworks */,
+				4112312720A3ADF1005413D7 /* ForsetiApiKit.framework in Frameworks */,
 				9F75367945F9DD32BD030CB1 /* Pods_Forseti.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -77,6 +108,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		411230F920A21FE3005413D7 /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				4112310420A2364F005413D7 /* Auth */,
+				411230FA20A21FF7005413D7 /* Welcome.storyboard */,
+				411230FC20A220BB005413D7 /* WelcomeViewModel.swift */,
+				411230FE20A221F9005413D7 /* WelcomeViewController.swift */,
+				4112310020A22DA2005413D7 /* WelcomeCoordinatorModel.swift */,
+				4112310220A22F0C005413D7 /* WelcomeCoordinator.swift */,
+			);
+			path = Welcome;
+			sourceTree = "<group>";
+		};
+		4112310420A2364F005413D7 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				4112310520A23668005413D7 /* AuthenticationViewModel.swift */,
+				4112310720A23873005413D7 /* AuthenticationViewController.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
 		41492D2020653C4F00B87433 = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +179,7 @@
 		41A45781208A193F00D53893 /* Scenarios */ = {
 			isa = PBXGroup;
 			children = (
+				411230F920A21FE3005413D7 /* Welcome */,
 				F933B1C4207F30C200A86511 /* Review */,
 			);
 			path = Scenarios;
@@ -203,8 +257,8 @@
 				41492D2620653C4F00B87433 /* Frameworks */,
 				41492D2720653C4F00B87433 /* Resources */,
 				A311FC222794CC9341B3CB05 /* [CP] Embed Pods Frameworks */,
-				FF45C9C17B65E1C649171AEB /* [CP] Copy Pods Resources */,
 				41492D55206542DF00B87433 /* Run SwiftLint */,
+				4112312920A3ADF1005413D7 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -254,6 +308,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				411230FB20A21FF7005413D7 /* Welcome.storyboard in Resources */,
 				F933B1C6207F30D100A86511 /* Review.storyboard in Resources */,
 				41492D3720653C4F00B87433 /* LaunchScreen.storyboard in Resources */,
 				41492D3420653C4F00B87433 /* Assets.xcassets in Resources */,
@@ -285,12 +340,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Forseti/Pods-Forseti-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -315,21 +372,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FF45C9C17B65E1C649171AEB /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Forseti/Pods-Forseti-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -338,10 +380,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				41A4577A208A0E5100D53893 /* DependencyContainer.swift in Sources */,
+				4112310120A22DA2005413D7 /* WelcomeCoordinatorModel.swift in Sources */,
+				4112310820A23873005413D7 /* AuthenticationViewController.swift in Sources */,
+				411230FD20A220BB005413D7 /* WelcomeViewModel.swift in Sources */,
 				41F051EC208A0287000359DA /* UIView+Extensions.swift in Sources */,
 				41A45783208A195C00D53893 /* ReviewCoordinator.swift in Sources */,
 				41A45778208A0E0300D53893 /* ViewModelFactory.swift in Sources */,
 				F933B1C8207F30E800A86511 /* ReviewViewController.swift in Sources */,
+				411230FF20A221F9005413D7 /* WelcomeViewController.swift in Sources */,
 				41F051E7208A0070000359DA /* Nameable.swift in Sources */,
 				41A45785208A1B4F00D53893 /* CoordinatorFactory.swift in Sources */,
 				41A45774208A0D5000D53893 /* UtilityFactory.swift in Sources */,
@@ -353,6 +399,8 @@
 				41A45776208A0DB700D53893 /* ViewControllerFactory.swift in Sources */,
 				41A4577C208A12DE00D53893 /* UIStoryboard+Extensions.swift in Sources */,
 				41A4576F208A06C800D53893 /* Coordinator.swift in Sources */,
+				4112310320A22F0C005413D7 /* WelcomeCoordinator.swift in Sources */,
+				4112310620A23668005413D7 /* AuthenticationViewModel.swift in Sources */,
 				41A4577E208A171A00D53893 /* ReviewCoordinatorModel.swift in Sources */,
 				41A45771208A074300D53893 /* WindowManager.swift in Sources */,
 				41A45780208A184B00D53893 /* CoordinatorModelFactory.swift in Sources */,

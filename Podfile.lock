@@ -1,18 +1,28 @@
 PODS:
   - Alamofire (4.7.0)
+  - IQKeyboardManager (5.0.8)
+  - SVProgressHUD (2.2.5)
   - SwiftLint (0.25.0)
-  - SwiftyBeaver (1.5.1)
 
 DEPENDENCIES:
   - Alamofire
+  - IQKeyboardManager
+  - SVProgressHUD
   - SwiftLint
-  - SwiftyBeaver
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Alamofire
+    - IQKeyboardManager
+    - SVProgressHUD
+    - SwiftLint
 
 SPEC CHECKSUMS:
   Alamofire: 907e0a98eb68cdb7f9d1f541a563d6ac5dc77b25
+  IQKeyboardManager: 266cb7b1d11f94a3e71229d77f960f9a1b538e5b
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftLint: e14651157288e9e01d6e1a71db7014fb5744a8ea
-  SwiftyBeaver: 4f74563624b2c1e821c522c54142b5dd5ebb0f30
 
-PODFILE CHECKSUM: a8266cb9078bdfdb7a4c1b3bba5b6cf1db899784
+PODFILE CHECKSUM: 83c95aa2e2c4f09bcf409d2df09347b79b55c12c
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.0
