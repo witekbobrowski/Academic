@@ -17,5 +17,5 @@ public struct Comment {
         self.comment = comment
         self.timeStamp = timeStamp
     }
-    
+
 }

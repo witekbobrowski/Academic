@@ -30,7 +30,7 @@ class AuthenticationViewController: UIViewController {
 
     @objc private func continueButtonDidTap(_ sender: UIButton) {
         guard let email = emailTextField.text, let password = passwordTextField.text else { return }
-        viewModel.continueAction(email: email, password: password)
+        viewModel.continueAction(userName: email, password: password)
     }
 
 }

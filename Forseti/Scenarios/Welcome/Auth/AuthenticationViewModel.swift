@@ -31,7 +31,7 @@ protocol AuthenticationViewModel {
     var emailPlaceholder: String { get }
     var passwordPlaceholder: String { get }
     func forgotPasswordAction()
-    func continueAction(email: String, password: String)
+    func continueAction(userName: String, password: String)
 }
 
 class AuthenticationViewModelImplementation: AuthenticationViewModel {
@@ -42,7 +42,7 @@ class AuthenticationViewModelImplementation: AuthenticationViewModel {
     weak var delegate: AuthenticationViewModelDelegate?
     var forgotPasswordButtonTitle: String { return "Forgot my password" }
     var continueButtonTitle: String { return "Continue" }
-    var emailPlaceholder: String { return "Email" }
+    var emailPlaceholder: String { return "User name" }
     var passwordPlaceholder: String { return "Password" }
 
     init(authenticationService: AuthenticationService,
@@ -55,8 +55,8 @@ class AuthenticationViewModelImplementation: AuthenticationViewModel {
         print("forgot")
     }
 
-    func continueAction(email: String, password: String) {
-        let userCredentials = UserCredentials(username: email, password: password)
+    func continueAction(userName: String, password: String) {
+        let userCredentials = UserCredentials(username: userName, password: password)
         delegate?.authenticationViewModel(self, didBeginAuthentication: type)
         switch type {
         case .login:

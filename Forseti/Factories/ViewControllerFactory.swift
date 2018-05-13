@@ -31,5 +31,4 @@ extension DependencyContainer: ViewControllerFactory {
         return storyboard.instantiateViewController(AuthenticationViewController.self)
     }
 
-
 }
