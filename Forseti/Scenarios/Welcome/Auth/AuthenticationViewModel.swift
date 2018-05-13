@@ -74,11 +74,13 @@ class AuthenticationViewModelImplementation: AuthenticationViewModel {
 
 extension AuthenticationViewModelImplementation {
 
-    private func handleAuthenticationCallback<T>(_ result: Result<T>) {
+    private func handleAuthenticationCallback(_ result: Result<String>) {
         switch result {
-        case .success(let result):
+        case .success(let user):
+            print(user)
             delegate?.authenticationViewModel(self, didSuceedAuthentication: type)
         case .failure(let error):
+            print(error.localizedDescription)
             delegate?.authenticationViewModel(self, didFailAuthentication: type)
         }
     }
