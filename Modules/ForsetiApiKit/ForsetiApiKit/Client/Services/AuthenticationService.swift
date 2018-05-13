@@ -23,17 +23,28 @@ class AuthenticationServiceImplementation: AuthenticationService {
     }
 
     func login(with userCredentials: UserCredentials, completion: @escaping CompletionHandler<String>) {
-        restClient.request([],
-                           method: .post,
-                           endpoint: AuthenticationEndpoint.login,
-                           completion: completion)
+        guard let data = try? JSONEncoder().encode(userCredentials) else { return }
+        restClient.request(data, method: .post, endpoint: AuthenticationEndpoint.login) { (result: Result<AuthenticationData>) in
+            switch result {
+            case .success(let authData):
+                // TODO: Enable establishing secured connection
+                completion(.success(authData.username))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
 
     func register(with userCredentials: UserCredentials, completion: @escaping CompletionHandler<String>) {
-        restClient.request([],
-                           method: .post,
-                           endpoint: AuthenticationEndpoint.register,
-                           completion: completion)
+        guard let data = try? JSONEncoder().encode(userCredentials) else { return }
+        restClient.request(data, method: .post, endpoint: AuthenticationEndpoint.register) { [unowned self] (result: Result<EmptyResponse>) in
+            switch result {
+            case .success:
+                self.login(with: userCredentials, completion: completion)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
 
     func logout() {

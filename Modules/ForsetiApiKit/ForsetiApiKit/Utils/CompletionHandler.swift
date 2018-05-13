@@ -9,4 +9,3 @@
 import Foundation
 
 public typealias CompletionHandler<T> = (Result<T>) -> Void
-

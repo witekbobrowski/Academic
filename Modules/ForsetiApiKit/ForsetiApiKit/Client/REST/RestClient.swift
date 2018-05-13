@@ -10,40 +10,50 @@ import Foundation
 import Alamofire
 
 protocol RestClientProtocol {
-    func request<T>(_ data: [(Data, String)],
-                    method: HTTPMethod,
-                    endpoint: Endpoint,
-                    completion: @escaping CompletionHandler<T>)
+    func request<T: Codable>(_ data: Data?,
+                             method: HTTPMethod,
+                             endpoint: Endpoint,
+                             completion: @escaping CompletionHandler<T>)
 }
 
 class RestClient: RestClientProtocol {
 
-    private let base: URL = URL(string: "http://77.55.213.42:8080/")!
+    private let manager: SessionManager = SessionManager(configuration: .default)
+    private let base: URL = URL(string: "https://d97fd0fd.ngrok.io/")!
 
-    func request<T>(_ data: [(Data, String)],
-                    method: HTTPMethod,
-                    endpoint: Endpoint,
-                    completion: @escaping CompletionHandler<T>) {
-        let headers = ["Content-Type": "multipart/form-data", "Accept": "application/json"]
-        upload(multipartFormData: { multipartFormData in
-                    data.forEach { multipartFormData.append($0.0, withName: $0.1) }
-                },
-               to: URL(string: endpoint.endpoint, relativeTo: base)!,
-               method: method,
-               headers: headers,
-               encodingCompletion: { [weak self] result in
-                    self?.handleUploadResult(result, completion: completion)
-                }
-        )
+    func request<T: Codable>(_ data: Data?,
+                             method: HTTPMethod,
+                             endpoint: Endpoint,
+                             completion: @escaping CompletionHandler<T>) {
+        var request = URLRequest(url: base.appendingPathComponent(endpoint.path))
+        request.httpMethod = method.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = data
+        manager.request(request).responseJSON { [weak self] response in
+            self?.handleRequestResponse(response, completion: completion)
+        }
     }
 
 }
 
 extension RestClient {
 
-    private func handleUploadResult<T>(_ result: SessionManager.MultipartFormDataEncodingResult,
-                                       completion: @escaping CompletionHandler<T>) {
-        //TODO: Handle callback.
+    private func handleRequestResponse<T: Codable>(_ response: DataResponse<Any>,
+                                                   completion: @escaping CompletionHandler<T>) {
+        switch response.result {
+        case .success(let value):
+            guard let data = try? JSONSerialization.data(withJSONObject: value, options: .prettyPrinted) else {
+                completion(.failure(RestClientError.invalidResultValue))
+                return
+            }
+            guard let decoded = try? JSONDecoder().decode(T.self, from: data) else {
+                completion(.failure(RestClientError.failedToDecodeJSON))
+                return
+            }
+            completion(.success(decoded))
+        case .failure(let error):
+            completion(.failure(error))
+        }
     }
 
 }
