@@ -24,10 +24,12 @@ class AuthenticationServiceImplementation: AuthenticationService {
 
     func login(with userCredentials: UserCredentials, completion: @escaping CompletionHandler<String>) {
         guard let data = try? JSONEncoder().encode(userCredentials) else { return }
-        restClient.request(data, method: .post, endpoint: AuthenticationEndpoint.login) { (result: Result<AuthenticationData>) in
+        restClient.request(data,
+                           method: .post,
+                           endpoint: AuthenticationEndpoint.login) { [unowned self] (result: Result<AuthenticationData>) in
             switch result {
             case .success(let authData):
-                // TODO: Enable establishing secured connection
+                self.restClient.authenticate(with: authData)
                 completion(.success(authData.username))
             case .failure(let error):
                 completion(.failure(error))
@@ -37,7 +39,9 @@ class AuthenticationServiceImplementation: AuthenticationService {
 
     func register(with userCredentials: UserCredentials, completion: @escaping CompletionHandler<String>) {
         guard let data = try? JSONEncoder().encode(userCredentials) else { return }
-        restClient.request(data, method: .post, endpoint: AuthenticationEndpoint.register) { [unowned self] (result: Result<EmptyResponse>) in
+        restClient.request(data,
+                           method: .post,
+                           endpoint: AuthenticationEndpoint.register) { [unowned self] (result: Result<EmptyResponse>) in
             switch result {
             case .success:
                 self.login(with: userCredentials, completion: completion)
@@ -48,7 +52,7 @@ class AuthenticationServiceImplementation: AuthenticationService {
     }
 
     func logout() {
-        // TODO: Enable establishing unsecured connection
+        restClient.logout()
     }
 
 }

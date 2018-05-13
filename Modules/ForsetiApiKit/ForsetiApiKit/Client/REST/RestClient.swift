@@ -14,12 +14,19 @@ protocol RestClientProtocol {
                              method: HTTPMethod,
                              endpoint: Endpoint,
                              completion: @escaping CompletionHandler<T>)
+    func authenticate(with authenticationData: AuthenticationData)
+    func logout()
 }
 
 class RestClient: RestClientProtocol {
 
-    private let manager: SessionManager = SessionManager(configuration: .default)
-    private let base: URL = URL(string: "https://d97fd0fd.ngrok.io/")!
+    private var manager: SessionManager
+    private let base: URL
+
+    init() {
+        self.manager = SessionManager(configuration: .default)
+        self.base = URL(string: "https://d97fd0fd.ngrok.io/")!
+    }
 
     func request<T: Codable>(_ data: Data?,
                              method: HTTPMethod,
@@ -32,6 +39,16 @@ class RestClient: RestClientProtocol {
         manager.request(request).responseJSON { [weak self] response in
             self?.handleRequestResponse(response, completion: completion)
         }
+    }
+
+    func authenticate(with authenticationData: AuthenticationData) {
+        let configuration = URLSessionConfiguration.default
+        configuration.httpAdditionalHeaders = ["Authorization": authenticationData.token]
+        manager = SessionManager(configuration: configuration)
+    }
+
+    func logout() {
+        manager = SessionManager(configuration: .default)
     }
 
 }

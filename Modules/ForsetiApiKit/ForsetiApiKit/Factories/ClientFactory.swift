@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 
 protocol ClientFactory {
     var restClient: RestClientProtocol { get }
@@ -15,7 +16,9 @@ protocol ClientFactory {
 
 extension DependencyContainer: ClientFactory {
 
-    var restClient: RestClientProtocol { return RestClient() }
+    var restClient: RestClientProtocol {
+        return RestClient()
+    }
 
     var client: Client {
         return ForsetiClient(restClient: restClient, dependencyContainer: self)
