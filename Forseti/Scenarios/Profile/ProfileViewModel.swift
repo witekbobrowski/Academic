@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ForsetiApiKit
 
 protocol ProfileViewModel {
     var title: String { get }
@@ -14,4 +15,46 @@ protocol ProfileViewModel {
     var numberOfSections: Int { get }
     func numberOfRows(inSection section: Int) -> Int
     func exit()
+}
+
+class ProfileViewModelImplementation: ProfileViewModel {
+
+    private let userService: UserService
+
+    private var user: User?
+
+    var title: String {
+        return "Profile"
+    }
+    var numberOfSections: Int {
+        return 0
+    }
+
+    init(userService: UserService) {
+        self.userService = userService
+        self.fetchUser()
+    }
+
+    func numberOfRows(inSection section: Int) -> Int {
+        return 0
+    }
+
+    func exit() {}
+
+}
+
+extension ProfileViewModelImplementation {
+
+    private func fetchUser() {
+        userService.getUser { [weak self] result in
+            guard let `self` = self else { return }
+            switch result {
+            case .success(let user):
+                self.user = user
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+
 }
