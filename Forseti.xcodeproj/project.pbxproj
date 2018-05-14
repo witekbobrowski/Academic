@@ -32,6 +32,7 @@
 		41A45783208A195C00D53893 /* ReviewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A45782208A195C00D53893 /* ReviewCoordinator.swift */; };
 		41A45785208A1B4F00D53893 /* CoordinatorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A45784208A1B4F00D53893 /* CoordinatorFactory.swift */; };
 		41D133EC20AA22850040B7B6 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41D133EB20AA22850040B7B6 /* Profile.storyboard */; };
+		41D133EE20AA22CF0040B7B6 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D133ED20AA22CF0040B7B6 /* ProfileViewModel.swift */; };
 		41F051E42089FEE7000359DA /* StoryboardProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F051E32089FEE7000359DA /* StoryboardProvider.swift */; };
 		41F051E7208A0070000359DA /* Nameable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F051E6208A0070000359DA /* Nameable.swift */; };
 		41F051EA208A0263000359DA /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F051E9208A0263000359DA /* UIViewController+Extensions.swift */; };
@@ -85,6 +86,7 @@
 		41A45782208A195C00D53893 /* ReviewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCoordinator.swift; sourceTree = "<group>"; };
 		41A45784208A1B4F00D53893 /* CoordinatorFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorFactory.swift; sourceTree = "<group>"; };
 		41D133EB20AA22850040B7B6 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		41D133ED20AA22CF0040B7B6 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		41F051E32089FEE7000359DA /* StoryboardProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardProvider.swift; sourceTree = "<group>"; };
 		41F051E6208A0070000359DA /* Nameable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nameable.swift; sourceTree = "<group>"; };
 		41F051E9208A0263000359DA /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				41D133EB20AA22850040B7B6 /* Profile.storyboard */,
+				41D133ED20AA22CF0040B7B6 /* ProfileViewModel.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -401,6 +404,7 @@
 				F933B1C8207F30E800A86511 /* ReviewViewController.swift in Sources */,
 				411230FF20A221F9005413D7 /* WelcomeViewController.swift in Sources */,
 				41F051E7208A0070000359DA /* Nameable.swift in Sources */,
+				41D133EE20AA22CF0040B7B6 /* ProfileViewModel.swift in Sources */,
 				41A45785208A1B4F00D53893 /* CoordinatorFactory.swift in Sources */,
 				41A45774208A0D5000D53893 /* UtilityFactory.swift in Sources */,
 				F933B1CA207F311600A86511 /* ReviewViewModel.swift in Sources */,
