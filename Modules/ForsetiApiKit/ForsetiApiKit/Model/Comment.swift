@@ -9,15 +9,7 @@
 import Foundation
 
 public struct Comment: Codable {
-
     public var id: Int
     public var comment: String
     public var timeStamp: String
-
-    public init(id: Int, comment: String, timeStamp: String) {
-        self.id = id
-        self.comment = comment
-        self.timeStamp = timeStamp
-    }
-
 }
