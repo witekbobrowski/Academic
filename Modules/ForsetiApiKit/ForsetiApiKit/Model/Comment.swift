@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Comment {
+public struct Comment: Codable {
 
     public var id: Int
     public var comment: String

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct UserCredentials: Codable {
+public struct UserCredentials {
 
     public var username: String
     public var password: String
