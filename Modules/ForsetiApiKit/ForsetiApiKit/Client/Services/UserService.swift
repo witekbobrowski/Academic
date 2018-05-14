@@ -11,3 +11,17 @@ import Foundation
 public protocol UserService {
     func getUser(completion: @escaping CompletionHandler<User>)
 }
+
+class UserServiceImplementation: UserService {
+
+    private let restClient: RestClientProtocol
+
+    init(restClient: RestClientProtocol) {
+        self.restClient = restClient
+    }
+
+    func getUser(completion: @escaping (Result<User>) -> Void) {
+        restClient.request(nil, method: .get, endpoint: UserEndpoint.user, completion: completion)
+    }
+
+}

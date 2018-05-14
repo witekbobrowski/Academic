@@ -10,12 +10,17 @@ import Foundation
 
 protocol ServiceFactory {
     func authenticationService(restClient: RestClientProtocol) -> AuthenticationService
+    func userService(restClient: RestClientProtocol) -> UserService
 }
 
 extension DependencyContainer: ServiceFactory {
 
     func authenticationService(restClient: RestClientProtocol) -> AuthenticationService {
         return AuthenticationServiceImplementation(restClient: restClient)
+    }
+
+    func userService(restClient: RestClientProtocol) -> UserService {
+        return UserServiceImplementation(restClient: restClient)
     }
 
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum Thumb: Codable {
+public enum Thumb: String, Codable {
     case up
     case down
 }
