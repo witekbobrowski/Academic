@@ -11,6 +11,7 @@ import UIKit
 enum StoryboardType: String {
     case review = "Review"
     case welcome = "Welcome"
+    case profile = "Profile"
 }
 
 protocol StoryboardProvider {
