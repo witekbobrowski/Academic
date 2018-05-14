@@ -12,8 +12,10 @@ import ForsetiApiKit
 protocol ViewModelFactory {
     var reviewViewModel: ReviewViewModel { get }
     var welcomeViewModel: WelcomeViewModel { get }
+
     func authenticationViewModel(authenticationService: AuthenticationService,
                                  type: AuthenticationType) -> AuthenticationViewModel
+    func profileViewModel(userService: UserService) -> ProfileViewModel
 
 }
 
@@ -22,7 +24,6 @@ extension DependencyContainer: ViewModelFactory {
     var reviewViewModel: ReviewViewModel {
         return ReviewViewModelImplementation(reviewService: 0)
     }
-
     var welcomeViewModel: WelcomeViewModel {
         return WelcomeViewModelImplementation()
     }
@@ -31,6 +32,10 @@ extension DependencyContainer: ViewModelFactory {
                                  type: AuthenticationType) -> AuthenticationViewModel {
         return AuthenticationViewModelImplementation(authenticationService: authenticationService,
                                                      type: type)
+    }
+
+    func profileViewModel(userService: UserService) -> ProfileViewModel {
+        return ProfileViewModelImplementation(userService: userService)
     }
 
 }
