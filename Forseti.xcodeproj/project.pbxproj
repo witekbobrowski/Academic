@@ -34,6 +34,7 @@
 		41D133EC20AA22850040B7B6 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41D133EB20AA22850040B7B6 /* Profile.storyboard */; };
 		41D133EE20AA22CF0040B7B6 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D133ED20AA22CF0040B7B6 /* ProfileViewModel.swift */; };
 		41D133F020AA23C80040B7B6 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D133EF20AA23C80040B7B6 /* ProfileViewController.swift */; };
+		41D133F220AA29B70040B7B6 /* ProfileCoordinatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D133F120AA29B70040B7B6 /* ProfileCoordinatorModel.swift */; };
 		41F051E42089FEE7000359DA /* StoryboardProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F051E32089FEE7000359DA /* StoryboardProvider.swift */; };
 		41F051E7208A0070000359DA /* Nameable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F051E6208A0070000359DA /* Nameable.swift */; };
 		41F051EA208A0263000359DA /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F051E9208A0263000359DA /* UIViewController+Extensions.swift */; };
@@ -89,6 +90,7 @@
 		41D133EB20AA22850040B7B6 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		41D133ED20AA22CF0040B7B6 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		41D133EF20AA23C80040B7B6 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		41D133F120AA29B70040B7B6 /* ProfileCoordinatorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinatorModel.swift; sourceTree = "<group>"; };
 		41F051E32089FEE7000359DA /* StoryboardProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardProvider.swift; sourceTree = "<group>"; };
 		41F051E6208A0070000359DA /* Nameable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nameable.swift; sourceTree = "<group>"; };
 		41F051E9208A0263000359DA /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 				41D133EB20AA22850040B7B6 /* Profile.storyboard */,
 				41D133EF20AA23C80040B7B6 /* ProfileViewController.swift */,
 				41D133ED20AA22CF0040B7B6 /* ProfileViewModel.swift */,
+				41D133F120AA29B70040B7B6 /* ProfileCoordinatorModel.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -399,6 +402,7 @@
 			files = (
 				41A4577A208A0E5100D53893 /* DependencyContainer.swift in Sources */,
 				4112310120A22DA2005413D7 /* WelcomeCoordinatorModel.swift in Sources */,
+				41D133F220AA29B70040B7B6 /* ProfileCoordinatorModel.swift in Sources */,
 				4112310820A23873005413D7 /* AuthenticationViewController.swift in Sources */,
 				411230FD20A220BB005413D7 /* WelcomeViewModel.swift in Sources */,
 				41F051EC208A0287000359DA /* UIView+Extensions.swift in Sources */,
