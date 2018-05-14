@@ -6,12 +6,13 @@
 //  Copyright © 2018 Witek Bobrowski. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import ForsetiApiKit
 
 protocol CoordinatorFactory {
     var reviewCoordinator: ReviewCoordinator { get }
     func welcomeCoordinator(client: Client) -> WelcomeCoordinator
+    func profileCoordinator(client: Client, viewController: UIViewController?) -> ProfileCoordinator
 }
 
 extension DependencyContainer: CoordinatorFactory {
@@ -24,6 +25,10 @@ extension DependencyContainer: CoordinatorFactory {
     func welcomeCoordinator(client: Client) -> WelcomeCoordinator {
         return WelcomeCoordinator(coordinatorModel: welcomeCoordinatorModel(client: client),
                                   windowManager: windowManager)
+    }
+    func profileCoordinator(client: Client, viewController: UIViewController?) -> ProfileCoordinator {
+        return ProfileCoordinator(coordinatorModel: profileCoordinatorModel(client: client),
+                                  viewControler: viewController)
     }
 
 }
