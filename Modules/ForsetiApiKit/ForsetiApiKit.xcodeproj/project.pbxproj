@@ -23,6 +23,7 @@
 		41A3C3DE20A889AC00EE8B17 /* EmptyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A3C3DD20A889AC00EE8B17 /* EmptyResponse.swift */; };
 		41C434AC20A8591E00152C84 /* RestClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C434AB20A8591E00152C84 /* RestClientError.swift */; };
 		41C434AF20A8664D00152C84 /* AuthenticationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C434AE20A8664D00152C84 /* AuthenticationData.swift */; };
+		41D133E320AA0EAB0040B7B6 /* Thumb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D133E220AA0EAB0040B7B6 /* Thumb.swift */; };
 		F5E39E568CF602F036DA7065 /* Pods_ForsetiApiKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F033BB5017D6218792BF71D7 /* Pods_ForsetiApiKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,7 @@
 		41A3C3DD20A889AC00EE8B17 /* EmptyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResponse.swift; sourceTree = "<group>"; };
 		41C434AB20A8591E00152C84 /* RestClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestClientError.swift; sourceTree = "<group>"; };
 		41C434AE20A8664D00152C84 /* AuthenticationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationData.swift; sourceTree = "<group>"; };
+		41D133E220AA0EAB0040B7B6 /* Thumb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumb.swift; sourceTree = "<group>"; };
 		8CC115A7F18ECA63313534E7 /* Pods-ForsetiApiKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ForsetiApiKit.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-ForsetiApiKit/Pods-ForsetiApiKit.release.xcconfig"; sourceTree = "<group>"; };
 		F033BB5017D6218792BF71D7 /* Pods_ForsetiApiKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ForsetiApiKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -105,6 +107,7 @@
 				41C434AD20A8663C00152C84 /* Private */,
 				4112311920A39F56005413D7 /* UserCredentials.swift */,
 				4112312A20A3B350005413D7 /* Comment.swift */,
+				41D133E220AA0EAB0040B7B6 /* Thumb.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 				41A3C3DE20A889AC00EE8B17 /* EmptyResponse.swift in Sources */,
 				4112311720A39E79005413D7 /* CompletionHandler.swift in Sources */,
 				4112310A20A38A30005413D7 /* Client.swift in Sources */,
+				41D133E320AA0EAB0040B7B6 /* Thumb.swift in Sources */,
 				4112311A20A39F56005413D7 /* UserCredentials.swift in Sources */,
 				4112312020A3A1D3005413D7 /* DependencyContainer.swift in Sources */,
 				4112312B20A3B350005413D7 /* Comment.swift in Sources */,
