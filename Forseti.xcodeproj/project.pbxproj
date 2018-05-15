@@ -45,6 +45,8 @@
 		41D1340720AB6D3D0040B7B6 /* ThumbsActivityCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D1340620AB6D3D0040B7B6 /* ThumbsActivityCellViewModel.swift */; };
 		41D1340920AB6FAC0040B7B6 /* CommentActivityCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D1340820AB6FAC0040B7B6 /* CommentActivityCellViewModel.swift */; };
 		41D1340C20AB71600040B7B6 /* ProfileOptionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D1340B20AB71600040B7B6 /* ProfileOptionCellViewModel.swift */; };
+		41D1340E20AB73B00040B7B6 /* ProfileOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D1340D20AB73B00040B7B6 /* ProfileOptionTableViewCell.swift */; };
+		41D1341020AB741E0040B7B6 /* ProfileOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41D1340F20AB741E0040B7B6 /* ProfileOptionTableViewCell.xib */; };
 		41F051E42089FEE7000359DA /* StoryboardProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F051E32089FEE7000359DA /* StoryboardProvider.swift */; };
 		41F051E7208A0070000359DA /* Nameable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F051E6208A0070000359DA /* Nameable.swift */; };
 		41F051EA208A0263000359DA /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F051E9208A0263000359DA /* UIViewController+Extensions.swift */; };
@@ -111,6 +113,8 @@
 		41D1340620AB6D3D0040B7B6 /* ThumbsActivityCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbsActivityCellViewModel.swift; sourceTree = "<group>"; };
 		41D1340820AB6FAC0040B7B6 /* CommentActivityCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentActivityCellViewModel.swift; sourceTree = "<group>"; };
 		41D1340B20AB71600040B7B6 /* ProfileOptionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileOptionCellViewModel.swift; sourceTree = "<group>"; };
+		41D1340D20AB73B00040B7B6 /* ProfileOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileOptionTableViewCell.swift; sourceTree = "<group>"; };
+		41D1340F20AB741E0040B7B6 /* ProfileOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileOptionTableViewCell.xib; sourceTree = "<group>"; };
 		41F051E32089FEE7000359DA /* StoryboardProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardProvider.swift; sourceTree = "<group>"; };
 		41F051E6208A0070000359DA /* Nameable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nameable.swift; sourceTree = "<group>"; };
 		41F051E9208A0263000359DA /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
@@ -271,6 +275,8 @@
 			isa = PBXGroup;
 			children = (
 				41D1340B20AB71600040B7B6 /* ProfileOptionCellViewModel.swift */,
+				41D1340D20AB73B00040B7B6 /* ProfileOptionTableViewCell.swift */,
+				41D1340F20AB741E0040B7B6 /* ProfileOptionTableViewCell.xib */,
 			);
 			path = Option;
 			sourceTree = "<group>";
@@ -402,6 +408,7 @@
 				41D1340420AB6AE10040B7B6 /* ProfileActivityTableViewCell.xib in Resources */,
 				F933B1C6207F30D100A86511 /* Review.storyboard in Resources */,
 				41D133FB20AB58410040B7B6 /* ProfileTableHeaderView.xib in Resources */,
+				41D1341020AB741E0040B7B6 /* ProfileOptionTableViewCell.xib in Resources */,
 				41D133EC20AA22850040B7B6 /* Profile.storyboard in Resources */,
 				41492D3720653C4F00B87433 /* LaunchScreen.storyboard in Resources */,
 				41492D3420653C4F00B87433 /* Assets.xcassets in Resources */,
@@ -501,6 +508,7 @@
 				41A4577C208A12DE00D53893 /* UIStoryboard+Extensions.swift in Sources */,
 				41D1340320AB6AE10040B7B6 /* ProfileActivityTableViewCell.swift in Sources */,
 				41D133FD20AB599C0040B7B6 /* ProfileTableHeaderViewModel.swift in Sources */,
+				41D1340E20AB73B00040B7B6 /* ProfileOptionTableViewCell.swift in Sources */,
 				41A4576F208A06C800D53893 /* Coordinator.swift in Sources */,
 				4112310320A22F0C005413D7 /* WelcomeCoordinator.swift in Sources */,
 				41D1340920AB6FAC0040B7B6 /* CommentActivityCellViewModel.swift in Sources */,
