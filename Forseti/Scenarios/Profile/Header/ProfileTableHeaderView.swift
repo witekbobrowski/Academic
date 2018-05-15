@@ -25,6 +25,7 @@ class ProfileTableHeaderView: UIView {
 extension ProfileTableHeaderView {
 
     private func setupView() {
+        backgroundColor = .clear
         imageView.contentMode = .scaleAspectFit
         imageView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
         imageView.layer.cornerRadius = imageView.bounds.width / 2
