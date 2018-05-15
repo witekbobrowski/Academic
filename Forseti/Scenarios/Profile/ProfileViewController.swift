@@ -87,6 +87,14 @@ extension ProfileViewController: UITableViewDelegate {
         (cell as? ProfileActivityTableViewCell)?.viewModel?.action()
     }
 
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.section {
+        case 0: return 42
+        case 1: return 80
+        default: return 0
+        }
+    }
+
 }
 
 extension ProfileViewController: UITableViewDataSource {

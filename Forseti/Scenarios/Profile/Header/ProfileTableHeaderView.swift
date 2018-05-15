@@ -30,7 +30,7 @@ extension ProfileTableHeaderView {
         imageView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
         imageView.layer.cornerRadius = imageView.bounds.width / 2
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         label.textColor = #colorLiteral(red: 0.2509803922, green: 0.2588235294, blue: 0.2549019608, alpha: 1)
     }
 

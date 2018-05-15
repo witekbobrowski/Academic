@@ -28,8 +28,10 @@ extension ProfileActivityTableViewCell {
         backgroundColor = .clear
         descriptionLabel.textColor = #colorLiteral(red: 0.2509803922, green: 0.2588235294, blue: 0.2549019608, alpha: 1)
         descriptionLabel.numberOfLines = 0
+        descriptionLabel.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         dateLabel.font = UIFont.systemFont(ofSize: 10, weight: .medium)
         dateLabel.textColor = .lightGray
+        [descriptionLabel, dateLabel].forEach { $0?.textAlignment = .center }
     }
 
     private func update(with viewModel: ProfileActivityCellViewModel?) {
