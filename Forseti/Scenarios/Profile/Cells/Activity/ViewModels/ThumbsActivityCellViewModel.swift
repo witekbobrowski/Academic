@@ -22,6 +22,10 @@ class ThumbsActivityCellViewModel: ProfileActivityCellViewModel {
         self.accountNumber = accountNumber
     }
 
+    func action() {
+        print("Clicked cell with \(thumbsDetails)")
+    }
+
 }
 
 extension ThumbsActivityCellViewModel {

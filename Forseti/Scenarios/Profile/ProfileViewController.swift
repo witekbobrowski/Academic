@@ -33,12 +33,14 @@ class ProfileViewController: UIViewController {
 extension ProfileViewController {
 
     private func setupView() {
+        navigationItem.largeTitleDisplayMode = .always
         navigationItem.title = viewModel.title
         exitButton.action = #selector(exitButtonDidTap(_:))
         exitButton.target = self
     }
 
     private func setupTableView() {
+        tableView.backgroundColor = .clear
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
@@ -53,14 +55,14 @@ extension ProfileViewController {
         let tableHeaderView = bundle.loadNibNamed(ProfileTableHeaderView.name,
                                                   owner: nil,
                                                   options: nil)?.first as! ProfileTableHeaderView
-        tableHeaderView.translatesAutoresizingMaskIntoConstraints = false
+        tableHeaderView.translatesAutoresizingMaskIntoConstraints = true
+        tableHeaderView.heightAnchor.constraint(equalToConstant: 148).isActive = true
         tableView.tableHeaderView = tableHeaderView
-        tableHeaderView.widthAnchor.constraint(equalTo: tableView.widthAnchor, multiplier: 1).isActive = true
-        tableHeaderView.heightAnchor.constraint(equalToConstant: 185).isActive = true
         self.tableHeaderView = tableHeaderView
     }
 
     private func setupNavigationBar() {
+        navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.2509803922, green: 0.2588235294, blue: 0.2549019608, alpha: 1)
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -69,7 +71,16 @@ extension ProfileViewController {
 
 }
 
-extension ProfileViewController: UITableViewDelegate {}
+extension ProfileViewController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let cell = tableView.cellForRow(at: indexPath)
+        (cell as? ProfileOptionTableViewCell)?.viewModel?.action()
+        (cell as? ProfileActivityTableViewCell)?.viewModel?.action()
+    }
+
+}
 
 extension ProfileViewController: UITableViewDataSource {
 

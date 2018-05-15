@@ -11,4 +11,6 @@ import Foundation
 protocol ProfileActivityCellViewModel {
     var title: String { get }
     var date: String { get }
+
+    func action()
 }

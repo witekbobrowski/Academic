@@ -22,4 +22,8 @@ class CommentActivityCellViewModel: ProfileActivityCellViewModel {
         self.accountNumber = accountNumber
     }
 
+    func action() {
+        print("Clicked cell with \(comment)")
+    }
+
 }
