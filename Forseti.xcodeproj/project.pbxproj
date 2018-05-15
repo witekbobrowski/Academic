@@ -36,6 +36,9 @@
 		41D133F020AA23C80040B7B6 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D133EF20AA23C80040B7B6 /* ProfileViewController.swift */; };
 		41D133F220AA29B70040B7B6 /* ProfileCoordinatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D133F120AA29B70040B7B6 /* ProfileCoordinatorModel.swift */; };
 		41D133F420AA2ABA0040B7B6 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D133F320AA2ABA0040B7B6 /* ProfileCoordinator.swift */; };
+		41D133F920AB58350040B7B6 /* ProfileTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D133F820AB58350040B7B6 /* ProfileTableHeaderView.swift */; };
+		41D133FB20AB58410040B7B6 /* ProfileTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41D133FA20AB58410040B7B6 /* ProfileTableHeaderView.xib */; };
+		41D133FD20AB599C0040B7B6 /* ProfileTableHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D133FC20AB599C0040B7B6 /* ProfileTableHeaderViewModel.swift */; };
 		41F051E42089FEE7000359DA /* StoryboardProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F051E32089FEE7000359DA /* StoryboardProvider.swift */; };
 		41F051E7208A0070000359DA /* Nameable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F051E6208A0070000359DA /* Nameable.swift */; };
 		41F051EA208A0263000359DA /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F051E9208A0263000359DA /* UIViewController+Extensions.swift */; };
@@ -93,6 +96,9 @@
 		41D133EF20AA23C80040B7B6 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		41D133F120AA29B70040B7B6 /* ProfileCoordinatorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinatorModel.swift; sourceTree = "<group>"; };
 		41D133F320AA2ABA0040B7B6 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
+		41D133F820AB58350040B7B6 /* ProfileTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableHeaderView.swift; sourceTree = "<group>"; };
+		41D133FA20AB58410040B7B6 /* ProfileTableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileTableHeaderView.xib; sourceTree = "<group>"; };
+		41D133FC20AB599C0040B7B6 /* ProfileTableHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableHeaderViewModel.swift; sourceTree = "<group>"; };
 		41F051E32089FEE7000359DA /* StoryboardProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardProvider.swift; sourceTree = "<group>"; };
 		41F051E6208A0070000359DA /* Nameable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nameable.swift; sourceTree = "<group>"; };
 		41F051E9208A0263000359DA /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
@@ -199,6 +205,8 @@
 		41D133EA20AA22780040B7B6 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				41D133F720AB58100040B7B6 /* Header */,
+				41D133F520AB57EE0040B7B6 /* Cells */,
 				41D133EB20AA22850040B7B6 /* Profile.storyboard */,
 				41D133EF20AA23C80040B7B6 /* ProfileViewController.swift */,
 				41D133ED20AA22CF0040B7B6 /* ProfileViewModel.swift */,
@@ -206,6 +214,23 @@
 				41D133F320AA2ABA0040B7B6 /* ProfileCoordinator.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		41D133F520AB57EE0040B7B6 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		41D133F720AB58100040B7B6 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				41D133F820AB58350040B7B6 /* ProfileTableHeaderView.swift */,
+				41D133FA20AB58410040B7B6 /* ProfileTableHeaderView.xib */,
+				41D133FC20AB599C0040B7B6 /* ProfileTableHeaderViewModel.swift */,
+			);
+			path = Header;
 			sourceTree = "<group>";
 		};
 		41F051E22089FED7000359DA /* Utilities */ = {
@@ -333,6 +358,7 @@
 			files = (
 				411230FB20A21FF7005413D7 /* Welcome.storyboard in Resources */,
 				F933B1C6207F30D100A86511 /* Review.storyboard in Resources */,
+				41D133FB20AB58410040B7B6 /* ProfileTableHeaderView.xib in Resources */,
 				41D133EC20AA22850040B7B6 /* Profile.storyboard in Resources */,
 				41492D3720653C4F00B87433 /* LaunchScreen.storyboard in Resources */,
 				41492D3420653C4F00B87433 /* Assets.xcassets in Resources */,
@@ -417,6 +443,7 @@
 				411230FF20A221F9005413D7 /* WelcomeViewController.swift in Sources */,
 				41F051E7208A0070000359DA /* Nameable.swift in Sources */,
 				41D133EE20AA22CF0040B7B6 /* ProfileViewModel.swift in Sources */,
+				41D133F920AB58350040B7B6 /* ProfileTableHeaderView.swift in Sources */,
 				41A45785208A1B4F00D53893 /* CoordinatorFactory.swift in Sources */,
 				41A45774208A0D5000D53893 /* UtilityFactory.swift in Sources */,
 				F933B1CA207F311600A86511 /* ReviewViewModel.swift in Sources */,
@@ -426,6 +453,7 @@
 				41F051E42089FEE7000359DA /* StoryboardProvider.swift in Sources */,
 				41A45776208A0DB700D53893 /* ViewControllerFactory.swift in Sources */,
 				41A4577C208A12DE00D53893 /* UIStoryboard+Extensions.swift in Sources */,
+				41D133FD20AB599C0040B7B6 /* ProfileTableHeaderViewModel.swift in Sources */,
 				41A4576F208A06C800D53893 /* Coordinator.swift in Sources */,
 				4112310320A22F0C005413D7 /* WelcomeCoordinator.swift in Sources */,
 				4112310620A23668005413D7 /* AuthenticationViewModel.swift in Sources */,

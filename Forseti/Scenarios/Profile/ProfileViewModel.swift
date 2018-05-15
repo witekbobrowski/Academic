@@ -11,7 +11,7 @@ import ForsetiApiKit
 
 protocol ProfileViewModel {
     var title: String { get }
-
+    var tableHeaderViewModel: ProfileTableHeaderViewModel { get }
     var numberOfSections: Int { get }
     func numberOfRows(inSection section: Int) -> Int
     func exit()
@@ -20,18 +20,23 @@ protocol ProfileViewModel {
 class ProfileViewModelImplementation: ProfileViewModel {
 
     private let userService: UserService
+    private let dependencyContainer: DependencyContainer
 
     private var user: User?
 
     var title: String {
         return "Profile"
     }
+    var tableHeaderViewModel: ProfileTableHeaderViewModel {
+        return dependencyContainer.profileTableHeaderViewModel(user: user!)
+    }
     var numberOfSections: Int {
         return 0
     }
 
-    init(userService: UserService) {
+    init(userService: UserService, dependencyContainer: DependencyContainer) {
         self.userService = userService
+        self.dependencyContainer = dependencyContainer
         self.fetchUser()
     }
 

@@ -12,6 +12,7 @@ class ProfileViewController: UIViewController {
 
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var exitButton: UIBarButtonItem!
+    private weak var tableHeaderView: ProfileTableHeaderView?
 
     var viewModel: ProfileViewModel!
 
@@ -19,6 +20,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         setupTableView()
+        setupTableHeaderView()
         setupNavigationBar()
     }
 
@@ -41,6 +43,18 @@ extension ProfileViewController {
         tableView.dataSource = self
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
+    }
+
+    private func setupTableHeaderView() {
+        let bundle = Bundle(for: self.classForCoder)
+        let tableHeaderView = bundle.loadNibNamed(ProfileTableHeaderView.name,
+                                                  owner: nil,
+                                                  options: nil)?.first as! ProfileTableHeaderView
+        tableHeaderView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.tableHeaderView = tableHeaderView
+        tableHeaderView.widthAnchor.constraint(equalTo: tableView.widthAnchor, multiplier: 1).isActive = true
+        tableHeaderView.heightAnchor.constraint(equalToConstant: 185).isActive = true
+        self.tableHeaderView = tableHeaderView
     }
 
     private func setupNavigationBar() {

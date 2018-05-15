@@ -16,7 +16,7 @@ protocol ViewModelFactory {
     func authenticationViewModel(authenticationService: AuthenticationService,
                                  type: AuthenticationType) -> AuthenticationViewModel
     func profileViewModel(userService: UserService) -> ProfileViewModel
-
+    func profileTableHeaderViewModel(user: User) -> ProfileTableHeaderViewModel
 }
 
 extension DependencyContainer: ViewModelFactory {
@@ -35,7 +35,11 @@ extension DependencyContainer: ViewModelFactory {
     }
 
     func profileViewModel(userService: UserService) -> ProfileViewModel {
-        return ProfileViewModelImplementation(userService: userService)
+        return ProfileViewModelImplementation(userService: userService, dependencyContainer: self)
+    }
+
+    func profileTableHeaderViewModel(user: User) -> ProfileTableHeaderViewModel {
+        return ProfileTableHeaderViewModelImplementation(user: user)
     }
 
 }
