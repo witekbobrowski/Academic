@@ -18,7 +18,7 @@ protocol ViewModelFactory {
     func profileViewModel(userService: UserService) -> ProfileViewModel
     func profileTableHeaderViewModel(user: User) -> ProfileTableHeaderViewModel
     func thumbsActivityCellViewModel(thumbsDetails: ThumbsDetails, accountNumber: String) -> ThumbsActivityCellViewModel
-    func commentActivityCellViewModel(thumbsDetails: ThumbsDetails, accountNumber: String) -> CommentActivityCellViewModel
+    func commentActivityCellViewModel(comment: Comment, accountNumber: String) -> CommentActivityCellViewModel
 }
 
 extension DependencyContainer: ViewModelFactory {
@@ -51,5 +51,5 @@ extension DependencyContainer: ViewModelFactory {
     func commentActivityCellViewModel(comment: Comment, accountNumber: String) -> CommentActivityCellViewModel {
         return CommentActivityCellViewModel(comment: comment, accountNumber: accountNumber)
     }
-    
+
 }
