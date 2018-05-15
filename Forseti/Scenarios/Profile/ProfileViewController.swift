@@ -82,7 +82,20 @@ extension ProfileViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCell(withIdentifier: UITableViewCell.name, for: indexPath)
+        var cell: UITableViewCell
+        switch indexPath.section {
+        case 0:
+            let optionCell = tableView.dequeueReusableCell(withIdentifier: ProfileOptionTableViewCell.name, for: indexPath) as! ProfileOptionTableViewCell
+            optionCell.viewModel = viewModel.viewModel(forOptionCellInRow: indexPath.row)
+            cell = optionCell
+        case 1:
+            let activityCell = tableView.dequeueReusableCell(withIdentifier: ProfileActivityTableViewCell.name, for: indexPath) as! ProfileActivityTableViewCell
+            activityCell.viewModel = viewModel.viewModel(forActivityCellInRow: indexPath.row)
+            cell = activityCell
+        default:
+            cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.name, for: indexPath)
+        }
+        return cell
     }
 
 }

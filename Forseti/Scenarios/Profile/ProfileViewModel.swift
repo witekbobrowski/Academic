@@ -14,6 +14,8 @@ protocol ProfileViewModel {
     var tableHeaderViewModel: ProfileTableHeaderViewModel { get }
     var numberOfSections: Int { get }
     func numberOfRows(inSection section: Int) -> Int
+    func viewModel(forOptionCellInRow row: Int) -> ProfileOptionCellViewModel
+    func viewModel(forActivityCellInRow row: Int) -> ProfileActivityCellViewModel
     func exit()
 }
 
@@ -31,20 +33,29 @@ enum ProfileOption {
 
 class ProfileViewModelImplementation: ProfileViewModel {
 
+    private enum Activity {
+        case thumb(ThumbsDetails, String)
+        case comment(Comment, String)
+    }
+
+    private enum Section: Int {
+        case options
+        case activityFeed
+    }
+
     private let userService: UserService
     private let dependencyContainer: DependencyContainer
+    private let sections: [Section] = [.options, .activityFeed]
+    private let options: [ProfileOption] = [.settings, .logout]
 
     private var user: User?
+    private var activities: [Activity] = []
 
-    var title: String {
-        return "Profile"
-    }
+    var title: String { return "Profile" }
     var tableHeaderViewModel: ProfileTableHeaderViewModel {
         return dependencyContainer.profileTableHeaderViewModel(user: user!)
     }
-    var numberOfSections: Int {
-        return 0
-    }
+    var numberOfSections: Int { return sections.count }
 
     init(userService: UserService, dependencyContainer: DependencyContainer) {
         self.userService = userService
@@ -53,7 +64,24 @@ class ProfileViewModelImplementation: ProfileViewModel {
     }
 
     func numberOfRows(inSection section: Int) -> Int {
-        return 0
+        let section = Section(rawValue: section)!
+        switch section {
+        case .options: return options.count
+        case .activityFeed: return activities.count
+        }
+    }
+
+    func viewModel(forOptionCellInRow row: Int) -> ProfileOptionCellViewModel {
+        return dependencyContainer.profileOptionCellViewModel(option: options[row])
+    }
+
+    func viewModel(forActivityCellInRow row: Int) -> ProfileActivityCellViewModel {
+        switch activities[row] {
+        case .thumb(let thumb, let number):
+            return  dependencyContainer.thumbsActivityCellViewModel(thumbsDetails: thumb, accountNumber: number)
+        case .comment(let comment, let number):
+            return dependencyContainer.commentActivityCellViewModel(comment: comment, accountNumber: number)
+        }
     }
 
     func exit() {}
