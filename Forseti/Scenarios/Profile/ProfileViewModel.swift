@@ -31,6 +31,12 @@ enum ProfileOption {
     }
 }
 
+extension Notification.Name {
+    static var profileViewModelDidFetchUser: Notification.Name {
+        return Notification.Name(rawValue: "ProfileViewModel.profileViewModelDidFetchUser")
+    }
+}
+
 class ProfileViewModelImplementation: ProfileViewModel {
 
     private enum Activity {
@@ -96,6 +102,9 @@ extension ProfileViewModelImplementation {
             switch result {
             case .success(let user):
                 self.user = user
+                user.thumbsDetails.forEach { entry in self.activities.append(.thumb(entry.value, entry.key))}
+                user.comments.forEach { entry in self.activities.append(.comment(entry.value, entry.key))}
+                NotificationCenter.default.post(name: .profileViewModelDidFetchUser, object: self)
             case .failure(let error):
                 print(error)
             }

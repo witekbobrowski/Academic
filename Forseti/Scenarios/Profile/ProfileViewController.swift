@@ -28,6 +28,11 @@ class ProfileViewController: UIViewController {
         viewModel.exit()
     }
 
+    @objc private func viewModelDidFinishFetching() {
+        tableHeaderView?.viewModel = viewModel.tableHeaderViewModel
+        tableView.reloadData()
+    }
+
 }
 
 extension ProfileViewController {
@@ -37,6 +42,7 @@ extension ProfileViewController {
         navigationItem.title = viewModel.title
         exitButton.action = #selector(exitButtonDidTap(_:))
         exitButton.target = self
+        NotificationCenter.default.addObserver(self, selector: #selector(viewModelDidFinishFetching), name: .profileViewModelDidFetchUser, object: nil)
     }
 
     private func setupTableView() {
@@ -57,6 +63,7 @@ extension ProfileViewController {
                                                   options: nil)?.first as! ProfileTableHeaderView
         tableHeaderView.translatesAutoresizingMaskIntoConstraints = true
         tableHeaderView.heightAnchor.constraint(equalToConstant: 148).isActive = true
+        tableHeaderView.viewModel = viewModel.tableHeaderViewModel
         tableView.tableHeaderView = tableHeaderView
         self.tableHeaderView = tableHeaderView
     }
