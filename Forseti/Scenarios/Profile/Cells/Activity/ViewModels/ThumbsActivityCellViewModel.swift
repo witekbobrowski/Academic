@@ -33,9 +33,9 @@ extension ThumbsActivityCellViewModel {
     private func activityDescription() -> String {
         switch thumbsDetails.thumb {
         case .up:
-            return "👍🏽 You have given thumbs up to account with number \(accountNumber)."
+            return "👍🏽 You have given thumbs up to account with number: \(accountNumber)."
         case .down:
-            return "👎🏽 You have given thumbs down to account with number \(accountNumber)."
+            return "👎🏽 You have given thumbs down to account with number: \(accountNumber)."
         }
     }
 
