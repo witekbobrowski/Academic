@@ -17,6 +17,7 @@ protocol ViewModelFactory {
                                  type: AuthenticationType) -> AuthenticationViewModel
     func profileViewModel(userService: UserService) -> ProfileViewModel
     func profileTableHeaderViewModel(user: User) -> ProfileTableHeaderViewModel
+    func thumbProfileActivityCellViewModel(thumbsDetails: ThumbsDetails, accountNumber: String) -> ThumbProfileActivityCellViewModel
 }
 
 extension DependencyContainer: ViewModelFactory {
@@ -40,6 +41,10 @@ extension DependencyContainer: ViewModelFactory {
 
     func profileTableHeaderViewModel(user: User) -> ProfileTableHeaderViewModel {
         return ProfileTableHeaderViewModelImplementation(user: user)
+    }
+
+    func thumbProfileActivityCellViewModel(thumbsDetails: ThumbsDetails, accountNumber: String) -> ThumbProfileActivityCellViewModel {
+        return ThumbProfileActivityCellViewModel(thumbsDetails: thumbsDetails, accountNumber: accountNumber)
     }
 
 }
