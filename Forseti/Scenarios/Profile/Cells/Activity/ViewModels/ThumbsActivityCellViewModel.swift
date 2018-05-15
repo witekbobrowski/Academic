@@ -1,5 +1,5 @@
 //
-//  ThumbProfileActivityCellViewModel.swift
+//  ThumbsActivityCellViewModel.swift
 //  Forseti
 //
 //  Created by Witek Bobrowski on 15/05/2018.
@@ -9,7 +9,7 @@
 import Foundation
 import ForsetiApiKit
 
-class ThumbProfileActivityCellViewModel: ProfileActivityCellViewModel {
+class ThumbsActivityCellViewModel: ProfileActivityCellViewModel {
 
     private let thumbsDetails: ThumbsDetails
     private let accountNumber: String
@@ -24,14 +24,14 @@ class ThumbProfileActivityCellViewModel: ProfileActivityCellViewModel {
 
 }
 
-extension ThumbProfileActivityCellViewModel {
+extension ThumbsActivityCellViewModel {
 
     private func activityDescription() -> String {
         switch thumbsDetails.thumb {
         case .up:
-            return "👍🏽 You have given thumbs up to account with number \(accountNumber)"
+            return "👍🏽 You have given thumbs up to account with number \(accountNumber)."
         case .down:
-            return "👎🏽 You have given thumbs down to account with number \(accountNumber)"
+            return "👎🏽 You have given thumbs down to account with number \(accountNumber)."
         }
     }
 
