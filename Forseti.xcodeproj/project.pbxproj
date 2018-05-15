@@ -39,6 +39,7 @@
 		41D133F920AB58350040B7B6 /* ProfileTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D133F820AB58350040B7B6 /* ProfileTableHeaderView.swift */; };
 		41D133FB20AB58410040B7B6 /* ProfileTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41D133FA20AB58410040B7B6 /* ProfileTableHeaderView.xib */; };
 		41D133FD20AB599C0040B7B6 /* ProfileTableHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D133FC20AB599C0040B7B6 /* ProfileTableHeaderViewModel.swift */; };
+		41D1340020AB5FD70040B7B6 /* ProfileActivityCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D133FF20AB5FD70040B7B6 /* ProfileActivityCellViewModel.swift */; };
 		41F051E42089FEE7000359DA /* StoryboardProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F051E32089FEE7000359DA /* StoryboardProvider.swift */; };
 		41F051E7208A0070000359DA /* Nameable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F051E6208A0070000359DA /* Nameable.swift */; };
 		41F051EA208A0263000359DA /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F051E9208A0263000359DA /* UIViewController+Extensions.swift */; };
@@ -99,6 +100,7 @@
 		41D133F820AB58350040B7B6 /* ProfileTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableHeaderView.swift; sourceTree = "<group>"; };
 		41D133FA20AB58410040B7B6 /* ProfileTableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileTableHeaderView.xib; sourceTree = "<group>"; };
 		41D133FC20AB599C0040B7B6 /* ProfileTableHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableHeaderViewModel.swift; sourceTree = "<group>"; };
+		41D133FF20AB5FD70040B7B6 /* ProfileActivityCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileActivityCellViewModel.swift; sourceTree = "<group>"; };
 		41F051E32089FEE7000359DA /* StoryboardProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardProvider.swift; sourceTree = "<group>"; };
 		41F051E6208A0070000359DA /* Nameable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nameable.swift; sourceTree = "<group>"; };
 		41F051E9208A0263000359DA /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 		41D133F520AB57EE0040B7B6 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				41D133FE20AB5FA30040B7B6 /* Activity */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -231,6 +234,14 @@
 				41D133FC20AB599C0040B7B6 /* ProfileTableHeaderViewModel.swift */,
 			);
 			path = Header;
+			sourceTree = "<group>";
+		};
+		41D133FE20AB5FA30040B7B6 /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				41D133FF20AB5FD70040B7B6 /* ProfileActivityCellViewModel.swift */,
+			);
+			path = Activity;
 			sourceTree = "<group>";
 		};
 		41F051E22089FED7000359DA /* Utilities */ = {
@@ -432,6 +443,7 @@
 				41A4577A208A0E5100D53893 /* DependencyContainer.swift in Sources */,
 				4112310120A22DA2005413D7 /* WelcomeCoordinatorModel.swift in Sources */,
 				41D133F220AA29B70040B7B6 /* ProfileCoordinatorModel.swift in Sources */,
+				41D1340020AB5FD70040B7B6 /* ProfileActivityCellViewModel.swift in Sources */,
 				4112310820A23873005413D7 /* AuthenticationViewController.swift in Sources */,
 				411230FD20A220BB005413D7 /* WelcomeViewModel.swift in Sources */,
 				41F051EC208A0287000359DA /* UIView+Extensions.swift in Sources */,
