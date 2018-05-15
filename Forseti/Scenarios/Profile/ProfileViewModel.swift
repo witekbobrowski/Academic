@@ -17,6 +17,18 @@ protocol ProfileViewModel {
     func exit()
 }
 
+enum ProfileOption {
+    case settings
+    case logout
+
+    var description: String {
+        switch self {
+        case .settings: return "Settings"
+        case .logout: return "Log out"
+        }
+    }
+}
+
 class ProfileViewModelImplementation: ProfileViewModel {
 
     private let userService: UserService

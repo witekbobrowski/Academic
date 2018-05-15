@@ -9,7 +9,7 @@
 import Foundation
 
 protocol ProfileOptionCellViewModelDelegate: class {
-    func profileOptionCellViewModel(_ profileOptionCellViewModel: ProfileOptionCellViewModel, didTapOption option: Int)
+    func profileOptionCellViewModel(_ profileOptionCellViewModel: ProfileOptionCellViewModel, didTapOption option: ProfileOption)
 }
 
 protocol ProfileOptionCellViewModel {
@@ -20,12 +20,12 @@ protocol ProfileOptionCellViewModel {
 
 class ProfileOptionCellViewModelImplementation: ProfileOptionCellViewModel {
 
-    private let option: Int
+    private let option: ProfileOption
 
     weak var delegate: ProfileOptionCellViewModelDelegate?
     var title: String { return option.description }
 
-    init(option: Int) {
+    init(option: ProfileOption) {
         self.option = option
     }
 
