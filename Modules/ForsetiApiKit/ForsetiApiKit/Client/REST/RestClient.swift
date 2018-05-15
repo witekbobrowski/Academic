@@ -25,7 +25,7 @@ class RestClient: RestClientProtocol {
 
     init() {
         self.manager = SessionManager(configuration: .default)
-        self.base = URL(string: "https://d97fd0fd.ngrok.io/")!
+        self.base = URL(string: "http://127.0.0.1:8080/")!
     }
 
     func request<T: Codable>(_ data: Data?,
@@ -43,7 +43,8 @@ class RestClient: RestClientProtocol {
 
     func authenticate(with authenticationData: AuthenticationData) {
         let configuration = URLSessionConfiguration.default
-        configuration.httpAdditionalHeaders = ["Authorization": authenticationData.token]
+        configuration.httpAdditionalHeaders = [
+            AuthenticationData.CodingKeys.token.rawValue: authenticationData.token]
         manager = SessionManager(configuration: configuration)
     }
 
@@ -57,6 +58,10 @@ extension RestClient {
 
     private func handleRequestResponse<T: Codable>(_ response: DataResponse<Any>,
                                                    completion: @escaping CompletionHandler<T>) {
+        guard let statusCode = response.response?.statusCode, statusCode == 200 else {
+            completion(.failure(RestClientError.invalidStatusCode(response.response?.statusCode)))
+            return
+        }
         switch response.result {
         case .success(let value):
             guard let data = try? JSONSerialization.data(withJSONObject: value, options: .prettyPrinted) else {

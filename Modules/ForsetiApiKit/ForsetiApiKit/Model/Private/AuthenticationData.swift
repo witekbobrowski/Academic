@@ -12,7 +12,7 @@ struct AuthenticationData: Codable {
     var token: String
     var username: String
 
-    private enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case token = "Authorization", username
     }
 
