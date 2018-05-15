@@ -43,6 +43,9 @@ extension ProfileViewController {
         tableView.dataSource = self
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
+        [ProfileOptionTableViewCell.self, ProfileActivityTableViewCell.self].forEach { type in
+            tableView.register(UINib(nibName: type.name, bundle: nil), forCellReuseIdentifier: type.name)
+        }
     }
 
     private func setupTableHeaderView() {
