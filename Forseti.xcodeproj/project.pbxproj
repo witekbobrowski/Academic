@@ -17,6 +17,8 @@
 		4112312720A3ADF1005413D7 /* ForsetiApiKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41492D542065422300B87433 /* ForsetiApiKit.framework */; };
 		4112312820A3ADF1005413D7 /* ForsetiApiKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 41492D542065422300B87433 /* ForsetiApiKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		412D162020ADF6780081E737 /* AccountNumberDetailsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412D161F20ADF6780081E737 /* AccountNumberDetailsCellViewModel.swift */; };
+		412D162320ADF7840081E737 /* AccountNumberDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412D162120ADF7840081E737 /* AccountNumberDetailsTableViewCell.swift */; };
+		412D162420ADF7840081E737 /* AccountNumberDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 412D162220ADF7840081E737 /* AccountNumberDetailsTableViewCell.xib */; };
 		41492D2D20653C4F00B87433 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41492D2C20653C4F00B87433 /* AppDelegate.swift */; };
 		41492D3420653C4F00B87433 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41492D3320653C4F00B87433 /* Assets.xcassets */; };
 		41492D3720653C4F00B87433 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41492D3520653C4F00B87433 /* LaunchScreen.storyboard */; };
@@ -84,6 +86,8 @@
 		4112310520A23668005413D7 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		4112310720A23873005413D7 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		412D161F20ADF6780081E737 /* AccountNumberDetailsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNumberDetailsCellViewModel.swift; sourceTree = "<group>"; };
+		412D162120ADF7840081E737 /* AccountNumberDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNumberDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		412D162220ADF7840081E737 /* AccountNumberDetailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountNumberDetailsTableViewCell.xib; sourceTree = "<group>"; };
 		41492D2920653C4F00B87433 /* Forseti.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Forseti.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41492D2C20653C4F00B87433 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		41492D3320653C4F00B87433 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -176,6 +180,8 @@
 			isa = PBXGroup;
 			children = (
 				412D161F20ADF6780081E737 /* AccountNumberDetailsCellViewModel.swift */,
+				412D162120ADF7840081E737 /* AccountNumberDetailsTableViewCell.swift */,
+				412D162220ADF7840081E737 /* AccountNumberDetailsTableViewCell.xib */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -425,6 +431,7 @@
 			files = (
 				411230FB20A21FF7005413D7 /* Welcome.storyboard in Resources */,
 				41D1340420AB6AE10040B7B6 /* ProfileActivityTableViewCell.xib in Resources */,
+				412D162420ADF7840081E737 /* AccountNumberDetailsTableViewCell.xib in Resources */,
 				F933B1C6207F30D100A86511 /* AccountNumber.storyboard in Resources */,
 				41D133FB20AB58410040B7B6 /* ProfileAvatarTableViewCell.xib in Resources */,
 				41D1341020AB741E0040B7B6 /* ProfileOptionTableViewCell.xib in Resources */,
@@ -525,6 +532,7 @@
 				41F051E42089FEE7000359DA /* StoryboardProvider.swift in Sources */,
 				41A45776208A0DB700D53893 /* ViewControllerFactory.swift in Sources */,
 				41A4577C208A12DE00D53893 /* UIStoryboard+Extensions.swift in Sources */,
+				412D162320ADF7840081E737 /* AccountNumberDetailsTableViewCell.swift in Sources */,
 				41D1340320AB6AE10040B7B6 /* ProfileActivityTableViewCell.swift in Sources */,
 				41D133FD20AB599C0040B7B6 /* ProfileTableHeaderViewModel.swift in Sources */,
 				41D1340E20AB73B00040B7B6 /* ProfileOptionTableViewCell.swift in Sources */,
