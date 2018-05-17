@@ -70,7 +70,7 @@ extension AccountNumberViewController {
         tableView.delegate = self
         tableView.separatorStyle = .none
         tableView.dataSource = self
-        tableView.estimatedRowHeight = 150
+        tableView.estimatedRowHeight = UITableViewAutomaticDimension
         [AccountNumberDetailsTableViewCell.self].forEach { type in
             tableView.register(UINib(nibName: type.name, bundle: nil), forCellReuseIdentifier: type.name)
         }
@@ -115,12 +115,6 @@ extension AccountNumberViewController: UISearchBarDelegate {
 }
 
 extension AccountNumberViewController: UITableViewDelegate {
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch Section(rawValue: indexPath.section)! {
-        case .details: return 150
-        }
-    }
 
 }
 

@@ -19,9 +19,9 @@ class AccountNumberDetailsCellViewModelImplementation: AccountNumberDetailsCellV
 
     private let accountNumber: AccountNumber
 
-    var bank: String? { return nil }
+    var bank: String? { return "Barclays Bank" }
     var number: String { return accountNumber.accountNumber }
-    var location: String? { return nil }
+    var location: String? { return "High Street, Bognor Regis PO211, UK" }
 
     init(accountNumber: AccountNumber) {
         self.accountNumber = accountNumber
