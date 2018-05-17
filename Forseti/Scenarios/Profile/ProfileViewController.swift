@@ -12,7 +12,6 @@ class ProfileViewController: UIViewController {
 
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var exitButton: UIBarButtonItem!
-    private weak var tableHeaderView: ProfileTableHeaderView?
 
     var viewModel: ProfileViewModel!
 
@@ -20,7 +19,6 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         setupTableView()
-        setupTableHeaderView()
         setupNavigationBar()
     }
 
@@ -29,7 +27,6 @@ class ProfileViewController: UIViewController {
     }
 
     @objc private func viewModelDidFinishFetching() {
-        tableHeaderView?.viewModel = viewModel.tableHeaderViewModel
         tableView.reloadData()
     }
 
@@ -38,7 +35,7 @@ class ProfileViewController: UIViewController {
 extension ProfileViewController {
 
     private func setupView() {
-        navigationItem.largeTitleDisplayMode = .always
+        navigationItem.largeTitleDisplayMode = .automatic
         navigationItem.title = viewModel.title
         exitButton.action = #selector(exitButtonDidTap(_:))
         exitButton.target = self
@@ -49,23 +46,14 @@ extension ProfileViewController {
         tableView.backgroundColor = .clear
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.estimatedRowHeight = 42
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
-        [ProfileOptionTableViewCell.self, ProfileActivityTableViewCell.self].forEach { type in
+        [ProfileOptionTableViewCell.self,
+         ProfileActivityTableViewCell.self,
+         ProfileAvatarTableViewCell.self].forEach { type in
             tableView.register(UINib(nibName: type.name, bundle: nil), forCellReuseIdentifier: type.name)
         }
-    }
-
-    private func setupTableHeaderView() {
-        let bundle = Bundle(for: self.classForCoder)
-        let tableHeaderView = bundle.loadNibNamed(ProfileTableHeaderView.name,
-                                                  owner: nil,
-                                                  options: nil)?.first as! ProfileTableHeaderView
-        tableHeaderView.translatesAutoresizingMaskIntoConstraints = true
-        tableHeaderView.heightAnchor.constraint(equalToConstant: 148).isActive = true
-        tableHeaderView.viewModel = viewModel.tableHeaderViewModel
-        tableView.tableHeaderView = tableHeaderView
-        self.tableHeaderView = tableHeaderView
     }
 
     private func setupNavigationBar() {
@@ -89,8 +77,9 @@ extension ProfileViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
-        case 0: return 42
-        case 1: return 80
+        case 0: return 148
+        case 1: return 42
+        case 2: return 80
         default: return 0
         }
     }
@@ -111,10 +100,15 @@ extension ProfileViewController: UITableViewDataSource {
         var cell: UITableViewCell
         switch indexPath.section {
         case 0:
+            let avatarCell = tableView.dequeueReusableCell(withIdentifier: ProfileAvatarTableViewCell.name, for: indexPath) as! ProfileAvatarTableViewCell
+            avatarCell.viewModel = viewModel.avatarCellViewModel
+            avatarCell.selectionStyle = .none
+            cell = avatarCell
+        case 1:
             let optionCell = tableView.dequeueReusableCell(withIdentifier: ProfileOptionTableViewCell.name, for: indexPath) as! ProfileOptionTableViewCell
             optionCell.viewModel = viewModel.viewModel(forOptionCellInRow: indexPath.row)
             cell = optionCell
-        case 1:
+        case 2:
             let activityCell = tableView.dequeueReusableCell(withIdentifier: ProfileActivityTableViewCell.name, for: indexPath) as! ProfileActivityTableViewCell
             activityCell.viewModel = viewModel.viewModel(forActivityCellInRow: indexPath.row)
             cell = activityCell

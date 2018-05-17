@@ -16,7 +16,7 @@ protocol ViewModelFactory {
     func authenticationViewModel(authenticationService: AuthenticationService,
                                  type: AuthenticationType) -> AuthenticationViewModel
     func profileViewModel(userService: UserService) -> ProfileViewModel
-    func profileTableHeaderViewModel(user: User) -> ProfileTableHeaderViewModel
+    func profileAvatarCellViewModel(user: User) -> ProfileAvatarCellViewModel
     func thumbsActivityCellViewModel(thumbsDetails: ThumbsDetails, accountNumber: String) -> ThumbsActivityCellViewModel
     func commentActivityCellViewModel(comment: Comment, accountNumber: String) -> CommentActivityCellViewModel
     func profileOptionCellViewModel(option: ProfileOption) -> ProfileOptionCellViewModel
@@ -41,8 +41,8 @@ extension DependencyContainer: ViewModelFactory {
         return ProfileViewModelImplementation(userService: userService, dependencyContainer: self)
     }
 
-    func profileTableHeaderViewModel(user: User) -> ProfileTableHeaderViewModel {
-        return ProfileTableHeaderViewModelImplementation(user: user)
+    func profileAvatarCellViewModel(user: User) -> ProfileAvatarCellViewModel {
+        return ProfileAvatarCellViewModelImplementation(user: user)
     }
 
     func thumbsActivityCellViewModel(thumbsDetails: ThumbsDetails, accountNumber: String) -> ThumbsActivityCellViewModel {

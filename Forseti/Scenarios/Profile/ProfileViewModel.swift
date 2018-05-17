@@ -11,7 +11,7 @@ import ForsetiApiKit
 
 protocol ProfileViewModel {
     var title: String { get }
-    var tableHeaderViewModel: ProfileTableHeaderViewModel { get }
+    var avatarCellViewModel: ProfileAvatarCellViewModel { get }
     var numberOfSections: Int { get }
     func numberOfRows(inSection section: Int) -> Int
     func viewModel(forOptionCellInRow row: Int) -> ProfileOptionCellViewModel
@@ -45,21 +45,22 @@ class ProfileViewModelImplementation: ProfileViewModel {
     }
 
     private enum Section: Int {
+        case avatar
         case options
         case activityFeed
     }
 
     private let userService: UserService
     private let dependencyContainer: DependencyContainer
-    private let sections: [Section] = [.options, .activityFeed]
+    private let sections: [Section] = [.avatar, .options, .activityFeed]
     private let options: [ProfileOption] = [.settings, .logout]
 
     private var user: User?
     private var activities: [Activity] = []
 
     var title: String { return "Profile" }
-    var tableHeaderViewModel: ProfileTableHeaderViewModel {
-        return dependencyContainer.profileTableHeaderViewModel(user: user!)
+    var avatarCellViewModel: ProfileAvatarCellViewModel {
+        return dependencyContainer.profileAvatarCellViewModel(user: user!)
     }
     var numberOfSections: Int { return sections.count }
 
@@ -72,6 +73,7 @@ class ProfileViewModelImplementation: ProfileViewModel {
     func numberOfRows(inSection section: Int) -> Int {
         let section = Section(rawValue: section)!
         switch section {
+        case .avatar: return user == nil ? 0 : 1
         case .options: return options.count
         case .activityFeed: return activities.count
         }

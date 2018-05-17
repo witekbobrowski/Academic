@@ -9,11 +9,11 @@
 import Foundation
 import ForsetiApiKit
 
-protocol ProfileTableHeaderViewModel {
+protocol ProfileAvatarCellViewModel {
     var name: String { get }
 }
 
-class ProfileTableHeaderViewModelImplementation: ProfileTableHeaderViewModel {
+class ProfileAvatarCellViewModelImplementation: ProfileAvatarCellViewModel {
 
     private let user: User
 

@@ -13,7 +13,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ProfileTableHeaderView" customModule="Forseti" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ProfileAvatarTableViewCell" customModule="Forseti" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="153"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -46,7 +46,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
-                <outlet property="imageView" destination="Dsw-xj-rDH" id="PrM-aY-uOf"/>
+                <outlet property="avatarImageView" destination="Dsw-xj-rDH" id="HtR-OV-5G0"/>
                 <outlet property="label" destination="Fhw-Ha-8uZ" id="9fS-5f-RtQ"/>
             </connections>
             <point key="canvasLocation" x="15.5" y="-182.5"/>

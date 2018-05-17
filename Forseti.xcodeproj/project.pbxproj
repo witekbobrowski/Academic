@@ -36,8 +36,8 @@
 		41D133F020AA23C80040B7B6 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D133EF20AA23C80040B7B6 /* ProfileViewController.swift */; };
 		41D133F220AA29B70040B7B6 /* ProfileCoordinatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D133F120AA29B70040B7B6 /* ProfileCoordinatorModel.swift */; };
 		41D133F420AA2ABA0040B7B6 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D133F320AA2ABA0040B7B6 /* ProfileCoordinator.swift */; };
-		41D133F920AB58350040B7B6 /* ProfileTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D133F820AB58350040B7B6 /* ProfileTableHeaderView.swift */; };
-		41D133FB20AB58410040B7B6 /* ProfileTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41D133FA20AB58410040B7B6 /* ProfileTableHeaderView.xib */; };
+		41D133F920AB58350040B7B6 /* ProfileAvatarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D133F820AB58350040B7B6 /* ProfileAvatarTableViewCell.swift */; };
+		41D133FB20AB58410040B7B6 /* ProfileAvatarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41D133FA20AB58410040B7B6 /* ProfileAvatarTableViewCell.xib */; };
 		41D133FD20AB599C0040B7B6 /* ProfileTableHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D133FC20AB599C0040B7B6 /* ProfileTableHeaderViewModel.swift */; };
 		41D1340020AB5FD70040B7B6 /* ProfileActivityCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D133FF20AB5FD70040B7B6 /* ProfileActivityCellViewModel.swift */; };
 		41D1340320AB6AE10040B7B6 /* ProfileActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D1340120AB6AE10040B7B6 /* ProfileActivityTableViewCell.swift */; };
@@ -104,8 +104,8 @@
 		41D133EF20AA23C80040B7B6 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		41D133F120AA29B70040B7B6 /* ProfileCoordinatorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinatorModel.swift; sourceTree = "<group>"; };
 		41D133F320AA2ABA0040B7B6 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
-		41D133F820AB58350040B7B6 /* ProfileTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableHeaderView.swift; sourceTree = "<group>"; };
-		41D133FA20AB58410040B7B6 /* ProfileTableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileTableHeaderView.xib; sourceTree = "<group>"; };
+		41D133F820AB58350040B7B6 /* ProfileAvatarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAvatarTableViewCell.swift; sourceTree = "<group>"; };
+		41D133FA20AB58410040B7B6 /* ProfileAvatarTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileAvatarTableViewCell.xib; sourceTree = "<group>"; };
 		41D133FC20AB599C0040B7B6 /* ProfileTableHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableHeaderViewModel.swift; sourceTree = "<group>"; };
 		41D133FF20AB5FD70040B7B6 /* ProfileActivityCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileActivityCellViewModel.swift; sourceTree = "<group>"; };
 		41D1340120AB6AE10040B7B6 /* ProfileActivityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileActivityTableViewCell.swift; sourceTree = "<group>"; };
@@ -221,7 +221,6 @@
 		41D133EA20AA22780040B7B6 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				41D133F720AB58100040B7B6 /* Header */,
 				41D133F520AB57EE0040B7B6 /* Cells */,
 				41D133EB20AA22850040B7B6 /* Profile.storyboard */,
 				41D133EF20AA23C80040B7B6 /* ProfileViewController.swift */,
@@ -235,20 +234,21 @@
 		41D133F520AB57EE0040B7B6 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				41D133F720AB58100040B7B6 /* Avatar */,
 				41D1340A20AB713F0040B7B6 /* Option */,
 				41D133FE20AB5FA30040B7B6 /* Activity */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		41D133F720AB58100040B7B6 /* Header */ = {
+		41D133F720AB58100040B7B6 /* Avatar */ = {
 			isa = PBXGroup;
 			children = (
-				41D133F820AB58350040B7B6 /* ProfileTableHeaderView.swift */,
-				41D133FA20AB58410040B7B6 /* ProfileTableHeaderView.xib */,
+				41D133F820AB58350040B7B6 /* ProfileAvatarTableViewCell.swift */,
+				41D133FA20AB58410040B7B6 /* ProfileAvatarTableViewCell.xib */,
 				41D133FC20AB599C0040B7B6 /* ProfileTableHeaderViewModel.swift */,
 			);
-			path = Header;
+			path = Avatar;
 			sourceTree = "<group>";
 		};
 		41D133FE20AB5FA30040B7B6 /* Activity */ = {
@@ -407,7 +407,7 @@
 				411230FB20A21FF7005413D7 /* Welcome.storyboard in Resources */,
 				41D1340420AB6AE10040B7B6 /* ProfileActivityTableViewCell.xib in Resources */,
 				F933B1C6207F30D100A86511 /* Review.storyboard in Resources */,
-				41D133FB20AB58410040B7B6 /* ProfileTableHeaderView.xib in Resources */,
+				41D133FB20AB58410040B7B6 /* ProfileAvatarTableViewCell.xib in Resources */,
 				41D1341020AB741E0040B7B6 /* ProfileOptionTableViewCell.xib in Resources */,
 				41D133EC20AA22850040B7B6 /* Profile.storyboard in Resources */,
 				41492D3720653C4F00B87433 /* LaunchScreen.storyboard in Resources */,
@@ -496,7 +496,7 @@
 				411230FF20A221F9005413D7 /* WelcomeViewController.swift in Sources */,
 				41F051E7208A0070000359DA /* Nameable.swift in Sources */,
 				41D133EE20AA22CF0040B7B6 /* ProfileViewModel.swift in Sources */,
-				41D133F920AB58350040B7B6 /* ProfileTableHeaderView.swift in Sources */,
+				41D133F920AB58350040B7B6 /* ProfileAvatarTableViewCell.swift in Sources */,
 				41A45785208A1B4F00D53893 /* CoordinatorFactory.swift in Sources */,
 				41A45774208A0D5000D53893 /* UtilityFactory.swift in Sources */,
 				F933B1CA207F311600A86511 /* ReviewViewModel.swift in Sources */,
