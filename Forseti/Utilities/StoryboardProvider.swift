@@ -9,7 +9,7 @@
 import UIKit
 
 enum StoryboardType: String {
-    case review = "Review"
+    case accountNumber = "AccountNumber"
     case welcome = "Welcome"
     case profile = "Profile"
 }

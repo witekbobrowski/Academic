@@ -11,7 +11,7 @@ import ForsetiApiKit
 
 protocol CoordinatorFactory {
     func welcomeCoordinator(client: Client) -> WelcomeCoordinator
-    func reviewCoordinator(client: Client) -> ReviewCoordinator
+    func accountNumberCoordinator(client: Client) -> AccountNumberCoordinator
     func profileCoordinator(client: Client, viewController: UIViewController?) -> ProfileCoordinator
 }
 
@@ -22,8 +22,8 @@ extension DependencyContainer: CoordinatorFactory {
                                   windowManager: windowManager)
     }
 
-    func reviewCoordinator(client: Client) -> ReviewCoordinator {
-        return ReviewCoordinator(coordinatorModel: reviewCoordinatorModel(client: client),
+    func accountNumberCoordinator(client: Client) -> AccountNumberCoordinator {
+        return AccountNumberCoordinator(coordinatorModel: accountNumberCoordinatorModel(client: client),
                                  windowManager: windowManager)
     }
 

@@ -11,7 +11,7 @@ import ForsetiApiKit
 
 protocol WelcomeCoordinatorModel {
     var welcomeViewController: WelcomeViewController { get }
-    var reviewCoordinator: ReviewCoordinator { get }
+    var accountNumberCoordinator: AccountNumberCoordinator { get }
     func authenticationViewController(_ type: AuthenticationType) -> AuthenticationViewController
 }
 
@@ -23,8 +23,8 @@ class WelcomeCoordinatorModelImplementation: WelcomeCoordinatorModel {
     var welcomeViewController: WelcomeViewController {
         return configuredWelcomeViewController()
     }
-    var reviewCoordinator: ReviewCoordinator {
-        return dependencyContainer.reviewCoordinator(client: client)
+    var accountNumberCoordinator: AccountNumberCoordinator {
+        return dependencyContainer.accountNumberCoordinator(client: client)
     }
 
     init(client: Client,

@@ -1,5 +1,5 @@
 //
-//  ReviewCoordinatorModel.swift
+//  AccountNumberCoordinatorModel.swift
 //  Forseti
 //
 //  Created by Witek Bobrowski on 20/04/2018.
@@ -9,18 +9,18 @@
 import Foundation
 import ForsetiApiKit
 
-protocol ReviewCoordinatorModel {
-    var reviewViewController: ReviewViewController { get }
+protocol AccountNumberCoordinatorModel {
+    var accountNumberViewController: AccountNumberViewController { get }
     func profileCoordinator(viewController: UIViewController?) -> ProfileCoordinator
 }
 
-class ReviewCoordinatorModelImplementation: ReviewCoordinatorModel {
+class AccountNumberCoordinatorModelImplementation: AccountNumberCoordinatorModel {
 
     private let client: Client
     private let dependencyContainer: DependencyContainer
 
-    var reviewViewController: ReviewViewController {
-        return configuredReviewViewController()
+    var accountNumberViewController: AccountNumberViewController {
+        return configuredAccountNumberViewController()
     }
 
     init(client: Client, dependencyContainer: DependencyContainer) {
@@ -34,11 +34,11 @@ class ReviewCoordinatorModelImplementation: ReviewCoordinatorModel {
 
 }
 
-extension ReviewCoordinatorModelImplementation {
+extension AccountNumberCoordinatorModelImplementation {
 
-    func configuredReviewViewController() -> ReviewViewController {
-        let viewModel = dependencyContainer.reviewViewModel(accountNumberService: client.accountNumberService)
-        let viewController = dependencyContainer.reviewViewController
+    func configuredAccountNumberViewController() -> AccountNumberViewController {
+        let viewModel = dependencyContainer.accountNumberViewModel(accountNumberService: client.accountNumberService)
+        let viewController = dependencyContainer.accountNumberViewController
         viewController.viewModel = viewModel
         return viewController
     }

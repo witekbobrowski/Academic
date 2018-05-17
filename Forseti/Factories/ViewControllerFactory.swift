@@ -9,7 +9,7 @@
 import Foundation
 
 protocol ViewControllerFactory {
-    var reviewViewController: ReviewViewController { get }
+    var accountNumberViewController: AccountNumberViewController { get }
     var welcomeViewController: WelcomeViewController { get }
     var authenticationViewController: AuthenticationViewController { get }
     var profileViewController: ProfileViewController { get }
@@ -17,9 +17,9 @@ protocol ViewControllerFactory {
 
 extension DependencyContainer: ViewControllerFactory {
 
-    var reviewViewController: ReviewViewController {
-        let storyboard = storyboardProvider.storyboard(.review, bundle: nil)
-        return storyboard.instantiateViewController(ReviewViewController.self)
+    var accountNumberViewController: AccountNumberViewController {
+        let storyboard = storyboardProvider.storyboard(.accountNumber, bundle: nil)
+        return storyboard.instantiateViewController(AccountNumberViewController.self)
     }
     var welcomeViewController: WelcomeViewController {
         let storyboard = storyboardProvider.storyboard(.welcome, bundle: nil)

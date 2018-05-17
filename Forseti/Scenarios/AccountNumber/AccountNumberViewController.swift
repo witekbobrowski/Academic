@@ -1,5 +1,5 @@
 //
-//  ReviewViewController.swift
+//  AccountNumberViewController.swift
 //  Forseti
 //
 //  Created by Witek Bobrowski on 12/04/2018.
@@ -8,13 +8,13 @@
 
 import UIKit
 
-class ReviewViewController: UIViewController {
+class AccountNumberViewController: UIViewController {
 
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var profileButton: UIBarButtonItem!
     private weak var searchController: UISearchController?
 
-    var viewModel: ReviewViewModel!
+    var viewModel: AccountNumberViewModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +30,7 @@ class ReviewViewController: UIViewController {
 
 }
 
-extension ReviewViewController {
+extension AccountNumberViewController {
 
     private func setupView() {
         navigationItem.title = viewModel.title
@@ -62,7 +62,7 @@ extension ReviewViewController {
 
 }
 
-extension ReviewViewController: UISearchBarDelegate {
+extension AccountNumberViewController: UISearchBarDelegate {
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let accountNumber = searchBar.text else { return }
@@ -71,4 +71,4 @@ extension ReviewViewController: UISearchBarDelegate {
 
 }
 
-extension ReviewViewController: UITableViewDelegate {}
+extension AccountNumberViewController: UITableViewDelegate {}
