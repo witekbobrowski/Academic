@@ -17,7 +17,7 @@ class AccountNumberDetailsTableViewCell: UITableViewCell {
     @IBOutlet private weak var locationLabel: UILabel!
     private weak var gradientLayer: CAGradientLayer?
 
-    var viewModel: AccountNumberDetailsCellViewModel? { didSet { update(with: viewModel)  } }
+    var viewModel: AccountNumberDetailsCellViewModel? { didSet { update(with: viewModel) } }
 
     override func awakeFromNib() {
         super.awakeFromNib()
