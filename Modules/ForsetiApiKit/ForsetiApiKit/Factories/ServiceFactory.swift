@@ -10,6 +10,7 @@ import Foundation
 
 protocol ServiceFactory {
     func authenticationService(restClient: RestClientProtocol) -> AuthenticationService
+    func accountNumberService(restClient: RestClientProtocol) -> AccountNumberService
     func userService(restClient: RestClientProtocol) -> UserService
 }
 
@@ -21,6 +22,10 @@ extension DependencyContainer: ServiceFactory {
 
     func userService(restClient: RestClientProtocol) -> UserService {
         return UserServiceImplementation(restClient: restClient)
+    }
+
+    func accountNumberService(restClient: RestClientProtocol) -> AccountNumberService {
+        return AccountNumberServiceImplementation(restClient: restClient)
     }
 
 }
