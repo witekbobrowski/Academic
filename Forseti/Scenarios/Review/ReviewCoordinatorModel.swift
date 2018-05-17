@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ForsetiApiKit
 
 protocol ReviewCoordinatorModel {
     var reviewViewController: ReviewViewController { get }
@@ -14,13 +15,15 @@ protocol ReviewCoordinatorModel {
 
 class ReviewCoordinatorModelImplementation: ReviewCoordinatorModel {
 
+    private let client: Client
     private let dependencyContainer: DependencyContainer
 
     var reviewViewController: ReviewViewController {
         return configuredReviewViewController()
     }
 
-    init(dependencyContainer: DependencyContainer) {
+    init(client: Client, dependencyContainer: DependencyContainer) {
+        self.client = client
         self.dependencyContainer = dependencyContainer
     }
 
@@ -29,7 +32,7 @@ class ReviewCoordinatorModelImplementation: ReviewCoordinatorModel {
 extension ReviewCoordinatorModelImplementation {
 
     func configuredReviewViewController() -> ReviewViewController {
-        let viewModel = dependencyContainer.reviewViewModel
+        let viewModel = dependencyContainer.reviewViewModel(accountNumberService: client.accountNumberService)
         let viewController = dependencyContainer.reviewViewController
         viewController.viewModel = viewModel
         return viewController

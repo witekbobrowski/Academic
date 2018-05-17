@@ -27,6 +27,7 @@ class ReviewCoordinator: Coordinator {
         viewController.viewModel.delegate = self
         rootViewController = viewController
         windowManager.setRoot(viewController)
+        (UIApplication.shared.delegate as? AppDelegate)?.window = windowManager.window
     }
 
 }
