@@ -9,7 +9,15 @@
 import Foundation
 import ForsetiApiKit
 
+protocol ProfileViewModelDelegate: class {
+    func profileViewModelDidBeginFetchingUser(_ profileViewModel: ProfileViewModel)
+    func profileViewModel(_ profileViewModel: ProfileViewModel, didFinishFetchingUser user: User)
+    func profileViewModel(_ profileViewModel: ProfileViewModel, didFailFetchingWithError error: Error)
+    func profileViewModelDidRequestExit(_ profileViewModel: ProfileViewModel)
+}
+
 protocol ProfileViewModel {
+    var delegate: ProfileViewModelDelegate? { get set }
     var title: String { get }
     var avatarCellViewModel: ProfileAvatarCellViewModel { get }
     var numberOfSections: Int { get }
@@ -58,6 +66,7 @@ class ProfileViewModelImplementation: ProfileViewModel {
     private var user: User?
     private var activities: [Activity] = []
 
+    weak var delegate: ProfileViewModelDelegate?
     var title: String { return "Profile" }
     var avatarCellViewModel: ProfileAvatarCellViewModel {
         return dependencyContainer.profileAvatarCellViewModel(user: user!)
@@ -92,13 +101,16 @@ class ProfileViewModelImplementation: ProfileViewModel {
         }
     }
 
-    func exit() {}
+    func exit() {
+        delegate?.profileViewModelDidRequestExit(self)
+    }
 
 }
 
 extension ProfileViewModelImplementation {
 
     private func fetchUser() {
+        delegate?.profileViewModelDidBeginFetchingUser(self)
         userService.getUser { [weak self] result in
             guard let `self` = self else { return }
             switch result {
@@ -107,8 +119,9 @@ extension ProfileViewModelImplementation {
                 user.thumbsDetails.forEach { entry in self.activities.append(.thumb(entry.value, entry.key))}
                 user.comments.forEach { entry in self.activities.append(.comment(entry.value, entry.key))}
                 NotificationCenter.default.post(name: .profileViewModelDidFetchUser, object: self)
+                self.delegate?.profileViewModel(self, didFinishFetchingUser: user)
             case .failure(let error):
-                print(error)
+                self.delegate?.profileViewModel(self, didFailFetchingWithError: error)
             }
         }
     }
