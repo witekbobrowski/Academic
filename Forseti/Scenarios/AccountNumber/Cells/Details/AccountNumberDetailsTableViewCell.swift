@@ -73,6 +73,21 @@ extension AccountNumberDetailsTableViewCell {
         bankLabel.text = viewModel?.bank
         numberLabel.text = viewModel?.number
         locationLabel.text = viewModel?.location
+        guard let status = viewModel?.status else {
+            statusImageView.image = nil
+            return
+        }
+        switch status {
+        case .safe:
+            statusImageView.image = UIImage(named: "ok")
+            statusImageView.tintColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        case .warning:
+            statusImageView.image = UIImage(named: "attention")
+            statusImageView.tintColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
+        case .dangerous:
+            statusImageView.image = UIImage(named: "error")
+            statusImageView.tintColor = #colorLiteral(red: 1, green: 0.1725490196, blue: 0.1411764706, alpha: 1)
+        }
     }
 
 }
