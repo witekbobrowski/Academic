@@ -66,7 +66,7 @@ class ProfileViewModelImplementation: ProfileViewModel {
     private var user: User?
     private var activities: [Activity] = []
 
-    weak var delegate: ProfileViewModelDelegate?
+    weak var delegate: ProfileViewModelDelegate? { didSet { fetchUser() } }
     var title: String { return "Profile" }
     var avatarCellViewModel: ProfileAvatarCellViewModel {
         return dependencyContainer.profileAvatarCellViewModel(user: user!)
@@ -76,7 +76,6 @@ class ProfileViewModelImplementation: ProfileViewModel {
     init(userService: UserService, dependencyContainer: DependencyContainer) {
         self.userService = userService
         self.dependencyContainer = dependencyContainer
-        self.fetchUser()
     }
 
     func numberOfRows(inSection section: Int) -> Int {

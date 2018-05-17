@@ -21,8 +21,7 @@ class UserServiceImplementation: UserService {
     }
 
     func getUser(completion: @escaping (Result<User>) -> Void) {
-        completion(.success(fakeUser))
-//        restClient.request(nil, method: .get, endpoint: UserEndpoint.user, completion: completion)
+        restClient.request(nil, method: .get, endpoint: UserEndpoint.user, completion: completion)
     }
 
 }

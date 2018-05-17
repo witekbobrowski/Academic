@@ -38,19 +38,25 @@ extension ProfileCoordinator: ProfileViewModelDelegate {
 
     func profileViewModelDidBeginFetchingUser(_ profileViewModel: ProfileViewModel) {
         print("\(type(of: profileViewModel)) did begin fetching user!")
+        SVProgressHUD.show()
     }
 
     func profileViewModel(_ profileViewModel: ProfileViewModel, didFinishFetchingUser user: User) {
         print("\(type(of: profileViewModel)) did finish fetching user: \(user.username)")
+        SVProgressHUD.dismiss()
     }
 
     func profileViewModel(_ profileViewModel: ProfileViewModel, didFailFetchingWithError error: Error) {
         print("\(type(of: profileViewModel)) did begin fail fetching with error: \(error)")
+        SVProgressHUD.showError(withStatus: nil)
+        SVProgressHUD.dismiss(withDelay: 0.5) { [weak self] in
+            self?.rootViewController?.dismiss(animated: true)
+        }
     }
 
     func profileViewModelDidRequestExit(_ profileViewModel: ProfileViewModel) {
         print("\(type(of: profileViewModel)) did request exit!")
         rootViewController?.dismiss(animated: true)
     }
-    
+
 }

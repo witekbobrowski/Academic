@@ -32,7 +32,7 @@ enum UserEndpoint: Endpoint {
     var path: String {
         switch self {
         case .user:
-            return "/api/user/"
+            return "api/user/"
         }
     }
 }
