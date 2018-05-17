@@ -21,6 +21,7 @@
 		4112312B20A3B350005413D7 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4112312A20A3B350005413D7 /* Comment.swift */; };
 		41492D4D20653EA900B87433 /* ForsetiApiKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 41492D4B20653EA900B87433 /* ForsetiApiKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		41A3C3DE20A889AC00EE8B17 /* EmptyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A3C3DD20A889AC00EE8B17 /* EmptyResponse.swift */; };
+		41AB1BA120ADB3DE00FD4D40 /* AccountNumberService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AB1BA020ADB3DD00FD4D40 /* AccountNumberService.swift */; };
 		41C434AC20A8591E00152C84 /* RestClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C434AB20A8591E00152C84 /* RestClientError.swift */; };
 		41C434AF20A8664D00152C84 /* AuthenticationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C434AE20A8664D00152C84 /* AuthenticationData.swift */; };
 		41D133E320AA0EAB0040B7B6 /* Thumb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D133E220AA0EAB0040B7B6 /* Thumb.swift */; };
@@ -49,6 +50,7 @@
 		41492D4B20653EA900B87433 /* ForsetiApiKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForsetiApiKit.h; sourceTree = "<group>"; };
 		41492D4C20653EA900B87433 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41A3C3DD20A889AC00EE8B17 /* EmptyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResponse.swift; sourceTree = "<group>"; };
+		41AB1BA020ADB3DD00FD4D40 /* AccountNumberService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountNumberService.swift; sourceTree = "<group>"; };
 		41C434AB20A8591E00152C84 /* RestClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestClientError.swift; sourceTree = "<group>"; };
 		41C434AE20A8664D00152C84 /* AuthenticationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationData.swift; sourceTree = "<group>"; };
 		41D133E220AA0EAB0040B7B6 /* Thumb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumb.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 		4112311B20A39FCD005413D7 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				41AB1BA020ADB3DD00FD4D40 /* AccountNumberService.swift */,
 				4112311C20A39FE7005413D7 /* AuthenticationService.swift */,
 				41D133E820AA12800040B7B6 /* UserService.swift */,
 			);
@@ -317,6 +320,7 @@
 				4112311D20A39FE7005413D7 /* AuthenticationService.swift in Sources */,
 				4112312220A3A222005413D7 /* ServiceFactory.swift in Sources */,
 				41D133E920AA12800040B7B6 /* UserService.swift in Sources */,
+				41AB1BA120ADB3DE00FD4D40 /* AccountNumberService.swift in Sources */,
 				41C434AF20A8664D00152C84 /* AuthenticationData.swift in Sources */,
 				41D133E720AA108F0040B7B6 /* User.swift in Sources */,
 				4112312420A3A2DD005413D7 /* ClientFactory.swift in Sources */,
