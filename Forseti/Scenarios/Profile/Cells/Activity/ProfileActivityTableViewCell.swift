@@ -19,7 +19,7 @@ class ProfileActivityTableViewCell: UITableViewCell {
         super.awakeFromNib()
         setupView()
     }
-    
+
 }
 
 extension ProfileActivityTableViewCell {
