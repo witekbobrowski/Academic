@@ -29,6 +29,7 @@ protocol AccountNumberViewModel {
     func search(_ accountNumber: String)
     func profile()
     func detailsCellViewModel() -> AccountNumberDetailsCellViewModel
+    func actionsCellViewModel() -> AccountNumberActionCellViewModel
 }
 
 extension Notification.Name {
@@ -42,7 +43,7 @@ class AccountNumberViewModelImplementation: AccountNumberViewModel {
     private let accountNumberService: AccountNumberService
     private let dependencyContainer: DependencyContainer
 
-    private let sections: [AccountNumberViewController.Section] = [.details]
+    private let sections: [AccountNumberViewController.Section] = [.details, .actions]
     private var accountNumber: AccountNumber?
 
     weak var delegate: AccountNumberViewModelDelegate?
@@ -61,6 +62,7 @@ class AccountNumberViewModelImplementation: AccountNumberViewModel {
         guard let section = AccountNumberViewController.Section(rawValue: section) else { return 0 }
         switch section {
         case .details: return 1
+        case .actions: return 1
         }
     }
 
@@ -87,4 +89,7 @@ class AccountNumberViewModelImplementation: AccountNumberViewModel {
         return dependencyContainer.accountNumberDetailsCellViewModel(accountNumber: accountNumber!)
     }
 
+    func actionsCellViewModel() -> AccountNumberActionCellViewModel {
+        return dependencyContainer.accountNumberActionCellViewModel(accountNumber: accountNumber!)
+    }
 }

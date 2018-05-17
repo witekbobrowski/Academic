@@ -17,7 +17,7 @@ class AccountNumberViewController: UIViewController {
 
     enum Section: Int {
         case details
-//        case actions
+        case actions
 //        case comments
     }
 
@@ -71,7 +71,8 @@ extension AccountNumberViewController {
         tableView.separatorStyle = .none
         tableView.dataSource = self
         tableView.estimatedRowHeight = UITableViewAutomaticDimension
-        [AccountNumberDetailsTableViewCell.self].forEach { type in
+        [AccountNumberDetailsTableViewCell.self,
+         AccountNumberActionTableViewCell.self].forEach { type in
             tableView.register(UINib(nibName: type.name, bundle: nil), forCellReuseIdentifier: type.name)
         }
     }
@@ -136,7 +137,13 @@ extension AccountNumberViewController: UITableViewDataSource {
                                                             for: indexPath) as! AccountNumberDetailsTableViewCell
             detailsCell.viewModel = viewModel.detailsCellViewModel()
             cell = detailsCell
+        case .actions:
+            let actionsCell = tableView.dequeueReusableCell(withIdentifier: AccountNumberActionTableViewCell.name,
+                                                            for: indexPath) as! AccountNumberActionTableViewCell
+            actionsCell.viewModel = viewModel.actionsCellViewModel()
+            cell = actionsCell
         }
+        cell.selectionStyle = .none
         return cell
     }
 
