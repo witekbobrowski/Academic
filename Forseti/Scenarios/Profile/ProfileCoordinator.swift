@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ForsetiApiKit
 import SVProgressHUD
 
 class ProfileCoordinator: Coordinator {
@@ -25,10 +26,31 @@ class ProfileCoordinator: Coordinator {
 
     func start() {
         let viewController = coordinatorModel.profileViewController
-//        viewController.viewModel.delegate = self
+        viewController.viewModel.delegate = self
         let navigationController = UINavigationController(rootViewController: viewController)
         rootViewController = navigationController
         self.viewControler?.present(navigationController, animated: true)
     }
 
+}
+
+extension ProfileCoordinator: ProfileViewModelDelegate {
+
+    func profileViewModelDidBeginFetchingUser(_ profileViewModel: ProfileViewModel) {
+        print("\(type(of: profileViewModel)) did begin fetching user!")
+    }
+
+    func profileViewModel(_ profileViewModel: ProfileViewModel, didFinishFetchingUser user: User) {
+        print("\(type(of: profileViewModel)) did finish fetching user: \(user.username)")
+    }
+
+    func profileViewModel(_ profileViewModel: ProfileViewModel, didFailFetchingWithError error: Error) {
+        print("\(type(of: profileViewModel)) did begin fail fetching with error: \(error)")
+    }
+
+    func profileViewModelDidRequestExit(_ profileViewModel: ProfileViewModel) {
+        print("\(type(of: profileViewModel)) did request exit!")
+        rootViewController?.dismiss(animated: true)
+    }
+    
 }
