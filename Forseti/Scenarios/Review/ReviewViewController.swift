@@ -39,7 +39,7 @@ extension ReviewViewController {
 
     private func setupSearchController() {
         let searchController = UISearchController(searchResultsController: nil)
-        searchController.delegate = self
+        searchController.searchBar.delegate = self
         navigationItem.searchController = searchController
         self.searchController = searchController
     }
@@ -54,6 +54,13 @@ extension ReviewViewController {
 
 }
 
-extension ReviewViewController: UISearchControllerDelegate {}
+extension ReviewViewController: UISearchBarDelegate {
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let accountNumber = searchBar.text else { return }
+        viewModel.search(accountNumber)
+    }
+
+}
 
 extension ReviewViewController: UITableViewDelegate {}

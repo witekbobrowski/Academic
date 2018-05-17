@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ForsetiApiKit
 
 class ReviewCoordinator: Coordinator {
 
@@ -35,6 +36,16 @@ class ReviewCoordinator: Coordinator {
 
 extension ReviewCoordinator: ReviewViewModelDelegate {
 
-    func reviewViewModel(_ reviewViewModel: ReviewViewModel) {}
+    func reviewViewModel(_ reviewViewModel: ReviewViewModel, didBeginSearchingFor accountNumber: String) {
+        print("\(type(of: reviewViewModel)) did begin searching for account with number: \(accountNumber)")
+    }
+
+    func reviewViewModel(_ reviewViewModel: ReviewViewModel, didFindAccountNumber accountNumber: AccountNumber) {
+        print("\(type(of: reviewViewModel)) did find account with number: \(accountNumber.accountNumber)")
+    }
+
+    func reviewViewModel(_ reviewViewModel: ReviewViewModel, didFailSearchingWithError error: Error) {
+        print("\(type(of: reviewViewModel)) did fail searching with error: \(error)")
+    }
 
 }

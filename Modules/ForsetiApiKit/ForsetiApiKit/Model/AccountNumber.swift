@@ -9,10 +9,10 @@
 import Foundation
 
 public struct AccountNumber: Codable {
-    let accountNumber: String
-    let comments: [String: Comment]
-    let removedUsersComments: [String: Comment]
-    let thumbsDetails: [String: ThumbsDetails]
-    let thumbsDown: Int
-    let thumbsUp: Int
+    public var accountNumber: String
+    public var comments: [String: Comment]
+    public var removedUsersComments: [String: Comment]
+    public var thumbsDetails: [String: ThumbsDetails]
+    public var thumbsDown: Int
+    public var thumbsUp: Int
 }

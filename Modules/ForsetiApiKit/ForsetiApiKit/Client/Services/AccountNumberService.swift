@@ -14,10 +14,14 @@ public protocol AccountNumberService {
 
 class AccountNumberServiceImplementation: AccountNumberService {
 
-    private enum AccountNumberEndpoint: String, Endpoint {
-        case accountNumber = "api/accountNumber/"
+    private enum AccountNumberEndpoint: Endpoint {
+        case accountNumber(String)
 
-        var path: String { return self.rawValue }
+        var path: String {
+            switch self {
+            case .accountNumber(let number): return "api/accountNumber/\(number)"
+            }
+        }
     }
 
     private let restClient: RestClientProtocol
@@ -30,7 +34,7 @@ class AccountNumberServiceImplementation: AccountNumberService {
         guard let data = try? JSONEncoder().encode(["number": number]) else { return }
         restClient.request(data,
                            method: .get,
-                           endpoint: AccountNumberEndpoint.accountNumber,
+                           endpoint: AccountNumberEndpoint.accountNumber(number),
                            completion: completion)
     }
 
