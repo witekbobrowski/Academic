@@ -17,13 +17,47 @@
                     <view key="view" contentMode="scaleToFill" id="ObL-LK-caB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kF6-9h-OnJ">
+                                <rect key="frame" x="0.0" y="116" width="375" height="551"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="bih-TA-07S" firstAttribute="trailing" secondItem="kF6-9h-OnJ" secondAttribute="trailing" id="4bM-qh-Rix"/>
+                            <constraint firstItem="kF6-9h-OnJ" firstAttribute="top" secondItem="bih-TA-07S" secondAttribute="top" id="KgQ-YF-ZM2"/>
+                            <constraint firstItem="bih-TA-07S" firstAttribute="bottom" secondItem="kF6-9h-OnJ" secondAttribute="bottom" id="NHu-Xr-a1c"/>
+                            <constraint firstItem="kF6-9h-OnJ" firstAttribute="leading" secondItem="bih-TA-07S" secondAttribute="leading" id="dh5-YO-8El"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="bih-TA-07S"/>
                     </view>
+                    <navigationItem key="navigationItem" id="p8d-K8-rgb"/>
+                    <connections>
+                        <outlet property="tableView" destination="kF6-9h-OnJ" id="reB-Tr-UzK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LLj-3D-rXD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="39" y="206"/>
+            <point key="canvasLocation" x="976.79999999999995" y="205.54722638680661"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="vfC-Ed-ANY">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fEb-fT-b1K" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="fcn-3M-ZPx">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="OTd-eO-Asy" kind="relationship" relationship="rootViewController" id="iD9-cP-JDd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o0f-6e-Fai" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="37.600000000000001" y="205.54722638680661"/>
         </scene>
     </scenes>
 </document>

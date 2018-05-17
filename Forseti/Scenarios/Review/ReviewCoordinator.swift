@@ -25,8 +25,9 @@ class ReviewCoordinator: Coordinator {
     func start() {
         let viewController = coordinatorModel.reviewViewController
         viewController.viewModel.delegate = self
-        rootViewController = viewController
-        windowManager.setRoot(viewController)
+        let navigationController = UINavigationController(rootViewController: viewController)
+        rootViewController = navigationController
+        windowManager.setRoot(navigationController)
         (UIApplication.shared.delegate as? AppDelegate)?.window = windowManager.window
     }
 

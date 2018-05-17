@@ -15,6 +15,7 @@ protocol ReviewViewModelDelegate: class {
 
 protocol ReviewViewModel {
     var delegate: ReviewViewModelDelegate? { get set }
+    var title: String { get }
 }
 
 class ReviewViewModelImplementation: ReviewViewModel {
@@ -22,6 +23,7 @@ class ReviewViewModelImplementation: ReviewViewModel {
     private let accountNumberService: AccountNumberService
 
     weak var delegate: ReviewViewModelDelegate?
+    var title: String { return "Forseti" }
 
     init(accountNumberService: AccountNumberService) {
         self.accountNumberService = accountNumberService
