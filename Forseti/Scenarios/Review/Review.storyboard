@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,42 +17,9 @@
                     <view key="view" contentMode="scaleToFill" id="ObL-LK-caB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="ekX-an-Kf2">
-                                <rect key="frame" x="125.5" y="605" width="124" height="30"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qag-nP-6dS">
-                                        <rect key="frame" x="0.0" y="0.0" width="46" height="30"/>
-                                        <state key="normal" title="Button"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cGv-iy-WUC">
-                                        <rect key="frame" x="78" y="0.0" width="46" height="30"/>
-                                        <state key="normal" title="Button"/>
-                                    </button>
-                                </subviews>
-                            </stackView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4ua-vR-050">
-                                <rect key="frame" x="32" y="148" width="311" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="bih-TA-07S" firstAttribute="bottom" secondItem="ekX-an-Kf2" secondAttribute="bottom" constant="32" id="NEs-mB-qhb"/>
-                            <constraint firstItem="ekX-an-Kf2" firstAttribute="centerX" secondItem="bih-TA-07S" secondAttribute="centerX" id="ZRV-xc-rw7"/>
-                            <constraint firstItem="4ua-vR-050" firstAttribute="top" secondItem="bih-TA-07S" secondAttribute="top" constant="128" id="c1P-tv-Iq0"/>
-                            <constraint firstItem="bih-TA-07S" firstAttribute="trailing" secondItem="4ua-vR-050" secondAttribute="trailing" constant="32" id="dDS-2e-go4"/>
-                            <constraint firstItem="4ua-vR-050" firstAttribute="leading" secondItem="bih-TA-07S" secondAttribute="leading" constant="32" id="zZg-2y-Iag"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="bih-TA-07S"/>
                     </view>
-                    <connections>
-                        <outlet property="accountTextField" destination="4ua-vR-050" id="jSY-98-sNt"/>
-                        <outlet property="downvoteButton" destination="Qag-nP-6dS" id="XJh-1m-A3L"/>
-                        <outlet property="upvoteButton" destination="cGv-iy-WUC" id="dmG-Bw-twg"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LLj-3D-rXD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
