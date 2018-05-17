@@ -12,6 +12,7 @@ protocol ViewControllerFactory {
     var reviewViewController: ReviewViewController { get }
     var welcomeViewController: WelcomeViewController { get }
     var authenticationViewController: AuthenticationViewController { get }
+    var profileViewController: ProfileViewController { get }
 }
 
 extension DependencyContainer: ViewControllerFactory {
@@ -20,15 +21,17 @@ extension DependencyContainer: ViewControllerFactory {
         let storyboard = storyboardProvider.storyboard(.review, bundle: nil)
         return storyboard.instantiateViewController(ReviewViewController.self)
     }
-
     var welcomeViewController: WelcomeViewController {
         let storyboard = storyboardProvider.storyboard(.welcome, bundle: nil)
         return storyboard.instantiateViewController(WelcomeViewController.self)
     }
-
     var authenticationViewController: AuthenticationViewController {
         let storyboard = storyboardProvider.storyboard(.welcome, bundle: nil)
         return storyboard.instantiateViewController(AuthenticationViewController.self)
+    }
+    var profileViewController: ProfileViewController {
+        let storyboard = storyboardProvider.storyboard(.profile, bundle: nil)
+        return storyboard.instantiateViewController(ProfileViewController.self)
     }
 
 }

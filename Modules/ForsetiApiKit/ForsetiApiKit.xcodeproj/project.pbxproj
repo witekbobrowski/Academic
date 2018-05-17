@@ -23,6 +23,11 @@
 		41A3C3DE20A889AC00EE8B17 /* EmptyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A3C3DD20A889AC00EE8B17 /* EmptyResponse.swift */; };
 		41C434AC20A8591E00152C84 /* RestClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C434AB20A8591E00152C84 /* RestClientError.swift */; };
 		41C434AF20A8664D00152C84 /* AuthenticationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C434AE20A8664D00152C84 /* AuthenticationData.swift */; };
+		41D133E320AA0EAB0040B7B6 /* Thumb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D133E220AA0EAB0040B7B6 /* Thumb.swift */; };
+		41D133E520AA0EF60040B7B6 /* ThumbsDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D133E420AA0EF60040B7B6 /* ThumbsDetails.swift */; };
+		41D133E720AA108F0040B7B6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D133E620AA108F0040B7B6 /* User.swift */; };
+		41D133E920AA12800040B7B6 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D133E820AA12800040B7B6 /* UserService.swift */; };
+		41D1341320AB83C40040B7B6 /* FakeUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D1341220AB83C40040B7B6 /* FakeUser.swift */; };
 		F5E39E568CF602F036DA7065 /* Pods_ForsetiApiKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F033BB5017D6218792BF71D7 /* Pods_ForsetiApiKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +51,11 @@
 		41A3C3DD20A889AC00EE8B17 /* EmptyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResponse.swift; sourceTree = "<group>"; };
 		41C434AB20A8591E00152C84 /* RestClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestClientError.swift; sourceTree = "<group>"; };
 		41C434AE20A8664D00152C84 /* AuthenticationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationData.swift; sourceTree = "<group>"; };
+		41D133E220AA0EAB0040B7B6 /* Thumb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumb.swift; sourceTree = "<group>"; };
+		41D133E420AA0EF60040B7B6 /* ThumbsDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbsDetails.swift; sourceTree = "<group>"; };
+		41D133E620AA108F0040B7B6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		41D133E820AA12800040B7B6 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		41D1341220AB83C40040B7B6 /* FakeUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeUser.swift; sourceTree = "<group>"; };
 		8CC115A7F18ECA63313534E7 /* Pods-ForsetiApiKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ForsetiApiKit.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-ForsetiApiKit/Pods-ForsetiApiKit.release.xcconfig"; sourceTree = "<group>"; };
 		F033BB5017D6218792BF71D7 /* Pods_ForsetiApiKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ForsetiApiKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -105,6 +115,9 @@
 				41C434AD20A8663C00152C84 /* Private */,
 				4112311920A39F56005413D7 /* UserCredentials.swift */,
 				4112312A20A3B350005413D7 /* Comment.swift */,
+				41D133E220AA0EAB0040B7B6 /* Thumb.swift */,
+				41D133E420AA0EF60040B7B6 /* ThumbsDetails.swift */,
+				41D133E620AA108F0040B7B6 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -113,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				4112311C20A39FE7005413D7 /* AuthenticationService.swift */,
+				41D133E820AA12800040B7B6 /* UserService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -148,6 +162,7 @@
 		41492D4A20653EA900B87433 /* ForsetiApiKit */ = {
 			isa = PBXGroup;
 			children = (
+				41D1341120AB83B80040B7B6 /* Mock */,
 				4112310B20A38BE6005413D7 /* Client */,
 				4112311E20A3A1BF005413D7 /* Factories */,
 				4112311820A39F43005413D7 /* Model */,
@@ -166,6 +181,14 @@
 				41A3C3DD20A889AC00EE8B17 /* EmptyResponse.swift */,
 			);
 			path = Private;
+			sourceTree = "<group>";
+		};
+		41D1341120AB83B80040B7B6 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				41D1341220AB83C40040B7B6 /* FakeUser.swift */,
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 		96B16CBE4CA344BC742DBD50 /* Pods */ = {
@@ -284,15 +307,20 @@
 				4112311520A39E22005413D7 /* Result.swift in Sources */,
 				41A3C3DE20A889AC00EE8B17 /* EmptyResponse.swift in Sources */,
 				4112311720A39E79005413D7 /* CompletionHandler.swift in Sources */,
+				41D1341320AB83C40040B7B6 /* FakeUser.swift in Sources */,
 				4112310A20A38A30005413D7 /* Client.swift in Sources */,
+				41D133E320AA0EAB0040B7B6 /* Thumb.swift in Sources */,
 				4112311A20A39F56005413D7 /* UserCredentials.swift in Sources */,
 				4112312020A3A1D3005413D7 /* DependencyContainer.swift in Sources */,
 				4112312B20A3B350005413D7 /* Comment.swift in Sources */,
 				41C434AC20A8591E00152C84 /* RestClientError.swift in Sources */,
 				4112311D20A39FE7005413D7 /* AuthenticationService.swift in Sources */,
 				4112312220A3A222005413D7 /* ServiceFactory.swift in Sources */,
+				41D133E920AA12800040B7B6 /* UserService.swift in Sources */,
 				41C434AF20A8664D00152C84 /* AuthenticationData.swift in Sources */,
+				41D133E720AA108F0040B7B6 /* User.swift in Sources */,
 				4112312420A3A2DD005413D7 /* ClientFactory.swift in Sources */,
+				41D133E520AA0EF60040B7B6 /* ThumbsDetails.swift in Sources */,
 				4112312620A3A460005413D7 /* ForsetiApiKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

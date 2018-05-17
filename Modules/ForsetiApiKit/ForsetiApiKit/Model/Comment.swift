@@ -8,14 +8,8 @@
 
 import Foundation
 
-public struct Comment {
-
+public struct Comment: Codable {
+    public var id: Int
     public var comment: String
     public var timeStamp: String
-
-    public init(comment: String, timeStamp: String) {
-        self.comment = comment
-        self.timeStamp = timeStamp
-    }
-
 }

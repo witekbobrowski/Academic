@@ -29,6 +29,7 @@ class WelcomeCoordinator: Coordinator {
         let navigationController = UINavigationController(rootViewController: viewController)
         rootViewController = navigationController
         windowManager.setRoot(navigationController)
+        (UIApplication.shared.delegate as? AppDelegate)?.window = windowManager.window
     }
 
 }
@@ -47,7 +48,7 @@ extension WelcomeCoordinator: WelcomeViewModelDelegate {
 extension WelcomeCoordinator: AuthenticationViewModelDelegate {
 
     func authenticationViewModel(_ authenticationViewModel: AuthenticationViewModel, didBeginAuthentication type: AuthenticationType) {
-//        SVProgressHUD.show()
+        SVProgressHUD.show()
     }
 
     func authenticationViewModel(_ authenticationViewModel: AuthenticationViewModel, didFailAuthentication type: AuthenticationType) {
@@ -57,7 +58,11 @@ extension WelcomeCoordinator: AuthenticationViewModelDelegate {
 
     func authenticationViewModel(_ authenticationViewModel: AuthenticationViewModel, didSuceedAuthentication type: AuthenticationType) {
         SVProgressHUD.showSuccess(withStatus: nil)
-        SVProgressHUD.dismiss(withDelay: 0.5)
+        SVProgressHUD.dismiss(withDelay: 0.5) { [weak self] in
+            let profileCoordiantor = self?.coordinatorModel.profileCoordinator(viewController: self?.rootViewController)
+            self?.next = profileCoordiantor
+            profileCoordiantor?.start()
+        }
     }
 
 }

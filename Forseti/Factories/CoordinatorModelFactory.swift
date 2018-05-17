@@ -12,6 +12,7 @@ import ForsetiApiKit
 protocol CoordinatorModelFactory {
     var reviewCoordinatorModel: ReviewCoordinatorModel { get }
     func welcomeCoordinatorModel(client: Client) -> WelcomeCoordinatorModel
+    func profileCoordinatorModel(client: Client) -> ProfileCoordinatorModel
 }
 
 extension DependencyContainer: CoordinatorModelFactory {
@@ -22,6 +23,10 @@ extension DependencyContainer: CoordinatorModelFactory {
 
     func welcomeCoordinatorModel(client: Client) -> WelcomeCoordinatorModel {
         return WelcomeCoordinatorModelImplementation(client: client, dependencyContainer: self)
+    }
+
+    func profileCoordinatorModel(client: Client) -> ProfileCoordinatorModel {
+        return ProfileCoordinatorModelImplementation(client: client, dependencyContainer: self)
     }
 
 }

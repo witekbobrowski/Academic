@@ -25,3 +25,14 @@ enum AuthenticationEndpoint: Endpoint {
         }
     }
 }
+
+enum UserEndpoint: Endpoint {
+    case user
+
+    var path: String {
+        switch self {
+        case .user:
+            return "api/user/"
+        }
+    }
+}
