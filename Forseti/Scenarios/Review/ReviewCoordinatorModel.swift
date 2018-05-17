@@ -11,6 +11,7 @@ import ForsetiApiKit
 
 protocol ReviewCoordinatorModel {
     var reviewViewController: ReviewViewController { get }
+    func profileCoordinator(viewController: UIViewController?) -> ProfileCoordinator
 }
 
 class ReviewCoordinatorModelImplementation: ReviewCoordinatorModel {
@@ -25,6 +26,10 @@ class ReviewCoordinatorModelImplementation: ReviewCoordinatorModel {
     init(client: Client, dependencyContainer: DependencyContainer) {
         self.client = client
         self.dependencyContainer = dependencyContainer
+    }
+
+    func profileCoordinator(viewController: UIViewController?) -> ProfileCoordinator {
+        return dependencyContainer.profileCoordinator(client: client, viewController: viewController)
     }
 
 }

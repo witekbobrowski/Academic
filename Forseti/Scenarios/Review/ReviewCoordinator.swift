@@ -36,6 +36,13 @@ class ReviewCoordinator: Coordinator {
 
 extension ReviewCoordinator: ReviewViewModelDelegate {
 
+    func reviewViewModelDidRequestProfileScreen(_ reviewViewModel: ReviewViewModel) {
+        let profileCoordinator = coordinatorModel.profileCoordinator(viewController: rootViewController)
+        print("\(type(of: reviewViewModel)) did request \(type(of: profileCoordinator))")
+        next = profileCoordinator
+        profileCoordinator.start()
+    }
+
     func reviewViewModel(_ reviewViewModel: ReviewViewModel, didBeginSearchingFor accountNumber: String) {
         print("\(type(of: reviewViewModel)) did begin searching for account with number: \(accountNumber)")
     }

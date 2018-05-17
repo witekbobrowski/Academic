@@ -32,8 +32,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bih-TA-07S"/>
                     </view>
-                    <navigationItem key="navigationItem" id="p8d-K8-rgb"/>
+                    <navigationItem key="navigationItem" id="p8d-K8-rgb">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="99s-L8-MiW"/>
+                    </navigationItem>
                     <connections>
+                        <outlet property="profileButton" destination="99s-L8-MiW" id="l0T-e1-YnA"/>
                         <outlet property="tableView" destination="kF6-9h-OnJ" id="reB-Tr-UzK"/>
                     </connections>
                 </viewController>

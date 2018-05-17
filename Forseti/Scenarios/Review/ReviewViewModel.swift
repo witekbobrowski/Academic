@@ -10,6 +10,7 @@ import Foundation
 import ForsetiApiKit
 
 protocol ReviewViewModelDelegate: class {
+    func reviewViewModelDidRequestProfileScreen(_ reviewViewModel: ReviewViewModel)
     func reviewViewModel(_ reviewViewModel: ReviewViewModel, didBeginSearchingFor accountNumber: String)
     func reviewViewModel(_ reviewViewModel: ReviewViewModel, didFindAccountNumber accountNumber: AccountNumber)
     func reviewViewModel(_ reviewViewModel: ReviewViewModel, didFailSearchingWithError error: Error)
@@ -18,7 +19,9 @@ protocol ReviewViewModelDelegate: class {
 protocol ReviewViewModel {
     var delegate: ReviewViewModelDelegate? { get set }
     var title: String { get }
+    var profileButtonAsset: String { get }
     func search(_ accountNumber: String)
+    func profile()
 }
 
 class ReviewViewModelImplementation: ReviewViewModel {
@@ -29,6 +32,7 @@ class ReviewViewModelImplementation: ReviewViewModel {
 
     weak var delegate: ReviewViewModelDelegate?
     var title: String { return "Forseti" }
+    var profileButtonAsset: String { return "user_male" }
 
     init(accountNumberService: AccountNumberService) {
         self.accountNumberService = accountNumberService
@@ -46,6 +50,10 @@ class ReviewViewModelImplementation: ReviewViewModel {
                 self.delegate?.reviewViewModel(self, didFailSearchingWithError: error)
             }
         }
+    }
+
+    func profile() {
+        delegate?.reviewViewModelDidRequestProfileScreen(self)
     }
 
 }

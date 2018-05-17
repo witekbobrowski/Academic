@@ -11,6 +11,7 @@ import UIKit
 class ReviewViewController: UIViewController {
 
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var profileButton: UIBarButtonItem!
     private weak var searchController: UISearchController?
 
     var viewModel: ReviewViewModel!
@@ -23,12 +24,19 @@ class ReviewViewController: UIViewController {
         setupNavigationBar()
     }
 
+    @objc private func profileButtonDidTap( _ sender: UIBarButtonItem) {
+        viewModel.profile()
+    }
+
 }
 
 extension ReviewViewController {
 
     private func setupView() {
         navigationItem.title = viewModel.title
+        profileButton.action = #selector(profileButtonDidTap(_:))
+        profileButton.target = self
+        profileButton.image = UIImage(named: viewModel.profileButtonAsset)
     }
 
     private func setupTableView() {
