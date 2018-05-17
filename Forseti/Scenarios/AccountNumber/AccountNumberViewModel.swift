@@ -22,6 +22,7 @@ protocol AccountNumberViewModelDelegate: class {
 protocol AccountNumberViewModel {
     var delegate: AccountNumberViewModelDelegate? { get set }
     var title: String { get }
+    var emptyState: String { get }
     var profileButtonAsset: String { get }
     func search(_ accountNumber: String)
     func profile()
@@ -35,6 +36,7 @@ class AccountNumberViewModelImplementation: AccountNumberViewModel {
 
     weak var delegate: AccountNumberViewModelDelegate?
     var title: String { return "Forseti" }
+    var emptyState: String { return "Search for account to inspect\ndetails, comments, and votes." }
     var profileButtonAsset: String { return "user_male" }
 
     init(accountNumberService: AccountNumberService) {

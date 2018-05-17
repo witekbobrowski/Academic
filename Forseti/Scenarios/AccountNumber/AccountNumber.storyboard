@@ -18,6 +18,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nC0-a8-BZ0">
+                                <rect key="frame" x="0.0" y="116" width="375" height="551"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kF6-9h-OnJ">
                                 <rect key="frame" x="0.0" y="116" width="375" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -25,9 +31,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="nC0-a8-BZ0" firstAttribute="top" secondItem="bih-TA-07S" secondAttribute="top" id="3rl-dS-hLV"/>
                             <constraint firstItem="bih-TA-07S" firstAttribute="trailing" secondItem="kF6-9h-OnJ" secondAttribute="trailing" id="4bM-qh-Rix"/>
+                            <constraint firstItem="nC0-a8-BZ0" firstAttribute="leading" secondItem="bih-TA-07S" secondAttribute="leading" id="BJQ-Bg-8bi"/>
                             <constraint firstItem="kF6-9h-OnJ" firstAttribute="top" secondItem="bih-TA-07S" secondAttribute="top" id="KgQ-YF-ZM2"/>
+                            <constraint firstItem="bih-TA-07S" firstAttribute="trailing" secondItem="nC0-a8-BZ0" secondAttribute="trailing" id="LfA-k1-ISr"/>
                             <constraint firstItem="bih-TA-07S" firstAttribute="bottom" secondItem="kF6-9h-OnJ" secondAttribute="bottom" id="NHu-Xr-a1c"/>
+                            <constraint firstItem="bih-TA-07S" firstAttribute="bottom" secondItem="nC0-a8-BZ0" secondAttribute="bottom" id="P6O-Wz-zWt"/>
                             <constraint firstItem="kF6-9h-OnJ" firstAttribute="leading" secondItem="bih-TA-07S" secondAttribute="leading" id="dh5-YO-8El"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bih-TA-07S"/>
@@ -36,6 +46,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Item" id="99s-L8-MiW"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="emptyStateLabel" destination="nC0-a8-BZ0" id="jUQ-ym-ycb"/>
                         <outlet property="profileButton" destination="99s-L8-MiW" id="l0T-e1-YnA"/>
                         <outlet property="tableView" destination="kF6-9h-OnJ" id="reB-Tr-UzK"/>
                     </connections>
