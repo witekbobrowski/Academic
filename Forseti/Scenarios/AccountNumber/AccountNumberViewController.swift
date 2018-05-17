@@ -37,6 +37,10 @@ class AccountNumberViewController: UIViewController {
         viewModel.profile()
     }
 
+    @objc private func viewModelDidFinishFetching() {
+        state = .filled
+    }
+
 }
 
 extension AccountNumberViewController {
@@ -51,6 +55,8 @@ extension AccountNumberViewController {
         profileButton.action = #selector(profileButtonDidTap(_:))
         profileButton.target = self
         profileButton.image = UIImage(named: viewModel.profileButtonAsset)
+        NotificationCenter.default.addObserver(self, selector: #selector(viewModelDidFinishFetching),
+                                               name: .accountNumberViewModelDidFindAccount, object: nil)
     }
 
     private func setupTableView() {
@@ -63,6 +69,7 @@ extension AccountNumberViewController {
     private func setupSearchController() {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.delegate = self
+        searchController.searchBar.showsCancelButton = true
         navigationItem.searchController = searchController
         self.searchController = searchController
     }
@@ -80,7 +87,9 @@ extension AccountNumberViewController {
         case .empty:
             tableView.backgroundColor = .clear
         case .filled:
+            searchController?.dismiss(animated: true)
             tableView.backgroundColor = .white
+            tableView.reloadData()
         }
     }
 

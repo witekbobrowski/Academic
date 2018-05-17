@@ -28,6 +28,12 @@ protocol AccountNumberViewModel {
     func profile()
 }
 
+extension Notification.Name {
+    static var accountNumberViewModelDidFindAccount: Notification.Name {
+        return Notification.Name(rawValue: "AccountNumberViewModel.accountNumberViewModelDidFindAccount")
+    }
+}
+
 class AccountNumberViewModelImplementation: AccountNumberViewModel {
 
     private let accountNumberService: AccountNumberService
@@ -50,6 +56,7 @@ class AccountNumberViewModelImplementation: AccountNumberViewModel {
             switch result {
             case .success(let accountNumber):
                 self.accountNumber = accountNumber
+                NotificationCenter.default.post(name: .accountNumberViewModelDidFindAccount, object: accountNumber)
                 self.delegate?.accountNumberViewModel(self, didFindAccountNumber: accountNumber)
             case .failure(let error):
                 self.delegate?.accountNumberViewModel(self, didFailSearchingWithError: error)

@@ -39,7 +39,8 @@ extension ProfileViewController {
         navigationItem.title = viewModel.title
         exitButton.action = #selector(exitButtonDidTap(_:))
         exitButton.target = self
-        NotificationCenter.default.addObserver(self, selector: #selector(viewModelDidFinishFetching), name: .profileViewModelDidFetchUser, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(viewModelDidFinishFetching),
+                                               name: .profileViewModelDidFetchUser, object: nil)
     }
 
     private func setupTableView() {
