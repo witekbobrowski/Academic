@@ -29,10 +29,10 @@ class AccountNumberActionCellViewModelImplementation: AccountNumberActionCellVie
     private let accountNumber: AccountNumber
 
     var score: Int { return accountNumber.thumbsUp - accountNumber.thumbsDown }
-    var thumbsUpButtonAsset: String { return "" }
-    var thumbsDownButtonAsset: String { return "" }
-    var commentsButtonAsset: String { return "" }
-    var shareButtonAsset: String { return "" }
+    var thumbsUpButtonAsset: String { return "thumbs_up" }
+    var thumbsDownButtonAsset: String { return "thumbs_down" }
+    var commentsButtonAsset: String { return "comments" }
+    var shareButtonAsset: String { return "paper_plane" }
     var commentsButtonTitle: String { return "\(accountNumber.comments.count)" }
     var shareButtonTitle: String { return "Share" }
 

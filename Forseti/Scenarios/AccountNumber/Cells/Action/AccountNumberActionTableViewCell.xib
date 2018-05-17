@@ -23,24 +23,23 @@
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ONc-rw-NaK">
                         <rect key="frame" x="0.0" y="0.0" width="386" height="40"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Pak-ez-1WU">
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Pak-ez-1WU">
                                 <rect key="frame" x="0.0" y="0.0" width="128.5" height="40"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lVO-v3-zRy">
-                                        <rect key="frame" x="0.0" y="0.0" width="55" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="51" height="40"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D5R-tQ-rQU">
-                                                <rect key="frame" x="15.5" y="8" width="24" height="24"/>
+                                                <rect key="frame" x="29" y="11" width="18" height="18"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="24" id="5DZ-9w-Ldh"/>
+                                                    <constraint firstAttribute="height" constant="18" id="5DZ-9w-Ldh"/>
                                                     <constraint firstAttribute="width" secondItem="D5R-tQ-rQU" secondAttribute="height" multiplier="1:1" id="p1c-yt-dN0"/>
                                                 </constraints>
                                                 <state key="normal" title="U"/>
                                             </button>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="D5R-tQ-rQU" firstAttribute="centerX" secondItem="lVO-v3-zRy" secondAttribute="centerX" id="001-Sl-Eo3"/>
-                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="D5R-tQ-rQU" secondAttribute="trailing" id="2wy-Mc-brW"/>
+                                            <constraint firstAttribute="trailing" secondItem="D5R-tQ-rQU" secondAttribute="trailing" constant="4" id="2wy-Mc-brW"/>
                                             <constraint firstItem="D5R-tQ-rQU" firstAttribute="centerY" secondItem="lVO-v3-zRy" secondAttribute="centerY" id="SeU-Cn-jDw"/>
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="D5R-tQ-rQU" secondAttribute="bottom" id="VHt-Jh-iTn"/>
                                             <constraint firstItem="D5R-tQ-rQU" firstAttribute="top" relation="greaterThanOrEqual" secondItem="lVO-v3-zRy" secondAttribute="top" id="f3F-DT-L0h"/>
@@ -54,10 +53,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oiM-KS-rrK">
-                                        <rect key="frame" x="73.5" y="0.0" width="55" height="40"/>
+                                        <rect key="frame" x="77.5" y="0.0" width="51" height="40"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rfx-ZW-UJx">
-                                                <rect key="frame" x="15.5" y="8" width="24" height="24"/>
+                                                <rect key="frame" x="4" y="11" width="18" height="18"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="Rfx-ZW-UJx" secondAttribute="height" multiplier="1:1" id="Xvg-q6-f80"/>
                                                 </constraints>
@@ -65,11 +64,10 @@
                                             </button>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="Rfx-ZW-UJx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="oiM-KS-rrK" secondAttribute="leading" id="1dj-b2-Ezn"/>
+                                            <constraint firstItem="Rfx-ZW-UJx" firstAttribute="leading" secondItem="oiM-KS-rrK" secondAttribute="leading" constant="4" id="1dj-b2-Ezn"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Rfx-ZW-UJx" secondAttribute="trailing" id="L3S-hf-I9T"/>
                                             <constraint firstItem="Rfx-ZW-UJx" firstAttribute="top" relation="greaterThanOrEqual" secondItem="oiM-KS-rrK" secondAttribute="top" id="WSV-QX-pLP"/>
                                             <constraint firstItem="Rfx-ZW-UJx" firstAttribute="centerY" secondItem="oiM-KS-rrK" secondAttribute="centerY" id="cFN-L8-XvR"/>
-                                            <constraint firstItem="Rfx-ZW-UJx" firstAttribute="centerX" secondItem="oiM-KS-rrK" secondAttribute="centerX" id="fb4-cq-Qwg"/>
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Rfx-ZW-UJx" secondAttribute="bottom" id="hKK-2g-SNH"/>
                                         </constraints>
                                     </view>
@@ -83,7 +81,7 @@
                                 <rect key="frame" x="128.5" y="0.0" width="129" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48x-Be-GHV">
-                                        <rect key="frame" x="41.5" y="8" width="46" height="24"/>
+                                        <rect key="frame" x="41.5" y="11" width="46" height="18"/>
                                         <state key="normal" title="Button"/>
                                     </button>
                                 </subviews>
@@ -100,7 +98,7 @@
                                 <rect key="frame" x="257.5" y="0.0" width="128.5" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zri-eu-Wos">
-                                        <rect key="frame" x="41.5" y="8" width="46" height="24"/>
+                                        <rect key="frame" x="41.5" y="11" width="46" height="18"/>
                                         <state key="normal" title="Button"/>
                                     </button>
                                 </subviews>

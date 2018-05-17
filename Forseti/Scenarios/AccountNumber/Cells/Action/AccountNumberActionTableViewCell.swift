@@ -44,19 +44,17 @@ extension AccountNumberActionTableViewCell {
     private func setupView() {
         scoreLabel.textColor = #colorLiteral(red: 0.2509803922, green: 0.2588235294, blue: 0.2549019608, alpha: 1)
         scoreLabel.textAlignment = .center
-        scoreLabel.font = UIFont.systemFont(ofSize: 12, weight: .medium)
+        scoreLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
     }
 
     private func setupButtons() {
         [upvoteButton, downvoteButton].forEach { $0.setTitle(nil, for: .normal) }
         [upvoteButton, downvoteButton, commentButton, shareButton].forEach {
             $0?.tintColor = #colorLiteral(red: 0.2509803922, green: 0.2588235294, blue: 0.2549019608, alpha: 1)
-            $0?.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .medium)
+            $0?.imageView?.contentMode = .scaleAspectFit
+            $0?.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         }
-        [commentButton, shareButton].forEach {
-            $0?.setTitleColor(#colorLiteral(red: 0.2509803922, green: 0.2588235294, blue: 0.2549019608, alpha: 1), for: .normal)
-            $0?.titleEdgeInsets = UIEdgeInsets(top: 0, left: 4, bottom: 0, right: 0)
-        }
+        [commentButton, shareButton].forEach { $0?.setTitleColor(#colorLiteral(red: 0.2509803922, green: 0.2588235294, blue: 0.2549019608, alpha: 1), for: .normal) }
         upvoteButton.addTarget(self, action: #selector(upvoteButtonDidTap(_:)), for: .touchUpInside)
         downvoteButton.addTarget(self, action: #selector(downvoteButtonDidTap(_:)), for: .touchUpInside)
         commentButton.addTarget(self, action: #selector(commentButtonDidTap(_:)), for: .touchUpInside)
