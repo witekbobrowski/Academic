@@ -11,28 +11,3 @@ import Foundation
 protocol Endpoint {
     var path: String { get }
 }
-
-enum AuthenticationEndpoint: Endpoint {
-    case login
-    case register
-
-    var path: String {
-        switch self {
-        case .login:
-            return "login"
-        case .register:
-            return "signup/"
-        }
-    }
-}
-
-enum UserEndpoint: Endpoint {
-    case user
-
-    var path: String {
-        switch self {
-        case .user:
-            return "api/user/"
-        }
-    }
-}

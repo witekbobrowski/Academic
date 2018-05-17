@@ -14,6 +14,12 @@ public protocol UserService {
 
 class UserServiceImplementation: UserService {
 
+    private enum UserEndpoint: String, Endpoint {
+        case user = "api/user/"
+
+        var path: String { return self.rawValue }
+    }
+
     private let restClient: RestClientProtocol
 
     init(restClient: RestClientProtocol) {

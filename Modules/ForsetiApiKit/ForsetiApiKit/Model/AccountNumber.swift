@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct AccountNumber {
+public struct AccountNumber: Codable {
     let accountNumber: String
     let comments: [String: Comment]
     let removedUsersComments: [String: Comment]
