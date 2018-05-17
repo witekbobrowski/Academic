@@ -15,6 +15,8 @@ protocol ViewModelFactory {
     func authenticationViewModel(authenticationService: AuthenticationService,
                                  type: AuthenticationType) -> AuthenticationViewModel
     func accountNumberViewModel(accountNumberService: AccountNumberService) -> AccountNumberViewModel
+    func accountNumberDetailsCellViewModel(accountNumber: AccountNumber) -> AccountNumberDetailsCellViewModel
+
     func profileViewModel(userService: UserService) -> ProfileViewModel
     func profileAvatarCellViewModel(user: User) -> ProfileAvatarCellViewModel
     func thumbsActivityCellViewModel(thumbsDetails: ThumbsDetails, accountNumber: String) -> ThumbsActivityCellViewModel
@@ -36,6 +38,10 @@ extension DependencyContainer: ViewModelFactory {
 
     func accountNumberViewModel(accountNumberService: AccountNumberService) -> AccountNumberViewModel {
         return AccountNumberViewModelImplementation(accountNumberService: accountNumberService)
+    }
+
+    func accountNumberDetailsCellViewModel(accountNumber: AccountNumber) -> AccountNumberDetailsCellViewModel {
+        return AccountNumberDetailsCellViewModelImplementation(accountNumber: accountNumber)
     }
 
     func profileViewModel(userService: UserService) -> ProfileViewModel {

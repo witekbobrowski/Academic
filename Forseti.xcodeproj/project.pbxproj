@@ -16,6 +16,7 @@
 		4112310820A23873005413D7 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4112310720A23873005413D7 /* AuthenticationViewController.swift */; };
 		4112312720A3ADF1005413D7 /* ForsetiApiKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41492D542065422300B87433 /* ForsetiApiKit.framework */; };
 		4112312820A3ADF1005413D7 /* ForsetiApiKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 41492D542065422300B87433 /* ForsetiApiKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		412D162020ADF6780081E737 /* AccountNumberDetailsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412D161F20ADF6780081E737 /* AccountNumberDetailsCellViewModel.swift */; };
 		41492D2D20653C4F00B87433 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41492D2C20653C4F00B87433 /* AppDelegate.swift */; };
 		41492D3420653C4F00B87433 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41492D3320653C4F00B87433 /* Assets.xcassets */; };
 		41492D3720653C4F00B87433 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41492D3520653C4F00B87433 /* LaunchScreen.storyboard */; };
@@ -82,6 +83,7 @@
 		4112310220A22F0C005413D7 /* WelcomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeCoordinator.swift; sourceTree = "<group>"; };
 		4112310520A23668005413D7 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		4112310720A23873005413D7 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
+		412D161F20ADF6780081E737 /* AccountNumberDetailsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNumberDetailsCellViewModel.swift; sourceTree = "<group>"; };
 		41492D2920653C4F00B87433 /* Forseti.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Forseti.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41492D2C20653C4F00B87433 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		41492D3320653C4F00B87433 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -160,6 +162,22 @@
 				4112310720A23873005413D7 /* AuthenticationViewController.swift */,
 			);
 			path = Auth;
+			sourceTree = "<group>";
+		};
+		412D161D20ADF6060081E737 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				412D161E20ADF62D0081E737 /* Details */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		412D161E20ADF62D0081E737 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				412D161F20ADF6780081E737 /* AccountNumberDetailsCellViewModel.swift */,
+			);
+			path = Details;
 			sourceTree = "<group>";
 		};
 		41492D2020653C4F00B87433 = {
@@ -332,6 +350,7 @@
 		F933B1C4207F30C200A86511 /* AccountNumber */ = {
 			isa = PBXGroup;
 			children = (
+				412D161D20ADF6060081E737 /* Cells */,
 				F933B1C5207F30D100A86511 /* AccountNumber.storyboard */,
 				F933B1C7207F30E800A86511 /* AccountNumberViewController.swift */,
 				F933B1C9207F311600A86511 /* AccountNumberViewModel.swift */,
@@ -509,6 +528,7 @@
 				41D1340320AB6AE10040B7B6 /* ProfileActivityTableViewCell.swift in Sources */,
 				41D133FD20AB599C0040B7B6 /* ProfileTableHeaderViewModel.swift in Sources */,
 				41D1340E20AB73B00040B7B6 /* ProfileOptionTableViewCell.swift in Sources */,
+				412D162020ADF6780081E737 /* AccountNumberDetailsCellViewModel.swift in Sources */,
 				41A4576F208A06C800D53893 /* Coordinator.swift in Sources */,
 				4112310320A22F0C005413D7 /* WelcomeCoordinator.swift in Sources */,
 				41D1340920AB6FAC0040B7B6 /* CommentActivityCellViewModel.swift in Sources */,
