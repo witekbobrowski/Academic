@@ -37,7 +37,8 @@ extension DependencyContainer: ViewModelFactory {
     }
 
     func accountNumberViewModel(accountNumberService: AccountNumberService) -> AccountNumberViewModel {
-        return AccountNumberViewModelImplementation(accountNumberService: accountNumberService)
+        return AccountNumberViewModelImplementation(accountNumberService: accountNumberService,
+                                                    dependencyContainer: self)
     }
 
     func accountNumberDetailsCellViewModel(accountNumber: AccountNumber) -> AccountNumberDetailsCellViewModel {

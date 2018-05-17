@@ -24,8 +24,11 @@ protocol AccountNumberViewModel {
     var title: String { get }
     var emptyState: String { get }
     var profileButtonAsset: String { get }
+    var numberOfSections: Int { get }
+    func numberOfRows(inSection section: Int) -> Int
     func search(_ accountNumber: String)
     func profile()
+    func detailsCellViewModel() -> AccountNumberDetailsCellViewModel
 }
 
 extension Notification.Name {
@@ -37,16 +40,28 @@ extension Notification.Name {
 class AccountNumberViewModelImplementation: AccountNumberViewModel {
 
     private let accountNumberService: AccountNumberService
+    private let dependencyContainer: DependencyContainer
 
+    private let sections: [AccountNumberViewController.Section] = [.details]
     private var accountNumber: AccountNumber?
 
     weak var delegate: AccountNumberViewModelDelegate?
     var title: String { return "Forseti" }
     var emptyState: String { return "Search for account to inspect\ndetails, comments, and votes." }
     var profileButtonAsset: String { return "user_male" }
+    var numberOfSections: Int { return accountNumber == nil ? 0 : sections.count }
 
-    init(accountNumberService: AccountNumberService) {
+    init(accountNumberService: AccountNumberService,
+         dependencyContainer: DependencyContainer) {
         self.accountNumberService = accountNumberService
+        self.dependencyContainer = dependencyContainer
+    }
+
+    func numberOfRows(inSection section: Int) -> Int {
+        guard let section = AccountNumberViewController.Section(rawValue: section) else { return 0 }
+        switch section {
+        case .details: return 1
+        }
     }
 
     func search(_ accountNumber: String) {
@@ -66,6 +81,10 @@ class AccountNumberViewModelImplementation: AccountNumberViewModel {
 
     func profile() {
         delegate?.accountNumberViewModelDidRequestProfileScreen(self)
+    }
+
+    func detailsCellViewModel() -> AccountNumberDetailsCellViewModel {
+        return dependencyContainer.accountNumberDetailsCellViewModel(accountNumber: accountNumber!)
     }
 
 }

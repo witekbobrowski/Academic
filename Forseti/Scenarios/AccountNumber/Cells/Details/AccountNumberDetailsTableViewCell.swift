@@ -20,8 +20,9 @@ class AccountNumberDetailsTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         setupView()
+        setupCardView()
     }
-    
+
 }
 
 extension AccountNumberDetailsTableViewCell {

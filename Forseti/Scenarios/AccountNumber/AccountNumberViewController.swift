@@ -15,6 +15,12 @@ class AccountNumberViewController: UIViewController {
         case filled
     }
 
+    enum Section: Int {
+        case details
+//        case actions
+//        case comments
+    }
+
     @IBOutlet private weak var emptyStateLabel: UILabel!
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var profileButton: UIBarButtonItem!
@@ -63,7 +69,11 @@ extension AccountNumberViewController {
         tableView.backgroundColor = .clear
         tableView.delegate = self
         tableView.separatorStyle = .none
-//        tableView.dataSource = self
+        tableView.dataSource = self
+        tableView.estimatedRowHeight = 150
+        [AccountNumberDetailsTableViewCell.self].forEach { type in
+            tableView.register(UINib(nibName: type.name, bundle: nil), forCellReuseIdentifier: type.name)
+        }
     }
 
     private func setupSearchController() {
@@ -104,4 +114,36 @@ extension AccountNumberViewController: UISearchBarDelegate {
 
 }
 
-extension AccountNumberViewController: UITableViewDelegate {}
+extension AccountNumberViewController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch Section(rawValue: indexPath.section)! {
+        case .details: return 150
+        }
+    }
+
+}
+
+extension AccountNumberViewController: UITableViewDataSource {
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return viewModel.numberOfSections
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.numberOfRows(inSection: section)
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell: UITableViewCell
+        switch Section(rawValue: indexPath.section)! {
+        case .details:
+            let detailsCell = tableView.dequeueReusableCell(withIdentifier: AccountNumberDetailsTableViewCell.name,
+                                                            for: indexPath) as! AccountNumberDetailsTableViewCell
+            detailsCell.viewModel = viewModel.detailsCellViewModel()
+            cell = detailsCell
+        }
+        return cell
+    }
+
+}
