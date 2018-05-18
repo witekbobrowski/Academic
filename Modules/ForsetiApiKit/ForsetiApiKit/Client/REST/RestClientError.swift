@@ -11,5 +11,6 @@ import Foundation
 public enum RestClientError: Error {
     case invalidStatusCode(Int?)
     case invalidResultValue
+    case failedToEncodeParameters
     case failedToDecodeJSON
 }

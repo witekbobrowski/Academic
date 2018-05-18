@@ -17,6 +17,15 @@ protocol AccountNumberViewModelDelegate: class {
                                 didFindAccountNumber accountNumber: AccountNumber)
     func accountNumberViewModel(_ accountNumberViewModel: AccountNumberViewModel,
                                 didFailSearchingWithError error: Error)
+    func accountNumberViewModel(_ accountNumberViewModel: AccountNumberViewModel,
+                                didBeginSendingThumb thumb: Thumb,
+                                forAccountNumber accountNumber: String)
+    func accountNumberViewModel(_ accountNumberViewModel: AccountNumberViewModel,
+                                didSendThumb thumb: Thumb,
+                                forAccountNumber accountNumber: AccountNumber)
+    func accountNumberViewModel(_ accountNumberViewModel: AccountNumberViewModel,
+                                didFailToSendThumb thumb: Thumb,
+                                withError error: Error)
 }
 
 protocol AccountNumberViewModel {
@@ -90,6 +99,45 @@ class AccountNumberViewModelImplementation: AccountNumberViewModel {
     }
 
     func actionsCellViewModel() -> AccountNumberActionCellViewModel {
-        return dependencyContainer.accountNumberActionCellViewModel(accountNumber: accountNumber!)
+        var viewModel = dependencyContainer.accountNumberActionCellViewModel(accountNumber: accountNumber!)
+        viewModel.delegate = self
+        return viewModel
     }
+}
+
+extension AccountNumberViewModelImplementation: AccountNumberActionCellViewModelDelegate {
+
+    func accountNumberActionCellViewModel(_ accountNumberActionCellViewModel: AccountNumberActionCellViewModel,
+                                          didRequestAction action: AccountNumberAction) {
+        switch action {
+        case .thumbsUp:
+            thumb(.up)
+        case .thumbsDown:
+            thumb(.down)
+        case .comments:
+            break
+        case .share:
+            break
+        }
+    }
+
+}
+
+extension AccountNumberViewModelImplementation {
+
+    private func thumb(_ thumb: Thumb) {
+        guard let number = accountNumber?.accountNumber else { return }
+        delegate?.accountNumberViewModel(self, didBeginSendingThumb: thumb, forAccountNumber: number)
+        accountNumberService.thumb(thumb, accountNumber: number) { result in
+            switch result {
+            case .success(let accountNumber):
+                self.accountNumber = accountNumber
+                NotificationCenter.default.post(name: .accountNumberViewModelDidFindAccount, object: accountNumber)
+                self.delegate?.accountNumberViewModel(self, didSendThumb: thumb, forAccountNumber: accountNumber)
+            case .failure(let error):
+                self.delegate?.accountNumberViewModel(self, didFailToSendThumb: thumb, withError: error)
+            }
+        }
+    }
+
 }

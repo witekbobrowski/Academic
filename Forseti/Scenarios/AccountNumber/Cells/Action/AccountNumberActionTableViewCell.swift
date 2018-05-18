@@ -24,6 +24,11 @@ class AccountNumberActionTableViewCell: UITableViewCell {
         setupButtons()
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        viewModel = nil
+    }
+
     @objc private func upvoteButtonDidTap(_ sender: UIButton) {
         viewModel?.thumbsUp()
     }
@@ -62,13 +67,13 @@ extension AccountNumberActionTableViewCell {
     }
 
     private func update(with viewModel: AccountNumberActionCellViewModel?) {
+        scoreLabel.text = "\(viewModel?.score ?? 0)"
+        commentButton.setTitle(viewModel?.commentsButtonTitle, for: .normal)
+        shareButton.setTitle(viewModel?.shareButtonTitle, for: .normal)
         guard let viewModel = viewModel else { return }
         upvoteButton.setImage(UIImage(named: viewModel.thumbsUpButtonAsset), for: .normal)
         downvoteButton.setImage(UIImage(named: viewModel.thumbsDownButtonAsset), for: .normal)
         commentButton.setImage(UIImage(named: viewModel.commentsButtonAsset), for: .normal)
         shareButton.setImage(UIImage(named: viewModel.shareButtonAsset), for: .normal)
-        scoreLabel.text = "\(viewModel.score)"
-        commentButton.setTitle(viewModel.commentsButtonTitle, for: .normal)
-        shareButton.setTitle(viewModel.shareButtonTitle, for: .normal)
     }
 }

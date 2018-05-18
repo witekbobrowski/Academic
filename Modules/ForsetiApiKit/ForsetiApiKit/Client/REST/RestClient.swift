@@ -14,6 +14,10 @@ protocol RestClientProtocol {
                              method: HTTPMethod,
                              endpoint: Endpoint,
                              completion: @escaping CompletionHandler<T>)
+    func query<T: Codable>(_ parameters: Parameters?,
+                           method: HTTPMethod,
+                           endpoint: Endpoint,
+                           completion: @escaping CompletionHandler<T>)
     func authenticate(with authenticationData: AuthenticationData)
     func logout()
 }
@@ -39,6 +43,25 @@ class RestClient: RestClientProtocol {
         manager.request(request).responseJSON { [weak self] response in
             self?.handleRequestResponse(response, completion: completion)
         }
+    }
+
+    func query<T: Codable>(_ parameters: Parameters?,
+                           method: HTTPMethod,
+                           endpoint: Endpoint,
+                           completion: @escaping CompletionHandler<T>) {
+        var request = URLRequest(url: base.appendingPathComponent(endpoint.path))
+        let encoding = URLEncoding.queryString
+        guard let encoded = try? encoding.encode(request, with: parameters) else {
+            completion(.failure(RestClientError.failedToEncodeParameters))
+            return
+        }
+        request = encoded
+        request.httpMethod = method.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        manager.request(request).responseJSON { [weak self] response in
+            self?.handleRequestResponse(response, completion: completion)
+        }
+
     }
 
     func authenticate(with authenticationData: AuthenticationData) {

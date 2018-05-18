@@ -10,16 +10,19 @@ import Foundation
 
 public protocol AccountNumberService {
     func getAccountInfo(withNumber number: String, completion: @escaping CompletionHandler<AccountNumber>)
+    func thumb(_ thumb: Thumb, accountNumber: String, completion: @escaping CompletionHandler<AccountNumber>)
 }
 
 class AccountNumberServiceImplementation: AccountNumberService {
 
     private enum AccountNumberEndpoint: Endpoint {
         case accountNumber(String)
+        case thumb(String)
 
         var path: String {
             switch self {
             case .accountNumber(let number): return "api/accountNumber/\(number)"
+            case .thumb(let number): return "api/accountNumber/thumb/\(number)"
             }
         }
     }
@@ -31,11 +34,17 @@ class AccountNumberServiceImplementation: AccountNumberService {
     }
 
     func getAccountInfo(withNumber number: String, completion: @escaping (Result<AccountNumber>) -> Void) {
-        guard let data = try? JSONEncoder().encode(["number": number]) else { return }
-        restClient.request(data,
+        restClient.request(nil,
                            method: .get,
                            endpoint: AccountNumberEndpoint.accountNumber(number),
                            completion: completion)
+    }
+
+    func thumb(_ thumb: Thumb, accountNumber: String, completion: @escaping CompletionHandler<AccountNumber>) {
+        restClient.query(["thumb": thumb.rawValue],
+                         method: .put,
+                         endpoint: AccountNumberEndpoint.thumb(accountNumber),
+                         completion: completion)
     }
 
 }

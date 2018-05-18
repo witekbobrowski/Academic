@@ -43,16 +43,37 @@ extension AccountNumberCoordinator: AccountNumberViewModelDelegate {
         profileCoordinator.start()
     }
 
-    func accountNumberViewModel(_ accountNumberViewModel: AccountNumberViewModel, didBeginSearchingFor accountNumber: String) {
+    func accountNumberViewModel(_ accountNumberViewModel: AccountNumberViewModel,
+                                didBeginSearchingFor accountNumber: String) {
         print("\(type(of: accountNumberViewModel)) did begin searching for account with number: \(accountNumber)")
     }
 
-    func accountNumberViewModel(_ accountNumberViewModel: AccountNumberViewModel, didFindAccountNumber accountNumber: AccountNumber) {
+    func accountNumberViewModel(_ accountNumberViewModel: AccountNumberViewModel,
+                                didFindAccountNumber accountNumber: AccountNumber) {
         print("\(type(of: accountNumberViewModel)) did find account with number: \(accountNumber.accountNumber)")
     }
 
-    func accountNumberViewModel(_ accountNumberViewModel: AccountNumberViewModel, didFailSearchingWithError error: Error) {
+    func accountNumberViewModel(_ accountNumberViewModel: AccountNumberViewModel,
+                                didFailSearchingWithError error: Error) {
         print("\(type(of: accountNumberViewModel)) did fail searching with error: \(error)")
+    }
+
+    func accountNumberViewModel(_ accountNumberViewModel: AccountNumberViewModel,
+                                didBeginSendingThumb thumb: Thumb,
+                                forAccountNumber accountNumber: String) {
+        print("\(type(of: accountNumberViewModel)) did begin sending thumb \(thumb) for account with number: \(accountNumber)")
+    }
+
+    func accountNumberViewModel(_ accountNumberViewModel: AccountNumberViewModel,
+                                didSendThumb thumb: Thumb,
+                                forAccountNumber accountNumber: AccountNumber) {
+        print("\(type(of: accountNumberViewModel)) did send thumb \(thumb) for account with number: \(accountNumber.accountNumber)")
+    }
+
+    func accountNumberViewModel(_ accountNumberViewModel: AccountNumberViewModel,
+                                didFailToSendThumb thumb: Thumb,
+                                withError error: Error) {
+        print("\(type(of: accountNumberViewModel)) did fail to send thumb \(thumb) with error: \(error)")
     }
 
 }
