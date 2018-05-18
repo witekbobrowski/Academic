@@ -9,6 +9,6 @@
 import Foundation
 
 public enum Thumb: String, Codable {
-    case up
-    case down
+    case up="UP"
+    case down="DOWN"
 }

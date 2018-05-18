@@ -10,19 +10,19 @@ import Foundation
 import ForsetiApiKit
 
 protocol CoordinatorModelFactory {
-    var reviewCoordinatorModel: ReviewCoordinatorModel { get }
     func welcomeCoordinatorModel(client: Client) -> WelcomeCoordinatorModel
+    func accountNumberCoordinatorModel(client: Client) -> AccountNumberCoordinatorModel
     func profileCoordinatorModel(client: Client) -> ProfileCoordinatorModel
 }
 
 extension DependencyContainer: CoordinatorModelFactory {
 
-    var reviewCoordinatorModel: ReviewCoordinatorModel {
-        return ReviewCoordinatorModelImplementation(dependencyContainer: self)
-    }
-
     func welcomeCoordinatorModel(client: Client) -> WelcomeCoordinatorModel {
         return WelcomeCoordinatorModelImplementation(client: client, dependencyContainer: self)
+    }
+
+    func accountNumberCoordinatorModel(client: Client) -> AccountNumberCoordinatorModel {
+        return AccountNumberCoordinatorModelImplementation(client: client, dependencyContainer: self)
     }
 
     func profileCoordinatorModel(client: Client) -> ProfileCoordinatorModel {

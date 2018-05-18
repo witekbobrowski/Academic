@@ -16,6 +16,13 @@ public protocol AuthenticationService {
 
 class AuthenticationServiceImplementation: AuthenticationService {
 
+    private enum AuthenticationEndpoint: String, Endpoint {
+        case login = "login"
+        case register = "signup/"
+
+        var path: String { return self.rawValue }
+    }
+
     private let restClient: RestClientProtocol
 
     init(restClient: RestClientProtocol) {

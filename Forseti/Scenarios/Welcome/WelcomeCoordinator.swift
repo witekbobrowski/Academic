@@ -59,9 +59,9 @@ extension WelcomeCoordinator: AuthenticationViewModelDelegate {
     func authenticationViewModel(_ authenticationViewModel: AuthenticationViewModel, didSuceedAuthentication type: AuthenticationType) {
         SVProgressHUD.showSuccess(withStatus: nil)
         SVProgressHUD.dismiss(withDelay: 0.5) { [weak self] in
-            let profileCoordiantor = self?.coordinatorModel.profileCoordinator(viewController: self?.rootViewController)
-            self?.next = profileCoordiantor
-            profileCoordiantor?.start()
+            let accountNumberCoordinator = self?.coordinatorModel.accountNumberCoordinator
+            self?.next = accountNumberCoordinator
+            accountNumberCoordinator?.start()
         }
     }
 

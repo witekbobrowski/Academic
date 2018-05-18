@@ -10,11 +10,14 @@ import Foundation
 import ForsetiApiKit
 
 protocol ViewModelFactory {
-    var reviewViewModel: ReviewViewModel { get }
     var welcomeViewModel: WelcomeViewModel { get }
 
     func authenticationViewModel(authenticationService: AuthenticationService,
                                  type: AuthenticationType) -> AuthenticationViewModel
+    func accountNumberViewModel(accountNumberService: AccountNumberService) -> AccountNumberViewModel
+    func accountNumberDetailsCellViewModel(accountNumber: AccountNumber) -> AccountNumberDetailsCellViewModel
+    func accountNumberActionCellViewModel(accountNumber: AccountNumber) -> AccountNumberActionCellViewModel
+
     func profileViewModel(userService: UserService) -> ProfileViewModel
     func profileAvatarCellViewModel(user: User) -> ProfileAvatarCellViewModel
     func thumbsActivityCellViewModel(thumbsDetails: ThumbsDetails, accountNumber: String) -> ThumbsActivityCellViewModel
@@ -24,9 +27,6 @@ protocol ViewModelFactory {
 
 extension DependencyContainer: ViewModelFactory {
 
-    var reviewViewModel: ReviewViewModel {
-        return ReviewViewModelImplementation(reviewService: 0)
-    }
     var welcomeViewModel: WelcomeViewModel {
         return WelcomeViewModelImplementation()
     }
@@ -35,6 +35,19 @@ extension DependencyContainer: ViewModelFactory {
                                  type: AuthenticationType) -> AuthenticationViewModel {
         return AuthenticationViewModelImplementation(authenticationService: authenticationService,
                                                      type: type)
+    }
+
+    func accountNumberViewModel(accountNumberService: AccountNumberService) -> AccountNumberViewModel {
+        return AccountNumberViewModelImplementation(accountNumberService: accountNumberService,
+                                                    dependencyContainer: self)
+    }
+
+    func accountNumberDetailsCellViewModel(accountNumber: AccountNumber) -> AccountNumberDetailsCellViewModel {
+        return AccountNumberDetailsCellViewModelImplementation(accountNumber: accountNumber)
+    }
+    
+    func accountNumberActionCellViewModel(accountNumber: AccountNumber) -> AccountNumberActionCellViewModel {
+        return AccountNumberActionCellViewModelImplementation(accountNumber: accountNumber)
     }
 
     func profileViewModel(userService: UserService) -> ProfileViewModel {

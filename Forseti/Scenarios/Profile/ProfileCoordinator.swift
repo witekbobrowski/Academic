@@ -47,7 +47,7 @@ extension ProfileCoordinator: ProfileViewModelDelegate {
     }
 
     func profileViewModel(_ profileViewModel: ProfileViewModel, didFailFetchingWithError error: Error) {
-        print("\(type(of: profileViewModel)) did begin fail fetching with error: \(error)")
+        print("\(type(of: profileViewModel)) did fail fetching with error: \(error)")
         SVProgressHUD.showError(withStatus: nil)
         SVProgressHUD.dismiss(withDelay: 0.5) { [weak self] in
             self?.rootViewController?.dismiss(animated: true)
