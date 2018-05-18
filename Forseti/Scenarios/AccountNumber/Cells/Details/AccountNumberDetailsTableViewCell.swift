@@ -39,7 +39,7 @@ extension AccountNumberDetailsTableViewCell {
         backgroundColor = .clear
         bankLabel.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         numberLabel.font = UIFont.systemFont(ofSize: 24, weight: .medium)
-        locationLabel.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+        locationLabel.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         bankLabel.textColor = .white
         [numberLabel, locationLabel].forEach {
             $0?.textColor = #colorLiteral(red: 0.5894148284, green: 0.701807598, blue: 0.9098039216, alpha: 1)
@@ -48,6 +48,7 @@ extension AccountNumberDetailsTableViewCell {
         }
         locationLabel.numberOfLines = 0
         statusImageView.contentMode = .scaleAspectFit
+        statusImageView.isHidden = true
     }
 
     private func setupCardView() {

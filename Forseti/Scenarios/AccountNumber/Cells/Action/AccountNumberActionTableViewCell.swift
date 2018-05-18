@@ -31,9 +31,13 @@ class AccountNumberActionTableViewCell: UITableViewCell {
 
     @objc private func upvoteButtonDidTap(_ sender: UIButton) {
         viewModel?.thumbsUp()
+        upvoteButton.tintColor = upvoteButton.tintColor == #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1) ? #colorLiteral(red: 0.2509803922, green: 0.2588235294, blue: 0.2549019608, alpha: 1) : #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        downvoteButton.tintColor = #colorLiteral(red: 0.2509803922, green: 0.2588235294, blue: 0.2549019608, alpha: 1)
     }
     @objc private func downvoteButtonDidTap(_ sender: UIButton) {
         viewModel?.thumbsDown()
+        downvoteButton.tintColor = downvoteButton.tintColor == #colorLiteral(red: 1, green: 0.1725490196, blue: 0.1411764706, alpha: 1) ? #colorLiteral(red: 0.2509803922, green: 0.2588235294, blue: 0.2549019608, alpha: 1) : #colorLiteral(red: 1, green: 0.1725490196, blue: 0.1411764706, alpha: 1)
+        upvoteButton.tintColor = #colorLiteral(red: 0.2509803922, green: 0.2588235294, blue: 0.2549019608, alpha: 1)
     }
     @objc private func commentButtonDidTap(_ sender: UIButton) {
         viewModel?.comments()
@@ -47,6 +51,7 @@ class AccountNumberActionTableViewCell: UITableViewCell {
 extension AccountNumberActionTableViewCell {
 
     private func setupView() {
+        backgroundColor = .clear
         scoreLabel.textColor = #colorLiteral(red: 0.2509803922, green: 0.2588235294, blue: 0.2549019608, alpha: 1)
         scoreLabel.textAlignment = .center
         scoreLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
