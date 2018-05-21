@@ -15,6 +15,6 @@ public struct User: Codable {
     public var email: String?
     public var firstName: String?
     public var lastName: String?
-    public var comments: [String: Comment]
+    public var comments: [String: [Comment]]
     public var thumbsDetails: [String: ThumbsDetails]
 }
