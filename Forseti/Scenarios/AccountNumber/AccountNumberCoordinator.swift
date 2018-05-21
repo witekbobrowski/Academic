@@ -76,4 +76,9 @@ extension AccountNumberCoordinator: AccountNumberViewModelDelegate {
         print("\(type(of: accountNumberViewModel)) did fail to send thumb \(thumb) with error: \(error)")
     }
 
+    func accountNumberViewModel(_ accountNumberViewModel: AccountNumberViewModel,
+                                didRequestCommentScreenForAccount accountNumber: AccountNumber) {
+        // TODO: Present CommentVC
+    }
+
 }
