@@ -27,9 +27,13 @@ extension AccountNumberCommentTableViewCell {
 
     private func setupView() {
         backgroundColor = .clear
+        [userLabel, dateLabel].forEach { label in
+            label?.textColor = .lightGray
+            label?.font = UIFont.systemFont(ofSize: 12, weight: .medium)
+        }
         contentLabel.numberOfLines = 0
-        [userLabel, dateLabel].forEach { $0?.textColor = .lightGray }
         contentLabel.textColor = #colorLiteral(red: 0.2509803922, green: 0.2588235294, blue: 0.2549019608, alpha: 1)
+        contentLabel.font = UIFont.systemFont(ofSize: 15, weight: .regular)
     }
 
     private func update(with viewModel: AccountNumberCommentCellViewModel?) {

@@ -88,8 +88,8 @@ class AccountNumberViewModelImplementation: AccountNumberViewModel {
             switch result {
             case .success(let accountNumber):
                 self.accountNumber = accountNumber
-                accountNumber.comments.forEach { username, comments in
-                    comments.forEach { self.comments.append((username, $0)) }
+                self.comments = accountNumber.comments.reduce([]) { array, entry in
+                    return array + entry.value.map { (entry.key, $0) }
                 }
                 NotificationCenter.default.post(name: .accountNumberViewModelDidFindAccount, object: accountNumber)
                 self.delegate?.accountNumberViewModel(self, didFindAccountNumber: accountNumber)
