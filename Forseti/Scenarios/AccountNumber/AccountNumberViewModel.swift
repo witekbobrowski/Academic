@@ -55,7 +55,7 @@ class AccountNumberViewModelImplementation: AccountNumberViewModel {
     private let accountNumberService: AccountNumberService
     private let dependencyContainer: DependencyContainer
 
-    private let sections: [AccountNumberViewController.Section] = [.details, .actions]
+    private let sections: [AccountNumberViewController.Section] = [.details, .actions, .comments]
     private var accountNumber: AccountNumber?
     private var comments: [(String, Comment)] = []
 
@@ -69,6 +69,7 @@ class AccountNumberViewModelImplementation: AccountNumberViewModel {
          dependencyContainer: DependencyContainer) {
         self.accountNumberService = accountNumberService
         self.dependencyContainer = dependencyContainer
+        setup()
     }
 
     func numberOfRows(inSection section: Int) -> Int {
@@ -138,6 +139,16 @@ extension AccountNumberViewModelImplementation: AccountNumberActionCellViewModel
 }
 
 extension AccountNumberViewModelImplementation {
+
+    private func setup() {
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh),
+                                               name: .commentViewModelDidComment, object: nil)
+    }
+
+    @objc private func refresh() {
+        guard let number = accountNumber?.accountNumber else { return }
+        search(number)
+    }
 
     private func thumb(_ thumb: Thumb) {
         guard let number = accountNumber?.accountNumber else { return }

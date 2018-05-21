@@ -25,6 +25,12 @@ protocol CommentViewModel {
     func exit()
 }
 
+extension Notification.Name {
+    static var commentViewModelDidComment: Notification.Name {
+        return Notification.Name(rawValue: "CommentViewModel.commentViewModelDidComment")
+    }
+}
+
 class CommentViewModelImplementation: CommentViewModel {
 
     private let accountNumber: AccountNumber
@@ -47,6 +53,7 @@ class CommentViewModelImplementation: CommentViewModel {
         accountNumberService.comment(comment, accountNumber: accountNumber.accountNumber) { result in
             switch result {
             case .success:
+                NotificationCenter.default.post(name: .commentViewModelDidComment, object: nil)
                 self.delegate?.commentViewModel(self, didSuccesfulySend: comment)
             case .failure(let error):
                 self.delegate?.commentViewModel(self, didFailToSend: comment, with: error)
