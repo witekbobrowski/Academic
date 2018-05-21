@@ -37,7 +37,7 @@ class ProfileCoordinator: Coordinator {
 extension ProfileCoordinator: ProfileViewModelDelegate {
 
     func profileViewModelDidBeginFetchingUser(_ profileViewModel: ProfileViewModel) {
-        print("\(type(of: profileViewModel)) did begin fetching user!")
+        print("\(type(of: profileViewModel)) did begin fetching user")
         SVProgressHUD.show()
     }
 

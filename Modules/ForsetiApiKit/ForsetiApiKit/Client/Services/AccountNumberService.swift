@@ -51,10 +51,11 @@ class AccountNumberServiceImplementation: AccountNumberService {
     }
 
     func comment(_ comment: String, accountNumber: String, completion: @escaping (Result<AccountNumber>) -> Void) {
-        restClient.query(["comment": comment],
-                         method: .put,
-                         endpoint: AccountNumberEndpoint.comment(accountNumber),
-                         completion: completion)
+        guard let data = try? JSONEncoder().encode(["comment": comment]) else { return }
+        restClient.request(data,
+                           method: .put,
+                           endpoint: AccountNumberEndpoint.comment(accountNumber),
+                           completion: completion)
     }
 
 }

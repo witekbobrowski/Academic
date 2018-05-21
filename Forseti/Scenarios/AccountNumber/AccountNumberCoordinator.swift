@@ -8,6 +8,7 @@
 
 import UIKit
 import ForsetiApiKit
+import SVProgressHUD
 
 class AccountNumberCoordinator: Coordinator {
 
@@ -78,7 +79,37 @@ extension AccountNumberCoordinator: AccountNumberViewModelDelegate {
 
     func accountNumberViewModel(_ accountNumberViewModel: AccountNumberViewModel,
                                 didRequestCommentScreenForAccount accountNumber: AccountNumber) {
-        // TODO: Present CommentVC
+        let viewController = coordinatorModel.commentViewController(accountNumber)
+        viewController.viewModel.delegate = self
+        rootViewController?.present(UINavigationController(rootViewController: viewController), animated: true)
+    }
+
+}
+
+extension AccountNumberCoordinator: CommentViewModelDelegate {
+
+    func commentViewModelDidRequestExit(_ commentViewModel: CommentViewModel) {
+        print("\(type(of: commentViewModel)) did request exit!")
+        rootViewController?.presentedViewController?.dismiss(animated: true)
+    }
+
+    func commentViewModel(_ commentViewModel: CommentViewModel, didBeginSending comment: String) {
+        print("\(type(of: commentViewModel)) did begin sending comment")
+        SVProgressHUD.show()
+    }
+
+    func commentViewModel(_ commentViewModel: CommentViewModel, didSuccesfulySend comment: String) {
+        print("\(type(of: commentViewModel)) did send comment: \(comment)")
+        SVProgressHUD.showSuccess(withStatus: nil)
+        SVProgressHUD.dismiss(withDelay: 0.5) { [weak self] in
+            self?.rootViewController?.presentedViewController?.dismiss(animated: true)
+        }
+    }
+
+    func commentViewModel(_ commentViewModel: CommentViewModel, didFailToSend comment: String, with error: Error) {
+        print("\(type(of: commentViewModel)) did fail fetching with error: \(error)")
+        SVProgressHUD.showError(withStatus: nil)
+        SVProgressHUD.dismiss(withDelay: 0.5)
     }
 
 }

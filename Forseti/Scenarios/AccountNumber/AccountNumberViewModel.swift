@@ -87,7 +87,9 @@ class AccountNumberViewModelImplementation: AccountNumberViewModel {
             switch result {
             case .success(let accountNumber):
                 self.accountNumber = accountNumber
-                self.comments = accountNumber.comments.map { ($0, $1) }
+                accountNumber.comments.forEach { username, comments in
+                    comments.forEach { self.comments.append((username, $0)) }
+                }
                 NotificationCenter.default.post(name: .accountNumberViewModelDidFindAccount, object: accountNumber)
                 self.delegate?.accountNumberViewModel(self, didFindAccountNumber: accountNumber)
             case .failure(let error):
