@@ -116,7 +116,11 @@ extension ProfileViewModelImplementation {
             case .success(let user):
                 self.user = user
                 user.thumbsDetails.forEach { entry in self.activities.append(.thumb(entry.value, entry.key))}
-                user.comments.forEach { entry in self.activities.append(.comment(entry.value, entry.key))}
+                user.comments.forEach { (account, comments) in
+                    comments.forEach { comment in
+                        self.activities.append(.comment(comment, account))
+                    }
+                }
                 NotificationCenter.default.post(name: .profileViewModelDidFetchUser, object: self)
                 self.delegate?.profileViewModel(self, didFinishFetchingUser: user)
             case .failure(let error):

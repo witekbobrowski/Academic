@@ -11,6 +11,7 @@ import ForsetiApiKit
 
 protocol AccountNumberCoordinatorModel {
     var accountNumberViewController: AccountNumberViewController { get }
+    func commentViewController(_ accountNumber: AccountNumber) -> CommentViewController
     func profileCoordinator(viewController: UIViewController?) -> ProfileCoordinator
 }
 
@@ -26,6 +27,14 @@ class AccountNumberCoordinatorModelImplementation: AccountNumberCoordinatorModel
     init(client: Client, dependencyContainer: DependencyContainer) {
         self.client = client
         self.dependencyContainer = dependencyContainer
+    }
+
+    func commentViewController(_ accountNumber: AccountNumber) -> CommentViewController {
+        let viewController = dependencyContainer.commentViewController
+        let viewModel = dependencyContainer.commentViewModel(accountNumber: accountNumber,
+                                                             accountNumberService: client.accountNumberService)
+        viewController.viewModel = viewModel
+        return viewController
     }
 
     func profileCoordinator(viewController: UIViewController?) -> ProfileCoordinator {

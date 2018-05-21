@@ -12,6 +12,8 @@ import ForsetiApiKit
 protocol AccountNumberViewModelDelegate: class {
     func accountNumberViewModelDidRequestProfileScreen(_ accountNumberViewModel: AccountNumberViewModel)
     func accountNumberViewModel(_ accountNumberViewModel: AccountNumberViewModel,
+                                didRequestCommentScreenForAccount accountNumber: AccountNumber)
+    func accountNumberViewModel(_ accountNumberViewModel: AccountNumberViewModel,
                                 didBeginSearchingFor accountNumber: String)
     func accountNumberViewModel(_ accountNumberViewModel: AccountNumberViewModel,
                                 didFindAccountNumber accountNumber: AccountNumber)
@@ -39,6 +41,7 @@ protocol AccountNumberViewModel {
     func profile()
     func detailsCellViewModel() -> AccountNumberDetailsCellViewModel
     func actionsCellViewModel() -> AccountNumberActionCellViewModel
+    func commentCellViewModel(forCellAt row: Int) -> AccountNumberCommentCellViewModel
 }
 
 extension Notification.Name {
@@ -52,8 +55,9 @@ class AccountNumberViewModelImplementation: AccountNumberViewModel {
     private let accountNumberService: AccountNumberService
     private let dependencyContainer: DependencyContainer
 
-    private let sections: [AccountNumberViewController.Section] = [.details, .actions]
+    private let sections: [AccountNumberViewController.Section] = [.details, .actions, .comments]
     private var accountNumber: AccountNumber?
+    private var comments: [(String, Comment)] = []
 
     weak var delegate: AccountNumberViewModelDelegate?
     var title: String { return "Forseti" }
@@ -65,6 +69,7 @@ class AccountNumberViewModelImplementation: AccountNumberViewModel {
          dependencyContainer: DependencyContainer) {
         self.accountNumberService = accountNumberService
         self.dependencyContainer = dependencyContainer
+        setup()
     }
 
     func numberOfRows(inSection section: Int) -> Int {
@@ -72,6 +77,7 @@ class AccountNumberViewModelImplementation: AccountNumberViewModel {
         switch section {
         case .details: return 1
         case .actions: return 1
+        case .comments: return comments.count
         }
     }
 
@@ -82,6 +88,9 @@ class AccountNumberViewModelImplementation: AccountNumberViewModel {
             switch result {
             case .success(let accountNumber):
                 self.accountNumber = accountNumber
+                self.comments = accountNumber.comments.reduce([]) { array, entry in
+                    return array + entry.value.map { (entry.key, $0) }
+                }
                 NotificationCenter.default.post(name: .accountNumberViewModelDidFindAccount, object: accountNumber)
                 self.delegate?.accountNumberViewModel(self, didFindAccountNumber: accountNumber)
             case .failure(let error):
@@ -103,6 +112,11 @@ class AccountNumberViewModelImplementation: AccountNumberViewModel {
         viewModel.delegate = self
         return viewModel
     }
+    func commentCellViewModel(forCellAt row: Int) -> AccountNumberCommentCellViewModel {
+        let pair = comments[row]
+        return dependencyContainer.accountNumberCommentCellViewModel(comment: pair.1,
+                                                                     username: pair.0)
+    }
 }
 
 extension AccountNumberViewModelImplementation: AccountNumberActionCellViewModelDelegate {
@@ -115,7 +129,8 @@ extension AccountNumberViewModelImplementation: AccountNumberActionCellViewModel
         case .thumbsDown:
             thumb(.down)
         case .comments:
-            break
+            guard let account = accountNumber else { return }
+            delegate?.accountNumberViewModel(self, didRequestCommentScreenForAccount: account)
         case .share:
             break
         }
@@ -124,6 +139,16 @@ extension AccountNumberViewModelImplementation: AccountNumberActionCellViewModel
 }
 
 extension AccountNumberViewModelImplementation {
+
+    private func setup() {
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh),
+                                               name: .commentViewModelDidComment, object: nil)
+    }
+
+    @objc private func refresh() {
+        guard let number = accountNumber?.accountNumber else { return }
+        search(number)
+    }
 
     private func thumb(_ thumb: Thumb) {
         guard let number = accountNumber?.accountNumber else { return }

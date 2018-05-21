@@ -17,12 +17,16 @@ protocol ViewModelFactory {
     func accountNumberViewModel(accountNumberService: AccountNumberService) -> AccountNumberViewModel
     func accountNumberDetailsCellViewModel(accountNumber: AccountNumber) -> AccountNumberDetailsCellViewModel
     func accountNumberActionCellViewModel(accountNumber: AccountNumber) -> AccountNumberActionCellViewModel
+    func accountNumberCommentCellViewModel(comment: Comment,
+                                           username: String) -> AccountNumberCommentCellViewModel
 
     func profileViewModel(userService: UserService) -> ProfileViewModel
     func profileAvatarCellViewModel(user: User) -> ProfileAvatarCellViewModel
     func thumbsActivityCellViewModel(thumbsDetails: ThumbsDetails, accountNumber: String) -> ThumbsActivityCellViewModel
     func commentActivityCellViewModel(comment: Comment, accountNumber: String) -> CommentActivityCellViewModel
     func profileOptionCellViewModel(option: ProfileOption) -> ProfileOptionCellViewModel
+
+    func commentViewModel(accountNumber: AccountNumber, accountNumberService: AccountNumberService) -> CommentViewModel
 }
 
 extension DependencyContainer: ViewModelFactory {
@@ -45,9 +49,13 @@ extension DependencyContainer: ViewModelFactory {
     func accountNumberDetailsCellViewModel(accountNumber: AccountNumber) -> AccountNumberDetailsCellViewModel {
         return AccountNumberDetailsCellViewModelImplementation(accountNumber: accountNumber)
     }
-    
+
     func accountNumberActionCellViewModel(accountNumber: AccountNumber) -> AccountNumberActionCellViewModel {
         return AccountNumberActionCellViewModelImplementation(accountNumber: accountNumber)
+    }
+
+    func accountNumberCommentCellViewModel(comment: Comment, username: String) -> AccountNumberCommentCellViewModel {
+        return AccountNumberCommentCellViewModelImplementation(comment: comment, username: username)
     }
 
     func profileViewModel(userService: UserService) -> ProfileViewModel {
@@ -68,6 +76,11 @@ extension DependencyContainer: ViewModelFactory {
 
     func profileOptionCellViewModel(option: ProfileOption) -> ProfileOptionCellViewModel {
         return ProfileOptionCellViewModelImplementation(option: option)
+    }
+
+    func commentViewModel(accountNumber: AccountNumber, accountNumberService: AccountNumberService) -> CommentViewModel {
+        return CommentViewModelImplementation(accountNumber: accountNumber,
+                                              accountNumberService: accountNumberService)
     }
 
 }
