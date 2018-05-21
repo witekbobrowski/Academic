@@ -12,6 +12,8 @@ import ForsetiApiKit
 protocol AccountNumberViewModelDelegate: class {
     func accountNumberViewModelDidRequestProfileScreen(_ accountNumberViewModel: AccountNumberViewModel)
     func accountNumberViewModel(_ accountNumberViewModel: AccountNumberViewModel,
+                                didRequestCommentScreenForAccount accountNumber: AccountNumber)
+    func accountNumberViewModel(_ accountNumberViewModel: AccountNumberViewModel,
                                 didBeginSearchingFor accountNumber: String)
     func accountNumberViewModel(_ accountNumberViewModel: AccountNumberViewModel,
                                 didFindAccountNumber accountNumber: AccountNumber)
@@ -124,7 +126,8 @@ extension AccountNumberViewModelImplementation: AccountNumberActionCellViewModel
         case .thumbsDown:
             thumb(.down)
         case .comments:
-            break
+            guard let account = accountNumber else { return }
+            delegate?.accountNumberViewModel(self, didRequestCommentScreenForAccount: account)
         case .share:
             break
         }
