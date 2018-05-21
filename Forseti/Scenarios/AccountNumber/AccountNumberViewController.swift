@@ -18,7 +18,7 @@ class AccountNumberViewController: UIViewController {
     enum Section: Int {
         case details
         case actions
-//        case comments
+        case comments
     }
 
     @IBOutlet private weak var emptyStateLabel: UILabel!
@@ -67,12 +67,12 @@ extension AccountNumberViewController {
 
     private func setupTableView() {
         tableView.backgroundColor = .clear
-        tableView.delegate = self
         tableView.separatorStyle = .none
         tableView.dataSource = self
         tableView.estimatedRowHeight = UITableViewAutomaticDimension
         [AccountNumberDetailsTableViewCell.self,
-         AccountNumberActionTableViewCell.self].forEach { type in
+         AccountNumberActionTableViewCell.self,
+         AccountNumberCommentTableViewCell.self].forEach { type in
             tableView.register(UINib(nibName: type.name, bundle: nil), forCellReuseIdentifier: type.name)
         }
     }
@@ -115,10 +115,6 @@ extension AccountNumberViewController: UISearchBarDelegate {
 
 }
 
-extension AccountNumberViewController: UITableViewDelegate {
-
-}
-
 extension AccountNumberViewController: UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -133,15 +129,23 @@ extension AccountNumberViewController: UITableViewDataSource {
         var cell: UITableViewCell
         switch Section(rawValue: indexPath.section)! {
         case .details:
-            let detailsCell = tableView.dequeueReusableCell(withIdentifier: AccountNumberDetailsTableViewCell.name,
-                                                            for: indexPath) as! AccountNumberDetailsTableViewCell
+            let detailsCell = tableView.dequeueReusableCell(
+                withIdentifier: AccountNumberDetailsTableViewCell.name,
+                for: indexPath) as! AccountNumberDetailsTableViewCell
             detailsCell.viewModel = viewModel.detailsCellViewModel()
             cell = detailsCell
         case .actions:
-            let actionsCell = tableView.dequeueReusableCell(withIdentifier: AccountNumberActionTableViewCell.name,
-                                                            for: indexPath) as! AccountNumberActionTableViewCell
+            let actionsCell = tableView.dequeueReusableCell(
+                withIdentifier: AccountNumberActionTableViewCell.name,
+                for: indexPath) as! AccountNumberActionTableViewCell
             actionsCell.viewModel = viewModel.actionsCellViewModel()
             cell = actionsCell
+        case .comments:
+            let commentCell = tableView.dequeueReusableCell(
+                withIdentifier: AccountNumberCommentTableViewCell.name,
+                for: indexPath) as! AccountNumberCommentTableViewCell
+            commentCell.viewModel = viewModel.commentCellViewModel(forCellAt: indexPath.row)
+            cell = commentCell
         }
         cell.selectionStyle = .none
         return cell

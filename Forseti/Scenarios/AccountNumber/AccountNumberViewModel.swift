@@ -39,6 +39,7 @@ protocol AccountNumberViewModel {
     func profile()
     func detailsCellViewModel() -> AccountNumberDetailsCellViewModel
     func actionsCellViewModel() -> AccountNumberActionCellViewModel
+    func commentCellViewModel(forCellAt row: Int) -> AccountNumberCommentCellViewModel
 }
 
 extension Notification.Name {
@@ -54,6 +55,7 @@ class AccountNumberViewModelImplementation: AccountNumberViewModel {
 
     private let sections: [AccountNumberViewController.Section] = [.details, .actions]
     private var accountNumber: AccountNumber?
+    private var comments: [(String, Comment)] = []
 
     weak var delegate: AccountNumberViewModelDelegate?
     var title: String { return "Forseti" }
@@ -72,6 +74,7 @@ class AccountNumberViewModelImplementation: AccountNumberViewModel {
         switch section {
         case .details: return 1
         case .actions: return 1
+        case .comments: return comments.count
         }
     }
 
@@ -82,6 +85,7 @@ class AccountNumberViewModelImplementation: AccountNumberViewModel {
             switch result {
             case .success(let accountNumber):
                 self.accountNumber = accountNumber
+                self.comments = accountNumber.comments.map { ($0, $1) }
                 NotificationCenter.default.post(name: .accountNumberViewModelDidFindAccount, object: accountNumber)
                 self.delegate?.accountNumberViewModel(self, didFindAccountNumber: accountNumber)
             case .failure(let error):
@@ -102,6 +106,11 @@ class AccountNumberViewModelImplementation: AccountNumberViewModel {
         var viewModel = dependencyContainer.accountNumberActionCellViewModel(accountNumber: accountNumber!)
         viewModel.delegate = self
         return viewModel
+    }
+    func commentCellViewModel(forCellAt row: Int) -> AccountNumberCommentCellViewModel {
+        let pair = comments[row]
+        return dependencyContainer.accountNumberCommentCellViewModel(comment: pair.1,
+                                                                     username: pair.0)
     }
 }
 
