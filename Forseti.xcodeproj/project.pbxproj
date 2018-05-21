@@ -62,6 +62,7 @@
 		F933B1C6207F30D100A86511 /* AccountNumber.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F933B1C5207F30D100A86511 /* AccountNumber.storyboard */; };
 		F933B1C8207F30E800A86511 /* AccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F933B1C7207F30E800A86511 /* AccountNumberViewController.swift */; };
 		F933B1CA207F311600A86511 /* AccountNumberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F933B1C9207F311600A86511 /* AccountNumberViewModel.swift */; };
+		F980362520B2BD8B00745CF1 /* AccountNumberCommentCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F980362420B2BD8B00745CF1 /* AccountNumberCommentCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -135,6 +136,7 @@
 		F933B1C5207F30D100A86511 /* AccountNumber.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AccountNumber.storyboard; sourceTree = "<group>"; };
 		F933B1C7207F30E800A86511 /* AccountNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNumberViewController.swift; sourceTree = "<group>"; };
 		F933B1C9207F311600A86511 /* AccountNumberViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNumberViewModel.swift; sourceTree = "<group>"; };
+		F980362420B2BD8B00745CF1 /* AccountNumberCommentCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNumberCommentCellViewModel.swift; sourceTree = "<group>"; };
 		FF33947CC90951B283E6F662 /* Pods_Forseti.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Forseti.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -177,6 +179,7 @@
 		412D161D20ADF6060081E737 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				F980362320B2BD7F00745CF1 /* Comment */,
 				412D162520AE19C00081E737 /* Action */,
 				412D161E20ADF62D0081E737 /* Details */,
 			);
@@ -383,6 +386,14 @@
 			path = AccountNumber;
 			sourceTree = "<group>";
 		};
+		F980362320B2BD7F00745CF1 /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				F980362420B2BD8B00745CF1 /* AccountNumberCommentCellViewModel.swift */,
+			);
+			path = Comment;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -560,6 +571,7 @@
 				41A4576F208A06C800D53893 /* Coordinator.swift in Sources */,
 				4112310320A22F0C005413D7 /* WelcomeCoordinator.swift in Sources */,
 				41D1340920AB6FAC0040B7B6 /* CommentActivityCellViewModel.swift in Sources */,
+				F980362520B2BD8B00745CF1 /* AccountNumberCommentCellViewModel.swift in Sources */,
 				4112310620A23668005413D7 /* AuthenticationViewModel.swift in Sources */,
 				41A4577E208A171A00D53893 /* AccountNumberCoordinatorModel.swift in Sources */,
 				41A45771208A074300D53893 /* WindowManager.swift in Sources */,

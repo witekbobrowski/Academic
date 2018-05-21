@@ -17,6 +17,8 @@ protocol ViewModelFactory {
     func accountNumberViewModel(accountNumberService: AccountNumberService) -> AccountNumberViewModel
     func accountNumberDetailsCellViewModel(accountNumber: AccountNumber) -> AccountNumberDetailsCellViewModel
     func accountNumberActionCellViewModel(accountNumber: AccountNumber) -> AccountNumberActionCellViewModel
+    func accountNumberCommentCellViewModel(comment: Comment,
+                                           username: String) -> AccountNumberCommentCellViewModel
 
     func profileViewModel(userService: UserService) -> ProfileViewModel
     func profileAvatarCellViewModel(user: User) -> ProfileAvatarCellViewModel
@@ -45,9 +47,13 @@ extension DependencyContainer: ViewModelFactory {
     func accountNumberDetailsCellViewModel(accountNumber: AccountNumber) -> AccountNumberDetailsCellViewModel {
         return AccountNumberDetailsCellViewModelImplementation(accountNumber: accountNumber)
     }
-    
+
     func accountNumberActionCellViewModel(accountNumber: AccountNumber) -> AccountNumberActionCellViewModel {
         return AccountNumberActionCellViewModelImplementation(accountNumber: accountNumber)
+    }
+
+    func accountNumberCommentCellViewModel(comment: Comment, username: String) -> AccountNumberCommentCellViewModel {
+        return AccountNumberCommentCellViewModelImplementation(comment: comment, username: username)
     }
 
     func profileViewModel(userService: UserService) -> ProfileViewModel {
