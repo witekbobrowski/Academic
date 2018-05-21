@@ -27,6 +27,7 @@
 		41492D3720653C4F00B87433 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41492D3520653C4F00B87433 /* LaunchScreen.storyboard */; };
 		41492D532065422200B87433 /* ForsetiApiKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41492D542065422300B87433 /* ForsetiApiKit.framework */; };
 		416C8C1820B33ED1001DE54A /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416C8C1720B33ED1001DE54A /* CommentViewModel.swift */; };
+		416C8C1A20B3422D001DE54A /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416C8C1920B3422D001DE54A /* CommentViewController.swift */; };
 		41A4576F208A06C800D53893 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A4576E208A06C800D53893 /* Coordinator.swift */; };
 		41A45771208A074300D53893 /* WindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A45770208A074300D53893 /* WindowManager.swift */; };
 		41A45774208A0D5000D53893 /* UtilityFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A45773208A0D5000D53893 /* UtilityFactory.swift */; };
@@ -105,6 +106,7 @@
 		41492D3820653C4F00B87433 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41492D542065422300B87433 /* ForsetiApiKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ForsetiApiKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		416C8C1720B33ED1001DE54A /* CommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewModel.swift; sourceTree = "<group>"; };
+		416C8C1920B3422D001DE54A /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		41A4576E208A06C800D53893 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		41A45770208A074300D53893 /* WindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowManager.swift; sourceTree = "<group>"; };
 		41A45773208A0D5000D53893 /* UtilityFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityFactory.swift; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				416C8C1720B33ED1001DE54A /* CommentViewModel.swift */,
+				416C8C1920B3422D001DE54A /* CommentViewController.swift */,
 			);
 			path = Comment;
 			sourceTree = "<group>";
@@ -587,6 +590,7 @@
 				416C8C1820B33ED1001DE54A /* CommentViewModel.swift in Sources */,
 				41D133FD20AB599C0040B7B6 /* ProfileTableHeaderViewModel.swift in Sources */,
 				41D1340E20AB73B00040B7B6 /* ProfileOptionTableViewCell.swift in Sources */,
+				416C8C1A20B3422D001DE54A /* CommentViewController.swift in Sources */,
 				412D162020ADF6780081E737 /* AccountNumberDetailsCellViewModel.swift in Sources */,
 				41A4576F208A06C800D53893 /* Coordinator.swift in Sources */,
 				4112310320A22F0C005413D7 /* WelcomeCoordinator.swift in Sources */,

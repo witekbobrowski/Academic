@@ -10,6 +10,7 @@ import Foundation
 import ForsetiApiKit
 
 protocol CommentViewModelDelegate: class {
+    func commentViewModelDidRequestExit(_ commentViewModel: CommentViewModel)
     func commentViewModel(_ commentViewModel: CommentViewModel, didBeginSending comment: String)
     func commentViewModel(_ commentViewModel: CommentViewModel, didSuccesfulySend comment: String)
     func commentViewModel(_ commentViewModel: CommentViewModel, didFailToSend comment: String, with error: Error)
@@ -21,6 +22,7 @@ protocol CommentViewModel {
     var textFieldPlaceholder: String { get }
     var sendButtonTitle: String { get }
     func comment(_ contents: String?)
+    func exit()
 }
 
 class CommentViewModelImplementation: CommentViewModel {
@@ -50,6 +52,10 @@ class CommentViewModelImplementation: CommentViewModel {
                 self.delegate?.commentViewModel(self, didFailToSend: comment, with: error)
             }
         }
+    }
+
+    func exit() {
+        delegate?.commentViewModelDidRequestExit(self)
     }
 
 }
