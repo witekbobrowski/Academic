@@ -63,6 +63,8 @@
 		F933B1C8207F30E800A86511 /* AccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F933B1C7207F30E800A86511 /* AccountNumberViewController.swift */; };
 		F933B1CA207F311600A86511 /* AccountNumberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F933B1C9207F311600A86511 /* AccountNumberViewModel.swift */; };
 		F980362520B2BD8B00745CF1 /* AccountNumberCommentCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F980362420B2BD8B00745CF1 /* AccountNumberCommentCellViewModel.swift */; };
+		F980362820B2BFA400745CF1 /* AccountNumberCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F980362620B2BFA400745CF1 /* AccountNumberCommentTableViewCell.swift */; };
+		F980362920B2BFA400745CF1 /* AccountNumberCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F980362720B2BFA400745CF1 /* AccountNumberCommentTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -137,6 +139,8 @@
 		F933B1C7207F30E800A86511 /* AccountNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNumberViewController.swift; sourceTree = "<group>"; };
 		F933B1C9207F311600A86511 /* AccountNumberViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNumberViewModel.swift; sourceTree = "<group>"; };
 		F980362420B2BD8B00745CF1 /* AccountNumberCommentCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNumberCommentCellViewModel.swift; sourceTree = "<group>"; };
+		F980362620B2BFA400745CF1 /* AccountNumberCommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNumberCommentTableViewCell.swift; sourceTree = "<group>"; };
+		F980362720B2BFA400745CF1 /* AccountNumberCommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountNumberCommentTableViewCell.xib; sourceTree = "<group>"; };
 		FF33947CC90951B283E6F662 /* Pods_Forseti.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Forseti.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -390,6 +394,8 @@
 			isa = PBXGroup;
 			children = (
 				F980362420B2BD8B00745CF1 /* AccountNumberCommentCellViewModel.swift */,
+				F980362620B2BFA400745CF1 /* AccountNumberCommentTableViewCell.swift */,
+				F980362720B2BFA400745CF1 /* AccountNumberCommentTableViewCell.xib */,
 			);
 			path = Comment;
 			sourceTree = "<group>";
@@ -464,6 +470,7 @@
 				41D133FB20AB58410040B7B6 /* ProfileAvatarTableViewCell.xib in Resources */,
 				41D1341020AB741E0040B7B6 /* ProfileOptionTableViewCell.xib in Resources */,
 				41D133EC20AA22850040B7B6 /* Profile.storyboard in Resources */,
+				F980362920B2BFA400745CF1 /* AccountNumberCommentTableViewCell.xib in Resources */,
 				41492D3720653C4F00B87433 /* LaunchScreen.storyboard in Resources */,
 				412D162B20AE1C350081E737 /* AccountNumberActionTableViewCell.xib in Resources */,
 				41492D3420653C4F00B87433 /* Assets.xcassets in Resources */,
@@ -559,6 +566,7 @@
 				41492D2D20653C4F00B87433 /* AppDelegate.swift in Sources */,
 				41F051EA208A0263000359DA /* UIViewController+Extensions.swift in Sources */,
 				41F051EE208A032A000359DA /* AppDelegate+Extensions.swift in Sources */,
+				F980362820B2BFA400745CF1 /* AccountNumberCommentTableViewCell.swift in Sources */,
 				41F051E42089FEE7000359DA /* StoryboardProvider.swift in Sources */,
 				412D162720AE19D80081E737 /* AccountNumberActionCellViewModel.swift in Sources */,
 				41A45776208A0DB700D53893 /* ViewControllerFactory.swift in Sources */,
