@@ -22,6 +22,7 @@
 		412D162720AE19D80081E737 /* AccountNumberActionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412D162620AE19D80081E737 /* AccountNumberActionCellViewModel.swift */; };
 		412D162A20AE1C350081E737 /* AccountNumberActionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412D162820AE1C350081E737 /* AccountNumberActionTableViewCell.swift */; };
 		412D162B20AE1C350081E737 /* AccountNumberActionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 412D162920AE1C350081E737 /* AccountNumberActionTableViewCell.xib */; };
+		41456F6420B5FA2000D69215 /* DateFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41456F6320B5FA2000D69215 /* DateFormatter+Extensions.swift */; };
 		41492D2D20653C4F00B87433 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41492D2C20653C4F00B87433 /* AppDelegate.swift */; };
 		41492D3420653C4F00B87433 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41492D3320653C4F00B87433 /* Assets.xcassets */; };
 		41492D3720653C4F00B87433 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41492D3520653C4F00B87433 /* LaunchScreen.storyboard */; };
@@ -99,6 +100,7 @@
 		412D162620AE19D80081E737 /* AccountNumberActionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNumberActionCellViewModel.swift; sourceTree = "<group>"; };
 		412D162820AE1C350081E737 /* AccountNumberActionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNumberActionTableViewCell.swift; sourceTree = "<group>"; };
 		412D162920AE1C350081E737 /* AccountNumberActionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountNumberActionTableViewCell.xib; sourceTree = "<group>"; };
+		41456F6320B5FA2000D69215 /* DateFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extensions.swift"; sourceTree = "<group>"; };
 		41492D2920653C4F00B87433 /* Forseti.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Forseti.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41492D2C20653C4F00B87433 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		41492D3320653C4F00B87433 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -359,6 +361,7 @@
 				41A4577B208A12DE00D53893 /* UIStoryboard+Extensions.swift */,
 				41F051EB208A0287000359DA /* UIView+Extensions.swift */,
 				41F051E9208A0263000359DA /* UIViewController+Extensions.swift */,
+				41456F6320B5FA2000D69215 /* DateFormatter+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -560,6 +563,7 @@
 				41D1340C20AB71600040B7B6 /* ProfileOptionCellViewModel.swift in Sources */,
 				41D133F220AA29B70040B7B6 /* ProfileCoordinatorModel.swift in Sources */,
 				41D1340020AB5FD70040B7B6 /* ProfileActivityCellViewModel.swift in Sources */,
+				41456F6420B5FA2000D69215 /* DateFormatter+Extensions.swift in Sources */,
 				41D1340720AB6D3D0040B7B6 /* ThumbsActivityCellViewModel.swift in Sources */,
 				4112310820A23873005413D7 /* AuthenticationViewController.swift in Sources */,
 				411230FD20A220BB005413D7 /* WelcomeViewModel.swift in Sources */,

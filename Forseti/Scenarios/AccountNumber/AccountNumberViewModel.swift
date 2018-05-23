@@ -91,6 +91,7 @@ class AccountNumberViewModelImplementation: AccountNumberViewModel {
                 self.comments = accountNumber.comments.reduce([]) { array, entry in
                     return array + entry.value.map { (entry.key, $0) }
                 }
+                self.comments.sort { ($0.1.date ?? Date()) > ($1.1.date ?? Date()) }
                 NotificationCenter.default.post(name: .accountNumberViewModelDidFindAccount, object: accountNumber)
                 self.delegate?.accountNumberViewModel(self, didFindAccountNumber: accountNumber)
             case .failure(let error):

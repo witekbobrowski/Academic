@@ -20,7 +20,7 @@ class AccountNumberCommentCellViewModelImplementation: AccountNumberCommentCellV
     private let comment: Comment
 
     let username: String
-    var date: String { return comment.timeStamp }
+    var date: String { return DateFormatter.forsetiFormatter.string(from: comment.date ?? Date()) }
     var content: String { return comment.comment }
 
     init(comment: Comment, username: String) {

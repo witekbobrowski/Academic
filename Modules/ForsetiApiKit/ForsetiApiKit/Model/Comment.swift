@@ -12,4 +12,5 @@ public struct Comment: Codable {
     public var id: Int
     public var comment: String
     public var timeStamp: String
+    public var date: Date? { return DateFormatter.apiDateFormatter.date(from: timeStamp) }
 }

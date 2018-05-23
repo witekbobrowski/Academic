@@ -19,6 +19,7 @@
 		4112312420A3A2DD005413D7 /* ClientFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4112312320A3A2DD005413D7 /* ClientFactory.swift */; };
 		4112312620A3A460005413D7 /* ForsetiApiKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4112312520A3A460005413D7 /* ForsetiApiKit.swift */; };
 		4112312B20A3B350005413D7 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4112312A20A3B350005413D7 /* Comment.swift */; };
+		41456F6620B60AD800D69215 /* ApiDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41456F6520B60AD800D69215 /* ApiDateFormatter.swift */; };
 		41492D4D20653EA900B87433 /* ForsetiApiKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 41492D4B20653EA900B87433 /* ForsetiApiKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		41A3C3DE20A889AC00EE8B17 /* EmptyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A3C3DD20A889AC00EE8B17 /* EmptyResponse.swift */; };
 		41AB1BA120ADB3DE00FD4D40 /* AccountNumberService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AB1BA020ADB3DD00FD4D40 /* AccountNumberService.swift */; };
@@ -46,6 +47,7 @@
 		4112312320A3A2DD005413D7 /* ClientFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientFactory.swift; sourceTree = "<group>"; };
 		4112312520A3A460005413D7 /* ForsetiApiKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForsetiApiKit.swift; sourceTree = "<group>"; };
 		4112312A20A3B350005413D7 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		41456F6520B60AD800D69215 /* ApiDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiDateFormatter.swift; sourceTree = "<group>"; };
 		41492D4820653EA900B87433 /* ForsetiApiKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ForsetiApiKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		41492D4B20653EA900B87433 /* ForsetiApiKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForsetiApiKit.h; sourceTree = "<group>"; };
 		41492D4C20653EA900B87433 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 			children = (
 				4112311420A39E22005413D7 /* Result.swift */,
 				4112311620A39E79005413D7 /* CompletionHandler.swift */,
+				41456F6520B60AD800D69215 /* ApiDateFormatter.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 				4112312020A3A1D3005413D7 /* DependencyContainer.swift in Sources */,
 				4112312B20A3B350005413D7 /* Comment.swift in Sources */,
 				41C434AC20A8591E00152C84 /* RestClientError.swift in Sources */,
+				41456F6620B60AD800D69215 /* ApiDateFormatter.swift in Sources */,
 				41AB1BA320ADB4AA00FD4D40 /* AccountNumber.swift in Sources */,
 				4112311D20A39FE7005413D7 /* AuthenticationService.swift in Sources */,
 				4112312220A3A222005413D7 /* ServiceFactory.swift in Sources */,

@@ -121,6 +121,19 @@ extension ProfileViewModelImplementation {
                         self.activities.append(.comment(comment, account))
                     }
                 }
+                self.activities.sort { activityA, activityB in
+                    var aDate: Date?
+                    var bDate: Date?
+                    switch activityA {
+                    case .comment(let comment, _): aDate = comment.date
+                    case .thumb(let thumb, _): aDate = thumb.date
+                    }
+                    switch activityB {
+                    case .comment(let comment, _): bDate = comment.date
+                    case .thumb(let thumb, _): bDate = thumb.date
+                    }
+                    return (aDate ?? Date()) > (bDate ?? Date())
+                }
                 NotificationCenter.default.post(name: .profileViewModelDidFetchUser, object: self)
                 self.delegate?.profileViewModel(self, didFinishFetchingUser: user)
             case .failure(let error):
