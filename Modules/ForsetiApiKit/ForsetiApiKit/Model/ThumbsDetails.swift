@@ -11,4 +11,5 @@ import Foundation
 public struct ThumbsDetails: Codable {
     public var thumb: Thumb
     public var timeStamp: String
+    public var date: Date? { return DateFormatter.apiDateFormatter.date(from: timeStamp) }
 }

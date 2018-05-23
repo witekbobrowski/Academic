@@ -15,7 +15,7 @@ class CommentActivityCellViewModel: ProfileActivityCellViewModel {
     private let accountNumber: String
 
     var title: String { return "✍🏽 You have commented on account with number: \(accountNumber)." }
-    var date: String { return comment.timeStamp }
+    var date: String { return DateFormatter.forsetiFormatter.string(from: comment.date ?? Date()) }
 
     init(comment: Comment, accountNumber: String) {
         self.comment = comment

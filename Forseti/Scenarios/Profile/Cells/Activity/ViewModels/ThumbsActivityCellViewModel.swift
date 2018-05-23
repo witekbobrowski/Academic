@@ -15,7 +15,7 @@ class ThumbsActivityCellViewModel: ProfileActivityCellViewModel {
     private let accountNumber: String
 
     var title: String { return activityDescription() }
-    var date: String { return thumbsDetails.timeStamp }
+    var date: String { return DateFormatter.forsetiFormatter.string(from: thumbsDetails.date ?? Date()) }
 
     init(thumbsDetails: ThumbsDetails, accountNumber: String) {
         self.thumbsDetails = thumbsDetails
