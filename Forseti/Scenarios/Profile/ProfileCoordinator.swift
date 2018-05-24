@@ -59,4 +59,12 @@ extension ProfileCoordinator: ProfileViewModelDelegate {
         rootViewController?.dismiss(animated: true)
     }
 
+    func profileViewModelDidRequestSettings(_ profileViewModel: ProfileViewModel) {
+        print("\(type(of: profileViewModel)) did request settings!")
+    }
+
+    func profileViewModelDidLogout(_ profileViewModel: ProfileViewModel) {
+        print("\(type(of: profileViewModel)) did logout.")
+        rootViewController?.dismiss(animated: true)
+    }
 }

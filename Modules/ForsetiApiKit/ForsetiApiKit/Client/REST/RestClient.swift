@@ -10,6 +10,7 @@ import Foundation
 import Alamofire
 
 protocol RestClientProtocol {
+    var authenticatedConnectionIsEstablished: Bool { get }
     func request<T: Codable>(_ data: Data?,
                              method: HTTPMethod,
                              endpoint: Endpoint,
@@ -18,8 +19,8 @@ protocol RestClientProtocol {
                            method: HTTPMethod,
                            endpoint: Endpoint,
                            completion: @escaping CompletionHandler<T>)
-    func authenticate(with authenticationData: AuthenticationData)
-    func logout()
+    func setupAuthorizedConnection(with authenticationData: AuthenticationData)
+    func setupUnauthorizedConnection()
 }
 
 class RestClient: RestClientProtocol {
@@ -27,9 +28,12 @@ class RestClient: RestClientProtocol {
     private var manager: SessionManager
     private let base: URL
 
+    private (set) var authenticatedConnectionIsEstablished: Bool
+
     init() {
+        self.base = URL(string: "http://77.55.213.42:8080/")!
         self.manager = SessionManager(configuration: .default)
-        self.base = URL(string: "http://127.0.0.1:8080/")!
+        self.authenticatedConnectionIsEstablished = false
     }
 
     func request<T: Codable>(_ data: Data?,
@@ -64,15 +68,17 @@ class RestClient: RestClientProtocol {
 
     }
 
-    func authenticate(with authenticationData: AuthenticationData) {
+    func setupAuthorizedConnection(with authenticationData: AuthenticationData) {
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = [
             AuthenticationData.CodingKeys.token.rawValue: authenticationData.token]
         manager = SessionManager(configuration: configuration)
+        authenticatedConnectionIsEstablished = true
     }
 
-    func logout() {
+    func setupUnauthorizedConnection() {
         manager = SessionManager(configuration: .default)
+        authenticatedConnectionIsEstablished = false
     }
 
 }

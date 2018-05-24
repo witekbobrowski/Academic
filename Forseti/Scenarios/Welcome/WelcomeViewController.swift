@@ -13,6 +13,7 @@ class WelcomeViewController: UIViewController {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var loginButton: UIButton!
     @IBOutlet private weak var registerButton: UIButton!
+    @IBOutlet private weak var exitButton: UIBarButtonItem!
 
     var viewModel: WelcomeViewModel!
 
@@ -20,16 +21,6 @@ class WelcomeViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         setupNavigationBar()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: false)
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: false)
     }
 
     @objc private func loginButtonDidTap(_ sender: UIButton) {
@@ -40,6 +31,10 @@ class WelcomeViewController: UIViewController {
         viewModel.register()
     }
 
+    @objc private func exitButtonDidTap(_ sender: UIButton) {
+        viewModel.exit()
+    }
+
 }
 
 extension WelcomeViewController {
@@ -47,6 +42,8 @@ extension WelcomeViewController {
     private func setupView() {
         titleLabel.text = viewModel.title
         titleLabel.textColor = #colorLiteral(red: 0.2509803922, green: 0.2588235294, blue: 0.2549019608, alpha: 1)
+        exitButton.action = #selector(exitButtonDidTap(_:))
+        exitButton.target = self
         loginButton.setTitle(viewModel.loginButtonTitle, for: .normal)
         loginButton.addTarget(self, action: #selector(loginButtonDidTap(_:)), for: .touchUpInside)
         loginButton.setTitleColor(#colorLiteral(red: 0.2509803922, green: 0.2588235294, blue: 0.2549019608, alpha: 1), for: .normal)

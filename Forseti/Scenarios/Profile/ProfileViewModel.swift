@@ -14,6 +14,8 @@ protocol ProfileViewModelDelegate: class {
     func profileViewModel(_ profileViewModel: ProfileViewModel, didFinishFetchingUser user: User)
     func profileViewModel(_ profileViewModel: ProfileViewModel, didFailFetchingWithError error: Error)
     func profileViewModelDidRequestExit(_ profileViewModel: ProfileViewModel)
+    func profileViewModelDidRequestSettings(_ profileViewModel: ProfileViewModel)
+    func profileViewModelDidLogout(_ profileViewModel: ProfileViewModel)
 }
 
 protocol ProfileViewModel {
@@ -59,6 +61,7 @@ class ProfileViewModelImplementation: ProfileViewModel {
     }
 
     private let userService: UserService
+    private let authenticationService: AuthenticationService
     private let dependencyContainer: DependencyContainer
     private let sections: [Section] = [.avatar, .options, .activityFeed]
     private let options: [ProfileOption] = [.settings, .logout]
@@ -71,10 +74,16 @@ class ProfileViewModelImplementation: ProfileViewModel {
     var avatarCellViewModel: ProfileAvatarCellViewModel {
         return dependencyContainer.profileAvatarCellViewModel(user: user!)
     }
-    var numberOfSections: Int { return sections.count }
+    var numberOfSections: Int {
+        guard authenticationService.isLoggedIn else { return 0 }
+        return sections.count
+    }
 
-    init(userService: UserService, dependencyContainer: DependencyContainer) {
+    init(userService: UserService,
+         authenticationService: AuthenticationService,
+         dependencyContainer: DependencyContainer) {
         self.userService = userService
+        self.authenticationService = authenticationService
         self.dependencyContainer = dependencyContainer
     }
 
@@ -88,7 +97,9 @@ class ProfileViewModelImplementation: ProfileViewModel {
     }
 
     func viewModel(forOptionCellInRow row: Int) -> ProfileOptionCellViewModel {
-        return dependencyContainer.profileOptionCellViewModel(option: options[row])
+        var cell = dependencyContainer.profileOptionCellViewModel(option: options[row])
+        cell.delegate = self
+        return cell
     }
 
     func viewModel(forActivityCellInRow row: Int) -> ProfileActivityCellViewModel {
@@ -109,6 +120,7 @@ class ProfileViewModelImplementation: ProfileViewModel {
 extension ProfileViewModelImplementation {
 
     private func fetchUser() {
+        guard authenticationService.isLoggedIn else { return }
         delegate?.profileViewModelDidBeginFetchingUser(self)
         userService.getUser { [weak self] result in
             guard let `self` = self else { return }
@@ -121,24 +133,43 @@ extension ProfileViewModelImplementation {
                         self.activities.append(.comment(comment, account))
                     }
                 }
-                self.activities.sort { activityA, activityB in
-                    var aDate: Date?
-                    var bDate: Date?
-                    switch activityA {
-                    case .comment(let comment, _): aDate = comment.date
-                    case .thumb(let thumb, _): aDate = thumb.date
-                    }
-                    switch activityB {
-                    case .comment(let comment, _): bDate = comment.date
-                    case .thumb(let thumb, _): bDate = thumb.date
-                    }
-                    return (aDate ?? Date()) > (bDate ?? Date())
-                }
+                self.activities = self.sortedActivities(self.activities) { $0 > $1 }
                 NotificationCenter.default.post(name: .profileViewModelDidFetchUser, object: self)
                 self.delegate?.profileViewModel(self, didFinishFetchingUser: user)
             case .failure(let error):
                 self.delegate?.profileViewModel(self, didFailFetchingWithError: error)
             }
+        }
+    }
+
+    private func sortedActivities(_ activities: [Activity],
+                                  byDate predicate: ((Date, Date) -> Bool)) -> [Activity] {
+        return activities.sorted { activityA, activityB in
+            var aDate: Date?
+            var bDate: Date?
+            switch activityA {
+            case .comment(let comment, _): aDate = comment.date
+            case .thumb(let thumb, _): aDate = thumb.date
+            }
+            switch activityB {
+            case .comment(let comment, _): bDate = comment.date
+            case .thumb(let thumb, _): bDate = thumb.date
+            }
+            return predicate((aDate ?? Date()), (bDate ?? Date()))
+        }
+    }
+
+}
+
+extension ProfileViewModelImplementation: ProfileOptionCellViewModelDelegate {
+
+    func profileOptionCellViewModel(_ profileOptionCellViewModel: ProfileOptionCellViewModel, didTapOption option: ProfileOption) {
+        switch option {
+        case .logout:
+            authenticationService.logout()
+            delegate?.profileViewModelDidLogout(self)
+        case .settings:
+            delegate?.profileViewModelDidRequestSettings(self)
         }
     }
 

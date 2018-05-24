@@ -20,13 +20,16 @@ protocol ViewModelFactory {
     func accountNumberCommentCellViewModel(comment: Comment,
                                            username: String) -> AccountNumberCommentCellViewModel
 
-    func profileViewModel(userService: UserService) -> ProfileViewModel
+    func profileViewModel(userService: UserService,
+                          authenticationService: AuthenticationService) -> ProfileViewModel
     func profileAvatarCellViewModel(user: User) -> ProfileAvatarCellViewModel
-    func thumbsActivityCellViewModel(thumbsDetails: ThumbsDetails, accountNumber: String) -> ThumbsActivityCellViewModel
+    func thumbsActivityCellViewModel(thumbsDetails: ThumbsDetails,
+                                     accountNumber: String) -> ThumbsActivityCellViewModel
     func commentActivityCellViewModel(comment: Comment, accountNumber: String) -> CommentActivityCellViewModel
     func profileOptionCellViewModel(option: ProfileOption) -> ProfileOptionCellViewModel
 
-    func commentViewModel(accountNumber: AccountNumber, accountNumberService: AccountNumberService) -> CommentViewModel
+    func commentViewModel(accountNumber: AccountNumber,
+                          accountNumberService: AccountNumberService) -> CommentViewModel
 }
 
 extension DependencyContainer: ViewModelFactory {
@@ -54,19 +57,24 @@ extension DependencyContainer: ViewModelFactory {
         return AccountNumberActionCellViewModelImplementation(accountNumber: accountNumber)
     }
 
-    func accountNumberCommentCellViewModel(comment: Comment, username: String) -> AccountNumberCommentCellViewModel {
+    func accountNumberCommentCellViewModel(comment: Comment,
+                                           username: String) -> AccountNumberCommentCellViewModel {
         return AccountNumberCommentCellViewModelImplementation(comment: comment, username: username)
     }
 
-    func profileViewModel(userService: UserService) -> ProfileViewModel {
-        return ProfileViewModelImplementation(userService: userService, dependencyContainer: self)
+    func profileViewModel(userService: UserService,
+                          authenticationService: AuthenticationService) -> ProfileViewModel {
+        return ProfileViewModelImplementation(userService: userService,
+                                              authenticationService: authenticationService,
+                                              dependencyContainer: self)
     }
 
     func profileAvatarCellViewModel(user: User) -> ProfileAvatarCellViewModel {
         return ProfileAvatarCellViewModelImplementation(user: user)
     }
 
-    func thumbsActivityCellViewModel(thumbsDetails: ThumbsDetails, accountNumber: String) -> ThumbsActivityCellViewModel {
+    func thumbsActivityCellViewModel(thumbsDetails: ThumbsDetails,
+                                     accountNumber: String) -> ThumbsActivityCellViewModel {
         return ThumbsActivityCellViewModel(thumbsDetails: thumbsDetails, accountNumber: accountNumber)
     }
 
@@ -78,7 +86,8 @@ extension DependencyContainer: ViewModelFactory {
         return ProfileOptionCellViewModelImplementation(option: option)
     }
 
-    func commentViewModel(accountNumber: AccountNumber, accountNumberService: AccountNumberService) -> CommentViewModel {
+    func commentViewModel(accountNumber: AccountNumber,
+                          accountNumberService: AccountNumberService) -> CommentViewModel {
         return CommentViewModelImplementation(accountNumber: accountNumber,
                                               accountNumberService: accountNumberService)
     }

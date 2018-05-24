@@ -10,6 +10,7 @@ import Foundation
 
 protocol WelcomeViewModelDelegate: class {
     func welcomeViewModel(_ welcomeViewModel: WelcomeViewModel, didRequestAuthenticationType type: AuthenticationType)
+    func welcomeViewModelDidRequestExit(_ welcomeViewModel: WelcomeViewModel)
 }
 
 protocol WelcomeViewModel {
@@ -20,6 +21,7 @@ protocol WelcomeViewModel {
 
     func login()
     func register()
+    func exit()
 }
 
 class WelcomeViewModelImplementation: WelcomeViewModel {
@@ -35,6 +37,10 @@ class WelcomeViewModelImplementation: WelcomeViewModel {
 
     func register() {
         delegate?.welcomeViewModel(self, didRequestAuthenticationType: .register)
+    }
+
+    func exit() {
+        delegate?.welcomeViewModelDidRequestExit(self)
     }
 
 }

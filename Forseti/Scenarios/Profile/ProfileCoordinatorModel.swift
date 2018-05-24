@@ -33,7 +33,8 @@ class ProfileCoordinatorModelImplementation: ProfileCoordinatorModel {
 extension ProfileCoordinatorModelImplementation {
 
     func configuredProfileViewController() -> ProfileViewController {
-        let viewModel = dependencyContainer.profileViewModel(userService: client.userService)
+        let viewModel = dependencyContainer.profileViewModel(userService: client.userService,
+                                                             authenticationService: client.authenticationService)
         let viewController = dependencyContainer.profileViewController
         viewController.viewModel = viewModel
         return viewController

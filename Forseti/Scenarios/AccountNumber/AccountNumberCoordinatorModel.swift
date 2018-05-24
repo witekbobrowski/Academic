@@ -10,15 +10,19 @@ import Foundation
 import ForsetiApiKit
 
 protocol AccountNumberCoordinatorModel {
+    var userIsLoggedIn: Bool { get }
     var accountNumberViewController: AccountNumberViewController { get }
     func commentViewController(_ accountNumber: AccountNumber) -> CommentViewController
     func profileCoordinator(viewController: UIViewController?) -> ProfileCoordinator
+    func welcomeCoordinator(viewController: UIViewController?) -> WelcomeCoordinator
 }
 
 class AccountNumberCoordinatorModelImplementation: AccountNumberCoordinatorModel {
 
     private let client: Client
     private let dependencyContainer: DependencyContainer
+
+    var userIsLoggedIn: Bool { return client.authenticationService.isLoggedIn }
 
     var accountNumberViewController: AccountNumberViewController {
         return configuredAccountNumberViewController()
@@ -39,6 +43,10 @@ class AccountNumberCoordinatorModelImplementation: AccountNumberCoordinatorModel
 
     func profileCoordinator(viewController: UIViewController?) -> ProfileCoordinator {
         return dependencyContainer.profileCoordinator(client: client, viewController: viewController)
+    }
+
+    func welcomeCoordinator(viewController: UIViewController?) -> WelcomeCoordinator {
+        return dependencyContainer.welcomeCoordinator(client: client, viewController: viewController)
     }
 
 }

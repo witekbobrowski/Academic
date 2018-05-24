@@ -19,6 +19,7 @@ protocol AccountNumberViewModelDelegate: class {
                                 didFindAccountNumber accountNumber: AccountNumber)
     func accountNumberViewModel(_ accountNumberViewModel: AccountNumberViewModel,
                                 didFailSearchingWithError error: Error)
+    func accountNumberViewModelCanGiveThumbs(_ accountNumberViewModel: AccountNumberViewModel) -> Bool
     func accountNumberViewModel(_ accountNumberViewModel: AccountNumberViewModel,
                                 didBeginSendingThumb thumb: Thumb,
                                 forAccountNumber accountNumber: String)
@@ -152,7 +153,8 @@ extension AccountNumberViewModelImplementation {
     }
 
     private func thumb(_ thumb: Thumb) {
-        guard let number = accountNumber?.accountNumber else { return }
+        guard delegate?.accountNumberViewModelCanGiveThumbs(self) ?? false,
+            let number = accountNumber?.accountNumber else { return }
         delegate?.accountNumberViewModel(self, didBeginSendingThumb: thumb, forAccountNumber: number)
         accountNumberService.thumb(thumb, accountNumber: number) { result in
             switch result {
