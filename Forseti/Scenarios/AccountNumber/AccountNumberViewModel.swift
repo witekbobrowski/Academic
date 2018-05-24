@@ -106,7 +106,10 @@ class AccountNumberViewModelImplementation: AccountNumberViewModel {
     }
 
     func detailsCellViewModel() -> AccountNumberDetailsCellViewModel {
-        return dependencyContainer.accountNumberDetailsCellViewModel(accountNumber: accountNumber!)
+        guard let accountNumber = accountNumber else { fatalError() }
+        let numberDetails = accountNumberService.getDetails(of: accountNumber)
+        return dependencyContainer.accountNumberDetailsCellViewModel(accountNumber: accountNumber,
+                                                                     numberDetails: numberDetails)
     }
 
     func actionsCellViewModel() -> AccountNumberActionCellViewModel {

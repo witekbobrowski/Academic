@@ -25,7 +25,10 @@ extension DependencyContainer: ServiceFactory {
     }
 
     func accountNumberService(restClient: RestClientProtocol) -> AccountNumberService {
-        return AccountNumberServiceImplementation(restClient: restClient)
+        let path = Bundle(for: type(of: self)).url(forResource: "number_details_processed", withExtension: "csv")!
+        let numberDetailsProvider = NumberDetailsProviderImplementation(pathToNumberDetailsFile: path)
+        return AccountNumberServiceImplementation(restClient: restClient,
+                                                  numberDetailsProvider: numberDetailsProvider)
     }
 
 }

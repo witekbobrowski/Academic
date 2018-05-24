@@ -9,6 +9,7 @@
 import Foundation
 
 public protocol AccountNumberService {
+    func getDetails(of accountNumber: AccountNumber) -> NumberDetails?
     func getAccountInfo(withNumber number: String, completion: @escaping CompletionHandler<AccountNumber>)
     func thumb(_ thumb: Thumb, accountNumber: String, completion: @escaping CompletionHandler<AccountNumber>)
     func comment(_ comment: String, accountNumber: String, completion: @escaping CompletionHandler<AccountNumber>)
@@ -31,9 +32,15 @@ class AccountNumberServiceImplementation: AccountNumberService {
     }
 
     private let restClient: RestClientProtocol
+    private let numberDetailsProvider: NumberDetailsProvider
 
-    init(restClient: RestClientProtocol) {
+    init(restClient: RestClientProtocol, numberDetailsProvider: NumberDetailsProvider) {
         self.restClient = restClient
+        self.numberDetailsProvider = numberDetailsProvider
+    }
+
+    func getDetails(of accountNumber: AccountNumber) -> NumberDetails? {
+        return numberDetailsProvider.numberDetails(forAccountNumber: accountNumber)
     }
 
     func getAccountInfo(withNumber number: String, completion: @escaping (Result<AccountNumber>) -> Void) {
