@@ -25,14 +25,25 @@ enum AccountNumberStatus {
 class AccountNumberDetailsCellViewModelImplementation: AccountNumberDetailsCellViewModel {
 
     private let accountNumber: AccountNumber
+    private let numberDetails: NumberDetails?
 
-    var bank: String? { return "Barclays Bank" }
+    var bank: String? { return numberDetails?.bankName }
     var number: String { return accountNumber.accountNumber }
-    var location: String? { return "High Street, Bognor Regis PO211, UK" }
+    var location: String? { return locationDescription(numberDetails) }
     var status: AccountNumberStatus { return .safe }
 
-    init(accountNumber: AccountNumber) {
+    init(accountNumber: AccountNumber, numberDetails: NumberDetails?) {
         self.accountNumber = accountNumber
+        self.numberDetails = numberDetails
+    }
+
+    private func locationDescription(_ numberDetails: NumberDetails?) -> String? {
+        guard let details = numberDetails else { return nil }
+        var description: String = ""
+        description += details.outpost + ", "
+        description += details.address + ", "
+        description += details.postal
+        return description
     }
 
 }

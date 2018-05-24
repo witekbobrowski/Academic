@@ -15,7 +15,8 @@ protocol ViewModelFactory {
     func authenticationViewModel(authenticationService: AuthenticationService,
                                  type: AuthenticationType) -> AuthenticationViewModel
     func accountNumberViewModel(accountNumberService: AccountNumberService) -> AccountNumberViewModel
-    func accountNumberDetailsCellViewModel(accountNumber: AccountNumber) -> AccountNumberDetailsCellViewModel
+    func accountNumberDetailsCellViewModel(accountNumber: AccountNumber,
+                                           numberDetails: NumberDetails?) -> AccountNumberDetailsCellViewModel
     func accountNumberActionCellViewModel(accountNumber: AccountNumber) -> AccountNumberActionCellViewModel
     func accountNumberCommentCellViewModel(comment: Comment,
                                            username: String) -> AccountNumberCommentCellViewModel
@@ -49,8 +50,10 @@ extension DependencyContainer: ViewModelFactory {
                                                     dependencyContainer: self)
     }
 
-    func accountNumberDetailsCellViewModel(accountNumber: AccountNumber) -> AccountNumberDetailsCellViewModel {
-        return AccountNumberDetailsCellViewModelImplementation(accountNumber: accountNumber)
+    func accountNumberDetailsCellViewModel(accountNumber: AccountNumber,
+                                           numberDetails: NumberDetails?) -> AccountNumberDetailsCellViewModel {
+        return AccountNumberDetailsCellViewModelImplementation(accountNumber: accountNumber,
+                                                               numberDetails: numberDetails)
     }
 
     func accountNumberActionCellViewModel(accountNumber: AccountNumber) -> AccountNumberActionCellViewModel {
