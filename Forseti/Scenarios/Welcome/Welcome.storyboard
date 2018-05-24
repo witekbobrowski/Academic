@@ -35,7 +35,7 @@
                                 <state key="normal" title="Button"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Gp-la-3rx">
-                                <rect key="frame" x="157" y="328" width="61.5" height="31.5"/>
+                                <rect key="frame" x="157" y="350" width="61.5" height="31.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -54,7 +54,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rz6-Wm-ff3"/>
                     </view>
+                    <navigationItem key="navigationItem" id="oSl-1H-Xmc">
+                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="HLZ-fJ-d7e"/>
+                    </navigationItem>
                     <connections>
+                        <outlet property="exitButton" destination="HLZ-fJ-d7e" id="2bI-kF-gTI"/>
                         <outlet property="loginButton" destination="pto-Kb-x0p" id="Mg6-kU-l8S"/>
                         <outlet property="registerButton" destination="PMu-9f-2dy" id="hQl-zp-GRv"/>
                         <outlet property="titleLabel" destination="5Gp-la-3rx" id="zgS-ve-5Ao"/>
@@ -62,7 +66,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6f4-BW-cho" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="286" y="133"/>
+            <point key="canvasLocation" x="1224.8" y="132.68365817091455"/>
         </scene>
         <!--Authentication View Controller-->
         <scene sceneID="HIj-JO-yAF">
@@ -151,7 +155,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4zl-cR-SyZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="956" y="133.5832083958021"/>
+            <point key="canvasLocation" x="2008.8" y="132.68365817091455"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="jXC-TW-UJc">
+            <objects>
+                <navigationController storyboardIdentifier="WelcomeNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="iic-If-KuR" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Lkf-W8-2qV">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="rkO-cG-quO" kind="relationship" relationship="rootViewController" id="R6g-E2-TpE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JO3-zO-p6p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="285.60000000000002" y="132.68365817091455"/>
         </scene>
     </scenes>
 </document>

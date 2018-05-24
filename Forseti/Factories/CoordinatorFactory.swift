@@ -10,21 +10,22 @@ import UIKit
 import ForsetiApiKit
 
 protocol CoordinatorFactory {
-    func welcomeCoordinator(client: Client) -> WelcomeCoordinator
     func accountNumberCoordinator(client: Client) -> AccountNumberCoordinator
+    func welcomeCoordinator(client: Client, viewController: UIViewController?) -> WelcomeCoordinator
     func profileCoordinator(client: Client, viewController: UIViewController?) -> ProfileCoordinator
 }
 
 extension DependencyContainer: CoordinatorFactory {
 
-    func welcomeCoordinator(client: Client) -> WelcomeCoordinator {
-        return WelcomeCoordinator(coordinatorModel: welcomeCoordinatorModel(client: client),
-                                  windowManager: windowManager)
-    }
-
     func accountNumberCoordinator(client: Client) -> AccountNumberCoordinator {
         return AccountNumberCoordinator(coordinatorModel: accountNumberCoordinatorModel(client: client),
-                                 windowManager: windowManager)
+                                        windowManager: windowManager)
+    }
+
+    func welcomeCoordinator(client: Client, viewController: UIViewController?) -> WelcomeCoordinator {
+        return WelcomeCoordinator(coordinatorModel: welcomeCoordinatorModel(client: client),
+                                  windowManager: windowManager,
+                                  viewController: viewController)
     }
 
     func profileCoordinator(client: Client, viewController: UIViewController?) -> ProfileCoordinator {
