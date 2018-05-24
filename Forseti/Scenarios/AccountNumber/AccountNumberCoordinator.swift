@@ -12,8 +12,16 @@ import SVProgressHUD
 
 class AccountNumberCoordinator: Coordinator {
 
+    enum Action {
+        case profile
+        case comment(AccountNumber)
+        case thumbs
+    }
+
     private let coordinatorModel: AccountNumberCoordinatorModel
     private let windowManager: WindowManager
+
+    private var actionOnHold: Action?
 
     var next: Coordinator?
     weak var rootViewController: UIViewController?
@@ -35,15 +43,42 @@ class AccountNumberCoordinator: Coordinator {
         appDelegate.window = windowManager.window
     }
 
+    private func showWelcomeCoordinator() {
+        let welcomeCoordinator = coordinatorModel.welcomeCoordinator(viewController: rootViewController)
+        welcomeCoordinator.delegate = self
+        next = welcomeCoordinator
+        welcomeCoordinator.start()
+    }
+
+    private func perform(_ action: Action) {
+        actionOnHold = nil
+        switch action {
+        case .profile:
+            let profileCoordinator = coordinatorModel.profileCoordinator(viewController: rootViewController)
+            next = profileCoordinator
+            profileCoordinator.start()
+        case .comment(let accountNumber):
+            let viewController = coordinatorModel.commentViewController(accountNumber)
+            viewController.viewModel.delegate = self
+            rootViewController?.present(UINavigationController(rootViewController: viewController), animated: true)
+        case .thumbs:
+            break
+        }
+    }
+
 }
 
 extension AccountNumberCoordinator: AccountNumberViewModelDelegate {
 
     func accountNumberViewModelDidRequestProfileScreen(_ accountNumberViewModel: AccountNumberViewModel) {
-        let profileCoordinator = coordinatorModel.profileCoordinator(viewController: rootViewController)
-        print("\(type(of: accountNumberViewModel)) did request \(type(of: profileCoordinator))")
-        next = profileCoordinator
-        profileCoordinator.start()
+        print("\(type(of: accountNumberViewModel)) did request profile screen")
+        let action: Action = .profile
+        guard coordinatorModel.userIsLoggedIn else {
+            showWelcomeCoordinator()
+            actionOnHold = action
+            return
+        }
+        perform(action)
     }
 
     func accountNumberViewModel(_ accountNumberViewModel: AccountNumberViewModel,
@@ -59,6 +94,15 @@ extension AccountNumberCoordinator: AccountNumberViewModelDelegate {
     func accountNumberViewModel(_ accountNumberViewModel: AccountNumberViewModel,
                                 didFailSearchingWithError error: Error) {
         print("\(type(of: accountNumberViewModel)) did fail searching with error: \(error)")
+    }
+
+    func accountNumberViewModelCanGiveThumbs(_ accountNumberViewModel: AccountNumberViewModel) -> Bool {
+        guard coordinatorModel.userIsLoggedIn else {
+            showWelcomeCoordinator()
+            actionOnHold = .thumbs
+            return false
+        }
+        return true
     }
 
     func accountNumberViewModel(_ accountNumberViewModel: AccountNumberViewModel,
@@ -81,9 +125,14 @@ extension AccountNumberCoordinator: AccountNumberViewModelDelegate {
 
     func accountNumberViewModel(_ accountNumberViewModel: AccountNumberViewModel,
                                 didRequestCommentScreenForAccount accountNumber: AccountNumber) {
-        let viewController = coordinatorModel.commentViewController(accountNumber)
-        viewController.viewModel.delegate = self
-        rootViewController?.present(UINavigationController(rootViewController: viewController), animated: true)
+        print("\(type(of: accountNumberViewModel)) did request comment screen.")
+        let action: Action = .comment(accountNumber)
+        guard coordinatorModel.userIsLoggedIn else {
+            showWelcomeCoordinator()
+            actionOnHold = action
+            return
+        }
+        perform(action)
     }
 
 }
@@ -112,6 +161,19 @@ extension AccountNumberCoordinator: CommentViewModelDelegate {
         print("\(type(of: commentViewModel)) did fail fetching with error: \(error)")
         SVProgressHUD.showError(withStatus: nil)
         SVProgressHUD.dismiss(withDelay: 0.5)
+    }
+
+}
+
+extension AccountNumberCoordinator: WelcomeCoordinatorDelegate {
+
+    func welcomeCoordinatorDidSuceedAuthentication(_ welcomeCoordinator: WelcomeCoordinator) {
+        guard let action = actionOnHold else { return }
+        perform(action)
+    }
+
+    func welcomeCoordinatorDidCancelAuthentication(_ welcomeCoordinator: WelcomeCoordinator) {
+        actionOnHold = nil
     }
 
 }

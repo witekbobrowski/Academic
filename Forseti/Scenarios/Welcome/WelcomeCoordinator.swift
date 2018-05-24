@@ -10,6 +10,7 @@ import UIKit
 import SVProgressHUD
 
 protocol WelcomeCoordinatorDelegate: class {
+    func welcomeCoordinatorDidCancelAuthentication(_ welcomeCoordinator: WelcomeCoordinator)
     func welcomeCoordinatorDidSuceedAuthentication(_ welcomeCoordinator: WelcomeCoordinator)
 }
 
@@ -36,7 +37,7 @@ class WelcomeCoordinator: Coordinator {
         viewController.viewModel.delegate = self
         let navigationController = UINavigationController(rootViewController: viewController)
         rootViewController = navigationController
-        viewController.present(navigationController, animated: true)
+        self.viewController?.present(navigationController, animated: true)
     }
 
 }
@@ -52,6 +53,7 @@ extension WelcomeCoordinator: WelcomeViewModelDelegate {
 
     func welcomeViewModelDidRequestExit(_ welcomeViewModel: WelcomeViewModel) {
         rootViewController?.dismiss(animated: true)
+        delegate?.welcomeCoordinatorDidCancelAuthentication(self)
     }
 
 }
