@@ -15,6 +15,7 @@ protocol ProfileViewModelDelegate: class {
     func profileViewModel(_ profileViewModel: ProfileViewModel, didFailFetchingWithError error: Error)
     func profileViewModelDidRequestExit(_ profileViewModel: ProfileViewModel)
     func profileViewModelDidRequestSettings(_ profileViewModel: ProfileViewModel)
+    func profileViewModelDidRequestLoginScreen(_ profileViewModel: ProfileViewModel)
     func profileViewModelDidLogout(_ profileViewModel: ProfileViewModel)
 }
 
@@ -74,7 +75,10 @@ class ProfileViewModelImplementation: ProfileViewModel {
     var avatarCellViewModel: ProfileAvatarCellViewModel {
         return dependencyContainer.profileAvatarCellViewModel(user: user!)
     }
-    var numberOfSections: Int { return sections.count }
+    var numberOfSections: Int {
+        guard authenticationService.isLoggedIn else { return 0 }
+        return sections.count
+    }
 
     init(userService: UserService,
          authenticationService: AuthenticationService,
@@ -117,6 +121,10 @@ class ProfileViewModelImplementation: ProfileViewModel {
 extension ProfileViewModelImplementation {
 
     private func fetchUser() {
+        guard authenticationService.isLoggedIn else {
+            delegate?.profileViewModelDidRequestLoginScreen(self)
+            return
+        }
         delegate?.profileViewModelDidBeginFetchingUser(self)
         userService.getUser { [weak self] result in
             guard let `self` = self else { return }
@@ -129,24 +137,29 @@ extension ProfileViewModelImplementation {
                         self.activities.append(.comment(comment, account))
                     }
                 }
-                self.activities.sort { activityA, activityB in
-                    var aDate: Date?
-                    var bDate: Date?
-                    switch activityA {
-                    case .comment(let comment, _): aDate = comment.date
-                    case .thumb(let thumb, _): aDate = thumb.date
-                    }
-                    switch activityB {
-                    case .comment(let comment, _): bDate = comment.date
-                    case .thumb(let thumb, _): bDate = thumb.date
-                    }
-                    return (aDate ?? Date()) > (bDate ?? Date())
-                }
+                self.activities = self.sortedActivities(self.activities) { $0 > $1 }
                 NotificationCenter.default.post(name: .profileViewModelDidFetchUser, object: self)
                 self.delegate?.profileViewModel(self, didFinishFetchingUser: user)
             case .failure(let error):
                 self.delegate?.profileViewModel(self, didFailFetchingWithError: error)
             }
+        }
+    }
+
+    private func sortedActivities(_ activities: [Activity],
+                                  byDate predicate: ((Date, Date) -> Bool)) -> [Activity] {
+        return activities.sorted { activityA, activityB in
+            var aDate: Date?
+            var bDate: Date?
+            switch activityA {
+            case .comment(let comment, _): aDate = comment.date
+            case .thumb(let thumb, _): aDate = thumb.date
+            }
+            switch activityB {
+            case .comment(let comment, _): bDate = comment.date
+            case .thumb(let thumb, _): bDate = thumb.date
+            }
+            return predicate((aDate ?? Date()), (bDate ?? Date()))
         }
     }
 
@@ -165,5 +178,3 @@ extension ProfileViewModelImplementation: ProfileOptionCellViewModelDelegate {
     }
 
 }
-
-

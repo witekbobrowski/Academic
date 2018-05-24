@@ -26,7 +26,7 @@ class AuthenticationServiceImplementation: AuthenticationService {
 
     private let restClient: RestClientProtocol
 
-    private (set) var isLoggedIn: Bool = false
+    var isLoggedIn: Bool { return restClient.authenticatedConnectionIsEstablished }
 
     init(restClient: RestClientProtocol) {
         self.restClient = restClient
@@ -39,11 +39,9 @@ class AuthenticationServiceImplementation: AuthenticationService {
                            endpoint: AuthenticationEndpoint.login) { [unowned self] (result: Result<AuthenticationData>) in
             switch result {
             case .success(let authData):
-                self.isLoggedIn = true
-                self.restClient.authenticate(with: authData)
+                self.restClient.setupAuthorizedConnection(with: authData)
                 completion(.success(authData.username))
             case .failure(let error):
-                self.isLoggedIn = false
                 completion(.failure(error))
             }
         }
@@ -64,8 +62,7 @@ class AuthenticationServiceImplementation: AuthenticationService {
     }
 
     func logout() {
-        restClient.logout()
-        isLoggedIn = false
+        restClient.setupUnauthorizedConnection()
     }
 
 }

@@ -63,6 +63,12 @@ extension ProfileCoordinator: ProfileViewModelDelegate {
         print("\(type(of: profileViewModel)) did request settings!")
     }
 
+    func profileViewModelDidRequestLoginScreen(_ profileViewModel: ProfileViewModel) {
+        print("\(type(of: profileViewModel)) did request login screen!")
+        let welcomeCoordinator = coordinatorModel.welcomeCoordinator
+        welcomeCoordinator.start()
+    }
+
     func profileViewModelDidLogout(_ profileViewModel: ProfileViewModel) {
         print("\(type(of: profileViewModel)) did logout.")
         rootViewController?.dismiss(animated: true)
