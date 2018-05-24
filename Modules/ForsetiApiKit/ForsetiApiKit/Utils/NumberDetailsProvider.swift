@@ -9,5 +9,5 @@
 import Foundation
 
 protocol NumberDetailsProvider {
-    func numberDetails(forAccountNumber accountNumber: AccountNumber) -> AccountNumber?
+    func numberDetails(forAccountNumber accountNumber: AccountNumber) -> NumberDetails?
 }
