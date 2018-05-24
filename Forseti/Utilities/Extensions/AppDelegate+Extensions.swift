@@ -15,7 +15,6 @@ extension AppDelegate {
         let coordinatorFactory: CoordinatorFactory = DependencyContainer()
         let client = ForsetiApiKit.client
         let welcomeCoordinator = coordinatorFactory.welcomeCoordinator(client: client)
-        rootCoordinator = welcomeCoordinator
         welcomeCoordinator.start()
     }
 

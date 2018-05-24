@@ -29,7 +29,7 @@ class RestClient: RestClientProtocol {
 
     init() {
         self.manager = SessionManager(configuration: .default)
-        self.base = URL(string: "http://127.0.0.1:8080/")!
+        self.base = URL(string: "http://77.55.213.42:8080/")!
     }
 
     func request<T: Codable>(_ data: Data?,

@@ -11,6 +11,7 @@ import ForsetiApiKit
 
 protocol ProfileCoordinatorModel {
     var profileViewController: ProfileViewController { get }
+    var welcomeCoordinator: WelcomeCoordinator { get }
 }
 
 class ProfileCoordinatorModelImplementation: ProfileCoordinatorModel {
@@ -20,6 +21,10 @@ class ProfileCoordinatorModelImplementation: ProfileCoordinatorModel {
 
     var profileViewController: ProfileViewController {
         return configuredProfileViewController()
+    }
+
+    var welcomeCoordinator: WelcomeCoordinator {
+        return dependencyContainer.welcomeCoordinator(client: client)
     }
 
     init(client: Client,
@@ -33,7 +38,8 @@ class ProfileCoordinatorModelImplementation: ProfileCoordinatorModel {
 extension ProfileCoordinatorModelImplementation {
 
     func configuredProfileViewController() -> ProfileViewController {
-        let viewModel = dependencyContainer.profileViewModel(userService: client.userService)
+        let viewModel = dependencyContainer.profileViewModel(userService: client.userService,
+                                                             authenticationService: client.authenticationService)
         let viewController = dependencyContainer.profileViewController
         viewController.viewModel = viewModel
         return viewController

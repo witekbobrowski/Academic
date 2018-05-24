@@ -14,6 +14,8 @@ protocol ProfileViewModelDelegate: class {
     func profileViewModel(_ profileViewModel: ProfileViewModel, didFinishFetchingUser user: User)
     func profileViewModel(_ profileViewModel: ProfileViewModel, didFailFetchingWithError error: Error)
     func profileViewModelDidRequestExit(_ profileViewModel: ProfileViewModel)
+    func profileViewModelDidRequestSettings(_ profileViewModel: ProfileViewModel)
+    func profileViewModelDidLogout(_ profileViewModel: ProfileViewModel)
 }
 
 protocol ProfileViewModel {
@@ -59,6 +61,7 @@ class ProfileViewModelImplementation: ProfileViewModel {
     }
 
     private let userService: UserService
+    private let authenticationService: AuthenticationService
     private let dependencyContainer: DependencyContainer
     private let sections: [Section] = [.avatar, .options, .activityFeed]
     private let options: [ProfileOption] = [.settings, .logout]
@@ -73,8 +76,11 @@ class ProfileViewModelImplementation: ProfileViewModel {
     }
     var numberOfSections: Int { return sections.count }
 
-    init(userService: UserService, dependencyContainer: DependencyContainer) {
+    init(userService: UserService,
+         authenticationService: AuthenticationService,
+         dependencyContainer: DependencyContainer) {
         self.userService = userService
+        self.authenticationService = authenticationService
         self.dependencyContainer = dependencyContainer
     }
 
@@ -88,7 +94,9 @@ class ProfileViewModelImplementation: ProfileViewModel {
     }
 
     func viewModel(forOptionCellInRow row: Int) -> ProfileOptionCellViewModel {
-        return dependencyContainer.profileOptionCellViewModel(option: options[row])
+        var cell = dependencyContainer.profileOptionCellViewModel(option: options[row])
+        cell.delegate = self
+        return cell
     }
 
     func viewModel(forActivityCellInRow row: Int) -> ProfileActivityCellViewModel {
@@ -143,3 +151,19 @@ extension ProfileViewModelImplementation {
     }
 
 }
+
+extension ProfileViewModelImplementation: ProfileOptionCellViewModelDelegate {
+
+    func profileOptionCellViewModel(_ profileOptionCellViewModel: ProfileOptionCellViewModel, didTapOption option: ProfileOption) {
+        switch option {
+        case .logout:
+            authenticationService.logout()
+            delegate?.profileViewModelDidLogout(self)
+        case .settings:
+            delegate?.profileViewModelDidRequestSettings(self)
+        }
+    }
+
+}
+
+
