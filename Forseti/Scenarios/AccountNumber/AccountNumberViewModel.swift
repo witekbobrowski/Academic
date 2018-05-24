@@ -62,7 +62,7 @@ class AccountNumberViewModelImplementation: AccountNumberViewModel {
 
     weak var delegate: AccountNumberViewModelDelegate?
     var title: String { return "Forseti" }
-    var emptyState: String { return "Search for account to inspect\ndetails, comments, and votes." }
+    var emptyState: String { return "search for bank account\n to comment, vote, and share\n\n 🔍 🏦 🗣 👍🏽 👎🏽 🚀" }
     var profileButtonAsset: String { return "user_male" }
     var numberOfSections: Int { return accountNumber == nil ? 0 : sections.count }
 
