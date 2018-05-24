@@ -24,6 +24,7 @@
 		41A3C3DE20A889AC00EE8B17 /* EmptyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A3C3DD20A889AC00EE8B17 /* EmptyResponse.swift */; };
 		41AB1BA120ADB3DE00FD4D40 /* AccountNumberService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AB1BA020ADB3DD00FD4D40 /* AccountNumberService.swift */; };
 		41AB1BA320ADB4AA00FD4D40 /* AccountNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AB1BA220ADB4AA00FD4D40 /* AccountNumber.swift */; };
+		41BB9B9420B6DAD9009633B0 /* number_details_processed.csv in Resources */ = {isa = PBXBuildFile; fileRef = 41BB9B9320B6DAD9009633B0 /* number_details_processed.csv */; };
 		41C434AC20A8591E00152C84 /* RestClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C434AB20A8591E00152C84 /* RestClientError.swift */; };
 		41C434AF20A8664D00152C84 /* AuthenticationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C434AE20A8664D00152C84 /* AuthenticationData.swift */; };
 		41D133E320AA0EAB0040B7B6 /* Thumb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D133E220AA0EAB0040B7B6 /* Thumb.swift */; };
@@ -54,6 +55,7 @@
 		41A3C3DD20A889AC00EE8B17 /* EmptyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResponse.swift; sourceTree = "<group>"; };
 		41AB1BA020ADB3DD00FD4D40 /* AccountNumberService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountNumberService.swift; sourceTree = "<group>"; };
 		41AB1BA220ADB4AA00FD4D40 /* AccountNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNumber.swift; sourceTree = "<group>"; };
+		41BB9B9320B6DAD9009633B0 /* number_details_processed.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = number_details_processed.csv; sourceTree = "<group>"; };
 		41C434AB20A8591E00152C84 /* RestClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestClientError.swift; sourceTree = "<group>"; };
 		41C434AE20A8664D00152C84 /* AuthenticationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationData.swift; sourceTree = "<group>"; };
 		41D133E220AA0EAB0040B7B6 /* Thumb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumb.swift; sourceTree = "<group>"; };
@@ -173,11 +175,20 @@
 				4112311E20A3A1BF005413D7 /* Factories */,
 				4112311820A39F43005413D7 /* Model */,
 				4112311320A39E17005413D7 /* Utils */,
+				41BB9B9220B6DAA3009633B0 /* Resources */,
 				41492D4B20653EA900B87433 /* ForsetiApiKit.h */,
 				4112312520A3A460005413D7 /* ForsetiApiKit.swift */,
 				41492D4C20653EA900B87433 /* Info.plist */,
 			);
 			path = ForsetiApiKit;
+			sourceTree = "<group>";
+		};
+		41BB9B9220B6DAA3009633B0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				41BB9B9320B6DAD9009633B0 /* number_details_processed.csv */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		41C434AD20A8663C00152C84 /* Private */ = {
@@ -269,6 +280,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41BB9B9420B6DAD9009633B0 /* number_details_processed.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
