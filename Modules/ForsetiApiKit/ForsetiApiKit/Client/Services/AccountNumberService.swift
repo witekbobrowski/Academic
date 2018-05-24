@@ -31,9 +31,11 @@ class AccountNumberServiceImplementation: AccountNumberService {
     }
 
     private let restClient: RestClientProtocol
+    private let numberDetailsProvider: NumberDetailsProvider
 
-    init(restClient: RestClientProtocol) {
+    init(restClient: RestClientProtocol, numberDetailsProvider: NumberDetailsProvider) {
         self.restClient = restClient
+        self.numberDetailsProvider = numberDetailsProvider
     }
 
     func getAccountInfo(withNumber number: String, completion: @escaping (Result<AccountNumber>) -> Void) {
