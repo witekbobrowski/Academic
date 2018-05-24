@@ -25,12 +25,14 @@ class AccountNumberCoordinator: Coordinator {
     }
 
     func start() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let viewController = coordinatorModel.accountNumberViewController
         viewController.viewModel.delegate = self
         let navigationController = UINavigationController(rootViewController: viewController)
         rootViewController = navigationController
         windowManager.setRoot(navigationController)
-        (UIApplication.shared.delegate as? AppDelegate)?.window = windowManager.window
+        appDelegate.rootCoordinator = self
+        appDelegate.window = windowManager.window
     }
 
 }

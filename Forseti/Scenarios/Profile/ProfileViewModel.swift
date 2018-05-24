@@ -15,7 +15,6 @@ protocol ProfileViewModelDelegate: class {
     func profileViewModel(_ profileViewModel: ProfileViewModel, didFailFetchingWithError error: Error)
     func profileViewModelDidRequestExit(_ profileViewModel: ProfileViewModel)
     func profileViewModelDidRequestSettings(_ profileViewModel: ProfileViewModel)
-    func profileViewModelDidRequestLoginScreen(_ profileViewModel: ProfileViewModel)
     func profileViewModelDidLogout(_ profileViewModel: ProfileViewModel)
 }
 
@@ -121,10 +120,7 @@ class ProfileViewModelImplementation: ProfileViewModel {
 extension ProfileViewModelImplementation {
 
     private func fetchUser() {
-        guard authenticationService.isLoggedIn else {
-            delegate?.profileViewModelDidRequestLoginScreen(self)
-            return
-        }
+        guard authenticationService.isLoggedIn else { return }
         delegate?.profileViewModelDidBeginFetchingUser(self)
         userService.getUser { [weak self] result in
             guard let `self` = self else { return }

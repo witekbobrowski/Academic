@@ -11,7 +11,6 @@ import ForsetiApiKit
 
 protocol ProfileCoordinatorModel {
     var profileViewController: ProfileViewController { get }
-    var welcomeCoordinator: WelcomeCoordinator { get }
 }
 
 class ProfileCoordinatorModelImplementation: ProfileCoordinatorModel {
@@ -21,10 +20,6 @@ class ProfileCoordinatorModelImplementation: ProfileCoordinatorModel {
 
     var profileViewController: ProfileViewController {
         return configuredProfileViewController()
-    }
-
-    var welcomeCoordinator: WelcomeCoordinator {
-        return dependencyContainer.welcomeCoordinator(client: client)
     }
 
     init(client: Client,

@@ -29,9 +29,6 @@ class WelcomeCoordinator: Coordinator {
         viewController.viewModel.delegate = self
         let navigationController = UINavigationController(rootViewController: viewController)
         rootViewController = navigationController
-        windowManager.setRoot(navigationController)
-        appDelegate.rootCoordinator = self
-        appDelegate.window = windowManager.window
     }
 
 }
