@@ -16,8 +16,10 @@ protocol ClientFactory {
 
 extension DependencyContainer: ClientFactory {
 
+    private var baseURL: URL { return URL(string: "http://77.55.213.42:8080/")! }
+
     var restClient: RestClientProtocol {
-        return RestClient()
+        return RestClient(baseURL: baseURL)
     }
 
     var client: Client {
