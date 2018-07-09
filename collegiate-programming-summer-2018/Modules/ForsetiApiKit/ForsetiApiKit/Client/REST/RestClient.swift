@@ -26,12 +26,12 @@ protocol RestClientProtocol {
 class RestClient: RestClientProtocol {
 
     private var manager: SessionManager
-    private let base: URL
+    private let baseURL: URL
 
     private (set) var authenticatedConnectionIsEstablished: Bool
 
-    init() {
-        self.base = URL(string: "http://77.55.213.42:8080/")!
+    init(baseURL: URL) {
+        self.baseURL = baseURL
         self.manager = SessionManager(configuration: .default)
         self.authenticatedConnectionIsEstablished = false
     }
@@ -40,7 +40,7 @@ class RestClient: RestClientProtocol {
                              method: HTTPMethod,
                              endpoint: Endpoint,
                              completion: @escaping CompletionHandler<T>) {
-        var request = URLRequest(url: base.appendingPathComponent(endpoint.path))
+        var request = URLRequest(url: baseURL.appendingPathComponent(endpoint.path))
         request.httpMethod = method.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = data
@@ -53,7 +53,7 @@ class RestClient: RestClientProtocol {
                            method: HTTPMethod,
                            endpoint: Endpoint,
                            completion: @escaping CompletionHandler<T>) {
-        var request = URLRequest(url: base.appendingPathComponent(endpoint.path))
+        var request = URLRequest(url: baseURL.appendingPathComponent(endpoint.path))
         let encoding = URLEncoding.queryString
         guard let encoded = try? encoding.encode(request, with: parameters) else {
             completion(.failure(RestClientError.failedToEncodeParameters))
