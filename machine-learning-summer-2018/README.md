@@ -17,8 +17,10 @@ Machine Learning class, which will cover the very basics of ML.
 
 ## Assignments
 
-- [x] 1. Warm up homework [`jupyter notebook`](warm-up-homework.ipynb)
-- [x] 2. Naive Bayes model [`jupyter notebook`](naive-bayes-model.ipynb)
-- [ ] 3. Ridge regression
-- [x] 4. K means [`jupyter notebook`](k-means.ipynb)
-- [ ] 5. Czekanowski Dice index [`jupyter notebook`](czekanowski-dice.ipynb)
+- [x] 0. Warm up homework [`jupyter notebook`](warm-up-homework.ipynb)
+- [x] 1. Naive Bayes model [`jupyter notebook`](naive-bayes-model.ipynb)
+- [ ] 2. Ridge regression
+- [x] 3. K means [`jupyter notebook`](k-means.ipynb)
+- [x] 4. Czekanowski Dice index [`jupyter notebook`](czekanowski-dice.ipynb)
+- [ ] 5. Perceptron [`jupyter notebook`](perceptron.ipynb)
+- [ ] 6. Random Forest
