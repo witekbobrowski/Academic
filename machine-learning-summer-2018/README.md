@@ -22,5 +22,5 @@ Machine Learning class, which will cover the very basics of ML.
 - [ ] 2. Ridge regression
 - [x] 3. K means [`jupyter notebook`](k-means.ipynb)
 - [x] 4. Czekanowski Dice index [`jupyter notebook`](czekanowski-dice.ipynb)
-- [ ] 5. Perceptron [`jupyter notebook`](perceptron.ipynb)
+- [x] 5. Perceptron [`jupyter notebook`](perceptron.ipynb)
 - [ ] 6. Random Forest
