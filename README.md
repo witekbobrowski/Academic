@@ -24,5 +24,6 @@ This repository was created to help me stay organised with my uni assignments.
 - 🎨 [Computer-aided design](computer-aided-design-winter-2017)
 
 #### Summer 2018
-- 🧠 [Machine Learning](machine-learning-summer-2018)
+- 📟 [Advanced Graphical Interfaces](advanced-graphical-interfaces-summer-2018)
 - ⌨️  [Collegiate Programming](collegiate-programming-summer-2018)
+- 🧠 [Machine Learning](machine-learning-summer-2018)
