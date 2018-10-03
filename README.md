@@ -26,4 +26,5 @@ This repository was created to help me stay organised with my uni assignments.
 #### Summer 2018
 - 📟 [Advanced Graphical Interfaces](advanced-graphical-interfaces-summer-2018)
 - ⌨️  [Collegiate Programming](collegiate-programming-summer-2018)
+- 💎  [E-business](e-business-summer-2018)
 - 🧠 [Machine Learning](machine-learning-summer-2018)
